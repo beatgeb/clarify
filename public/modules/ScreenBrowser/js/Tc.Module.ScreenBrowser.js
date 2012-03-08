@@ -20,6 +20,14 @@
             });
             
             $('.delete').bind('click', function(e) {
+                if ($(this).data('delete')) {
+                    var container = $(this).parent().parent();
+                    $('.delete-confirm', container).remove();
+                    $('.image', container).fadeTo('fast', 1);
+                    $(this).data('delete', false);
+                    return;
+                }
+                $(this).data('delete', true);
                 var screen = $(this).data('screen');
                 var image = $('.image', $(this).parent().parent());
                 image.fadeTo('fast', 0.1);
