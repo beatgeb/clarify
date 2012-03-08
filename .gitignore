@@ -1,0 +1,6 @@
+application/config/config-private.php
+public/.DS_Store
+public/upload/
+public/upload
+application/cache/
+.DS_Store
