@@ -19,4 +19,5 @@ http://blog.namics.com/2012/03/clarify-ein-toolkit-fur-den-frontend-workflow.htm
 
 1. Create a database (e.g. "clarify") and configure its name in /application/config-private.php (create the file initially)
 2. Run /application/db/create-tables.sql against the newly created database.
-3. Open up the application in your browser and have fun
+3. Create the folders /application/cache and /public/uploads and give chmod 777 to them
+4. Open up the application in your browser and have fun
