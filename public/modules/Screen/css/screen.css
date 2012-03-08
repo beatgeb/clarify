@@ -1,0 +1,13 @@
+.modScreen {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+}
+
+.modScreen .screen {
+    position: absolute;
+    top: 0;
+    display: block;
+    background-repeat: no-repeat;
+}

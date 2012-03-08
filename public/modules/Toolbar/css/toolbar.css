@@ -1,0 +1,67 @@
+.modToolbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.95;
+    background-color: #434343;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(45, 45, 45)));
+    background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -moz-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -o-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -ms-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#2d2d2d');
+    border-top: 1px solid #000;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #686868;
+    -moz-box-shadow: inset 0px 1px 0px 0px #686868;
+    box-shadow: inset 0px 1px 0px 0px #686868;
+    color: #FFF;
+    z-index: 99;
+    padding-left: 5px;
+}
+
+.modToolbar .button {
+    font-size: 13px;
+    font-weight: bold;
+    font-family: helvetica, sans-serif;
+    float: left;
+    background: #222;
+    margin: 5px 5px 5px 0;
+    border-radius: 2px;
+    padding: 8px 12px;
+    color: #AAA;
+    text-shadow: 0 -1px 0 #000;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #000;
+    -moz-box-shadow: inset 0px 1px 0px 0px #000;
+    box-shadow: inset 0px 1px 0px 0px #000;
+    text-decoration: none;
+}
+
+.modToolbar .button:hover {
+    color: white;
+}
+
+.modToolbar .btn-comments {
+    float: right;
+}
+
+.modToolbar .btn-measure {
+    float: right;
+}
+
+.modToolbar .btn-color {
+    float: right;
+    margin-right: 10px;
+}
+
+.modToolbar .btn-logo {
+    background: none;
+    background-image: url(/img/style-logo.png);
+    background-repeat: no-repeat;
+    background-position: 4px 3px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    width: 8px;
+}

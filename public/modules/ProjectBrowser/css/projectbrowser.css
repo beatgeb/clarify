@@ -1,0 +1,40 @@
+.modProjectBrowser {
+    position: fixed;
+    width: 230px;
+    color: #FFF;
+    padding: 10px;
+}
+
+.modProjectBrowser .logo img {
+    border-radius: 2px;
+    margin-bottom: 10px;
+    opacity: 1;
+    display: none; 
+}
+
+.modProjectBrowser ul li a {
+    display: block;
+    background-color: #333333;
+    padding: 6px 10px;
+    color: #999;
+    text-decoration: none;
+    border-radius: 2px;
+    margin-bottom: 5px;
+}
+
+.modProjectBrowser ul li.active a {
+    background-color: #0fc9ff;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(15, 201, 255)), to(rgb(2, 142, 179)));
+    background-image: -webkit-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    background-image: -moz-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    background-image: -o-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    background-image: -ms-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    background-image: linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#0fc9ff', EndColorStr='#028eb3');
+    color: #FFF;
+    text-shadow: 0 -1px 0 #00708d;
+}
+
+.modProjectBrowser ul li a:hover {
+    background-color: #555555;
+}

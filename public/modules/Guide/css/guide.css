@@ -1,0 +1,109 @@
+.modGuide {
+    background: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    font-family: helvetica neue, helvetica, arial, sans-serif;
+    padding: 30px;
+}
+
+.modGuide .screen {
+    margin-bottom: 50px;
+    margin-right: 20px;
+    float: left;
+    width: 580px;
+}
+
+.modGuide h1 {
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.modGuide > .meta {
+    font-size: 24px;
+}
+
+.modGuide h2 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    clear: both;
+}
+
+.modGuide .pagebreak {
+    page-break-before: always;
+}
+
+.modGuide h3 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+.modGuide .definitions {
+    float: left;
+    width: 300px;
+    margin-bottom: 40px;
+}
+
+.modGuide .definitions li {
+    clear: both;
+}
+
+.modGuide .definitions li .dot {
+    display: block;
+    border-radius: 24px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #000;
+    position: relative;
+    float: left;
+}
+
+.modGuide .definitions li .nr {
+    display: block;
+    position: absolute;
+    width: 24px;
+    text-align: center;
+    top: 3px;
+    left: 0px;
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+}
+
+.modGuide .definitions li p {
+    margin-left: 40px;
+    padding-top: 3px;
+    margin-bottom: 15px;
+}
+
+.modGuide p {
+    font-size: 14px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+    color: #000;
+}
+
+.modGuide .color {
+    float: left;
+    width: 155px;
+    margin-bottom: 20px;
+}
+
+.modGuide .color .box {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.modGuide .color .meta p {
+    color: black;
+}
+
+.modGuide .color .meta .hex {
+    font-weight: bold;
+    font-size: 16px;
+}

@@ -1,0 +1,116 @@
+.modLayerComment {
+    position: absolute;
+    z-index: 2;
+}
+
+.modLayerComment .def {
+    position: absolute;
+}
+
+.modLayerComment .def .dot {
+    display: block;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    text-decoration: none;
+    
+    background-color: #0fc9ff;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(15, 201, 255)), to(rgb(2, 142, 179)));
+    background-image: -webkit-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    background-image: -moz-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    background-image: -o-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    background-image: -ms-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    background-image: linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#0fc9ff', EndColorStr='#028eb3');
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    box-shadow: 0 0 3px #000;
+}
+
+.modLayerComment .dot.ui-selected {
+    background: #000;
+}
+
+.modLayerComment .ui-draggable-dragging .dot {
+    background: rgba(255,255,255,0.5);
+}
+
+.modLayerComment .def-delete .dot {
+    background-color: #ee1f18;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(238, 31, 24)), to(rgb(171, 20, 14)));
+    background-image: -webkit-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
+    background-image: -moz-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
+    background-image: -o-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
+    background-image: -ms-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
+    background-image: linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ee1f18', EndColorStr='#ab140e');
+}
+
+.modLayerComment .def .nr {
+    display: block;
+    position: absolute;
+    width: 30px;
+    text-align: center;
+    top: 5px;
+    left: 0px;
+    text-shadow: 0 -1px 0 #00708d;
+    color: #FFF;
+    font-weight: bold;
+    font-family: helvetica neue, sans-serif;
+    text-align: center;
+    z-index: 4;
+}
+
+.modLayerComment .def-delete .nr {
+    display: none;
+}
+
+.modLayerComment .ui-draggable-dragging .dot .nr {
+    color: #000;
+}
+
+.modLayerComment .def .edit {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: none;
+    padding: 3px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 3px #000;
+    z-index: 1;
+}
+
+.modLayerComment .def .edit textarea {
+    opacity: 0.95;
+    background-color: #434343;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(45, 45, 45)));
+    background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -moz-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -o-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -ms-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#2d2d2d');
+    border: 1px solid #000;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #686868;
+    -moz-box-shadow: inset 0px 1px 0px 0px #686868;
+    box-shadow: inset 0px 1px 0px 0px #686868;
+    color: #FFF;
+    display: block;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-family: helvetica, sans-serif;
+    line-height: 1.5;
+    border-radius: 4px;
+    text-shadow: 0px -1px 0px #000;
+    resize: none;
+}
+
+.modLayerComment .def .edit textarea:focus {
+    outline: none;
+}
+
+.modLayerComment .ui-draggable-dragging .edit {
+    display: none;
+}

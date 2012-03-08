@@ -1,0 +1,8 @@
+<ul>
+    <? foreach ($projects as $project) { ?>
+    <li <?= $project['id'] == $_REQUEST['project'] ? 'class="active"': '' ?>>
+        <a href="?project=<?= $project['id'] ?>"><?= $project['name'] ?></a>
+    </li>
+    <? } ?>
+    <li><a class="btn-add-project" href="javascript:;">+ Add Project</a></li>
+</ul>

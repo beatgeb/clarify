@@ -1,0 +1,21 @@
+<? if (isset($_REQUEST['project'])) { ?>
+<ul>
+    <li class="create">
+        <a class="placeholder" href="javascript:;"><div>+</div></a>
+        <p class="title"><a href="#"><span>Untitled</span></a></p>
+        <p class="meta">Click to add a new screen</p>
+        <input class="fileupload" type="file" name="files[]" multiple>
+    </li>
+    <? foreach ($screens as $screen) { ?>
+    <li class="screen screen-<?= $screen['id'] ?>">
+        <a class="image" href="?view=screen&amp;screen=<?= $screen['id'] ?>"><img src="/upload/screens/<?= $project_id ?>/thumbnails/<?= $screen['id'] ?>.<?= $screen['ext'] ?>" width="200" alt="" /></a>
+        <p class="title"><a href="?view=screen&amp;screen=<?= $screen['id'] ?>"><span><?= truncate($screen['title'],25,'...') ?></span></a></p>
+        <p class="meta">
+            <span><?= strftime('%d %B %Y', strtotime($screen['created'])) ?></span>
+            <span class="size"><?= $screen['width'] ?> &times; &infin;</span>
+            <a class="delete" data-screen="<?= $screen['id'] ?>" href="javascript:;">X</a>
+        </p>
+    </li>
+    <? } ?>
+</ul>
+<? } ?>

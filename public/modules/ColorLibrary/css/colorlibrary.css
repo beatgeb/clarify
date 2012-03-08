@@ -1,0 +1,52 @@
+.modColorLibrary {
+    display: none;
+    position: absolute;
+    width: 100%;
+    position: fixed;
+    bottom: 43px;
+    left: 0;
+    width: 100%;
+    
+    border-top: 1px solid #000;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #686868;
+    -moz-box-shadow: inset 0px 1px 0px 0px #686868;
+    box-shadow: inset 0px 1px 0px 0px #686868;
+    color: #FFF;
+    z-index: 99;
+}
+
+.modColorLibrary .overlay {
+    opacity: 0.8;
+    background-color: #434343;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(45, 45, 45)));
+    background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -moz-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -o-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -ms-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#2d2d2d');
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 62px;
+    width: 100%;
+    z-index: -1;
+}
+
+.modColorLibrary .color {
+    float: left;
+    width: 39px;
+    height: 39px;
+    margin: 10px 0 10px 10px;
+    background-color: transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.7);
+    box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.7);
+    text-indent: -9999px;
+    position: relative;
+}
+
+.modColorLibrary .color:hover {
+    box-shadow: 0 0 8px #000;
+}

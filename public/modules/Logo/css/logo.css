@@ -1,0 +1,13 @@
+.modLogo {
+    background: none;
+    background-image: url(/img/style-logo-white.png);
+    background-repeat: no-repeat;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    width: 22px;
+    height: 22px;
+    bottom: 20px;
+    left: 20px;
+    position: fixed;
+}

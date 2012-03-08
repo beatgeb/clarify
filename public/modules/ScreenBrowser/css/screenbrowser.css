@@ -1,0 +1,113 @@
+.modScreenBrowser {
+    margin-left: 250px;
+    padding: 30px;
+    padding-right: 0;
+}
+
+.modScreenBrowser ul li {
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 3px;
+}
+
+.modScreenBrowser ul li img {
+    display: block;
+}
+.modScreenBrowser ul li .image {
+    display: block;
+    width: 200px;
+    height: 160px;
+    overflow: hidden;
+}
+
+.modScreenBrowser ul li.create .placeholder {
+    color: #666;
+    font-size: 100px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.modScreenBrowser ul li.create .placeholder div {
+    background: #282828;
+    width: 200px;
+    height: 145px;
+    border-radius: 10px;
+    padding-top: 15px;
+    
+}
+
+.modScreenBrowser ul li .title {
+    margin-top: 15px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.modScreenBrowser ul li .title a {
+    color: #FFF;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 #000;
+}
+
+.modScreenBrowser ul li .meta {
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+    position: relative;
+} 
+
+.modScreenBrowser ul li .meta .size {
+    display: inline-block;
+    background: #111;
+    border-radius: 2px;
+    color: #777;
+    font-size: 11px;
+    padding: 1px 3px;
+    margin-left: 3px;
+}
+
+.modScreenBrowser ul li a.delete {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: #282828;
+    border-radius: 2px;
+    color: #777;
+    font-size: 11px;
+    padding: 1px 3px;
+    margin-left: 3px;
+    text-decoration: none;
+}
+
+.modScreenBrowser ul li a.delete:hover {
+    background: #b66363;
+    color: white;
+}
+
+.modScreenBrowser ul li:hover {
+    background-color: #282828;
+}
+
+.modScreenBrowser .create {
+    position: relative;
+}
+
+.modScreenBrowser .create .fileupload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    border: solid transparent;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    direction: ltr;
+    cursor: pointer;
+    border-width: 0 0 0 0;
+    height: 230px;
+    line-height: 230px;
+}

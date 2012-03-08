@@ -1,0 +1,50 @@
+.modLayerColor {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    top: 0;
+    left: 0;
+}
+.modLayerColor .color {
+    color: #FFF; 
+    text-shadow: 1px 1px 0 #000; 
+    background-color: #434343;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(45, 45, 45)));
+    background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -moz-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -o-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -ms-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#2d2d2d');
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-radius: 0px 5px 5px 5px;
+    border-radius: 0px 5px 5px 5px;
+    padding: 3px;
+    position: absolute;
+    width: 90px;
+    height: 20px;
+    display: none;
+}
+.modLayerColor .color .p {
+    width: 20px;
+    height: 20px;
+    background: red;
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    -webkit-border-radius: 0px 3px 3px 3px;
+    border-radius: 0px 3px 3px 3px;
+    float: left;
+}
+.modLayerColor .color .meta {
+    font-family: helvetica; 
+    font-weight: bold;
+    font-size: 12px;
+    float: left;
+    padding: 3px 5px;
+    text-transform: uppercase;
+}

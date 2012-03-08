@@ -1,0 +1,45 @@
+.st-widget { position: relative; } 
+.st-def { position: absolute; } 
+.st-def .nr { 
+    display: block;
+    position: absolute;
+    width: 30px;
+    text-align: center;
+    top: 5px;
+    left: 0px;
+    text-shadow: 0 -1px 0 #00708d;
+    color: #FFF;
+    font-weight: bold;
+    font-family: helvetica neue, sans-serif;
+    text-align: center;
+    z-index: 4;
+    font-size: 14px;
+}
+
+.st-def .dot {
+    display: block;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    text-decoration: none;
+    background-color: #0fc9ff;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(15, 201, 255)), to(rgb(2, 142, 179)));
+    background-image: -webkit-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    background-image: -moz-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    background-image: -o-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    background-image: -ms-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    background-image: linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#0fc9ff', EndColorStr='#028eb3');
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    box-shadow: 0 0 3px #000;
+}
+
+.st-widget-small .nr { font-size: 14px; width: 30px; }
+.st-widget-small .dot { width: 30px; }
+.st-widget-medium .nr { font-size: 14px; width: 20px; top: 1px; }
+.st-widget-medium .dot { width: 20px; height: 20px; }
+.st-widget-large .nr { font-size: 20px; width: 30px; top: 2px; }
+.st-widget-large .dot { width: 30px; height: 30px; }
