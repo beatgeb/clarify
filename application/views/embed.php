@@ -30,7 +30,7 @@ document.write('<style type="text/css">');
 document.write('<?= $css ?>');
 document.write('</style>');
 document.write('<div class="st-widget <?= $class ?>">');
-document.write('<img src="http://dev.styleguide.namics.com/?view=api&action=screen.thumbnail&screen=<?= $screen_id ?>&width=<?= $width ?>" width="<?= $width ?>" />');
+document.write('<img src="<?= config('application.domain') ?><?= config('application.baseurl') ?>?view=api&action=screen.thumbnail&screen=<?= $screen_id ?>&width=<?= $width ?>" width="<?= $width ?>" />');
 <? foreach ($comments as $comment) { ?>
 document.write('<div class="st-def" style="top:<?= $comment['y']*$factor+$offset ?>px;left:<?= $comment['x']*$factor+$offset ?>px;"><a href="javascript:;" class="dot"><span class="nr"><?= $comment['nr'] ?></span></a></div>');
 <? } ?>
