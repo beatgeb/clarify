@@ -7,6 +7,7 @@ DB Queries are not optimized all the time, etc.
 This version is not intended to be used in production!
 
 Learn more about Clarify in the following blog post (Text: German, Video: General)
+
 http://blog.namics.com/2012/03/clarify-ein-toolkit-fur-den-frontend-workflow.html
 
 # Requirements
