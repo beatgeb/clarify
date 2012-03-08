@@ -25,7 +25,7 @@ foreach (glob(TERRIFIC_DIR . '/layout/css/skin/*') as $entry) {
 }
 
 // load plugin css
-foreach (glob(TERRIFIC_DIR . '/css/plugins/*.css') as $entry) {
+foreach (glob(TERRIFIC_DIR . '/css/elements/*.css') as $entry) {
     if (is_file($entry)) {
         $output .= file_get_contents($entry);
     }
