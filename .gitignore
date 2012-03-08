@@ -4,3 +4,4 @@ public/upload/
 public/upload
 application/cache/
 .DS_Store
+.idea/
