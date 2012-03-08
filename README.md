@@ -4,7 +4,7 @@ Please keep in mind, that this is an alpha version. This affects several things
 like missing authentication, security checks or sometimes architectural stuff.
 DB Queries are not optimized all the time, etc.
 
-This version is not intended to be used in production!
+*This version is not intended to be used in production!*
 
 Learn more about Clarify in the following blog post (Text: German, Video: General)
 
