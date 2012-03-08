@@ -21,3 +21,10 @@ http://blog.namics.com/2012/03/clarify-ein-toolkit-fur-den-frontend-workflow.htm
 2. Run /application/db/create-tables.sql against the newly created database.
 3. Create the folders /application/cache and /public/uploads and give chmod 777 to them
 4. Open up the application in your browser and have fun
+
+# Copyright & License
+
+Copyright (c) 2012 Roger Dudler <roger.dudler@gmail.com>
+
+Licensed under the MIT license:
+http://www.opensource.org/licenses/MIT
