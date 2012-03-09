@@ -37,8 +37,6 @@ foreach (glob(TERRIFIC_DIR . '/modules/*', GLOB_ONLYDIR) as $dir) {
     }
 }
 
-require_once '../../application/library/thirdparty/cssmin.php';
-// $output = cssmin::minify($output);
 header("Content-Type: text/css");
 echo $output;
 
