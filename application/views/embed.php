@@ -22,7 +22,7 @@ if ($factor < 0.6) {
     $class = 'st-widget-medium';
     $offset = 0;
 }
-$css = trim(str_replace(array("\n","'"), array("","\'"), file_get_contents(TERRIFIC . 'css/st.css')));
+$css = trim(str_replace(array("\n","'"), array("","\'"), file_get_contents(TERRIFIC . 'css/embed/comments.css')));
         
 header('Content-Type: text/javascript');
 ?>
