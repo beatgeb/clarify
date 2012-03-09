@@ -5,9 +5,13 @@
     top: 0;
     left: 0;
     width: 75px;
-    height: 100px;
+    height: 75px;
     border-radius: 5px;
     border: 1px solid rgba(0,0,0,0.5);
+}
+
+.modEyedropper .picker.display {
+    height: 100px;
 }
 
 .modEyedropper .picker div {
@@ -27,15 +31,27 @@
     border-radius: 0px 5px 0px 0px;
 }
 .modEyedropper .picker .p25 {
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-radius: 0px 0px 5px 0px;
+    border-radius: 0px 0px 5px 0px;
+}
+.modEyedropper .picker.display .p25 {
     -moz-border-radius-bottomright: 0px;
     -webkit-border-radius: 0px 0px 0px 0px;
     border-radius: 0px 0px 0px 0px;
 }
+
 .modEyedropper .picker .p21 {
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-radius: 0px 0px 0px 5px;
+    border-radius: 0px 0px 0px 5px;
+}
+.modEyedropper .picker.display .p21 {
     -moz-border-radius-bottomleft: 0px;
     -webkit-border-radius: 0px 0px 0px 0px;
     border-radius: 0px 0px 0px 0px;
 }
+
 .modEyedropper .picker .p13 {
     -webkit-box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.7);
@@ -69,4 +85,5 @@
     font-size: 12px;
     text-transform: uppercase;
     width: 70px;
+    display: none;
 }

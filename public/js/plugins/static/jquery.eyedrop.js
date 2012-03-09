@@ -17,6 +17,7 @@
             'width': 5,
             'height': 5,
             'cursor': 'crosshair',
+            'display': false,
             'mode': 'single',
             'picker': $('.picker'),
             'start': function(x, y) {},
@@ -30,6 +31,15 @@
             if (!data) {
                 $this.data('eyedrop', {});
                 data = $this.data('eyedrop');
+            }
+
+            var $display = $('.display', settings.picker);
+            if (settings.display !== false) {
+                settings.picker.addClass('display');
+                $display.show();
+            } else {
+                settings.picker.removeClass('display');
+                $display.hide();
             }
             
             // set width, height and background image on source element
@@ -140,7 +150,9 @@
                 settings.picking(x, y, width, height);
 
                 // update color-display with current hex-value
-                $('.display', settings.picker).html(data.color.hex);
+                if (settings.display !== false) {
+                    $display.html(data.color.hex);
+                }
             });
         });
     };
