@@ -6,6 +6,7 @@ like missing authentication, security checks or sometimes architectural stuff.
 *This version is not intended to be used in production!*
 
 Learn more about Clarify in the following blog post (Text: German)
+
 http://blog.namics.com/2012/03/clarify-ein-toolkit-fur-den-frontend-workflow.html
 
 # Requirements
