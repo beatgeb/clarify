@@ -1,5 +1,10 @@
 <?php
 
+// Color API
+define('API_COLOR_ADD', 'color.add');
+define('API_COLOR_GET', 'color.get');
+define('API_COLOR_REMOVE', 'color.remove');
+
 switch ($action) {
     
     case API_COLOR_REMOVE:

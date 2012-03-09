@@ -1,5 +1,12 @@
 <?php
 
+// Screen API
+define('API_SCREEN_DELETE', 'screen.delete');
+define('API_SCREEN_UPLOAD', 'screen.upload');
+define('API_SCREEN_IMAGE', 'screen.image');
+define('API_SCREEN_THUMBNAIL', 'screen.thumbnail');
+define('API_SCREEN_EMBED', 'screen.embed');
+
 switch ($action) {
     
     case API_SCREEN_DELETE:

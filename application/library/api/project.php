@@ -1,5 +1,8 @@
 <?php
 
+// Project API
+define('API_PROJECT_ADD', 'project.add');
+
 switch ($action) {
     
     case API_PROJECT_ADD:

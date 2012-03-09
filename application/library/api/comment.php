@@ -1,5 +1,14 @@
 <?php
 
+// Comment API
+define('API_COMMENT_ADD', 'comment.add');
+define('API_COMMENT_REMOVE', 'comment.remove');
+define('API_COMMENT_MOVE', 'comment.move');
+define('API_COMMENT_CLEAR', 'comment.clear');
+define('API_COMMENT_RESIZE', 'comment.resize');
+define('API_COMMENT_UPDATE', 'comment.update');
+define('API_COMMENT_GET', 'comment.get');
+
 switch ($action) {
     
     case API_COMMENT_ADD:

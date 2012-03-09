@@ -1,5 +1,11 @@
 <?php
 
+// Library API
+define('API_LIBRARY_COMPONENT_ADD', 'library.component.add');
+define('API_LIBRARY_BEHAVIOUR_ADD', 'library.behaviour.add');
+define('API_LIBRARY_BEHAVIOUR_OPTION_ADD', 'library.behaviour.option.add');
+define('API_LIBRARY_BEHAVIOUR_EVENT_ADD', 'library.behaviour.event.add');
+
 switch ($action) {
         
     case API_LIBRARY_BEHAVIOUR_ADD:

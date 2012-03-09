@@ -1,5 +1,12 @@
 <?php
 
+// Measure API
+define('API_MEASURE_ADD', 'measure.add');
+define('API_MEASURE_GET', 'measure.get');
+define('API_MEASURE_MOVE', 'measure.move');
+define('API_MEASURE_RESIZE', 'measure.resize');
+define('API_MEASURE_DELETE', 'measure.delete');
+
 switch ($action) {
         
     case API_MEASURE_ADD:
