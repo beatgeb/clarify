@@ -138,6 +138,9 @@
                 var width = Math.abs(data.x - data.startx) + 1;
                 var height = Math.abs(data.y - data.starty) + 1;
                 settings.picking(x, y, width, height);
+
+                // update color-display with current hex-value
+                $('.display', settings.picker).html(data.color.hex);
             });
         });
     };
