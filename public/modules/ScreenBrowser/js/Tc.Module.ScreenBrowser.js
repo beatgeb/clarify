@@ -20,13 +20,29 @@
             });
             
             $('.delete').bind('click', function(e) {
+                if ($(this).data('delete')) {
+                    var container = $(this).parent().parent();
+                    $('.delete-confirm', container).remove();
+                    $('.image', container).fadeTo('fast', 1);
+                    $(this).data('delete', false);
+                    return;
+                }
+                $(this).data('delete', true);
                 var screen = $(this).data('screen');
-                $.ajax({
-                    url: "?view=api&action=screen.delete&screen=" + screen,
-                    dataType: 'json',
-                    success: function(data){
-                        $('.screen-' + screen).remove();
-                    }
+                var image = $('.image', $(this).parent().parent());
+                image.fadeTo('fast', 0.1);
+                var confirm = $('<a href="javascript:;" class="delete-confirm">click to delete this screen</a>');
+                $(this).parent().parent().append(confirm);
+                confirm.on('click', function() {
+                    $.ajax({
+                        url: "?view=api&action=screen.delete&screen=" + screen,
+                        dataType: 'json',
+                        success: function(data){
+                            $('.screen-' + screen).fadeOut('fast', function() {
+                                $(this).remove();
+                            });
+                        }
+                    });
                 });
             });
             $('.screen').hover(

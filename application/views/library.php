@@ -19,7 +19,6 @@ $events = $db->data("SELECT * FROM library_behaviour_event ORDER BY name ASC", "
 <html class="mod modLayout skinLayoutLibrary">
 <head>
     <title>Interactive Frontend Styleguide</title>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css' />
     <? require 'partials/head.php' ?>
 </head>
 <body>
