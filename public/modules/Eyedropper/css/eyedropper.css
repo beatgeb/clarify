@@ -10,6 +10,10 @@
     border: 1px solid rgba(0,0,0,0.5);
 }
 
+.modEyedropper .picker.display {
+    height: 100px;
+}
+
 .modEyedropper .picker div {
     width: 15px;
     height: 15px;
@@ -31,13 +35,55 @@
     -webkit-border-radius: 0px 0px 5px 0px;
     border-radius: 0px 0px 5px 0px;
 }
+.modEyedropper .picker.display .p25 {
+    -moz-border-radius-bottomright: 0px;
+    -webkit-border-radius: 0px 0px 0px 0px;
+    border-radius: 0px 0px 0px 0px;
+}
+
 .modEyedropper .picker .p21 {
     -moz-border-radius-bottomleft: 5px;
     -webkit-border-radius: 0px 0px 0px 5px;
     border-radius: 0px 0px 0px 5px;
 }
+.modEyedropper .picker.display .p21 {
+    -moz-border-radius-bottomleft: 0px;
+    -webkit-border-radius: 0px 0px 0px 0px;
+    border-radius: 0px 0px 0px 0px;
+}
+
 .modEyedropper .picker .p13 {
     -webkit-box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.7);
     box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+.modEyedropper .picker .display {
+    background-color: #434343;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(45, 45, 45)));
+    background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -moz-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -o-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -ms-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#2d2d2d');
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 0px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-radius: 0px 0px 5px 5px;
+    border-radius: 0px 0px 5px 5px;
+    color: #FFF;
+    float: left;
+    height: 20px;
+    padding: 6px 0 0 5px;
+    position: absolute;
+    text-shadow: 1px 1px 0 #000;
+    top: 75px;
+    font-family: helvetica;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    width: 70px;
+    display: none;
 }

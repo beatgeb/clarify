@@ -43,6 +43,7 @@
             
             $('.modScreen').eyedrop({
                 mode: 'range',
+                'display': false,
                 start: function(x, y) {
                     if (!that.hover) {
                         $('.measure').hide();
