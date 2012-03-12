@@ -110,8 +110,12 @@
 
                 // move magnifier to the correct location
                 var $picker = settings.picker;
-                $picker.css({ 
-                    left: data.x + offset.left + settings.offset, 
+
+                // make sure picker-windows does't get out of the screen
+                var offsetLeft = (data.x + offset.left + settings.offset + $picker.outerWidth() > $(window).width()) ? data.x + offset.left - (settings.offset + $picker.outerWidth()) : data.x + offset.left + settings.offset;
+
+                $picker.css({
+                    left: offsetLeft,
                     top: data.y + offset.top + settings.offset
                 });
 
