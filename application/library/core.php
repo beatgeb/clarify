@@ -48,7 +48,7 @@ function userid() {
  * @param $id Table ID
  */
 function table($id) {
-	return $id;
+    return $id;
 }
 
 /**

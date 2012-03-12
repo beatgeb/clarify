@@ -51,8 +51,6 @@ foreach (glob(TERRIFIC_DIR . '/modules/*', GLOB_ONLYDIR) as $dir) {
     }
 }
 
-require_once '../../application/library/thirdparty/jsmin.php';
-//$output = JSMin::minify($output);
 header("Content-Type: text/javascript; charset=utf-8");
 echo $output;
 

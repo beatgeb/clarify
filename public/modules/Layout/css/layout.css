@@ -1,0 +1,14 @@
+strong {
+    font-weight: bold;
+}
+
+.modLayout {
+    background: #333333 url('/img/pattern.png');
+}
+
+.modLayout .viewport {
+    margin: 0 auto;
+    width: 1140px;
+    padding-top: 250px;
+    display: none;
+}

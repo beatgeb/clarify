@@ -44,6 +44,7 @@ $db = new Database(
     config('database.server.password'), 
     config('database.name')
 );
+
 /*
 global $cache;
 $cache = new Memcache;
@@ -61,6 +62,7 @@ session_set_save_handler(
     'sess_destroy', 
     'sess_gc'
 );
+*/
 
 // register shutdown functions
 register_shutdown_function('shutdown');
@@ -68,7 +70,6 @@ register_shutdown_function('session_write_close');
 
 // start session
 session_start();
-*/
 
 // enable output buffering
 ob_start();

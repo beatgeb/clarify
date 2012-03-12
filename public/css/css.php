@@ -16,14 +16,6 @@ $output = '';
 // load reset css
 $output .= file_get_contents(TERRIFIC_DIR . '/css/core/reset.css');
 
-// load layout css including skins
-$output .= file_get_contents(TERRIFIC_DIR . '/layout/css/project.css');
-foreach (glob(TERRIFIC_DIR . '/layout/css/skin/*') as $entry) {
-    if (is_file($entry)) {
-        $output .= file_get_contents($entry);
-    }
-}
-
 // load plugin css
 foreach (glob(TERRIFIC_DIR . '/css/elements/*.css') as $entry) {
     if (is_file($entry)) {
@@ -45,8 +37,6 @@ foreach (glob(TERRIFIC_DIR . '/modules/*', GLOB_ONLYDIR) as $dir) {
     }
 }
 
-require_once '../../application/library/thirdparty/cssmin.php';
-// $output = cssmin::minify($output);
 header("Content-Type: text/css");
 echo $output;
 
