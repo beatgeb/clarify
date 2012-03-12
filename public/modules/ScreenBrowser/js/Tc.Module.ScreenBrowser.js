@@ -9,7 +9,8 @@
 (function($) {
     Tc.Module.ScreenBrowser = Tc.Module.extend({
         onBinding: function() {
-            var project = this.$ctx.data('project');
+            var project = this.$ctx.data('project'),
+                that = this;
             $('.fileupload').fileupload({
                 dataType: 'json',
                 url: '?view=api&action=screen.upload&project=' + project,
@@ -19,14 +20,18 @@
                 }
             });
             
-            $('.delete').bind('click', function(e) {
+            $('.delete').on('click', function(e) {
+                var $this = $(this);
+                e.stopPropagation();
                 if ($(this).data('delete')) {
-                    var container = $(this).parent().parent();
-                    $('.delete-confirm', container).remove();
-                    $('.image', container).fadeTo('fast', 1);
-                    $(this).data('delete', false);
+                    that.removeConfirm($this);
                     return;
                 }
+
+                $(document).on('click', function() {
+                    that.removeConfirm($this);
+                });
+
                 $(this).data('delete', true);
                 var screen = $(this).data('screen');
                 var image = $('.image', $(this).parent().parent());
@@ -53,6 +58,12 @@
                     $('.delete', $(this)).hide();
                 }
             );
+        },
+        removeConfirm: function(el) {
+            var container = el.parent().parent();
+            $('.delete-confirm', container).remove();
+            $('.image', container).fadeTo('fast', 1);
+            el.data('delete', false);
         }
     });
 })(Tc.$);
