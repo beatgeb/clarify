@@ -14,6 +14,15 @@ define('TERRIFIC_DIR', dirname(__FILE__) . '/..');
 require getcwd() . '/../../application/library/bootstrap.php';
 
 if (config('cache.js.enabled') && is_file(CACHE . 'app.js')) {
+    $last_modified_time = filemtime(CACHE . 'app.js'); 
+    $etag = md5_file(CACHE . 'app.js'); 
+    header("Last-Modified: ".gmdate("D, d M Y H:i:s", $last_modified_time)." GMT"); 
+    header("Etag: $etag");
+    if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified_time ||
+        @trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag) {
+        header("HTTP/1.1 304 Not Modified");
+        exit;
+    }
     header('Content-Type: text/javascript');
     readfile(CACHE . 'app.js');
     exit();
