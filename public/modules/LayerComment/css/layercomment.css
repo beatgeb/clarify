@@ -34,6 +34,7 @@
 
 .modLayerComment .ui-draggable-dragging .dot {
     background: rgba(255,255,255,0.5);
+    border-color: black;
 }
 
 .modLayerComment .def-delete .dot {
