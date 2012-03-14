@@ -39,7 +39,7 @@
                 var container = $(this).parent();
                 if (that.deletemode) {
                     $.ajax({
-                        url: "?view=api&action=comment.remove&id=" + container.data('id'),
+                        url: "/api/comment/remove/" + container.data('id'),
                         dataType: 'json',
                         success: function(data){
                             $('.edit', container).fadeOut('fast');
@@ -52,13 +52,11 @@
                 if (edit.is(':visible')) {
                     // save changes
                     var content = $('textarea', edit).val();
-                    var w = $('textarea', edit).width();
-                    var h = $('textarea', edit).height();
                     $.ajax({
-                        url: "?view=api&action=comment.update&id=" + container.data('id'),
+                        url: "/api/comment/update/" + container.data('id'),
                         dataType: 'json',
                         type: 'POST',
-                        data: "content=" + content + "&w=" + w + "&h=" + h,
+                        data: "content=" + content,
                         success: function(data){
                             // NOOP
                         }
@@ -104,7 +102,7 @@
                 var screen = $('.modScreen').data('screen');
                 var layer = $('.modScreen').data('layer');
                 $.ajax({
-                    url: "?view=api&action=comment.add&screen=" + screen + "&layer=" + layer + "&x=" + x + "&y=" + y,
+                    url: "/api/comment/add/" + screen + "/" + x + "/" + y,
                     dataType: 'json',
                     success: function(data){
                         that.addComment(data);
@@ -122,7 +120,7 @@
             var screen = $('.modScreen').data('screen');
             var layer = $('.modScreen').data('layer');
             $.ajax({
-                url: "?view=api&action=comment.get&screen=" + screen + "&layer=" + layer,
+                url: "/api/comment/get/" + screen,
                 dataType: 'json',
                 success: function(data){
                     $.each(data, function(key, comment) {
@@ -154,7 +152,7 @@
                     var y = $(this).position().top;
                     var id = $(this).data('id');
                     $.ajax({
-                        url: "?view=api&action=comment.move&id=" + id + "&x=" + x + "&y=" + y,
+                        url: "/api/comment/move/" + id + "/" + x + "/" + y,
                         dataType: 'json',
                         success: function(data){
                         // moved
@@ -167,10 +165,9 @@
                     var w = $('.edit', def).width() - 22;
                     var h = $('.edit', def).height() - 16;
                     $.ajax({
-                        url: "?view=api&action=comment.resize&id=" + data.id,
+                        url: "/api/comment/resize/" + data.id + "/" + w + "/" + h,
                         dataType: 'json',
                         type: 'POST',
-                        data: "w=" + w + "&h=" + h,
                         success: function(data){
                         // NOOP
                         }

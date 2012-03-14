@@ -13,10 +13,10 @@
                 that = this;
             $('.fileupload').fileupload({
                 dataType: 'json',
-                url: '?view=api&action=screen.upload&project=' + project,
+                url: '/api/screen/upload/' + project,
                 dropZone: $('.create'),
                 done: function (e, data) {
-                    window.location.href='/?project=' + project;
+                    window.location.href='/project/' + project;
                 }
             });
             
@@ -40,7 +40,7 @@
                 $(this).parent().parent().append(confirm);
                 confirm.on('click', function() {
                     $.ajax({
-                        url: "?view=api&action=screen.delete&screen=" + screen,
+                        url: "/api/screen/delete/" + screen,
                         dataType: 'json',
                         success: function(data){
                             $('.screen-' + screen).fadeOut('fast', function() {

@@ -14,10 +14,6 @@ $tmhOAuth = new tmhOAuth(array(
   'consumer_secret' => config('twitter.auth.consumersecret'),
 ));
 
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
-
 if (isset($_REQUEST['start'])) :
   auth_request_token($tmhOAuth);
 elseif (isset($_REQUEST['oauth_verifier'])) :
@@ -28,14 +24,18 @@ elseif (isset($_REQUEST['wipe'])) :
   auth_wipe();
 endif;
 
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
+
 ?>
 
 <p>
 <?php if (isset($_SESSION['access_token'])) : ?>
   There appears to be some credentials already stored in this browser session.
-  Do you want to <a href="?view=login&amp;verify=1">verify the credentials?</a> or
-  <a href="?view=login&amp;wipe=1">wipe them and start again</a>.
+  Do you want to <a href="?verify=1">verify the credentials?</a> or
+  <a href="?wipe=1">wipe them and start again</a>.
 <?php else : ?>
-  <a href="?view=login&amp;start=1">Authorize with OAuth</a>.
+  <a href="?start=1">Authorize with OAuth</a>.
 <?php endif; ?>
 </p>

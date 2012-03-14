@@ -14,31 +14,32 @@ require getcwd() . '/../application/library/bootstrap.php';
 // start session
 session_start();
 
-// enable output buffering
-ob_start();
-
 // check for login credentials
 login();
 
 define('VIEW_API', 'api');
 define('VIEW_BROWSER', 'browser');
 define('VIEW_SCREEN', 'screen');
-define('VIEW_LOGIN', 'login');
+define('VIEW_AUTH', 'auth');
 define('VIEW_GUIDE', 'guide');
 define('VIEW_LIBRARY', 'library');
 define('VIEW_EMBED', 'embed');
+define('VIEW_PROJECT', 'project');
+
+$route = str_replace('?' . $_SERVER['QUERY_STRING'], '', explode('/', $_SERVER['REQUEST_URI']));
+if ($route[1] == "") { $route[1] = VIEW_BROWSER; }
 
 // view whitelisting, the pragmatic way...
-
-$view = isset($_REQUEST['view']) ? $_REQUEST['view'] : 'browser';
+$view = $route[1];
 switch ($view) {
     case VIEW_API:
     case VIEW_BROWSER:
     case VIEW_SCREEN:
-    case VIEW_LOGIN:
+    case VIEW_AUTH:
     case VIEW_GUIDE:
     case VIEW_LIBRARY:
     case VIEW_EMBED:
+    case VIEW_PROJECT:
         break;
     default:
         lock();

@@ -9,7 +9,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 
-$screen = $db->single("SELECT id, title, width, project, ext FROM screen WHERE id = '" . intval($_REQUEST['screen']) . "' LIMIT 1");
+$screen_id = intval($route[2]);
+$screen = $db->single("SELECT id, title, width, project, ext FROM screen WHERE id = '" . $screen_id . "' LIMIT 1");
 $screen['image'] = R . 'upload/screens/' . $screen['project'] . '/' . $screen['id'] . '.' . $screen['ext'];
 $colors = $db->data("SELECT id, hex FROM project_color WHERE project = '" . $screen['project'] . "'");
 

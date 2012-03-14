@@ -1,7 +1,10 @@
+<?php
+$projects = $db->data('SELECT id, name FROM project ORDER BY name ASC');
+?>
 <ul>
     <? foreach ($projects as $project) { ?>
-    <li <?= $project['id'] == $_REQUEST['project'] ? 'class="active"': '' ?>>
-        <a href="?project=<?= $project['id'] ?>"><?= $project['name'] ?></a>
+    <li <?= $project['id'] == $project_id ? 'class="active"': '' ?>>
+        <a href="<?= R ?>project/<?= $project['id'] ?>"><?= $project['name'] ?></a>
     </li>
     <? } ?>
     <li><a class="btn-add-project" href="javascript:;">+ Add Project</a></li>

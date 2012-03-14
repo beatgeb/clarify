@@ -81,9 +81,8 @@
                         return;
                     }
                     $.ajax({
-                        url: "?view=api&action=measure.add",
+                        url: "/api/measure/add/" + screen + "/" + sx + "/" + sy + "/" + width + "/" + height,
                         dataType: 'json',
-                        data: "screen=" + screen + "&x=" + sx + "&y=" + sy + "&width=" + width + "&height=" + height,
                         success: function(data){
                             helper.remove();
                             that.addMeasure(data.id, data.x, data.y, data.width, data.height);
@@ -104,7 +103,7 @@
             var screen = $('.modScreen').data('screen');
             $ctx.empty();
             $.ajax({
-                url: "?view=api&action=measure.get&screen=" + screen,
+                url: "/api/measure/get/" + screen,
                 dataType: 'json',
                 success: function(data){
                     $.each(data, function(key, entry) {
@@ -129,9 +128,8 @@
                     var nx = $(this).position().left;
                     var ny = $(this).position().top;
                     $.ajax({
-                        url: "?view=api&action=measure.move&id=" + id,
+                        url: "/api/measure/move/" + id + "/" + nx + "/" + ny,
                         dataType: 'json',
-                        data: 'x=' + nx + "&y=" + ny,
                         success: function(data){
                             // NOOP
                         }
@@ -152,10 +150,9 @@
                 },
                 stop: function() {
                     $.ajax({
-                        url: "?view=api&action=measure.resize&id=" + id,
+                        url: "/api/measure/resize/" + id + "/" + $(this).width() + "/" + $(this).height(),
                         dataType: 'json',
                         type: 'POST',
-                        data: "width=" + $(this).width() + "&height=" + $(this).height(),
                         success: function(data){
                         // NOOP
                         }
@@ -179,7 +176,7 @@
             // delete on double click
             measure.bind('dblclick', function(e) {
                 $.ajax({
-                    url: "?view=api&action=measure.delete&id=" + id,
+                    url: "/api/measure/delete/" + id,
                     dataType: 'json',
                     success: function(data){
                         measure.remove();

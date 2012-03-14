@@ -10,11 +10,13 @@
     Tc.Module.ProjectBrowser = Tc.Module.extend({
         onBinding: function() {
             $('.btn-add-project', this.$ctx).bind('click', function() {
-                var name = prompt('name',''); 
-                if (name != 'null' && name != '') {
+                var name = prompt('name','');
+                if (name) {
                     $.ajax({
-                        url: "?view=api&action=project.add&name=" + name,
+                        url: "/api/project/add/",
                         dataType: 'json',
+                        type: 'POST',
+                        data: 'name=' + encodeURIComponent(name),
                         success: function(data){
                             location.reload();
                         }

@@ -10,6 +10,7 @@ define('API_SCREEN_EMBED', 'screen.embed');
 switch ($action) {
     
     case API_SCREEN_DELETE:
+        $screen = intval($route[4]);
         // TODO: load colors referenced by this screen and delete
         //       color form library if it doesn't exist on another
         //       screen
@@ -20,6 +21,7 @@ switch ($action) {
         break;
     
     case API_SCREEN_UPLOAD:
+        $project = intval($route[4]);
         require LIBRARY . 'upload.php';
         $upload_dir = APP . '/../public/upload/screens/' . $project . '/';
         $upload_dir_thumbs = APP . '/../public/upload/screens/' . $project . '/thumbnails';
@@ -68,7 +70,9 @@ switch ($action) {
         break;
             
     case API_SCREEN_THUMBNAIL:
-        $key = md5($screen . '-' . intval($_REQUEST['width']));
+        $screen = intval($route[4]);
+        $reqwidth = intval($route[5]);
+        $key = md5($screen . '-' . $reqwidth);
         $screen = $db->single("SELECT id, project, type, ext FROM screen WHERE id = '" . $screen . "' LIMIT 1");
         $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . $screen['id'] . '.' . $screen['ext'];
         $target =  CACHE . 'screens/' . $screen['project'] . '/' . $screen['id'] . '/' . $key;
@@ -79,7 +83,7 @@ switch ($action) {
             if (!is_dir(dirname($target))) {
                 @mkdir(dirname($target), 0777, true);
             }
-            $w = intval($_REQUEST['width']);
+            $w = $reqwidth;
             list($width, $height) = getimagesize($filename);
             $r = $width / $height;
             $newheight = $w / $r;
@@ -102,9 +106,10 @@ switch ($action) {
         break;
     
     case API_SCREEN_IMAGE:
-        
+        $screen = intval($route[4]);
+        $reqwidth = intval($route[5]);
         $version = 1;
-        $key = md5($screen . '-' . $layer . '-' . $version);
+        $key = md5($screen . '-' . $reqwidth . '-' . $version);
         $screen = $db->single("SELECT * FROM screen WHERE id = '" . $screen . "' LIMIT 1");
         $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . $screen['id'] . '.' . $screen['ext'];
         $target =  UPLOAD . 'screens/' . $screen['project'] . '/' . $screen['id'] . '/' . $key . '.png';
@@ -113,21 +118,21 @@ switch ($action) {
         }
         
         // Get new dimensions
-        $factor = intval($_REQUEST['width']) / $screen['width'];
+        $factor = $reqwidth / $screen['width'];
         
         // Load comments for this screen and layer
         $comments = $db->data("SELECT x, y, nr FROM comment WHERE screen = '" . $screen['id'] . "'");
         
         $image = new Imagick($filename);
-        $image->thumbnailImage($_REQUEST['width'], 0);
+        $image->thumbnailImage($reqwidth, 0);
         
         // Draw comments
         $draw = new ImagickDraw(); 
         $draw->setFont('Nimbus-Sans-Bold');
-        if ($_REQUEST['width'] <= 300) {
+        if ($reqwidth <= 300) {
             $draw->setFontSize(9);
             $radius = 5;
-        } else if ($_REQUEST['width'] < 800) {
+        } else if ($reqwidth < 800) {
             $draw->setFontSize(12);
             $radius = 7;
             $offset = 1;

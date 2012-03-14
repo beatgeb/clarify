@@ -100,7 +100,7 @@ function authenticated() {
  */
 function lock() {
     if (!authenticated()) {
-        header('Location: ' . R . '?view=login&referer=' . $_SERVER['REQUEST_URI']);
+        header('Location: ' . R . '?view=auth&referer=' . $_SERVER['REQUEST_URI']);
         exit();
     }
 }

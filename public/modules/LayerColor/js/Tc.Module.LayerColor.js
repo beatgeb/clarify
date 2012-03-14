@@ -30,7 +30,7 @@
             var that = this;
             var screen = $('.modScreen').data('screen');
             $.ajax({
-                url: "?view=api&action=color.get&screen=" + screen,
+                url: "/api/color/get/" + screen,
                 dataType: 'json',
                 success: function(data){
                     $.each(data, function(key, color) {
@@ -59,7 +59,7 @@
                         return;
                     }
                     $.ajax({
-                        url: "?view=api&action=color.add&screen=" + screen.data('screen') + "&x=" + x + "&y=" + y + "&r=" + color.r + "&g=" + color.g + "&b=" + color.b + "&a=" + color.a + "&hex=" + encodeURIComponent(color.hex),
+                        url: "/api/color/add/" + screen.data('screen') + "/" + x + "/" + y + "/" + color.r + "/" + color.g + "/" + color.b + "/" + color.a + "/" + encodeURIComponent(color.hex.substring(1)),
                         dataType: 'json',
                         success: function(data){
                             if (data.result == 'NEW') {
@@ -99,7 +99,7 @@
                     var x = e.pageX - offset.left;
                     var y = e.pageY - offset.top;
                     $.ajax({
-                        url: "?view=api&action=color.add&screen=" + $('.modScreen').data('screen') + "&x=" + x + "&y=" + y + "&color=" + $(color).data('id'),
+                        url: "/api/color/add/" + $('.modScreen').data('screen') + "/" + x + "/" + y + "/" + $(color).data('id'),
                         dataType: 'json',
                         success: function(data){
                             that.addColor(data, true);
@@ -141,7 +141,7 @@
             // delete on double click
             element.bind('dblclick', function(e) {
                 $.ajax({
-                    url: "?view=api&action=color.remove&id=" + color.id,
+                    url: "/api/color/remove/" + color.id,
                     dataType: 'json',
                     success: function(data){
                         element.remove();

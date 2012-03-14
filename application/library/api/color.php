@@ -8,6 +8,8 @@ define('API_COLOR_REMOVE', 'color.remove');
 switch ($action) {
     
     case API_COLOR_REMOVE:
+        $id = intval($route[4]);
+        if ($id < 1) { die('Please provide a color instance id'); }
         $color = $db->single("
             SELECT c.color, s.project, pc.id 
             FROM color c 
@@ -28,6 +30,7 @@ switch ($action) {
         break;
     
     case API_COLOR_GET:
+        $screen = intval($route[4]);
         if ($screen < 1) { die('Please provide a screen id'); }
         $data = $db->data("SELECT c.id, c.x, c.y, pc.r, pc.g, pc.b, pc.alpha, pc.hex FROM color c LEFT JOIN project_color pc ON pc.id = c.color WHERE screen = " . $screen);
         header('Content-Type: application/json');
@@ -35,21 +38,27 @@ switch ($action) {
         break;
     
     case API_COLOR_ADD:
+        $screen = intval($route[4]);
+        $x = intval($route[5]);
+        $y = intval($route[6]);
+        if ($screen < 1) { die('Please provide a screen id'); }
         
         // explicitly use a library color
-        if (isset($_REQUEST['color'])) {
-            $color = $db->single("SELECT * FROM project_color WHERE id = '" . intval($_REQUEST['color']) . "' LIMIT 1");
+        if (sizeof($route) < 9) {
+            $color = intval($route[7]);
+            if ($color < 1) { die('Please provide a reference color'); }
+            $color = $db->single("SELECT * FROM project_color WHERE id = '" . $color . "' LIMIT 1");
             $r = $color['r'];
             $g = $color['g'];
             $b = $color['b'];
             $a = $color['alpha'];
             $hex = $color['hex'];
         } else {
-            $r = intval($_REQUEST['r']);
-            $g = intval($_REQUEST['g']);
-            $b = intval($_REQUEST['b']);
-            $a = intval($_REQUEST['a']);
-            $hex = substr($_REQUEST['hex'],1,6);
+            $r = intval($route[7]);
+            $g = intval($route[8]);
+            $b = intval($route[9]);
+            $a = intval($route[10]);
+            $hex = substr($route[11],0,6);
         }
         
         $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
@@ -82,8 +91,8 @@ switch ($action) {
             'creator' => userid(),
             'screen' => $screen['id'],
             'color' => $id,
-            'x' => intval($_REQUEST['x']),
-            'y' => intval($_REQUEST['y'])
+            'x' => $x,
+            'y' => $y
         );
         $id = $db->insert('color', $data);
         $data['id'] = $id;
