@@ -70,7 +70,7 @@ switch ($action) {
     case API_COMMENT_GET:
         if ($screen < 1) { die('Please provide a screen id'); }
         if ($layer < 1) { die('Please provide a layer id'); }
-        $data = $db->data("SELECT id, created, creator, nr, x, y, w, h, content FROM comment WHERE screen = " . $screen . " AND layer = " . $layer . "");
+        $data = $db->data("SELECT id, creator, nr, x, y, w, h, content FROM comment WHERE screen = " . $screen . " AND layer = " . $layer . "");
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
