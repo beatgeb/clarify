@@ -70,7 +70,7 @@ foreach (glob(TERRIFIC_DIR . '/modules/*', GLOB_ONLYDIR) as $dir) {
 }
     
 if (config('cache.js.enabled')) {
-    //require LIBRARY . 'thirdparty/jsmin.php';
+    //require LIBRARY . 'thirdparty/jsmin/jsmin.php';
     //$output = JSMin::minify($output);
     file_put_contents(CACHE . 'app.js', $core . $output);
 }
