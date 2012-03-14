@@ -16,7 +16,6 @@
 }
 
 .modColorLibrary .overlay {
-    opacity: 0.8;
     background-color: #434343;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(45, 45, 45)));
     background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
@@ -40,9 +39,6 @@
     margin: 10px 0 10px 10px;
     background-color: transparent;
     border-radius: 4px;
-    -webkit-box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.7);
-    -moz-box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.7);
-    box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.7);
     text-indent: -9999px;
     position: relative;
 }
