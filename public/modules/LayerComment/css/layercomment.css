@@ -83,7 +83,7 @@
 }
 
 .modLayerComment .def .edit textarea {
-    opacity: 0.95;
+    opacity: 1;
     background-color: #434343;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(45, 45, 45)));
     background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
