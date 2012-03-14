@@ -49,16 +49,15 @@
     box-shadow: none;
 }
 
-.modToolbar .btn-comments {
+.modToolbar .btn-comments,
+.modToolbar .btn-measure,
+.modToolbar .btn-behaviour, 
+.modToolbar .btn-color,
+.modToolbar .btn-fonts {
     float: right;
 }
 
-.modToolbar .btn-measure {
-    float: right;
-}
-
-.modToolbar .btn-color {
-    float: right;
+.modToolbar .btn-last {
     margin-right: 10px;
 }
 
