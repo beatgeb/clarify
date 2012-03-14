@@ -97,9 +97,10 @@
             
             // Add data dots
             $('.screen').bind('click', function(e) {
-                var offset = $('.modScreen').offset().left;
-                var x = e.pageX - offset - 15;
-                var y = e.pageY - 15;
+                var offsetLeft = $('.modScreen').offset().left;
+                var offsetTop = $('.modScreen').offset().top;
+                var x = e.pageX - offsetLeft - 15;
+                var y = e.pageY - offsetTop - 15;
                 var screen = $('.modScreen').data('screen');
                 var layer = $('.modScreen').data('layer');
                 $.ajax({
