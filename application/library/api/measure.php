@@ -42,10 +42,10 @@ switch ($action) {
         break;
         
     case API_MEASURE_MOVE:
-        $screen = intval($route[4]);
+        $id = intval($route[4]);
         $x = intval($route[5]);
         $y = intval($route[6]);
-        if ($screen < 1) { die('Please provide a screen id'); }
+        if ($id < 1) { die('Please provide a measure id'); }
         $data = array(
             'modified' => date('Y-m-d H:i:s'),
             'modifier' => userid(),
