@@ -31,6 +31,7 @@
             this.active = false;
             $('.modScreen').unbind('click mousemove mouseup mousedown mouseenter mouseleave');
             $('.modScreen').css('cursor', 'auto');
+            $('.btn-measure').removeClass('active');
             $('.picker').hide();
             this.$ctx.empty();
         },
@@ -40,7 +41,7 @@
             var that = this;
             var $ctx = this.$ctx;
             var helper;
-            
+            $('.btn-measure').addClass('active');
             $('.modScreen').eyedrop({
                 mode: 'range',
                 'display': false,

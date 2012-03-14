@@ -77,6 +77,7 @@
             $ctx.empty();
             $('.screen').unbind('click');
             $('.btn-delete').hide();
+            $('.btn-comments').removeClass('active');
             this.active = false;
             this.deletemode = false;
         },
@@ -92,6 +93,7 @@
             this.active = true;
             
             $('.btn-delete').show();
+            $('.btn-comments').addClass('active');
             
             // Add data dots
             $('.screen').bind('click', function(e) {

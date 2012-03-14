@@ -49,6 +49,7 @@
             });
             
             var screen = $('.modScreen');
+            $('.btn-color').addClass('active');
             
             $('.modColorLibrary').show();
             $('.modScreen').eyedrop({
@@ -82,6 +83,7 @@
             $('.modColorLibrary').hide();
             $('.modScreen').unbind('click mousemove mouseup mousedown mouseenter mouseleave');
             $('.modScreen').css('cursor', 'auto');
+            $('.btn-color').removeClass('active');
             $('.picker').hide();
         },
         

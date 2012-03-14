@@ -37,6 +37,18 @@
     box-shadow: 0 0 4px white;
 }
 
+.modToolbar .button.active {
+    background: #77B83C;
+    text-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.modToolbar .button.active:hover {
+    box-shadow: none;
+}
+
 .modToolbar .btn-comments {
     float: right;
 }
