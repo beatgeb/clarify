@@ -31,5 +31,9 @@ $config['application.domain'] = 'http://clarify.yourdomain.com/';
 // Security
 $config['security.password.hash'] = 'mH284Nks';
 $config['security.channel.hash'] = 'fdq23o42';
+
+// Cache
+$config['cache.css.enabled'] = false;
+$config['cache.js.enabled'] = false;
  
 ?>

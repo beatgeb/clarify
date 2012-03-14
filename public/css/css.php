@@ -11,6 +11,13 @@
 
 define('TERRIFIC_DIR', dirname(__FILE__) . '/..');
 
+require getcwd() . '/../../application/library/bootstrap.php';
+
+if (config('cache.css.enabled') && is_file(CACHE . 'app.css')) {
+    //header("Content-Type: text/css");
+    readfile(CACHE . 'app.css');
+}
+
 $output = '';
 
 // load reset css
@@ -37,6 +44,9 @@ foreach (glob(TERRIFIC_DIR . '/modules/*', GLOB_ONLYDIR) as $dir) {
     }
 }
 
+if (config('cache.css.enabled')) {
+    file_put_contents(CACHE . 'app.css', $output);
+}
 header("Content-Type: text/css");
 echo $output;
 

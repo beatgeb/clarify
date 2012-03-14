@@ -11,6 +11,13 @@
 
 define('TERRIFIC_DIR', dirname(__FILE__) . '/..');
 
+require getcwd() . '/../../application/library/bootstrap.php';
+
+if (config('cache.js.enabled') && is_file(CACHE . 'app.js')) {
+    //header("Content-Type: text/javascript");
+    readfile(CACHE . 'app.js');
+}
+
 // load terrificjs
 $output = '';
 $output .= file_get_contents(TERRIFIC_DIR . '/js/core/static/jquery-1.7.1.min.js');
@@ -51,6 +58,9 @@ foreach (glob(TERRIFIC_DIR . '/modules/*', GLOB_ONLYDIR) as $dir) {
     }
 }
 
+if (config('cache.js.enabled')) {
+    file_put_contents(CACHE . 'app.js', $output);
+}
 header("Content-Type: text/javascript; charset=utf-8");
 echo $output;
 
