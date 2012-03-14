@@ -11,6 +11,15 @@
 
 require getcwd() . '/../application/library/bootstrap.php';
 
+// start session
+session_start();
+
+// enable output buffering
+ob_start();
+
+// check for login credentials
+login();
+
 define('VIEW_API', 'api');
 define('VIEW_BROWSER', 'browser');
 define('VIEW_SCREEN', 'screen');

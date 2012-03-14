@@ -66,15 +66,6 @@ session_set_save_handler(
 
 // register shutdown functions
 register_shutdown_function('shutdown');
-register_shutdown_function('session_write_close');
-
-// start session
-session_start();
-
-// enable output buffering
-ob_start();
-
-// check for login credentials
-login();
+// register_shutdown_function('session_write_close');
 
 ?>

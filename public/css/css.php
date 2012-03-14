@@ -14,8 +14,9 @@ define('TERRIFIC_DIR', dirname(__FILE__) . '/..');
 require getcwd() . '/../../application/library/bootstrap.php';
 
 if (config('cache.css.enabled') && is_file(CACHE . 'app.css')) {
-    //header("Content-Type: text/css");
+    header('Content-Type: text/css');
     readfile(CACHE . 'app.css');
+    exit();
 }
 
 $output = '';

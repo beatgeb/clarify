@@ -14,8 +14,9 @@ define('TERRIFIC_DIR', dirname(__FILE__) . '/..');
 require getcwd() . '/../../application/library/bootstrap.php';
 
 if (config('cache.js.enabled') && is_file(CACHE . 'app.js')) {
-    //header("Content-Type: text/javascript");
+    header('Content-Type: text/javascript');
     readfile(CACHE . 'app.js');
+    exit();
 }
 
 // load terrificjs
