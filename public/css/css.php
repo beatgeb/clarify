@@ -46,6 +46,8 @@ foreach (glob(TERRIFIC_DIR . '/modules/*', GLOB_ONLYDIR) as $dir) {
 }
 
 if (config('cache.css.enabled')) {
+    require LIBRARY . 'thirdparty/cssmin.php';
+    $output = CssMin::minify($output);
     file_put_contents(CACHE . 'app.css', $output);
 }
 header("Content-Type: text/css");

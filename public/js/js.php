@@ -19,10 +19,11 @@ if (config('cache.js.enabled') && is_file(CACHE . 'app.js')) {
     exit();
 }
 
-// load terrificjs
+// initialize
+$core = file_get_contents(TERRIFIC_DIR . '/js/core/static/jquery-1.7.1.min.js');
+$core .= file_get_contents(TERRIFIC_DIR . '/js/core/static/terrific-1.0.0.min.js');
+
 $output = '';
-$output .= file_get_contents(TERRIFIC_DIR . '/js/core/static/jquery-1.7.1.min.js');
-$output .= file_get_contents(TERRIFIC_DIR . '/js/core/static/terrific-1.0.0.min.js');
 
 // load libraries
 foreach (glob(TERRIFIC_DIR . '/js/libraries/static/*.js') as $entry) {
@@ -58,9 +59,11 @@ foreach (glob(TERRIFIC_DIR . '/modules/*', GLOB_ONLYDIR) as $dir) {
         }
     }
 }
-
+    
 if (config('cache.js.enabled')) {
-    file_put_contents(CACHE . 'app.js', $output);
+    //require LIBRARY . 'thirdparty/jsmin.php';
+    //$output = JSMin::minify($output);
+    file_put_contents(CACHE . 'app.js', $core . $output);
 }
 header("Content-Type: text/javascript; charset=utf-8");
 echo $output;
