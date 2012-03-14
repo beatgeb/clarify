@@ -31,6 +31,7 @@ define('UPLOAD', APP . '../public/upload/');
 require LIBRARY . 'core.php';
 require LIBRARY . 'db.php';
 require LIBRARY . 'session.php';
+require LIBRARY . 'auth.php';
 
 // define additional constants
 define('R', config('application.baseurl'));
