@@ -75,6 +75,6 @@ if (config('cache.js.enabled')) {
     file_put_contents(CACHE . 'app.js', $core . $output);
 }
 header("Content-Type: text/javascript; charset=utf-8");
-echo $output;
+echo $core . $output;
 
 ?>
