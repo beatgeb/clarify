@@ -38,8 +38,15 @@
 }
 
 .modToolbar .button.active {
-    background: #77B83C;
-    text-shadow: none;
+    background-color: #77b83c;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(119, 184, 60)), to(rgb(111, 173, 56)));
+    background-image: -webkit-linear-gradient(top, rgb(119, 184, 60), rgb(111, 173, 56));
+    background-image: -moz-linear-gradient(top, rgb(119, 184, 60), rgb(111, 173, 56));
+    background-image: -o-linear-gradient(top, rgb(119, 184, 60), rgb(111, 173, 56));
+    background-image: -ms-linear-gradient(top, rgb(119, 184, 60), rgb(111, 173, 56));
+    background-image: linear-gradient(top, rgb(119, 184, 60), rgb(111, 173, 56));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#77b83c', EndColorStr='#6fad38');
+    text-shadow: 0 1px 0 #40681e;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
