@@ -35,5 +35,9 @@ $config['security.channel.hash'] = 'fdq23o42';
 // Cache
 $config['cache.css.enabled'] = false;
 $config['cache.js.enabled'] = false;
+
+// Twitter Authentication
+$config['twitter.auth.consumerkey'] = '';
+$config['twitter.auth.consumersecret'] = '';
  
 ?>
