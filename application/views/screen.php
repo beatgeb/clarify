@@ -15,7 +15,7 @@ $colors = $db->data("SELECT id, hex FROM project_color WHERE project = '" . $scr
 
 ?>
 <!DOCTYPE html>
-<html class="mod modLayout">
+<html class="mod modLayout skinLayoutScreen">
 <head>
     <title><?= $screen['title'] ?> - Clarify</title>
     <? require 'partials/head.php'; ?>
