@@ -1,3 +1,16 @@
+# ************************************************************
+# Sequel Pro SQL dump
+# Version 3408
+#
+# http://www.sequelpro.com/
+# http://code.google.com/p/sequel-pro/
+#
+# Host: 127.0.0.1 (MySQL 5.5.20)
+# Database: clarify
+# Generation Time: 2012-03-14 11:34:07 +0000
+# ************************************************************
+
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -92,7 +105,8 @@ CREATE TABLE `color` (
   `color` int(11) DEFAULT NULL,
   `x` int(11) DEFAULT NULL,
   `y` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `screen` (`screen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -116,7 +130,8 @@ CREATE TABLE `comment` (
   `w` int(11) DEFAULT NULL,
   `h` int(11) DEFAULT NULL,
   `content` text,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `screen` (`screen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -247,7 +262,8 @@ CREATE TABLE `measure` (
   `y` int(11) NOT NULL,
   `width` int(11) DEFAULT NULL,
   `height` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `screen` (`screen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -292,7 +308,8 @@ CREATE TABLE `project_color` (
   `hue` int(4) DEFAULT NULL,
   `saturation` int(4) DEFAULT NULL,
   `brightness` int(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `project` (`project`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -317,8 +334,12 @@ CREATE TABLE `screen` (
   `align_vertical` enum('TOP','CENTER','BOTTOM') DEFAULT 'TOP',
   `type` varchar(40) DEFAULT NULL,
   `ext` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `project` (`project`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
