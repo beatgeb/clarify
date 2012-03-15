@@ -37,6 +37,21 @@
     box-shadow: 0 0 4px white;
 }
 
+.modToolbar .button.delete {
+    background-color: #ee1f18;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(238, 31, 24)), to(rgb(171, 20, 14)));
+    background-image: -webkit-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
+    background-image: -moz-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
+    background-image: -o-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
+    background-image: -ms-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
+    background-image: linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ee1f18', EndColorStr='#ab140e');
+    text-shadow: 0 1px 0 #b71a15;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
 .modToolbar .button.active {
     background-color: #77b83c;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(119, 184, 60)), to(rgb(111, 173, 56)));
@@ -53,6 +68,10 @@
 }
 
 .modToolbar .button.active:hover {
+    box-shadow: none;
+}
+
+.modToolbar .button.delete:hover {
     box-shadow: none;
 }
 

@@ -29,9 +29,11 @@
                 that.deletemode = !that.deletemode;
                 if (that.deletemode) {
                     $('.def', $ctx).addClass('def-delete');
+                    $('.btn-delete').addClass('delete');
                     $('.edit', $ctx).hide();
                 } else {
                     $('.def', $ctx).removeClass('def-delete');
+                    $('.btn-delete').removeClass('delete');
                 }
             });
             
@@ -89,9 +91,11 @@
             
             $ctx.empty();
             this.active = true;
+            this.deletemode = false;
             
             $('.btn-delete').show();
             $('.btn-comments').addClass('active');
+            $('.btn-delete').removeClass('delete');
             
             // Add data dots
             $('.screen').bind('click', function(e) {
