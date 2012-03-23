@@ -11,13 +11,15 @@ switch ($action) {
     
     case API_SCREEN_DELETE:
         $screen = intval($route[4]);
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = " . $screen);
         // TODO: load colors referenced by this screen and delete
         //       color form library if it doesn't exist on another
         //       screen
-        $db->delete('color', array('screen' => $screen));
-        $db->delete('comment', array('screen' => $screen));
-        $db->delete('measure', array('screen' => $screen));
-        $db->delete('screen', array('id' => $screen));
+        $db->delete('color', array('screen' => $screen['id']));
+        $db->delete('comment', array('screen' => $screen['id']));
+        $db->delete('measure', array('screen' => $screen['id']));
+        $db->delete('screen', array('id' => $screen['id']));
+        $db->query("UPDATE project SET screen_count = screen_count - 1 WHERE id = " . $screen['project']);
         break;
     
     case API_SCREEN_UPLOAD:

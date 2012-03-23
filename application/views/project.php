@@ -9,12 +9,13 @@
  * http://www.opensource.org/licenses/MIT
  */
 
-$project_id = $route[2];
+$project_id = intval($route[2]);
+$project = $db->single("SELECT * FROM project WHERE id = " . $project_id . " LIMIT 1");
 ?>
 <!DOCTYPE html>
 <html class="mod modLayout skinLayoutBrowser">
 <head>
-    <title>Screen Browser - Clarify</title>
+    <title><?= $project['name'] ?> - Clarify</title>
     <? require 'partials/head.php' ?>
 </head>
 <body>

@@ -25,6 +25,7 @@ define('VIEW_GUIDE', 'guide');
 define('VIEW_LIBRARY', 'library');
 define('VIEW_EMBED', 'embed');
 define('VIEW_PROJECT', 'project');
+define('VIEW_REGISTER', 'register');
 
 $route = str_replace('?' . $_SERVER['QUERY_STRING'], '', explode('/', $_SERVER['REQUEST_URI']));
 if ($route[1] == "") { $route[1] = VIEW_BROWSER; }
@@ -40,6 +41,7 @@ switch ($view) {
     case VIEW_LIBRARY:
     case VIEW_EMBED:
     case VIEW_PROJECT:
+    case VIEW_REGISTER:
         break;
     default:
         lock();

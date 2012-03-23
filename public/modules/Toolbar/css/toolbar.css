@@ -26,7 +26,6 @@
     border-radius: 2px;
     padding: 8px 12px;
     color: #FFF;
-    text-shadow: 0 -1px 0 #000;
     -webkit-box-shadow: inset 0px 1px 0px 0px #000;
     -moz-box-shadow: inset 0px 1px 0px 0px #000;
     box-shadow: inset 0px 1px 0px 0px #000;
@@ -46,25 +45,23 @@
     background-image: -ms-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
     background-image: linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ee1f18', EndColorStr='#ab140e');
-    text-shadow: 0 1px 0 #b71a15;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
 }
 
 .modToolbar .button.active {
-    background-color: #77b83c;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(119, 184, 60)), to(rgb(111, 173, 56)));
-    background-image: -webkit-linear-gradient(top, rgb(119, 184, 60), rgb(111, 173, 56));
-    background-image: -moz-linear-gradient(top, rgb(119, 184, 60), rgb(111, 173, 56));
-    background-image: -o-linear-gradient(top, rgb(119, 184, 60), rgb(111, 173, 56));
-    background-image: -ms-linear-gradient(top, rgb(119, 184, 60), rgb(111, 173, 56));
-    background-image: linear-gradient(top, rgb(119, 184, 60), rgb(111, 173, 56));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#77b83c', EndColorStr='#6fad38');
-    text-shadow: 0 1px 0 #40681e;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+    background-color: #1290d3;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(18, 144, 211)), to(rgb(12, 123, 184)));
+    background-image: -webkit-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+    background-image: -moz-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+    background-image: -o-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+    background-image: -ms-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+    background-image: linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#1290d3', EndColorStr='#0c7bb8');
+    -webkit-box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+    -moz-box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+    box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
 }
 
 .modToolbar .button.active:hover {

@@ -220,11 +220,12 @@ class UploadHandler
             'title' => substr(basename($name), 0, -(strlen($ext)+1)),
             'type' => $type,
             'width' => $width,
+            'height' => $height,
             'ext' => $ext,
             'project' => $this->project
         );
         $id = $db->insert('screen', $screen);
-        
+        $db->query("UPDATE project SET screen_count = screen_count + 1 WHERE id = " . $this->project);
         
         $file = new stdClass();
         $file->name = $this->trim_file_name($name, $type);

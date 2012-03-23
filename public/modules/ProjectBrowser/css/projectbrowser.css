@@ -1,40 +1,249 @@
 .modProjectBrowser {
     position: fixed;
-    width: 230px;
+    background-color: #333;
+    width: 270px;
+    height: 100%;
     color: #FFF;
-    padding: 10px;
+    font-size: 12px;
+    padding: 10px 0;
+    overflow: auto;
 }
 
-.modProjectBrowser .logo img {
-    border-radius: 2px;
+.modProjectBrowser h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #666;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+.modProjectBrowser h3 a {
+    float: right;
+    display: block;
+    color: white;
+    color: #666;
+    text-decoration: none;
+}
+
+.modProjectBrowser h3 a:hover {
+    color: white;
+}
+
+.modProjectBrowser .add-project {
+    display: none;
+    background: #2b2b2b;
+    padding: 10px;
     margin-bottom: 10px;
-    opacity: 1;
-    display: none; 
+}
+
+.modProjectBrowser .add-project .project-name {
+    display: block;
+    width: 230px;
+    background-color: #4a4b4b;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(74, 75, 75)), to(rgb(68, 69, 69)));
+    background-image: -webkit-linear-gradient(top, rgb(74, 75, 75), rgb(68, 69, 69));
+    background-image: -moz-linear-gradient(top, rgb(74, 75, 75), rgb(68, 69, 69));
+    background-image: -o-linear-gradient(top, rgb(74, 75, 75), rgb(68, 69, 69));
+    background-image: -ms-linear-gradient(top, rgb(74, 75, 75), rgb(68, 69, 69));
+    background-image: linear-gradient(top, rgb(74, 75, 75), rgb(68, 69, 69));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#4a4b4b', EndColorStr='#444545');
+    border: none;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    color: #FFF;
+}
+.modProjectBrowser .add-project .project-name:focus {
+    outline: none;
+}
+
+.modProjectBrowser .add-project .add-project-submit {
+    width: 250px;
+    border-radius: 3px;
+    background-color: #1290d3;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(18, 144, 211)), to(rgb(12, 123, 184)));
+    background-image: -webkit-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+    background-image: -moz-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+    background-image: -o-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+    background-image: -ms-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+    background-image: linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#1290d3', EndColorStr='#0c7bb8');
+    -webkit-box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+    -moz-box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+    box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
+    border: none;
+    font-size: 15px;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modProjectBrowser .add-project .add-project-submit:hover {
+    background-color: #0c7bb8;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(12, 123, 184)), to(rgb(7, 105, 161)));
+    background-image: -webkit-linear-gradient(top, rgb(12, 123, 184), rgb(7, 105, 161));
+    background-image: -moz-linear-gradient(top, rgb(12, 123, 184), rgb(7, 105, 161));
+    background-image: -o-linear-gradient(top, rgb(12, 123, 184), rgb(7, 105, 161));
+    background-image: -ms-linear-gradient(top, rgb(12, 123, 184), rgb(7, 105, 161));
+    background-image: linear-gradient(top, rgb(12, 123, 184), rgb(7, 105, 161));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#0c7bb8', EndColorStr='#0769a1');
+}
+
+.modProjectBrowser .add-project .add-project-submit:active {
+    background-color: #0099e0;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 153, 224)), to(rgb(0, 165, 241)));
+    background-image: -webkit-linear-gradient(top, rgb(0, 153, 224), rgb(0, 165, 241));
+    background-image: -moz-linear-gradient(top, rgb(0, 153, 224), rgb(0, 165, 241));
+    background-image: -o-linear-gradient(top, rgb(0, 153, 224), rgb(0, 165, 241));
+    background-image: -ms-linear-gradient(top, rgb(0, 153, 224), rgb(0, 165, 241));
+    background-image: linear-gradient(top, rgb(0, 153, 224), rgb(0, 165, 241));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#0099e0', EndColorStr='#00a5f1');
+    -webkit-box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+.modProjectBrowser ul {
+    margin: 0 10px 15px 10px;
 }
 
 .modProjectBrowser ul li a {
     display: block;
-    background-color: #333333;
     padding: 6px 10px;
     color: #999;
     text-decoration: none;
-    border-radius: 2px;
-    margin-bottom: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 1.5;
+    border-radius: 3px;
+    position: relative;
+}
+
+.modProjectBrowser ul li a .count {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: block;
+    padding: 4px 12px;
+    border-radius: 3px;
+    color: #999;
+    line-height: 1;
+    background-color: #4a4b4b;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(74, 75, 75)), to(rgb(68, 69, 69)));
+    background-image: -webkit-linear-gradient(top, rgb(74, 75, 75), rgb(68, 69, 69));
+    background-image: -moz-linear-gradient(top, rgb(74, 75, 75), rgb(68, 69, 69));
+    background-image: -o-linear-gradient(top, rgb(74, 75, 75), rgb(68, 69, 69));
+    background-image: -ms-linear-gradient(top, rgb(74, 75, 75), rgb(68, 69, 69));
+    background-image: linear-gradient(top, rgb(74, 75, 75), rgb(68, 69, 69));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#4a4b4b', EndColorStr='#444545');
+
+}
+
+.modProjectBrowser ul li a .notifications {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: #cb1814;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(203, 24, 20)), to(rgb(173, 19, 17)));
+    background-image: -webkit-linear-gradient(top, rgb(203, 24, 20), rgb(173, 19, 17));
+    background-image: -moz-linear-gradient(top, rgb(203, 24, 20), rgb(173, 19, 17));
+    background-image: -o-linear-gradient(top, rgb(203, 24, 20), rgb(173, 19, 17));
+    background-image: -ms-linear-gradient(top, rgb(203, 24, 20), rgb(173, 19, 17));
+    background-image: linear-gradient(top, rgb(203, 24, 20), rgb(173, 19, 17));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#cb1814', EndColorStr='#ad1311');
+    border-radius: 7px;
+    width: 15px;
+    height: 15px;
+    color: #FFF;
+    font-size: 11px;
+    text-align: center;
 }
 
 .modProjectBrowser ul li.active a {
-    background-color: #0fc9ff;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(15, 201, 255)), to(rgb(2, 142, 179)));
-    background-image: -webkit-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
-    background-image: -moz-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
-    background-image: -o-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
-    background-image: -ms-linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
-    background-image: linear-gradient(top, rgb(15, 201, 255), rgb(2, 142, 179));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#0fc9ff', EndColorStr='#028eb3');
+    background-color: #0d0d0d;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(13, 13, 13)), to(rgb(31, 31, 31)));
+    background-image: -webkit-linear-gradient(top, rgb(13, 13, 13), rgb(31, 31, 31));
+    background-image: -moz-linear-gradient(top, rgb(13, 13, 13), rgb(31, 31, 31));
+    background-image: -o-linear-gradient(top, rgb(13, 13, 13), rgb(31, 31, 31));
+    background-image: -ms-linear-gradient(top, rgb(13, 13, 13), rgb(31, 31, 31));
+    background-image: linear-gradient(top, rgb(13, 13, 13), rgb(31, 31, 31));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#0d0d0d', EndColorStr='#1f1f1f');
     color: #FFF;
-    text-shadow: 0 -1px 0 #00708d;
 }
 
 .modProjectBrowser ul li a:hover {
     background-color: #555555;
+}
+
+.modProjectBrowser ul li a:active {
+    background-color: #444;
+}
+
+.modProjectBrowser .usermeta {
+    margin: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.modProjectBrowser .usermeta .info {
+    float: left;
+    margin-left: 15px;
+    color: #999;
+}
+
+.modProjectBrowser .usermeta .info p {
+    line-height: 1.45;
+    color: #666;
+}
+
+.modProjectBrowser .usermeta .info .username {
+    color: #999;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.modProjectBrowser .usermeta .avatar {
+    float: left;
+    width: 48px;
+    height: 48px;
+    border-radius: 3px;
+    box-shadow: 0 0 2px #000;
+}
+
+.modProjectBrowser .usermeta .avatar img {
+    border-radius: 3px;
+    display: block;
+}
+
+.modProjectBrowser .beta-notice {
+    position: fixed;
+    bottom: 0;
+    width: 240px;
+    background-color: #e8b83f;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(232, 184, 63)), to(rgb(190, 148, 49)));
+    background-image: -webkit-linear-gradient(top, rgb(232, 184, 63), rgb(190, 148, 49));
+    background-image: -moz-linear-gradient(top, rgb(232, 184, 63), rgb(190, 148, 49));
+    background-image: -o-linear-gradient(top, rgb(232, 184, 63), rgb(190, 148, 49));
+    background-image: -ms-linear-gradient(top, rgb(232, 184, 63), rgb(190, 148, 49));
+    background-image: linear-gradient(top, rgb(232, 184, 63), rgb(190, 148, 49));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#e8b83f', EndColorStr='#be9431');
+    padding: 15px;
+    color: #3c2d09;
+    line-height: 1.5;
+    text-shadow: 1px 1px 0 #e4b23d;
+    border-top: 1px solid #f6d880;
+}
+
+.modProjectBrowser .beta-notice a {
+    color: #3c2d09;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.modProjectBrowser .beta-notice a:hover {
+    text-decoration: underline;
 }

@@ -55,7 +55,28 @@ function auth_access_token($tmhOAuth) {
     );
 
     if ($code == 200) {
+        global $db;
         $_SESSION['access_token'] = $tmhOAuth->extract_params($tmhOAuth->response['response']);
+        if (!$db->exists('user', array('twitter_user_id' => $_SESSION['access_token']['user_id']))) {
+            $user = array(
+                'created' => date('Y-m-d H:i:s'),
+                'creator' => 1,
+                'username' => $_SESSION['access_token']['screen_name'],
+                'twitter_user_id' => $_SESSION['access_token']['user_id'],
+                'twitter_screen_name' => $_SESSION['access_token']['screen_name'],
+                'twitter_oauth_token' => $_SESSION['access_token']['oauth_token'],
+                'twitter_oauth_secret' => $_SESSION['access_token']['oauth_token_secret']
+            );
+            $db->insert('user', $user);
+        } else {
+            $user = array(
+                'twitter_oauth_token' => $_SESSION['access_token']['oauth_token'],
+                'twitter_oauth_secret' => $_SESSION['access_token']['oauth_token_secret']
+            );
+            $userdata = json_decode(file_get_contents('https://api.twitter.com/1/users/show.json?screen_name=' . $_SESSION['access_token']['screen_name']));
+            $_SESSION['user'] = $userdata;
+            $db->update('user', $user, array('twitter_user_id' => $_SESSION['access_token']['user_id']));
+        }
         unset($_SESSION['oauth']);
         header('Location: ' . tmhUtilities::php_self());
     } else {

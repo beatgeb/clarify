@@ -1,0 +1,19 @@
+.modal h3 {
+    line-height: 27px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btn-danger {
+    background-color: #b81618;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(184, 22, 24)), to(rgb(161, 17, 20)));
+    background-image: -webkit-linear-gradient(top, rgb(184, 22, 24), rgb(161, 17, 20));
+    background-image: -moz-linear-gradient(top, rgb(184, 22, 24), rgb(161, 17, 20));
+    background-image: -o-linear-gradient(top, rgb(184, 22, 24), rgb(161, 17, 20));
+    background-image: -ms-linear-gradient(top, rgb(184, 22, 24), rgb(161, 17, 20));
+    background-image: linear-gradient(top, rgb(184, 22, 24), rgb(161, 17, 20));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#b81618', EndColorStr='#a11114');
+    color: #FFF;
+    border-radius: 3px;
+    text-decoration: none;
+}

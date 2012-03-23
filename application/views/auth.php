@@ -10,7 +10,7 @@
  */
 
 $tmhOAuth = new tmhOAuth(array(
-  'consumer_key'    => config('twitter.auth.consumerkey'),
+  'consumer_key' => config('twitter.auth.consumerkey'),
   'consumer_secret' => config('twitter.auth.consumersecret'),
 ));
 
@@ -23,10 +23,6 @@ elseif (isset($_REQUEST['verify'])) :
 elseif (isset($_REQUEST['wipe'])) :
   auth_wipe();
 endif;
-
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
 
 ?>
 

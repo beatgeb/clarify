@@ -1,5 +1,5 @@
 .modScreenBrowser {
-    margin-left: 250px;
+    margin-left: 270px;
     padding: 30px;
     padding-right: 0;
 }
@@ -21,6 +21,7 @@
     width: 200px;
     height: 160px;
     overflow: hidden;
+    
 }
 
 .modScreenBrowser ul li .delete-confirm {
@@ -49,10 +50,10 @@
 }
 
 .modScreenBrowser ul li.create .placeholder div {
-    background: #282828;
+    background: #333;
     width: 200px;
     height: 145px;
-    border-radius: 10px;
+    border-radius: 5px;
     padding-top: 15px;
     
 }
@@ -64,9 +65,12 @@
 }
 
 .modScreenBrowser ul li .title a {
-    color: #FFF;
+    color: #DDD;
     text-decoration: none;
-    text-shadow: 1px 1px 0 #000;
+}
+
+.modScreenBrowser ul li:hover .title a {
+    color: #FFF;
 }
 
 .modScreenBrowser ul li .meta {
@@ -79,11 +83,16 @@
 .modScreenBrowser ul li .meta .size {
     display: inline-block;
     background: #111;
-    border-radius: 2px;
     color: #777;
+    border-radius: 2px;
     font-size: 11px;
     padding: 1px 3px;
     margin-left: 3px;
+}
+
+.modScreenBrowser ul li:hover .meta .size {
+    background: #111;
+    color: #777;
 }
 
 .modScreenBrowser ul li a.delete {
@@ -95,13 +104,20 @@
     border-radius: 2px;
     color: #777;
     font-size: 11px;
-    padding: 1px 3px;
+    padding: 1px 4px 1px 3px;
     margin-left: 3px;
     text-decoration: none;
 }
 
 .modScreenBrowser ul li a.delete:hover {
-    background: #b66363;
+    background-color: #b81618;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(184, 22, 24)), to(rgb(161, 17, 20)));
+    background-image: -webkit-linear-gradient(top, rgb(184, 22, 24), rgb(161, 17, 20));
+    background-image: -moz-linear-gradient(top, rgb(184, 22, 24), rgb(161, 17, 20));
+    background-image: -o-linear-gradient(top, rgb(184, 22, 24), rgb(161, 17, 20));
+    background-image: -ms-linear-gradient(top, rgb(184, 22, 24), rgb(161, 17, 20));
+    background-image: linear-gradient(top, rgb(184, 22, 24), rgb(161, 17, 20));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#b81618', EndColorStr='#a11114');
     color: white;
 }
 
@@ -113,19 +129,7 @@
     position: relative;
 }
 
-.modScreenBrowser .create .fileupload {
+.modScreenBrowser .fileupload {
     position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    margin: 0;
-    border: solid transparent;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    direction: ltr;
-    cursor: pointer;
-    border-width: 0 0 0 0;
-    height: 230px;
-    line-height: 230px;
+    top: -100px;
 }
