@@ -16,6 +16,9 @@
                 dataType: 'json',
                 url: '/api/screen/upload/' + project,
                 dropZone: $('.create'),
+                send: function(e, data) {
+                    // todo: show progress
+                },
                 done: function (e, data) {
                     window.location.href='/project/' + project;
                 }
