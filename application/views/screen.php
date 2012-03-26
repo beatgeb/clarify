@@ -10,7 +10,7 @@
  */
 
 $screen_id = intval($route[2]);
-$screen = $db->single("SELECT id, title, width, project, ext FROM screen WHERE id = '" . $screen_id . "' LIMIT 1");
+$screen = $db->single("SELECT id, title, width, height, project, ext FROM screen WHERE id = '" . $screen_id . "' LIMIT 1");
 $screen['image'] = R . 'upload/screens/' . $screen['project'] . '/' . $screen['id'] . '.' . $screen['ext'];
 $colors = $db->data("SELECT id, hex FROM project_color WHERE project = '" . $screen['project'] . "'");
 
@@ -26,7 +26,7 @@ $colors = $db->data("SELECT id, hex FROM project_color WHERE project = '" . $scr
          data-screen="<?= $screen['id'] ?>" 
          data-layer="1" 
          data-width="<?= $screen['width'] ?>"
-         data-height="1200"
+         data-height="<?= $screen['height'] ?>"
          data-image="<?= $screen['image'] ?>">
         
         <div class="screen"></div>
