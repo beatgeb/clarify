@@ -212,7 +212,7 @@ class UploadHandler
         
         // create new screen entry
         global $db;
-        $ext = substr($type,strpos($type,'/')+1);
+        $ext = substr($name,strpos($name,'.')+1);
         list($width, $height, $itype, $attr) = @getimagesize($uploaded_file);
         $screen = array(
             'created' => date('Y-m-d H:i:s'),
@@ -221,9 +221,10 @@ class UploadHandler
             'type' => $type,
             'width' => $width,
             'height' => $height,
-            'ext' => $ext,
+            'ext' => substr($type,strpos($type,'/')+1),
             'project' => $this->project
         );
+        
         $id = $db->insert('screen', $screen);
         $db->query("UPDATE project SET screen_count = screen_count + 1 WHERE id = " . $this->project);
         
