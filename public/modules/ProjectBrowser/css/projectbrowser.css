@@ -236,6 +236,7 @@
     line-height: 1.5;
     text-shadow: 1px 1px 0 #e4b23d;
     border-top: 1px solid #f6d880;
+    font-style: italic;
 }
 
 .modProjectBrowser .beta-notice a {
