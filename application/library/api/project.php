@@ -19,7 +19,11 @@ switch ($action) {
     
     case API_PROJECT_DELETE:
         $project = intval($route[4]);
-        $screens = $db->data("SELECT id FROM screen WHERE project = " . $project);
+        $screens = $db->data("SELECT id FROM screen WHERE project = " . $project . " AND creator = " . userid());
+        if (sizeof($screens) == 0) {
+            echo json_encode(array('success' => false));
+            break;
+        }
         // TODO: load colors referenced by this screen and delete
         //       color form library if it doesn't exist on another
         //       screen

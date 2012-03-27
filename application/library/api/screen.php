@@ -11,7 +11,8 @@ switch ($action) {
     
     case API_SCREEN_DELETE:
         $screen = intval($route[4]);
-        $screen = $db->single("SELECT id, project FROM screen WHERE id = " . $screen);
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = " . $screen . " AND creator = " . userid());
+        if (!$screen) { die(); }
         // TODO: load colors referenced by this screen and delete
         //       color form library if it doesn't exist on another
         //       screen
@@ -23,7 +24,10 @@ switch ($action) {
         break;
     
     case API_SCREEN_UPLOAD:
+        // TODO: CLEANUP UPLOAD CODE, make it ourself, no third-party library
         $project = intval($route[4]);
+        $p = $db->single("SELECT id FROM project WHERE id = " . $project . " AND creator = " . userid());
+        if (!$p) { die(); }
         require LIBRARY . 'upload.php';
         $upload_dir = APP . '/../public/upload/screens/' . $project . '/';
         $upload_dir_thumbs = APP . '/../public/upload/screens/' . $project . '/thumbnails';
@@ -75,7 +79,8 @@ switch ($action) {
         $screen = intval($route[4]);
         $reqwidth = intval($route[5]);
         $key = md5($screen . '-' . $reqwidth);
-        $screen = $db->single("SELECT id, project, type, ext FROM screen WHERE id = '" . $screen . "' LIMIT 1");
+        $screen = $db->single("SELECT id, project, type, ext FROM screen WHERE id = '" . $screen . "' AND creator = " . userid() . " LIMIT 1");
+        if (!$screen) { die(); }
         $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . $screen['id'] . '.' . $screen['ext'];
         $target =  CACHE . 'screens/' . $screen['project'] . '/' . $screen['id'] . '/' . $key;
         if (is_file($target)) {
@@ -112,7 +117,8 @@ switch ($action) {
         $reqwidth = intval($route[5]);
         $version = 1;
         $key = md5($screen . '-' . $reqwidth . '-' . $version);
-        $screen = $db->single("SELECT * FROM screen WHERE id = '" . $screen . "' LIMIT 1");
+        $screen = $db->single("SELECT * FROM screen WHERE id = '" . $screen . "' AND creator = " . userid() . " LIMIT 1");
+        if (!$screen) { die(); }
         $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . $screen['id'] . '.' . $screen['ext'];
         $target =  UPLOAD . 'screens/' . $screen['project'] . '/' . $screen['id'] . '/' . $key . '.png';
         if (!is_dir(dirname($target))) {

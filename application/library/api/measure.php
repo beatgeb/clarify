@@ -18,6 +18,8 @@ switch ($action) {
         if ($screen < 1) { die('Please provide a screen id'); }
         if ($width < 1) { die('Please provide a width'); }
         if ($height < 1) { die('Please provide a height'); }
+        $screen = $db->single("SELECT id FROM screen WHERE id = " . $screen . " AND creator = " . userid());
+        if (!$screen) { die(); }
         $measure = array(
             'created' => date('Y-m-d H:i:s'),
             'creator' => userid(),
@@ -36,7 +38,7 @@ switch ($action) {
     case API_MEASURE_GET:
         $screen = intval($route[4]);
         if ($screen < 1) { die('Please provide a screen id'); }
-        $data = $db->data("SELECT id, x, y, width, height FROM measure WHERE screen = '" . $screen . "'");
+        $data = $db->data("SELECT id, x, y, width, height FROM measure WHERE screen = '" . $screen . "' AND creator = " . userid());
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
@@ -52,7 +54,7 @@ switch ($action) {
             'x' => $x,
             'y' => $y
         );
-        $db->update('measure', $data, array('id' => $id));
+        $db->update('measure', $data, array('id' => $id, 'creator' => userid()));
         break;
     
     case API_MEASURE_RESIZE:
@@ -68,13 +70,13 @@ switch ($action) {
             'width' => $width,
             'height' => $height
         );
-        $db->update('measure', $data, array('id' => $id));
+        $db->update('measure', $data, array('id' => $id, 'creator' => userid()));
         break;
     
     case API_MEASURE_DELETE:
         $id = intval($route[4]);
         if ($id < 1) { die('Please provide a measure id'); }
-        $db->delete('measure', array('id' => $id));
+        $db->delete('measure', array('id' => $id, 'creator' => userid()));
         echo json_encode(array('RESULT' => 'OK'));
         break;
     

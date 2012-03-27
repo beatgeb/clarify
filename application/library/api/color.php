@@ -15,14 +15,15 @@ switch ($action) {
             FROM color c 
                 LEFT JOIN project_color pc ON pc.id = c.color 
                 LEFT JOIN screen s ON s.id = c.screen 
-            WHERE c.id = '" . $id . "' 
+            WHERE c.id = '" . $id . "' AND c.creator = '" . userid() . "'
             LIMIT 1
         ");
+        if (!$color) { die(); }
         $result = array();
         $db->delete('color', array('id' => $id));
         $count = $db->exists('color', array('color' => $color['color']));
         if ($count < 1) {
-            $db->delete('project_color', array('id' => $color['id']));
+            $db->delete('project_color', array('id' => $color['id'], 'creator' => userid()));
             $result['remove'] = $color['id'];
         }
         header('Content-Type: application/json');
@@ -32,7 +33,7 @@ switch ($action) {
     case API_COLOR_GET:
         $screen = intval($route[4]);
         if ($screen < 1) { die('Please provide a screen id'); }
-        $data = $db->data("SELECT c.id, c.x, c.y, pc.r, pc.g, pc.b, pc.alpha, pc.hex FROM color c LEFT JOIN project_color pc ON pc.id = c.color WHERE screen = " . $screen);
+        $data = $db->data("SELECT c.id, c.x, c.y, pc.r, pc.g, pc.b, pc.alpha, pc.hex FROM color c LEFT JOIN project_color pc ON pc.id = c.color WHERE c.screen = " . $screen . " AND c.creator = " . userid());
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
@@ -47,7 +48,7 @@ switch ($action) {
         if (sizeof($route) < 9) {
             $color = intval($route[7]);
             if ($color < 1) { die('Please provide a reference color'); }
-            $color = $db->single("SELECT * FROM project_color WHERE id = '" . $color . "' LIMIT 1");
+            $color = $db->single("SELECT * FROM project_color WHERE id = '" . $color . "' AND creator = " . userid() . " LIMIT 1");
             $r = $color['r'];
             $g = $color['g'];
             $b = $color['b'];
@@ -61,8 +62,8 @@ switch ($action) {
             $hex = substr($route[11],0,6);
         }
         
-        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
-        
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
+        if (!$screen) { die(); }
         $data = array(
             'created' => date('Y-m-d H:i:s'),
             'creator' => userid(),
