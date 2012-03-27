@@ -46,27 +46,10 @@ $db = new Database(
     config('database.name')
 );
 
-/*
-global $cache;
-$cache = new Memcache;
-$cache->connect(
-    config('memcached.server.name'),
-    config('memcached.server.port')
-);
+// set timezone to UTC
+date_default_timezone_set('UTC');
 
-// set session save handler
-session_set_save_handler(
-    'sess_open', 
-    'sess_close', 
-    'sess_read', 
-    'sess_write', 
-    'sess_destroy', 
-    'sess_gc'
-);
-*/
-
-// register shutdown functions
+// register shutdown function
 register_shutdown_function('shutdown');
-// register_shutdown_function('session_write_close');
 
 ?>
