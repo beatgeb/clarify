@@ -10,7 +10,7 @@
     Tc.Module.Auth = Tc.Module.extend({        
         onBinding: function() {
             var that = this;
-            $('.name', this.$ctx).on('keypress', function(e) {
+            $('.code', this.$ctx).on('keypress', function(e) {
                 if (e.keyPress == 13) {
                     that.auth();
                 }

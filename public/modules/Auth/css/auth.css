@@ -2,7 +2,7 @@
     width: 800px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 300px;
+    margin-top: 250px;
 }
 
 .modAuth .branding {
@@ -30,9 +30,9 @@
     border-left: 1px solid #494a4a;
 }
 
-.modAuth .form .name {
-    width: 350px;
-    color: #FFF;
+.modAuth .form .code {
+    width: 300px;
+    color: #333;
     border: none;
     display: block;
     padding: 18px 20px;
@@ -53,7 +53,7 @@
 
 .modAuth .form .twitter {
     position: relative;
-    width: 350px;
+    width: 300px;
     color: #FFF;
     border: none;
     display: block;
@@ -116,7 +116,7 @@
 .modAuth .private-beta {
     background: url('/img/private-beta.png') no-repeat;
     position: absolute;
-    top: 200px;
+    top: 120px;
     left: 0;
     width: 200px;
     height: 35px;
