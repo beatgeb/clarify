@@ -1,0 +1,1 @@
+ALTER TABLE `user` ADD `invitation_code` VARCHAR(10)  NULL  DEFAULT NULL  AFTER `name`;
