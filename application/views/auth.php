@@ -24,14 +24,21 @@ elseif (isset($_REQUEST['wipe'])) :
   auth_wipe();
 endif;
 
-?>
+if (authenticated()) {
+    header('Location: ' . R);
+}
 
-<p>
-<?php if (isset($_SESSION['access_token'])) : ?>
-  There appears to be some credentials already stored in this browser session.
-  Do you want to <a href="?verify=1">verify the credentials?</a> or
-  <a href="?wipe=1">wipe them and start again</a>.
-<?php else : ?>
-  <a href="?start=1">Authorize with OAuth</a>.
-<?php endif; ?>
-</p>
+?>
+<!DOCTYPE html>
+<html class="mod modLayout skinLayoutAuth">
+<head>
+    <title>Sign Up - Clarify</title>
+    <? require 'partials/head.php' ?>
+</head>
+<body>
+    <div class="mod modAuth">
+        <? require TERRIFIC . 'modules/Auth/auth.phtml'; ?>
+    </div>
+    <? require 'partials/foot.php'; ?>
+</body>
+</html>

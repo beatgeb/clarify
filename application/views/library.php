@@ -9,6 +9,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 
+lock();
+
 $components = $db->data("SELECT * FROM library_component ORDER BY name ASC");
 $behaviours = $db->data("SELECT * FROM library_behaviour ORDER BY name ASC");
 $options = $db->data("SELECT * FROM library_behaviour_option ORDER BY name ASC", "behaviour", false);

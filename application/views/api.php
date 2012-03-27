@@ -9,6 +9,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 
+lock();
+
 $api = $route[2];
 $action = $api . '.' . $route[3];
 require LIBRARY . 'api/' . strtolower($api) . '.php';

@@ -14,7 +14,7 @@ require_once LIBRARY . 'thirdparty/tmhoauth/tmhUtilities.php';
 
 function auth_wipe() {
     session_destroy();
-    header('Location: ' . tmhUtilities::php_self());
+    header('Location: ' . R . 'auth');
 }
 
 function auth_outputError($tmhOAuth) {
@@ -67,16 +67,21 @@ function auth_access_token($tmhOAuth) {
                 'twitter_oauth_token' => $_SESSION['access_token']['oauth_token'],
                 'twitter_oauth_secret' => $_SESSION['access_token']['oauth_token_secret']
             );
-            $db->insert('user', $user);
+            $id = $db->insert('user', $user);
         } else {
             $user = array(
                 'twitter_oauth_token' => $_SESSION['access_token']['oauth_token'],
                 'twitter_oauth_secret' => $_SESSION['access_token']['oauth_token_secret']
             );
-            $userdata = json_decode(file_get_contents('https://api.twitter.com/1/users/show.json?screen_name=' . $_SESSION['access_token']['screen_name']));
-            $_SESSION['user'] = $userdata;
             $db->update('user', $user, array('twitter_user_id' => $_SESSION['access_token']['user_id']));
+            $user = $db->single("SELECT id FROM user WHERE twitter_user_id = '" . $_SESSION['access_token']['user_id'] . "' LIMIT 1");
+            $id = $user['id'];
+            
         }
+        $userdata = json_decode(file_get_contents('https://api.twitter.com/1/users/show.json?screen_name=' . $_SESSION['access_token']['screen_name']));
+        $_SESSION['user']['twitter'] = $userdata;
+        $_SESSION['user']['id'] = $id;
+        $_SESSION['auth'] = md5(config('security.password.hash') . $_SESSION['user']['id']);
         unset($_SESSION['oauth']);
         header('Location: ' . tmhUtilities::php_self());
     } else {

@@ -9,6 +9,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 
+lock();
+
 $project_id = intval($route[2]);
 $project = $db->single("SELECT * FROM project WHERE id = " . $project_id . " LIMIT 1");
 ?>

@@ -9,6 +9,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 
+lock();
+
 ?>
 <!DOCTYPE html>
 <html class="mod modLayout skinLayoutBrowser">

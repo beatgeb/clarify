@@ -9,6 +9,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 
+lock();
+
 $screen_id = intval($_REQUEST['screen']);
 $width = intval($_REQUEST['width']);
 

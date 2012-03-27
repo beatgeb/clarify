@@ -9,6 +9,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 
+lock();
+
 $project = $db->single("SELECT id, name FROM project WHERE id = '" . intval($_REQUEST['project']) . "'");
 $screens = $db->data("SELECT id, title, description FROM screen WHERE project = '" . $project['id'] . "'");
 $colors = $db->data("SELECT id, hex, name, r, g, b, alpha FROM project_color WHERE project = '" . $project['id'] . "'");

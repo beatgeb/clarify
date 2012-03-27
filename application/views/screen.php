@@ -9,6 +9,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 
+lock();
+
 $screen_id = intval($route[2]);
 $screen = $db->single("SELECT id, title, width, height, project, ext FROM screen WHERE id = '" . $screen_id . "' LIMIT 1");
 $screen['image'] = R . 'upload/screens/' . $screen['project'] . '/' . $screen['id'] . '.' . $screen['ext'];

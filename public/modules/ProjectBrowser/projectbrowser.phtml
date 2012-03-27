@@ -3,10 +3,10 @@ $projects = $db->data('SELECT id, name, screen_count FROM project ORDER BY name 
 ?>
 <h3>Account<a class="btn-logout" href="<?= R ?>auth/?wipe=1">Logout</a></h3>
 <div class="usermeta">
-    <div class="avatar"><img src="<?= $_SESSION['user']->profile_image_url ?>" width="48" height="48" /></div>
+    <div class="avatar"><img src="<?= $_SESSION['user']['twitter']->profile_image_url ?>" width="48" height="48" /></div>
     <div class="info">
-        <p class="username">Roger Dudler</p>
-        <p>Namics AG</p>
+        <p class="username"><?= $_SESSION['user']['name'] ?></p>
+        <p>@<?= $_SESSION['user']['twitter']->screen_name ?></p>
     </div>
 </div>
 <h3>Projects<a class="btn-add-project" href="javascript:;">+ Add</a></h3>

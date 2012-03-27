@@ -35,56 +35,15 @@ function shutdown() {
     //echo "\n<!-- " . round(microtime(true) - $start, 4) . "s -->";
 }
 
+function login() {
+    
+}
+
 /**
  * Returns current users ID. If anonymous, null will be returned.
  */
 function userid() {
-    //return $_SESSION['user']['id'];
-    return 1;
-}
-
-/**
- * Returns the table name for a given identifier.
- * @param $id Table ID
- */
-function table($id) {
-    return $id;
-}
-
-/**
- * Perform a login.
- * 
- * @return 
- * @param $username string
- * @param $password string password in plain text
- */
-function login() {
-    if (!isset($_REQUEST['username']) || !isset($_REQUEST['password'])) {
-        return;
-    }
-    global $db;
-    $username = $_REQUEST['username'];
-    $password = $_REQUEST['password'];
-    $password = md5($password . config('security.password.hash'));
-    $user = $db->single("
-    	SELECT id, email, name, username 
-    	FROM user 
-    	WHERE 
-    		email = '" . $username . "' AND 
-    		password = '" . $password . "' 
-    	LIMIT 1
-    ");
-    if ($user != null) {
-        $_SESSION['auth'] = md5(config('security.password.hash') . $user['id']);
-        $_SESSION['user']['username'] = $user['username'];
-        $_SESSION['user']['email'] = $user['email'];
-        $_SESSION['user']['id'] = $user['id'];
-        $_SESSION['user']['name'] = $user['name'];
-        return true;
-    }
-    global $error;
-    $error['message'] = 'Invalid e-mail or password entered.';
-    return false;
+    return $_SESSION['user']['id'];
 }
 
 /**
@@ -100,7 +59,7 @@ function authenticated() {
  */
 function lock() {
     if (!authenticated()) {
-        header('Location: ' . R . '?view=auth&referer=' . $_SERVER['REQUEST_URI']);
+        header('Location: ' . R . 'auth/?referer=' . $_SERVER['REQUEST_URI']);
         exit();
     }
 }

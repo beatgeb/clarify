@@ -131,7 +131,7 @@ class Database {
     
     public function insert($table, $data) {
     	
-    	$query = 'INSERT INTO `' . table($table) . '` (';
+    	$query = 'INSERT INTO `' . $table . '` (';
     	$columns = array_keys($data);
     	$values = array_values($data);
     	$column_count = 0;
@@ -166,7 +166,7 @@ class Database {
     
     public function update($table, $data, $condition = array()) {
         
-        $query = 'UPDATE `' . table($table) . '` SET ';
+        $query = 'UPDATE `' . $table . '` SET ';
         $columns = array_keys($data);
         $values = array_values($data);
         $column_count = 0;
@@ -194,7 +194,7 @@ class Database {
     }
     
     function exists($table, $data) {
-    	$query = "SELECT 1 FROM `" . table($table) . "` WHERE ";
+    	$query = "SELECT 1 FROM `" . $table . "` WHERE ";
     	$count = 0;
     	foreach($data as $column => $value) {
     		if ($count > 0) {
@@ -209,7 +209,7 @@ class Database {
     }
     
     function delete($table, $data) {
-        $query = "DELETE FROM `" . table($table) . "` WHERE ";
+        $query = "DELETE FROM `" . $table . "` WHERE ";
         $count = 0;
         foreach($data as $column => $value) {
             if ($count > 0) {
