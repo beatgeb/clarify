@@ -23,7 +23,7 @@ switch ($action) {
         $measure = array(
             'created' => date('Y-m-d H:i:s'),
             'creator' => userid(),
-            'screen' => $screen,
+            'screen' => $screen['id'],
             'x' => $x,
             'y' => $y,
             'width' => $width,
