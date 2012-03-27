@@ -5,7 +5,7 @@ $projects = $db->data('SELECT id, name, screen_count FROM project ORDER BY name 
 <div class="usermeta">
     <div class="avatar"><img src="<?= $_SESSION['user']['twitter']->profile_image_url ?>" width="48" height="48" /></div>
     <div class="info">
-        <p class="username"><?= $_SESSION['user']['name'] ?></p>
+        <p class="username"><?= $_SESSION['user']['twitter']->name ?></p>
         <p>@<?= $_SESSION['user']['twitter']->screen_name ?></p>
     </div>
 </div>
