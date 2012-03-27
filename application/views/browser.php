@@ -15,7 +15,7 @@ lock();
 <!DOCTYPE html>
 <html class="mod modLayout skinLayoutBrowser">
 <head>
-    <title>Screen Browser - Clarify</title>
+    <title>Projects - Clarify</title>
     <? require 'partials/head.php' ?>
 </head>
 <body>

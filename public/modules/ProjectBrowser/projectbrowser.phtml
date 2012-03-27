@@ -1,5 +1,5 @@
 <?php
-$projects = $db->data('SELECT id, name, screen_count FROM project ORDER BY name ASC');
+$projects = $db->data('SELECT id, name, screen_count FROM project WHERE creator = ' . userid() . ' ORDER BY name ASC');
 ?>
 <h3>Account<a class="btn-logout" href="<?= R ?>auth/?wipe=1">Logout</a></h3>
 <div class="usermeta">
