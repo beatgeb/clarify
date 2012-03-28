@@ -21,7 +21,26 @@
     width: 200px;
     height: 160px;
     overflow: hidden;
-    
+    position: relative;
+    text-decoration: none;
+    font-size: 13px;
+    background-color: #000;
+}
+
+.modScreenBrowser ul li .image .info {
+    position: absolute;
+    bottom: 0;
+    background: #000;
+    padding: 4px 6px;
+    color: #999;
+    width: 200px;
+}
+.modScreenBrowser ul li .image .info span {
+    display: inline-block;
+    width: 16px;
+}
+.modScreenBrowser ul li .image .info .zero {
+    color: #444;
 }
 
 .modScreenBrowser ul li .delete-confirm {

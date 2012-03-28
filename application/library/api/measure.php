@@ -30,6 +30,7 @@ switch ($action) {
             'height' => $height
         );
         $id = $db->insert('measure', $measure);
+        $db->query("UPDATE screen SET count_measure = count_measure + 1 WHERE id = " . $screen['id'] . "");
         $measure['id'] = $id;
         header('Content-Type: application/json');
         echo json_encode($measure);
@@ -76,7 +77,10 @@ switch ($action) {
     case API_MEASURE_DELETE:
         $id = intval($route[4]);
         if ($id < 1) { die('Please provide a measure id'); }
-        $db->delete('measure', array('id' => $id, 'creator' => userid()));
+        $measure = $db->single('SELECT screen FROM measure WHERE id = ' . $id . ' AND creator = ' . userid());
+        if (!$measure) { die(); }
+        $db->delete('measure', array('id' => $id));
+        $db->query("UPDATE screen SET count_measure = count_measure - 1 WHERE id = " . $measure['screen'] . "");
         echo json_encode(array('RESULT' => 'OK'));
         break;
     

@@ -28,6 +28,7 @@ switch ($action) {
             'y' => $y
         );
         $id = $db->insert('comment', $comment);
+        $db->query("UPDATE screen SET count_comment = count_comment + 1 WHERE id = " . $screen . "");
         $comment['id'] = $id;
         echo json_encode($comment);
         break;
@@ -35,7 +36,10 @@ switch ($action) {
     case API_COMMENT_REMOVE:
         $id = intval($route[4]);
         if ($id < 1) { die('Please provide a comment id'); }
-        $db->delete('comment', array('id' => $id, 'creator' => userid()));
+        $comment = $db->single('SELECT screen FROM comment WHERE id = ' . $id . ' AND creator = ' . userid());
+        if (!$comment) { die(); }
+        $db->delete('comment', array('id' => $id));
+        $db->query("UPDATE screen SET count_comment = count_comment - 1 WHERE id = " . $comment['screen'] . "");
         break;
     
     case API_COMMENT_MOVE:

@@ -11,7 +11,7 @@ switch ($action) {
         $id = intval($route[4]);
         if ($id < 1) { die('Please provide a color instance id'); }
         $color = $db->single("
-            SELECT c.color, s.project, pc.id 
+            SELECT c.screen, c.color, s.project, pc.id 
             FROM color c 
                 LEFT JOIN project_color pc ON pc.id = c.color 
                 LEFT JOIN screen s ON s.id = c.screen 
@@ -26,6 +26,7 @@ switch ($action) {
             $db->delete('project_color', array('id' => $color['id'], 'creator' => userid()));
             $result['remove'] = $color['id'];
         }
+        $db->query("UPDATE screen SET count_color = count_color - 1 WHERE id = " . $color['screen'] . "");
         header('Content-Type: application/json');
         echo json_encode($result);
         break;
@@ -85,6 +86,9 @@ switch ($action) {
             $id = $db->insert('project_color', $data);
             $result = 'NEW';
         }
+        
+        // update color count for screen
+        $db->query("UPDATE screen SET count_color = count_color + 1 WHERE id = " . $screen['id'] . "");
         
         // add reference to color
         $data = array(
