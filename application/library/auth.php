@@ -58,7 +58,14 @@ function auth_access_token($tmhOAuth) {
         global $db;
         $_SESSION['access_token'] = $tmhOAuth->extract_params($tmhOAuth->response['response']);
         $userdata = json_decode(file_get_contents('https://api.twitter.com/1/users/show.json?screen_name=' . $_SESSION['access_token']['screen_name']));
+        
+        // user does not exist, check invitation code and create it
         if (!$db->exists('user', array('twitter_user_id' => $_SESSION['access_token']['user_id']))) {
+            $user = $db->single("SELECT id FROM user WHERE invitation_code = '" . intval($_SESSION['user']['invitation_code']) . "' LIMIT 1");
+            if (!$user) {
+                die('invitation code invalid');
+            }
+            $id = $user['id'];
             $user = array(
                 'created' => date('Y-m-d H:i:s'),
                 'creator' => 1,
@@ -67,9 +74,10 @@ function auth_access_token($tmhOAuth) {
                 'twitter_screen_name' => $_SESSION['access_token']['screen_name'],
                 'twitter_oauth_token' => $_SESSION['access_token']['oauth_token'],
                 'twitter_oauth_secret' => $_SESSION['access_token']['oauth_token_secret'],
-                'name' => $userdata->name
+                'name' => $userdata->name,
+                'invitation_code' => null
             );
-            $id = $db->insert('user', $user);
+            $db->update('user', $user, array('id' => $id));
         } else {
             $user = array(
                 'twitter_oauth_token' => $_SESSION['access_token']['oauth_token'],

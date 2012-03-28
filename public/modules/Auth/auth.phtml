@@ -4,8 +4,9 @@
         <h1>Clarify</h1>
     </div>
     <div class="form">
-        <? if (isset($_REQUEST['invitation_code'])) { ?>
-        <input class="code" type="text" placeholder="Invitation Code" value="<?= substr($_REQUEST['invitation_code'],0,8) ?>" />
+        <? if ($route[2] > 0) { ?>
+        <? $_SESSION['user']['invitation_code'] = intval($route[2]); ?>
+        <input class="code" type="text" placeholder="Invitation Code" value="<?= intval($route[2]) ?>" />
         <a href="javascript:;" class="twitter">Create Account<span>with Twitter</span></a>
         <? } else { ?>
         <a href="javascript:;" class="twitter">Authenticate<span>with Twitter</span></a>
@@ -14,15 +15,3 @@
     <div class="notice">&copy; 2012 clarify.io - a project by <a href="http://www.twitter.com/rogerdudler">Roger Dudler</a> &amp; <a href="http://www.namics.com">Namics</a>. Read the <a href="http://blog.clarify.io">Blog</a> or follow <a href="http://www.twitter.com/clarify_io">@clarify_io</a> on Twitter.
 </div>
 <div class="private-beta">Private Beta</div>
-
-<p>
-    <!--
-<?php if (isset($_SESSION['access_token'])) : ?>
-  There appears to be some credentials already stored in this browser session.
-  Do you want to <a href="?verify=1">verify the credentials?</a> or
-  <a href="?wipe=1">wipe them and start again</a>.
-<?php else : ?>
-  <a href="?start=1">Authorize with OAuth</a>.
-<?php endif; ?>
-</p>
-    -->
