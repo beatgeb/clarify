@@ -6,8 +6,24 @@ define('API_SCREEN_UPLOAD', 'screen.upload');
 define('API_SCREEN_IMAGE', 'screen.image');
 define('API_SCREEN_THUMBNAIL', 'screen.thumbnail');
 define('API_SCREEN_EMBED', 'screen.embed');
+define('API_SCREEN_SETTING', 'screen.setting');
 
 switch ($action) {
+    
+    case API_SCREEN_SETTING:
+        $screen = intval($route[4]);
+        $setting = intval($route[5]);
+        $value = intval($route[6]);
+        switch ($setting) {
+            case 'embeddable':
+                if ($value == 'true') {
+                    $db->update('screen', array('embeddable' => 'TRUE'), array('id' => $screen, 'creator' => userid()));
+                } else {
+                    $db->update('screen', array('embeddable' => 'FALSE'), array('id' => $screen, 'creator' => userid()));
+                }
+                break;
+        }
+        break;
     
     case API_SCREEN_DELETE:
         $screen = intval($route[4]);

@@ -37,6 +37,28 @@
                 }
             });
             
+            $('.btn-embed').on('click', function(e) {
+                var screen = $(this).data('screen');
+                $('.modal-confirm h3').text('Copy & Paste the following snippet into your site');
+                $('.modal-confirm p').empty();
+                var code = $('<code></code>').text('<script type="text/javascript" src="' + $(this).data('url') + '"></script>');
+                $('.modal-confirm p').append($('<span>You can customize the width (800) for your needs.</span>'));
+                $('.modal-confirm p').append(code);
+                $('.modal-confirm .btn-confirm').text('Allow Embedding');
+                $('.modal-confirm .btn-confirm').on('click', function() {
+                    $.ajax({
+                        url: "/api/screen/setting/" + screen + "/embeddable/true",
+                        dataType: 'json',
+                        success: function(data){
+                            $('.modal-confirm').modal('hide');
+                        }
+                    });
+                    e.stopPropagation();
+                    return false;
+                });
+                $('.modal-confirm').modal();
+            });
+            
             $('.dot').live('click', function(e) {
                 var container = $(this).parent();
                 if (that.deletemode) {
@@ -77,6 +99,7 @@
             $ctx.empty();
             $('.screen').unbind('click');
             $('.btn-delete').hide();
+            $('.btn-embed').hide();
             $('.btn-comments').removeClass('active');
             this.active = false;
             this.deletemode = false;
@@ -94,6 +117,7 @@
             this.deletemode = false;
             
             $('.btn-delete').show();
+            $('.btn-embed').show();
             $('.btn-comments').addClass('active');
             $('.btn-delete').removeClass('delete');
             

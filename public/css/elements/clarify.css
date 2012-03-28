@@ -17,3 +17,17 @@
     border-radius: 3px;
     text-decoration: none;
 }
+
+code {
+    display: block;
+    background-color: #333;
+    color: #DDD;
+    padding: 15px;
+    font-family: menlo, monospace;
+    font-size: 14px;
+    margin-top: 15px;
+    border-radius: 3px;
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: auto;
+}

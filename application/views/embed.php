@@ -22,7 +22,7 @@ if ($width <= 0) {
 }
 
 // Load comments for this screen and layer
-$screen = $db->single("SELECT id, width FROM screen WHERE id = '" . $screen_id . "' AND embeddable = 'TRUE' LIMIT 1");
+$screen = $db->single("SELECT id, width FROM screen WHERE id = '" . $screen_id . "' AND (embeddable = 'TRUE' or creator = '" . userid() . "') LIMIT 1");
 if (!$screen) { die(); }
 $comments = $db->data("SELECT x, y, nr FROM comment WHERE screen = '" . $screen_id . "'");
 $factor = $width / $screen['width'];
