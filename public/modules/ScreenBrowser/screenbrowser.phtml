@@ -20,7 +20,7 @@ $screens = $db->data('SELECT id, title, width, height, ext, created, count_comme
         </a>
         <p class="title"><a href="<?= R ?>screen/<?= $screen['id'] ?>"><span><?= truncate($screen['title'],25,'...') ?></span></a></p>
         <p class="meta">
-            <span><?= strftime('%d %B %Y', strtotime($screen['created'])) ?></span>
+            
             <span class="size"><?= $screen['width'] ?> &times; <?= $screen['height'] ?></span>
             <a class="delete" data-screen="<?= $screen['id'] ?>" href="javascript:;">×</a>
         </p>
