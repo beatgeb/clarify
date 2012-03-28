@@ -212,7 +212,10 @@ class UploadHandler
         
         // create new screen entry
         global $db;
-        $ext = substr($name,strpos($name,'.')+1);
+        $ext = substr($name,strrpos($name,'.')+1);
+        if (!in_array(strtolower($ext), array('png', 'jpg', 'jpeg'))) {
+            die();
+        }
         list($width, $height, $itype, $attr) = @getimagesize($uploaded_file);
         $screen = array(
             'created' => date('Y-m-d H:i:s'),
