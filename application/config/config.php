@@ -26,11 +26,12 @@ $config['memcached.server.port'] = 30001;
  
 // Application
 $config['application.baseurl'] = '/';
-$config['application.domain'] = 'http://clarify.yourdomain.com/';
+$config['application.domain'] = 'http://clarify.yourdomain.com';
 
 // Security
 $config['security.password.hash'] = 'mH284Nks';
 $config['security.channel.hash'] = 'fdq23o42';
+$config['security.general.hash'] = 'jksuh4882';
 
 // Cache
 $config['cache.css.enabled'] = false;

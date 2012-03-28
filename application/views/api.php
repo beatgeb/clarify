@@ -13,6 +13,9 @@ lock();
 
 $api = $route[2];
 $action = $api . '.' . $route[3];
+if (!is_file(LIBRARY . 'api/' . strtolower($api) . '.php')) {
+    die('api not available');
+}
 require LIBRARY . 'api/' . strtolower($api) . '.php';
 
 ?>

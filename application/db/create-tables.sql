@@ -335,6 +335,7 @@ CREATE TABLE `screen` (
   `align_vertical` enum('TOP','CENTER','BOTTOM') DEFAULT 'TOP',
   `type` varchar(40) DEFAULT NULL,
   `ext` varchar(40) DEFAULT NULL,
+  `embeddable` ENUM('TRUE','FALSE') NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `project` (`project`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

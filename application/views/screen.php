@@ -13,7 +13,7 @@ lock();
 
 $screen_id = intval($route[2]);
 $screen = $db->single("SELECT id, title, width, height, project, ext FROM screen WHERE id = '" . $screen_id . "' LIMIT 1");
-$screen['image'] = R . 'upload/screens/' . $screen['project'] . '/' . $screen['id'] . '.' . $screen['ext'];
+$screen['image'] = R . 'upload/screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
 $colors = $db->data("SELECT id, hex FROM project_color WHERE project = '" . $screen['project'] . "'");
 
 ?>

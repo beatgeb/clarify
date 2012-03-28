@@ -11,11 +11,19 @@
 
 lock();
 
-$screen_id = intval($_REQUEST['screen']);
-$width = intval($_REQUEST['width']);
+$screen_id = intval($route[2]);
+$width = intval($route[3]);
+
+if ($screen_id <= 0) {
+    die('please provide the screen id');
+}
+if ($width <= 0) {
+    die('please provide the width (px) (> 0)');
+}
 
 // Load comments for this screen and layer
-$screen = $db->single("SELECT id, width FROM screen WHERE id = '" . $screen_id . "' LIMIT 1");
+$screen = $db->single("SELECT id, width FROM screen WHERE id = '" . $screen_id . "' AND embeddable = 'TRUE' LIMIT 1");
+if (!$screen) { die(); }
 $comments = $db->data("SELECT x, y, nr FROM comment WHERE screen = '" . $screen_id . "'");
 $factor = $width / $screen['width'];
 $class = 'st-widget-large';
@@ -32,7 +40,7 @@ document.write('<style type="text/css">');
 document.write('<?= $css ?>');
 document.write('</style>');
 document.write('<div class="st-widget <?= $class ?>">');
-document.write('<img src="<?= config('application.domain') ?><?= config('application.baseurl') ?>?view=api&action=screen.thumbnail&screen=<?= $screen_id ?>&width=<?= $width ?>" width="<?= $width ?>" />');
+document.write('<img src="<?= config('application.domain') ?><?= config('application.baseurl') ?>api/screen/thumbnail/<?= $screen_id ?>/<?= $width ?>" width="<?= $width ?>" />');
 <? foreach ($comments as $comment) { ?>
 document.write('<div class="st-def" style="top:<?= $comment['y']*$factor+$offset ?>px;left:<?= $comment['x']*$factor+$offset ?>px;"><a href="javascript:;" class="dot"><span class="nr"><?= $comment['nr'] ?></span></a></div>');
 <? } ?>

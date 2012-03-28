@@ -232,7 +232,7 @@ class UploadHandler
         $file->name = $this->trim_file_name($name, $type);
         $file->size = intval($size);
         $file->type = $type;
-        $file->newname = $id . '.' . substr($type,strpos($type,'/')+1);
+        $file->newname = md5($id . config('security.general.hash')) . '.' . substr($type,strpos($type,'/')+1);
         $error = $this->has_error($uploaded_file, $file, $error);
         if (!$error && $file->name) {
             $file_path = $this->options['upload_dir'].$file->newname;

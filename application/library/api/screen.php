@@ -79,10 +79,10 @@ switch ($action) {
         $screen = intval($route[4]);
         $reqwidth = intval($route[5]);
         $key = md5($screen . '-' . $reqwidth);
-        $screen = $db->single("SELECT id, project, type, ext FROM screen WHERE id = '" . $screen . "' AND creator = " . userid() . " LIMIT 1");
+        $screen = $db->single("SELECT id, project, type, ext FROM screen WHERE id = '" . $screen . "' AND embeddable = 'TRUE' LIMIT 1");
         if (!$screen) { die(); }
-        $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . $screen['id'] . '.' . $screen['ext'];
-        $target =  CACHE . 'screens/' . $screen['project'] . '/' . $screen['id'] . '/' . $key;
+        $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
+        $target =  CACHE . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '/' . $key;
         if (is_file($target)) {
             header('Content-Type: image/png');
             echo file_get_contents($target);
@@ -117,10 +117,10 @@ switch ($action) {
         $reqwidth = intval($route[5]);
         $version = 1;
         $key = md5($screen . '-' . $reqwidth . '-' . $version);
-        $screen = $db->single("SELECT * FROM screen WHERE id = '" . $screen . "' AND creator = " . userid() . " LIMIT 1");
+        $screen = $db->single("SELECT * FROM screen WHERE id = '" . $screen . "' AND embeddable = 'TRUE' LIMIT 1");
         if (!$screen) { die(); }
-        $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . $screen['id'] . '.' . $screen['ext'];
-        $target =  UPLOAD . 'screens/' . $screen['project'] . '/' . $screen['id'] . '/' . $key . '.png';
+        $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
+        $target =  UPLOAD . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '/' . $key . '.png';
         if (!is_dir(dirname($target))) {
             @mkdir(dirname($target), 0777, true);
         }
