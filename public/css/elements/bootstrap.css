@@ -172,6 +172,17 @@
 .modal-header {
   padding: 9px 15px;
   border-bottom: 1px solid #eee;
+  background-color: #1290d3;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(18, 144, 211)), to(rgb(12, 123, 184)));
+  background-image: -webkit-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+  background-image: -moz-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+  background-image: -o-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+  background-image: -ms-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+  background-image: linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#1290d3', EndColorStr='#0c7bb8');
+}
+.modal-header h3 {
+    color: #FFF;
 }
 .modal-header .close {
   margin-top: 2px;
