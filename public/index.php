@@ -41,7 +41,6 @@ switch ($view) {
     case VIEW_LIBRARY:
     case VIEW_EMBED:
     case VIEW_PROJECT:
-    case VIEW_REGISTER:
         break;
     default:
         lock();
