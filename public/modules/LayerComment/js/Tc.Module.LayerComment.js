@@ -89,6 +89,7 @@
                     container.css('z-index', 3);
                 } else {
                     edit.toggle();
+                    edit.find('textarea').focus();
                     $(this).parent().css('z-index', 10);
                 }
             });
