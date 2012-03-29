@@ -25,7 +25,7 @@
                 }
             });
             
-            $('.btn-delete').bind('click', function(e) {
+            $('.btn-delete').on('click', function(e) {
                 that.deletemode = !that.deletemode;
                 if (that.deletemode) {
                     $('.def', $ctx).addClass('def-delete');
@@ -122,7 +122,7 @@
             $('.btn-delete').removeClass('delete');
             
             // Add data dots
-            $('.screen').bind('click', function(e) {
+            $('.screen').on('dblclick', function(e) {
                 var offsetLeft = $('.modScreen').offset().left;
                 var offsetTop = $('.modScreen').offset().top;
                 var x = e.pageX - offsetLeft - 15;
