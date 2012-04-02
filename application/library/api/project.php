@@ -1,5 +1,7 @@
 <?php
 
+lock();
+
 // Project API
 define('API_PROJECT_ADD', 'project.add');
 define('API_PROJECT_DELETE', 'project.delete');

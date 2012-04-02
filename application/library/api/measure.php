@@ -1,5 +1,7 @@
 <?php
 
+lock();
+
 // Measure API
 define('API_MEASURE_ADD', 'measure.add');
 define('API_MEASURE_GET', 'measure.get');

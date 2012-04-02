@@ -1,5 +1,7 @@
 <?php
 
+lock();
+
 // Color API
 define('API_COLOR_ADD', 'color.add');
 define('API_COLOR_GET', 'color.get');

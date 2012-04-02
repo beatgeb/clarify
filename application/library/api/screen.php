@@ -11,6 +11,7 @@ define('API_SCREEN_SETTING', 'screen.setting');
 switch ($action) {
     
     case API_SCREEN_SETTING:
+        lock();
         $screen = intval($route[4]);
         $setting = intval($route[5]);
         $value = intval($route[6]);
@@ -26,6 +27,7 @@ switch ($action) {
         break;
     
     case API_SCREEN_DELETE:
+        lock();
         $screen = intval($route[4]);
         $screen = $db->single("SELECT id, project FROM screen WHERE id = " . $screen . " AND creator = " . userid());
         if (!$screen) { die(); }
@@ -40,6 +42,7 @@ switch ($action) {
         break;
     
     case API_SCREEN_UPLOAD:
+        lock();
         // TODO: CLEANUP UPLOAD CODE, make it ourself, no third-party library
         $project = intval($route[4]);
         $p = $db->single("SELECT id FROM project WHERE id = " . $project . " AND creator = " . userid());
@@ -129,6 +132,7 @@ switch ($action) {
         break;
     
     case API_SCREEN_IMAGE:
+        lock();
         $screen = intval($route[4]);
         $reqwidth = intval($route[5]);
         $version = 1;

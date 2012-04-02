@@ -1,5 +1,7 @@
 <?php
 
+lock();
+
 // Comment API
 define('API_COMMENT_ADD', 'comment.add');
 define('API_COMMENT_REMOVE', 'comment.remove');

@@ -1,5 +1,7 @@
 <?php
 
+lock();
+
 // Library API
 define('API_LIBRARY_COMPONENT_ADD', 'library.component.add');
 define('API_LIBRARY_BEHAVIOUR_ADD', 'library.behaviour.add');
