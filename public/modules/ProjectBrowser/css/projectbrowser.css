@@ -218,33 +218,3 @@
     border-radius: 3px;
     display: block;
 }
-
-.modProjectBrowser .beta-notice {
-    position: fixed;
-    bottom: 0;
-    width: 240px;
-    background-color: #e8b83f;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(232, 184, 63)), to(rgb(190, 148, 49)));
-    background-image: -webkit-linear-gradient(top, rgb(232, 184, 63), rgb(190, 148, 49));
-    background-image: -moz-linear-gradient(top, rgb(232, 184, 63), rgb(190, 148, 49));
-    background-image: -o-linear-gradient(top, rgb(232, 184, 63), rgb(190, 148, 49));
-    background-image: -ms-linear-gradient(top, rgb(232, 184, 63), rgb(190, 148, 49));
-    background-image: linear-gradient(top, rgb(232, 184, 63), rgb(190, 148, 49));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#e8b83f', EndColorStr='#be9431');
-    padding: 15px;
-    color: #3c2d09;
-    line-height: 1.5;
-    text-shadow: 1px 1px 0 #e4b23d;
-    border-top: 1px solid #f6d880;
-    font-style: italic;
-}
-
-.modProjectBrowser .beta-notice a {
-    color: #3c2d09;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.modProjectBrowser .beta-notice a:hover {
-    text-decoration: underline;
-}

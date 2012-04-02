@@ -21,6 +21,9 @@ $project = $db->single("SELECT * FROM project WHERE id = " . $project_id . " AND
     <? require 'partials/head.php' ?>
 </head>
 <body>
+    <div class="mod modBetaNotice">
+        <? require TERRIFIC . 'modules/BetaNotice/betanotice.phtml'; ?>
+    </div>
     <div class="mod modProjectBrowser" data-project="<?= $project_id ?>">
         <? require TERRIFIC . 'modules/ProjectBrowser/projectbrowser.phtml'; ?>
     </div>
