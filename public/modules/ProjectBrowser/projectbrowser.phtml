@@ -14,6 +14,9 @@ $projects = $db->data('SELECT id, name, screen_count FROM project WHERE creator 
     <input class="project-name" type="text" placeholder="Project Name" />
     <input class="add-project-submit" type="button" value="Add Project" />
 </div>
+<? if (sizeof($projects) == 0) { ?>
+<div class="notice">You don't have any projects yet.</div>
+<? } ?>
 <ul>
     <? foreach ($projects as $p) { ?>
     <? $notifications = $p['id'] == 5 ? '<span class="notifications">5</span>' : ''; ?>

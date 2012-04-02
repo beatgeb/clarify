@@ -217,4 +217,10 @@
 .modProjectBrowser .usermeta .avatar img {
     border-radius: 3px;
     display: block;
+} 
+
+.modProjectBrowser .notice {
+    padding: 10px 20px;
+    font-style: italic;
+    color: #999;
 }
