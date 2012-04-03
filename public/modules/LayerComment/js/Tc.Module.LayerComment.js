@@ -99,6 +99,7 @@
             var $ctx = this.$ctx;
             $ctx.empty();
             $('.screen').unbind('click');
+            $('.screen').unbind('dblclick');
             $('.btn-delete').hide();
             $('.btn-embed').hide();
             $('.btn-comments').removeClass('active');
