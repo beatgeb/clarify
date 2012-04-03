@@ -77,10 +77,11 @@
     top: 15px;
     left: 15px;
     display: none;
-    padding: 3px;
-    border-radius: 4px;
-    box-shadow: 0px 0px 3px #000;
     z-index: 1;
+}
+
+.modLayerComment .def .ui-resizable-resizing {
+    background-color: rgba(0,0,0,0.2);
 }
 
 .modLayerComment .def .edit textarea {
@@ -106,6 +107,12 @@
     border-radius: 4px;
     text-shadow: 0px -1px 0px #000;
     resize: none;
+    overflow: hidden;
+    box-shadow: 0px 0px 3px #000;
+}
+
+.modLayerComment .def .ui-resizable-resizing textarea {
+    opacity: 0.2;
 }
 
 .modLayerComment .def .edit textarea:focus {
