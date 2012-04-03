@@ -7,10 +7,6 @@
 }
 
 .modLayerMeasure .measure {
-    /*
-    background-color: #77b83c;
-    background: rgba(119,184,60,0.9);
-    */
     opacity: 0.8;
     background-color: #060606;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(6, 6, 6)), to(rgb(43, 43, 43)));

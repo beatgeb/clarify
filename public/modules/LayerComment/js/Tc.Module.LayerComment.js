@@ -74,6 +74,7 @@
                 }
                 var edit = $('.edit', container);
                 if (edit.is(':visible')) {
+                    /*
                     // save changes
                     var content = $('textarea', edit).val();
                     $.ajax({
@@ -87,6 +88,7 @@
                     });
                     edit.toggle();
                     container.css('z-index', 3);
+                    */
                 } else {
                     edit.toggle();
                     edit.find('textarea').focus();
@@ -174,6 +176,23 @@
                 });
             }
             $ctx.append(def);
+
+            // add blur event
+            $('.edit > textarea', def).on('blur', function(e) {
+                var container = $(this).parent();
+                var content = $(this).val();
+                $.ajax({
+                    url: "/api/comment/update/" + container.data('id'),
+                    dataType: 'json',
+                    type: 'POST',
+                    data: "content=" + content,
+                    success: function(data){
+                        // NOOP
+                    }
+                });
+                container.parent().css('z-index', 3);
+                container.hide();
+            });
 
             // Activate drag'n'drop on dots
             def.draggable({
