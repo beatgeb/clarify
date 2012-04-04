@@ -9,8 +9,6 @@
  * http://www.opensource.org/licenses/MIT
  */
 
-lock();
-
 define('API_COLOR', 'color');
 define('API_COMMENT', 'comment');
 define('API_LIBRARY', 'library');
