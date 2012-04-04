@@ -53,6 +53,7 @@ foreach ($comments as $comment) {
         </div>
         <div class="chapter pagebreak">
             <h2>2. Colors</h2>
+            <h3>Palette</h3>
             <div class="colors">
             <? foreach ($colors as $color) { ?>
             <div class="color">

@@ -28,7 +28,7 @@
 }
 
 .modGuide h2 {
-    background: #DDD;
+    background: #FFF;
     font-size: 24px;
     font-weight: bold;
     clear: both;
@@ -99,7 +99,7 @@
 
 .modGuide .colors {
     overflow: hidden;
-    padding: 30px;
+    padding: 0 30px 30px 30px;
 }
 
 .modGuide .color {

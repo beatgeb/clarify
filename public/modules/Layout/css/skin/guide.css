@@ -1,5 +1,13 @@
-.skinLayoutGuide {
-    font-size: 14px;
-    font-family: helvetica, sans-serif;
-    background: #222;
+@media all {
+    .skinLayoutGuide {
+        font-size: 14px;
+        font-family: helvetica, sans-serif;
+        background: #222;
+    }
+}
+
+@media print {
+    .skinLayoutGuide {
+        background-color: #FFF;
+    }
 }
