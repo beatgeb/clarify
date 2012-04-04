@@ -94,7 +94,8 @@ switch ($action) {
     case API_COMMENT_GET:
         $screen = intval($route[4]);
         if ($screen < 1) { die('Please provide a screen id'); }
-        $data = $db->data("SELECT id, creator, nr, x, y, w, h, content FROM comment WHERE screen = " . $screen . " AND creator = " . userid());
+        $query = "SELECT id, creator, nr, x, y, w, h, content FROM comment WHERE screen = " . $screen . " AND creator = " . userid();
+        $data = $db->data($query);
         header('Content-Type: application/json');
         echo json_encode($data);
         break;

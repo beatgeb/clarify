@@ -2,12 +2,14 @@
     background: white;
     margin-left: auto;
     margin-right: auto;
-    width: 900px;
-    font-family: helvetica neue, helvetica, arial, sans-serif;
-    padding: 30px;
+    width: 1000px;
+    font-family: helvetica, arial, sans-serif;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .modGuide .screen {
+    margin-left: 30px;
     margin-bottom: 50px;
     margin-right: 20px;
     float: left;
@@ -15,9 +17,10 @@
 }
 
 .modGuide h1 {
-    font-size: 56px;
-    font-weight: 700;
-    margin-bottom: 5px;
+    background-color: #FFF;
+    font-size: 48px;
+    color: #000;
+    padding: 30px;
 }
 
 .modGuide > .meta {
@@ -25,10 +28,13 @@
 }
 
 .modGuide h2 {
-    font-size: 42px;
-    font-weight: 700;
-    margin-bottom: 40px;
+    background: #DDD;
+    font-size: 24px;
+    font-weight: bold;
     clear: both;
+    color: #333;
+    padding: 15px 30px;
+    margin-bottom: 1px;
 }
 
 .modGuide .pagebreak {
@@ -36,9 +42,13 @@
 }
 
 .modGuide h3 {
-    font-size: 26px;
-    margin-bottom: 20px;
+    background: #EEE;
+    font-size: 18px;
+    margin-bottom: 30px;
     clear: both;
+    color: #555;
+    font-style: italic;
+    padding: 15px 30px;
 }
 
 .modGuide .definitions {
@@ -87,23 +97,49 @@
     color: #000;
 }
 
+.modGuide .colors {
+    overflow: hidden;
+    padding: 30px;
+}
+
 .modGuide .color {
-    float: left;
-    width: 155px;
-    margin-bottom: 20px;
+    overflow: hidden;
+    border: 1px solid #DDD;
+    margin-bottom: 5px;
+    border-radius: 4px;
 }
 
 .modGuide .color .box {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 20px;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 4px;
 }
 
-.modGuide .color .meta p {
-    color: black;
+.modGuide .color .meta {
+    float: left;
+    font-size: 18px;
+    color: #333;
+    padding: 15px 0 0 15px;
 }
 
-.modGuide .color .meta .hex {
+.modGuide .color .meta-hex {
     font-weight: bold;
-    font-size: 16px;
+    width: 120px;
+}
+
+.modGuide .color .meta-rgb {
+    width: 170px;
+    color: #999;
+}
+
+.modGuide .color .meta-less {
+    background: #EEE;
+    border: 1px solid #DDD;
+    color: #666;
+    font-family: monospace;
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 9px;
 }

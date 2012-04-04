@@ -182,7 +182,7 @@
                 var container = $(this).parent();
                 var content = $(this).val();
                 $.ajax({
-                    url: "/api/comment/update/" + container.data('id'),
+                    url: "/api/comment/update/" + container.parent().data('id'),
                     dataType: 'json',
                     type: 'POST',
                     data: "content=" + content,

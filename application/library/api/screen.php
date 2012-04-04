@@ -98,7 +98,7 @@ switch ($action) {
         $screen = intval($route[4]);
         $reqwidth = intval($route[5]);
         $key = md5($screen . '-' . $reqwidth);
-        $screen = $db->single("SELECT id, project, type, ext FROM screen WHERE id = '" . $screen . "' AND embeddable = 'TRUE' LIMIT 1");
+        $screen = $db->single("SELECT id, project, type, ext FROM screen WHERE id = '" . $screen . "' AND (embeddable = 'TRUE' or creator = '" . userid() . "') LIMIT 1");
         if (!$screen) { die(); }
         $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
         $target =  CACHE . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '/' . $key;
