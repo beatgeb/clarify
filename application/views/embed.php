@@ -9,8 +9,6 @@
  * http://www.opensource.org/licenses/MIT
  */
 
-lock();
-
 $screen_id = intval($route[2]);
 $width = intval($route[3]);
 
