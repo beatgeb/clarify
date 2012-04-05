@@ -27,6 +27,14 @@
     left: 0;
     z-index: 3;
     box-shadow: 0 0 3px #000;
+    -webkit-transition-property: box-shadow;
+    -webkit-transition-duration: 1s;
+}
+
+.modLayerComment .def .dot:hover {
+    box-shadow: 0 0 10px #000;
+    -webkit-transition-property: box-shadow;
+    -webkit-transition-duration: 0.5s;
 }
 
 .modLayerComment .def .dot-active {
