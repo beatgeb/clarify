@@ -1,6 +1,6 @@
 <? if ($project_id > 0) { ?>
 <?php
-$screens = $db->data('SELECT id, title, width, height, ext, created, count_comment, count_measure, count_color FROM screen WHERE project = ' . $project_id . ' AND creator = ' . userid() . ' ORDER BY created ASC');
+$screens = $db->data('SELECT id, title, width, height, ext, created, count_comment, count_measure, count_color FROM screen WHERE project = ' . $project_id . ' AND creator = ' . userid() . ' ORDER BY title ASC');
 ?>
 <ul>
     <li class="create">
