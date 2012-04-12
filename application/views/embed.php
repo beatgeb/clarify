@@ -40,6 +40,6 @@ document.write('</style>');
 document.write('<div class="st-widget <?= $class ?>">');
 document.write('<img src="<?= config('application.domain') ?><?= config('application.baseurl') ?>api/screen/thumbnail/<?= $screen_id ?>/<?= $width ?>" width="<?= $width ?>" />');
 <? foreach ($comments as $comment) { ?>
-document.write('<div class="st-def" style="top:<?= $comment['y']*$factor+$offset ?>px;left:<?= $comment['x']*$factor+$offset ?>px;"><a href="javascript:;" class="dot"><span class="nr"><?= $comment['nr'] ?></span></a></div>');
+document.write('<div class="st-def" style="top:<?= round($comment['y']*$factor+$offset) ?>px;left:<?= round($comment['x']*$factor+$offset) ?>px;"><a href="javascript:;" class="dot"><span class="nr"><?= $comment['nr'] ?></span></a></div>');
 <? } ?>
 document.write('</div>');
