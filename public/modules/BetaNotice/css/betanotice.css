@@ -7,12 +7,12 @@
     background-image: -ms-linear-gradient(top, rgb(232, 184, 63), rgb(190, 148, 49));
     background-image: linear-gradient(top, rgb(232, 184, 63), rgb(190, 148, 49));
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#e8b83f', EndColorStr='#be9431');
-    padding: 10px 15px;
+    padding: 8px 15px;
     color: #3c2d09;
-    line-height: 1.5;
     text-shadow: 1px 1px 0 #e4b23d;
     border-top: 1px solid #f6d880;
     text-align: center;
+    font-size: 12px;
 }
 
 .modBetaNotice .beta-notice a {
