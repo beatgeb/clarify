@@ -20,7 +20,7 @@
                     // todo: show progress
                 },
                 done: function (e, data) {
-                    window.location.href='/project/' + project;
+                    window.location.reload();
                 }
             });
             
