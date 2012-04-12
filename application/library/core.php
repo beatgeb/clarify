@@ -101,6 +101,7 @@ function gen_uuid($salt, $len = 8) {
 
 function slug($string) {
     $string = strtolower($string);
+    $string = str_replace(".", "-", $string);
     $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
     $string = preg_replace("/[\s-]+/", " ", $string);
     $string = preg_replace("/[\s_]/", "-", $string);
