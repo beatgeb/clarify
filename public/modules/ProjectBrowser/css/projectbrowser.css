@@ -224,3 +224,22 @@
     font-style: italic;
     color: #999;
 }
+
+.modProjectBrowser .colors {
+    overflow: hidden;
+    margin: 0 15px 10px 15px;
+}
+.modProjectBrowser .color {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px 0 0 5px;
+    background-color: transparent;
+    border-radius: 3px;
+    text-indent: -9999px;
+    position: relative;
+}
+
+.modProjectBrowser .color:hover {
+    box-shadow: 0 0 5px #000;
+}

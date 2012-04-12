@@ -43,6 +43,8 @@
                 });
                 $('.modal-confirm').modal();
             });
+            
+            $('.color', this.$ctx).tooltip();
         },
         
         addProject: function() {
