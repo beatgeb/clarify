@@ -29,7 +29,7 @@ if (config('cache.js.enabled') && is_file(CACHE . 'app.js')) {
 }
 
 // initialize
-$core = file_get_contents(TERRIFIC_DIR . '/js/core/static/jquery-1.7.1.min.js');
+$core = file_get_contents(TERRIFIC_DIR . '/js/core/static/jquery.min.js');
 $core .= file_get_contents(TERRIFIC_DIR . '/js/core/static/terrific-1.0.0.min.js');
 
 $output = '';
