@@ -110,6 +110,16 @@
     border-radius: 4px;
 }
 
+.modGuide .color .state {
+    float: left;
+    width: 100px;
+    background-color: #EEE;
+    border-radius: 4px;
+    margin: 5px 0 5px 5px;
+    color: #555;
+    padding: 12px;
+}
+
 .modGuide .color .box {
     float: left;
     width: 40px;
@@ -131,7 +141,7 @@
 }
 
 .modGuide .color .meta-rgb {
-    width: 170px;
+    width: 180px;
     color: #999;
 }
 
@@ -143,4 +153,44 @@
     padding: 5px;
     border-radius: 4px;
     margin-top: 9px;
+}
+
+.modGuide .fonts {
+    overflow: hidden;
+    padding: 0 30px 30px 30px;
+}
+
+.modGuide .font {
+    overflow: hidden;
+    border: 1px solid #DDD;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+.modGuide .font .preview {
+    float: left;
+    width: 400px;
+    margin: 20px;
+}
+
+.modGuide .font-meta {
+    overflow: hidden;
+    border: 1px solid #DDD;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+.modGuide .font-meta div {
+    float: left;
+    font-size: 18px;
+    color: #333;
+    padding: 15px;
+    font-weight: normal;
+    width: 155px;
+    color: #999;
+}
+
+.modGuide .font-meta div strong {
+    font-style: normal;
+    color: #333;
 }

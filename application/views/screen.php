@@ -12,7 +12,22 @@
 lock();
 
 $screen_id = intval($route[2]);
-$screen = $db->single("SELECT id, title, width, height, project, ext FROM screen WHERE id = '" . $screen_id . "' LIMIT 1");
+$screen = $db->single("
+    SELECT 
+        s.id, 
+        s.title, 
+        s.width, 
+        s.height, 
+        s.project, 
+        s.ext, 
+        p.slug as project_slug, 
+        p.creator as project_creator 
+    FROM screen s 
+        LEFT JOIN project p ON (p.id = s.project)
+    WHERE 
+        s.id = '" . $screen_id . "' 
+    LIMIT 1
+");
 $screen['image'] = R . 'upload/screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
 $colors = $db->data("SELECT id, hex FROM project_color WHERE project = '" . $screen['project'] . "'");
 
@@ -35,6 +50,7 @@ $colors = $db->data("SELECT id, hex FROM project_color WHERE project = '" . $scr
         <div class="mod modLayerComment"></div>
         <div class="mod modLayerMeasure"></div>
         <div class="mod modLayerColor"></div>
+        <div class="mod modLayerFont"></div>
     </div>
     <div class="mod modColorLibrary">
     <? require TERRIFIC . 'modules/ColorLibrary/colorlibrary.phtml' ?>

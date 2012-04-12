@@ -1,6 +1,11 @@
 <? if ($project_id > 0) { ?>
 <?php
-$screens = $db->data('SELECT id, title, width, height, ext, created, count_comment, count_measure, count_color FROM screen WHERE project = ' . $project_id . ' AND creator = ' . userid() . ' ORDER BY title ASC');
+$screens = $db->data('
+    SELECT id, title, width, height, ext, created, count_comment, count_measure, count_color, count_font 
+    FROM screen 
+    WHERE project = ' . $project_id . ' AND creator = ' . userid() . ' 
+    ORDER BY title ASC
+');
 ?>
 <ul>
     <li class="create">
@@ -14,8 +19,9 @@ $screens = $db->data('SELECT id, title, width, height, ext, created, count_comme
             <img src="/upload/screens/<?= $project_id ?>/thumbnails/<?= md5($screen['id'] .config('security.general.hash')) ?>.<?= $screen['ext'] ?>" width="200" alt="" />
             <div class="info">
                 <i class="icon icon-comment"></i> <span<?= $screen['count_comment'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_comment'] ?></span>
-                <i class="icon icon-th-large"></i> <span<?= $screen['count_measure'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_measure'] ?></span>
+                <i class="icon icon-resize-vertical"></i> <span<?= $screen['count_measure'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_measure'] ?></span>
                 <i class="icon icon-tint"></i> <span<?= $screen['count_color'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_color'] ?></span>
+                <i class="icon icon-font"></i> <span<?= $screen['count_font'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_font'] ?></span>
             </div>
         </a>
         <p class="title"><a href="<?= R ?>screen/<?= $screen['id'] ?>"><span><?= truncate($screen['title'],25,'...') ?></span></a></p>

@@ -99,4 +99,12 @@ function gen_uuid($salt, $len = 8) {
     return substr($uid, 0, $len);
 }
 
+function slug($string) {
+    $string = strtolower($string);
+    $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+    $string = preg_replace("/[\s-]+/", " ", $string);
+    $string = preg_replace("/[\s_]/", "-", $string);
+    return $string;
+}
+
 ?>

@@ -15,8 +15,9 @@ $project_id = intval($route[2]);
 $project = $db->single("SELECT id, name FROM project WHERE id = '" . $project_id . "' AND creator = '" . userid() . "'");
 if (!$project) { die(); }
 $screens = $db->data("SELECT id, title, description FROM screen WHERE project = '" . $project['id'] . "'");
-$colors = $db->data("SELECT id, hex, name, r, g, b, alpha FROM project_color WHERE project = '" . $project['id'] . "'");
+$colors = $db->data("SELECT id, hex, name, r, g, b, alpha FROM project_color WHERE project = '" . $project['id'] . "'", "id");
 $comments = $db->data("SELECT d.id, d.content, d.nr, d.layer, d.screen FROM comment d LEFT JOIN screen s ON s.id = d.screen WHERE s.project = '" . $project['id'] . "'");
+$fonts = $db->data("SELECT * FROM project_font WHERE project = " . $project_id);
 $layers = array();
 foreach ($comments as $comment) {
     $layers[$comment['screen']][] = $comment;
@@ -70,6 +71,88 @@ foreach ($comments as $comment) {
             <? } ?>
             </div>
         </div>
+        <? if (sizeof($fonts) > 0) { ?>
+        <div class="chapter pagebreak">
+            <h2>4. Fonts</h2>
+            <? foreach ($fonts as $font) { ?>
+            <? $color = $colors[$font['color']]; ?>
+            <h3><?= $font['name'] ?> - .<?= $font['name_css'] ?></h3>
+            <div class="fonts">
+                <div class="font">
+                    <div class="preview" style="font-family: <?= $font['family'] ?>; font-size: <?= $font['size'] ?>px; font-weight: <?= $font['weight'] ?>; font-style: <?= $font['style'] ?>;">
+                    <?= $font['name'] ?>, <?= $font['family'] ?>, <?= $font['size'] ?>px
+                    </div>
+                </div>
+                <div class="font-meta">
+                    <div>Line Height: <strong><?= $font['line_height'] ?></strong></div>
+                    <div>Weight: <strong><?= $font['weight'] ?></strong></div>
+                    <div>Transform: <strong><?= $font['transform'] ?></strong></div>
+                </div>
+                <!-- NORMAL -->
+                <div class="color">
+                    <div class="state">Normal</div>
+                    <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
+                    <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
+                    <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
+                    <div class="meta meta-less">@undefined</div>
+                    <div class="meta meta-name">
+                    <? if ($color['name'] != '') { ?>
+                    <?= $color['name'] ?><br />
+                    <? } ?>
+                    </div>
+                </div>
+                <!-- HOVER -->
+                <? if ($colors[$font['color_hover']]) { ?>
+                <? $color = $colors[$font['color_hover']]; ?>
+                <div class="color">
+                    <div class="state">Hover</div>
+                    <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
+                    <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
+                    <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
+                    <div class="meta meta-less">@undefined</div>
+                    <div class="meta meta-name">
+                    <? if ($color['name'] != '') { ?>
+                    <?= $color['name'] ?><br />
+                    <? } ?>
+                    </div>
+                </div>
+                <? } ?>
+                <!-- ACTIVE -->
+                <? if ($colors[$font['color_active']]) { ?>
+                <? $color = $colors[$font['color_active']]; ?>
+                <div class="color">
+                    <div class="state">Active</div>
+                    <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
+                    <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
+                    <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
+                    <div class="meta meta-less">@undefined</div>
+                    <div class="meta meta-name">
+                    <? if ($color['name'] != '') { ?>
+                    <?= $color['name'] ?><br />
+                    <? } ?>
+                    </div>
+                </div>
+                <? } ?>
+                <!-- VISITED -->
+                <? if ($colors[$font['color_visited']]) { ?>
+                <? $color = $colors[$font['color_visited']]; ?>
+                <div class="color">
+                    <div class="state">Visited</div>
+                    <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
+                    <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
+                    <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
+                    <div class="meta meta-less">@undefined</div>
+                    <div class="meta meta-name">
+                    <? if ($color['name'] != '') { ?>
+                    <?= $color['name'] ?><br />
+                    <? } ?>
+                    </div>
+                </div>
+                <? } ?>
+            </div>
+            <? } ?>
+        </div>
+        <? } ?>
     </div>
     <? require 'partials/foot.php'; ?>
 </body>

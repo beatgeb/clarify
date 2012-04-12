@@ -143,7 +143,57 @@ DROP TABLE IF EXISTS `font`;
 
 CREATE TABLE `font` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
+  `creator` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `modifier` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `screen` int(11) NOT NULL,
+  `font` int(11) NOT NULL,
+  `x` int(11) NOT NULL,
+  `y` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `screen` (`screen`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+# Dump of table project_font
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `project_font`;
+
+CREATE TABLE `project_font` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `creator` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `modifier` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `project` int(11) DEFAULT NULL,
+  `reference_font` int(11) DEFAULT NULL,
+  `name` varchar(40) DEFAULT NULL,
+  `name_css` varchar(40) DEFAULT NULL,
+  `family` varchar(255) DEFAULT '',
+  `size` int(11) DEFAULT NULL,
+  `size_em` float DEFAULT NULL,
+  `line_height` float DEFAULT NULL,
+  `transform` enum('UPPERCASE','LOWERCASE','CAPITALIZE') DEFAULT NULL,
+  `color` int(11) DEFAULT NULL,
+  `color_background` int(11) DEFAULT NULL,
+  `color_hover` int(11) DEFAULT NULL,
+  `color_active` int(11) DEFAULT NULL,
+  `color_visited` int(11) DEFAULT NULL,
+  `style` enum('NORMAL','ITALIC','OBLIQUE') DEFAULT NULL,
+  `style_hover` enum('NORMAL','ITALIC','OBLIQUE') DEFAULT NULL,
+  `style_active` enum('NORMAL','ITALIC','OBLIQUE') DEFAULT NULL,
+  `style_visited` enum('NORMAL','ITALIC','OBLIQUE') DEFAULT NULL,
+  `weight` varchar(10) DEFAULT NULL,
+  `weight_hover` varchar(10) DEFAULT NULL,
+  `weight_active` varchar(10) DEFAULT NULL,
+  `weight_visited` varchar(10) DEFAULT NULL,
+  `decoration` varchar(20) DEFAULT NULL,
+  `decoration_hover` varchar(20) DEFAULT NULL,
+  `decoration_active` varchar(20) DEFAULT NULL,
+  `decoration_visited` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `project` (`project`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -280,9 +330,10 @@ CREATE TABLE `project` (
   `modifier` int(11) DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `short` varchar(40) NOT NULL DEFAULT '',
   `screen_count`int(11) DEFAULT '0' NOT NULL,
-  PRIMARY KEY (`id`)
+  `slug` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX (`creator`, `slug`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
@@ -327,6 +378,7 @@ CREATE TABLE `screen` (
   `modifier` int(11) DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   `project` int(11) NOT NULL,
+  `code` char(8) NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT '',
   `description` text,
   `width` int(11) DEFAULT '1024',
@@ -339,8 +391,10 @@ CREATE TABLE `screen` (
   `count_comment` INT(11) NOT NULL DEFAULT '0',
   `count_measure` INT(11) NOT NULL DEFAULT '0',
   `count_color` INT(11) NOT NULL DEFAULT '0',
+  `count_font` INT(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `project` (`project`)
+  KEY `project` (`project`),
+  UNIQUE KEY `code`(`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `user`;

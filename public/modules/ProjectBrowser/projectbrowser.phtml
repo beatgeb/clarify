@@ -1,5 +1,5 @@
 <?php
-$projects = $db->data('SELECT id, name, screen_count FROM project WHERE creator = ' . userid() . ' ORDER BY name ASC');
+$projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE creator = ' . userid() . ' ORDER BY name ASC');
 ?>
 <h3>Account<a class="btn-logout" href="<?= R ?>auth/?wipe=1">Logout</a></h3>
 <div class="usermeta">
@@ -21,7 +21,7 @@ $projects = $db->data('SELECT id, name, screen_count FROM project WHERE creator 
     <? foreach ($projects as $p) { ?>
     <? $notifications = $p['id'] == 5 ? '<span class="notifications">5</span>' : ''; ?>
     <li <?= $p['id'] == $project_id ? 'class="active"': '' ?>>
-        <a href="<?= R ?>project/<?= $p['id'] ?>"><?= $p['name'] ?> <span class="count"><?= $p['screen_count'] ?></span><?= $notifications ?></a>
+        <a href="<?= R ?>project/<?= $p['creator'] ?>/<?= $p['slug'] ?>/"><?= $p['name'] ?> <span class="count"><?= $p['screen_count'] ?></span><?= $notifications ?></a>
     </li>
     <? } ?>
 </ul>

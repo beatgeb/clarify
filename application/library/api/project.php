@@ -12,10 +12,12 @@ switch ($action) {
         $data = array(
             'created' => date('Y-m-d H:i:s'),
             'creator' => userid(),
-            'name' => $db->escape($_REQUEST['name'])
+            'name' => $db->escape($_REQUEST['name']),
+            'slug' => slug($_REQUEST['name'])
         );
         $id = $db->insert('project', $data);
         $data['id'] = $id;
+        $data['url'] = R . 'project/' . userid() . '/' . $data['slug'] . '/';
         echo json_encode($data);
         break;
     

@@ -225,7 +225,8 @@ class UploadHandler
             'width' => $width,
             'height' => $height,
             'ext' => substr($type,strpos($type,'/')+1),
-            'project' => $this->project
+            'project' => $this->project,
+            'code' => gen_uuid(userid() . '-screen')
         );
         
         $id = $db->insert('screen', $screen);

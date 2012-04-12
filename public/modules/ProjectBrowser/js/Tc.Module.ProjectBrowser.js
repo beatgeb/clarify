@@ -57,7 +57,7 @@
                     type: 'POST',
                     data: 'name=' + encodeURIComponent(name),
                     success: function(data){
-                        location.href='/project/' + data.id;
+                        location.href = data.url;
                     }
                 });
             }

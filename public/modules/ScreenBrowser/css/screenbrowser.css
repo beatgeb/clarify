@@ -30,10 +30,19 @@
 .modScreenBrowser ul li .image .info {
     position: absolute;
     bottom: 0;
-    background: #000;
+    background-color: #676868;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(103, 104, 104)), to(rgb(58, 58, 58)));
+    background-image: -webkit-linear-gradient(top, rgb(103, 104, 104), rgb(58, 58, 58));
+    background-image: -moz-linear-gradient(top, rgb(103, 104, 104), rgb(58, 58, 58));
+    background-image: -o-linear-gradient(top, rgb(103, 104, 104), rgb(58, 58, 58));
+    background-image: -ms-linear-gradient(top, rgb(103, 104, 104), rgb(58, 58, 58));
+    background-image: linear-gradient(top, rgb(103, 104, 104), rgb(58, 58, 58));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#676868', EndColorStr='#3a3a3a');
     padding: 4px 6px;
-    color: #999;
+    color: #FFF;
     width: 200px;
+    font-size: 12px;
+    font-weight: bold;
 }
 .modScreenBrowser ul li .image .info span {
     display: inline-block;
@@ -41,6 +50,7 @@
 }
 .modScreenBrowser ul li .image .info .zero {
     color: #444;
+    text-shadow: none;
 }
 
 .modScreenBrowser ul li .delete-confirm {
