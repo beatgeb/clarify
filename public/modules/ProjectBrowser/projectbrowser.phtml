@@ -25,16 +25,19 @@ $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project
     </li>
     <? } ?>
 </ul>
+<!-- Project Settings -->
 <? if ($project_id > 0) { ?>
-<? $colors = $db->data("SELECT id, hex FROM project_color WHERE project = '" . $project_id . "'"); ?>
 <h3><?= $project['name'] ?></h3>
+<ul>
+    <li><a href="<?= R ?>guide/<?= $project_id ?>">Styleguide (Draft)</a></li>
+    <li><a href="javascript:;" data-project="<?= $project_id ?>" class="btn-delete-project">Delete Project</a></li>
+</ul>
+<!-- Color Library -->
+<h3>Color Library</h3>
+<? $colors = $db->data("SELECT id, hex FROM project_color WHERE project = '" . $project_id . "'"); ?>
 <div class="colors">
 <? foreach ($colors as $color) { ?>
 <a href="javascript:;" rel="tooltip" title="#<?= $color['hex'] ?>" class="color color-<?= $color['id'] ?>" style="background: #<?= $color['hex'] ?>"><?= $color['hex'] ?></a>
 <? } ?>
 </div>
-<ul>
-    <li><a href="<?= R ?>guide/<?= $project_id ?>">Styleguide (Draft)</a></li>
-    <li><a href="javascript:;" data-project="<?= $project_id ?>" class="btn-delete-project">Delete Project</a></li>
-</ul>
 <? } ?>
