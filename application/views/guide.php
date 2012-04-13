@@ -14,7 +14,7 @@ lock();
 $project_id = intval($route[2]);
 $project = $db->single("SELECT id, name FROM project WHERE id = '" . $project_id . "' AND creator = '" . userid() . "'");
 if (!$project) { die(); }
-$screens = $db->data("SELECT id, title, description FROM screen WHERE project = '" . $project['id'] . "'");
+$screens = $db->data("SELECT id, title, description, code FROM screen WHERE project = '" . $project['id'] . "'");
 $colors = $db->data("SELECT id, hex, name, r, g, b, alpha FROM project_color WHERE project = '" . $project['id'] . "'", "id");
 $comments = $db->data("SELECT d.id, d.content, d.nr, d.layer, d.screen FROM comment d LEFT JOIN screen s ON s.id = d.screen WHERE s.project = '" . $project['id'] . "'");
 $fonts = $db->data("SELECT * FROM project_font WHERE project = " . $project_id);
@@ -36,7 +36,7 @@ foreach ($comments as $comment) {
             <h2>1. Screens</h2>
             <? foreach ($screens as $index => $screen) { ?>
             <h3>1.<?= $index + 1 ?>. <?= $screen['title'] ?></h3>
-            <div class="screen"><script type="text/javascript" src="<?= R ?>embed/<?= $screen['id'] ?>/580"></script></div>
+            <div class="screen"><script type="text/javascript" src="<?= R ?>embed/<?= $screen['code'] ?>/580"></script></div>
             <? if (isset($layers[$screen['id']])) { ?>
             <ul class="definitions">
                 <? foreach ($layers[$screen['id']] as $comment) { ?>
