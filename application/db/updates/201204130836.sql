@@ -1,0 +1,1 @@
+ALTER TABLE `project_color` ADD `name_css` VARCHAR(40)  NULL  DEFAULT NULL  AFTER `name`;

@@ -352,6 +352,7 @@ CREATE TABLE `project_color` (
   `project` int(11) NOT NULL,
   `reference_color` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `name_css` varchar(255) DEFAULT NULL,
   `r` int(4) DEFAULT '0',
   `g` int(4) DEFAULT '0',
   `b` int(4) DEFAULT '0',
