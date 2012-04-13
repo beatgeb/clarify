@@ -42,7 +42,7 @@
                 $('.modal-confirm h3').text('Copy & Paste the following snippet into your site');
                 $('.modal-confirm p').empty();
                 var code = $('<code></code>').text('<script type="text/javascript" src="' + $(this).data('url') + '"></script>');
-                $('.modal-confirm p').append($('<span>You can customize the width (800) for your needs.</span>'));
+                $('.modal-confirm p').append($('<span>You can customize the width (e.g. 800px) to your needs.</span>'));
                 $('.modal-confirm p').append(code);
                 $('.modal-confirm .btn-confirm').text('Allow Embedding');
                 $('.modal-confirm .btn-confirm').on('click', function() {

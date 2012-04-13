@@ -20,6 +20,7 @@ $screen = $db->single("
         s.height, 
         s.project, 
         s.ext, 
+        s.code,
         p.slug as project_slug, 
         p.creator as project_creator 
     FROM screen s 

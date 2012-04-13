@@ -9,19 +9,20 @@
  * http://www.opensource.org/licenses/MIT
  */
 
-$screen_id = intval($route[2]);
+$screen_code = $route[2];
 $width = intval($route[3]);
 
-if ($screen_id <= 0) {
-    die('please provide the screen id');
+if (strlen($screen_code) != 8) {
+    die('please provide a valid code');
 }
 if ($width <= 0) {
     die('please provide the width (px) (> 0)');
 }
 
 // Load comments for this screen and layer
-$screen = $db->single("SELECT id, width FROM screen WHERE id = '" . $screen_id . "' AND (embeddable = 'TRUE' or creator = '" . userid() . "') LIMIT 1");
+$screen = $db->single("SELECT id, width FROM screen WHERE code = '" . $screen_code . "' AND (embeddable = 'TRUE' or creator = '" . userid() . "') LIMIT 1");
 if (!$screen) { die(); }
+$screen_id = $screen['id'];
 $comments = $db->data("SELECT x, y, nr FROM comment WHERE screen = '" . $screen_id . "'");
 $factor = $width / $screen['width'];
 $class = 'st-widget-large';
