@@ -24,9 +24,9 @@
     border-radius: 0px 5px 5px 5px;
     padding: 3px;
     position: absolute;
-    width: 90px;
     height: 20px;
     display: none;
+    white-space: nowrap;
 }
 .modLayerColor .color .p {
     width: 20px;

@@ -111,7 +111,11 @@
         
         addColor: function(color, fade) {
             var that = this;
-            var label = '#' + color.hex;
+            var label = color.name;
+            var hex = '#' + color.hex;
+            if (!label) {
+                label = hex;
+            }
             var element = $('<div class="color"><div class="p"></div><div class="meta">' + label + '</div></div>');
             element.css({
                 left: color.x + 'px',
