@@ -66,7 +66,7 @@
                             left: x + 'px',
                             top: y + 'px'
                         });
-                        helper.find('.meta').text(width + ' x ' + height);
+                        helper.find('.meta').text(w + ' x ' + h);
                     }
                 },
                 pickRange: function(sx, sy, scolor, ex, ey, ecolor) {

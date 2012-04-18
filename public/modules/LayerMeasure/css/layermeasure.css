@@ -33,6 +33,11 @@
     white-space: nowrap;
 }
 
+.modLayerMeasure .measure-helper .meta {
+    bottom: -21px;
+    left: -1px;
+}
+
 .modLayerMeasure .measure-helper {
     position: absolute;
     background: rgba(0, 0, 0, 0.2);
