@@ -48,7 +48,7 @@
                 start: function(x, y) {
                     if (!that.hover) {
                         $('.measure').hide();
-                        helper = $('<div class="measure-helper"></div>');
+                        helper = $('<div class="measure-helper"><div class="meta">0 x 0</div></div>');
                         helper.css({
                             left: x + 'px',
                             top: y + 'px'
@@ -58,12 +58,15 @@
                 },
                 picking: function(x, y, w, h) {
                     if (!that.hover && helper) {
+                        var width = w - 2;
+                        var height = h - 2;
                         helper.css({
-                            width: (w-2) + 'px',
-                            height: (h-2) + 'px',
+                            width: width + 'px',
+                            height: height + 'px',
                             left: x + 'px',
                             top: y + 'px'
                         });
+                        helper.find('.meta').text(width + ' x ' + height);
                     }
                 },
                 pickRange: function(sx, sy, scolor, ex, ey, ecolor) {
