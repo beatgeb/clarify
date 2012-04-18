@@ -26,9 +26,10 @@ $screen = $db->single("
     FROM screen s 
         LEFT JOIN project p ON (p.id = s.project)
     WHERE 
-        s.id = '" . $screen_id . "' 
+        s.id = '" . $screen_id . "' AND s.creator = '" . userid() . "'
     LIMIT 1
 ");
+if (!$screen) { die(); }
 $screen['image'] = R . 'upload/screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
 $colors = $db->data("SELECT id, hex FROM project_color WHERE project = '" . $screen['project'] . "'");
 
