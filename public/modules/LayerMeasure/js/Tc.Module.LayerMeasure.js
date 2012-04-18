@@ -59,8 +59,8 @@
                 picking: function(x, y, w, h) {
                     if (!that.hover && helper) {
                         helper.css({
-                            width: w + 'px',
-                            height: h + 'px',
+                            width: (w-2) + 'px',
+                            height: (h-2) + 'px',
                             left: x + 'px',
                             top: y + 'px'
                         });
