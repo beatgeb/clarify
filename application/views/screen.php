@@ -31,7 +31,7 @@ $screen = $db->single("
 ");
 if (!$screen) { die(); }
 $screen['image'] = R . 'upload/screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
-$colors = $db->data("SELECT id, hex, name FROM project_color WHERE project = '" . $screen['project'] . "'");
+$colors = $db->data("SELECT id, hex, name FROM project_color WHERE project = '" . $screen['project'] . "' ORDER BY hue ASC");
 
 ?>
 <!DOCTYPE html>

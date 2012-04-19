@@ -84,7 +84,7 @@ switch ($action) {
             'hex' => $db->escape($hex),
             'hue' => $hsl['h'],
             'saturation' => $hsl['s'],
-            'brightness' => $hsl['l'],
+            'lightness' => $hsl['l'],
             'name' => $match[0],
             'name_css' => slug($match[0])
         );
