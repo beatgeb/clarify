@@ -36,12 +36,14 @@ switch ($action) {
     case API_COLOR_GET:
         $screen = intval($route[4]);
         if ($screen < 1) { die('Please provide a screen id'); }
-        $data = $db->data("SELECT c.id, c.x, c.y, pc.r, pc.g, pc.b, pc.alpha, pc.hex FROM color c LEFT JOIN project_color pc ON pc.id = c.color WHERE c.screen = " . $screen . " AND c.creator = " . userid());
+        $data = $db->data("SELECT c.id, c.x, c.y, pc.r, pc.g, pc.b, pc.alpha, pc.hex, pc.name FROM color c LEFT JOIN project_color pc ON pc.id = c.color WHERE c.screen = " . $screen . " AND c.creator = " . userid());
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
     
     case API_COLOR_ADD:
+        require LIBRARY . 'color.php';
+
         $screen = intval($route[4]);
         $x = intval($route[5]);
         $y = intval($route[6]);
@@ -64,7 +66,11 @@ switch ($action) {
             $a = intval($route[10]);
             $hex = substr($route[11],0,6);
         }
-        
+
+        $colorHandler = new ColorHandler();
+        $hsl = $colorHandler->HtmltoHsl("#".$hex);
+        $match = $colorHandler->getColorMatch("#".$hex);
+
         $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
         if (!$screen) { die(); }
         $data = array(
@@ -75,7 +81,12 @@ switch ($action) {
             'g' => $g,
             'b' => $b,
             'alpha' => $a,
-            'hex' => $db->escape($hex)
+            'hex' => $db->escape($hex),
+            'hue' => $hsl['h'],
+            'saturation' => $hsl['s'],
+            'brightness' => $hsl['l'],
+            'name' => $match[0],
+            'name_css' => slug($match[0])
         );
         $result = 'EXISTING';
         $existing = $db->single('
@@ -109,7 +120,9 @@ switch ($action) {
         $data['hex'] = $hex;
         $data['alpha'] = $a;
         $data['result'] = $result;
-        
+        $data['name'] = $match[0];
+        $data['match'] = $match[1];
+
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
