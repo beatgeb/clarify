@@ -146,6 +146,7 @@
 }
 
 .modGuide .color .meta-less {
+    width: 180px;
     background: #EEE;
     border: 1px solid #DDD;
     color: #666;

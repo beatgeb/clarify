@@ -15,7 +15,7 @@ $project_id = intval($route[2]);
 $project = $db->single("SELECT id, name FROM project WHERE id = '" . $project_id . "' AND creator = '" . userid() . "'");
 if (!$project) { die(); }
 $screens = $db->data("SELECT id, title, description, code FROM screen WHERE project = '" . $project['id'] . "'");
-$colors = $db->data("SELECT id, hex, name, r, g, b, alpha FROM project_color WHERE project = '" . $project['id'] . "'", "id");
+$colors = $db->data("SELECT id, hex, name, name_css, r, g, b, alpha FROM project_color WHERE project = '" . $project['id'] . "' ORDER BY hue ASC", "id");
 $comments = $db->data("SELECT d.id, d.content, d.nr, d.layer, d.screen FROM comment d LEFT JOIN screen s ON s.id = d.screen WHERE s.project = '" . $project['id'] . "'");
 $fonts = $db->data("SELECT * FROM project_font WHERE project = " . $project_id);
 $layers = array();
@@ -61,7 +61,7 @@ foreach ($comments as $comment) {
                 <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
                 <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
                 <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
-                <div class="meta meta-less">@undefined</div>
+                <div class="meta meta-less">@<?= $color['name_css'] ?></div>
                 <div class="meta meta-name">
                 <? if ($color['name'] != '') { ?>
                 <?= $color['name'] ?><br />
@@ -94,7 +94,7 @@ foreach ($comments as $comment) {
                     <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
                     <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
                     <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
-                    <div class="meta meta-less">@undefined</div>
+                    <div class="meta meta-less">@<?= $color['name_css'] ?></div>
                     <div class="meta meta-name">
                     <? if ($color['name'] != '') { ?>
                     <?= $color['name'] ?><br />
@@ -109,7 +109,7 @@ foreach ($comments as $comment) {
                     <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
                     <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
                     <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
-                    <div class="meta meta-less">@undefined</div>
+                    <div class="meta meta-less">@<?= $color['name_css'] ?></div>
                     <div class="meta meta-name">
                     <? if ($color['name'] != '') { ?>
                     <?= $color['name'] ?><br />
@@ -125,7 +125,7 @@ foreach ($comments as $comment) {
                     <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
                     <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
                     <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
-                    <div class="meta meta-less">@undefined</div>
+                    <div class="meta meta-less">@<?= $color['name_css'] ?></div>
                     <div class="meta meta-name">
                     <? if ($color['name'] != '') { ?>
                     <?= $color['name'] ?><br />
@@ -141,7 +141,7 @@ foreach ($comments as $comment) {
                     <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
                     <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
                     <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
-                    <div class="meta meta-less">@undefined</div>
+                    <div class="meta meta-less">@<?= $color['name_css'] ?></div>
                     <div class="meta meta-name">
                     <? if ($color['name'] != '') { ?>
                     <?= $color['name'] ?><br />
