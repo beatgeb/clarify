@@ -63,7 +63,7 @@
                         dataType: 'json',
                         success: function(data){
                             if (data.result == 'NEW') {
-                                var box = $('<a href="javascript:;" rel="tooltip" title="' + color.hex + '" class="color color-' + data.color + '" data-id="' + data.color + '" data-color="' + color.hex.substring(1) + '"></a>');
+                                var box = $('<a href="javascript:;" rel="tooltip" title="' + color.hex + ' - ' + data.name + '" class="color color-' + data.color + '" data-id="' + data.color + '" data-color="' + color.hex.substring(1) + '"></a>');
                                 box.css('backgroundColor', color.hex);
                                 $('.modColorLibrary').append(box);
                                 box.tooltip();
