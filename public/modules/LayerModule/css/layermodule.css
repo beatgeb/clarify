@@ -1,0 +1,45 @@
+.modLayerModule {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    top: 0;
+    left: 0;
+}
+
+.modLayerModule .measure {
+    background-color: rgba(132, 207, 0, 0.9);
+    position: absolute;
+}
+
+.modLayerModule .measure .meta,
+.modLayerModule .measure-helper .meta {
+    font-family: helvetica; 
+    font-weight: bold;
+    font-size: 12px;
+    position: absolute; 
+    bottom: -20px; 
+    left: 0;
+    color: #FFF; 
+    text-shadow: 1px 1px 0 #000; 
+    background-color: #434343;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(45, 45, 45)));
+    background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -moz-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -o-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -ms-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#2d2d2d');
+    padding: 3px 6px;
+    white-space: nowrap;
+}
+
+.modLayerModule .measure-helper .meta {
+    bottom: -21px;
+    left: -1px;
+}
+
+.modLayerModule .measure-helper {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}

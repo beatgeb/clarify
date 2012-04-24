@@ -7,7 +7,7 @@
  * http://www.opensource.org/licenses/MIT
  */
 (function($) { 
-    Tc.Module.LayerMeasure = Tc.Module.extend({
+    Tc.Module.LayerModule = Tc.Module.extend({
         
         active: false,
         resize: false,
@@ -16,11 +16,11 @@
         
         onBinding: function() {
             var that = this;
-            $('.btn-measure').bind('click', function(e) {
+            $('.btn-modules').bind('click', function(e) {
                 if (that.active) {
                     that.deactivate();
                 } else {
-                    that.sandbox.getModuleById($('.modLayerModule').data('id')).deactivate();
+                    that.sandbox.getModuleById($('.modLayerMeasure').data('id')).deactivate();
                     that.sandbox.getModuleById($('.modLayerColor').data('id')).deactivate();
                     that.sandbox.getModuleById($('.modLayerComment').data('id')).deactivate();
                     that.activate();
@@ -32,7 +32,7 @@
             this.active = false;
             $('.modScreen').unbind('click mousemove mouseup mousedown mouseenter mouseleave');
             $('.modScreen').css('cursor', 'auto');
-            $('.btn-measure').removeClass('active');
+            $('.btn-modules').removeClass('active');
             $('.picker').hide();
             this.$ctx.empty();
         },
@@ -42,7 +42,7 @@
             var that = this;
             var $ctx = this.$ctx;
             var helper;
-            $('.btn-measure').addClass('active');
+            $('.btn-modules').addClass('active');
             $('.modScreen').eyedrop({
                 mode: 'range',
                 'display': false,
@@ -85,11 +85,11 @@
                         return;
                     }
                     $.ajax({
-                        url: "/api/measure/add/" + screen + "/" + sx + "/" + sy + "/" + width + "/" + height,
+                        url: "/api/module/add/" + screen + "/" + sx + "/" + sy + "/" + width + "/" + height,
                         dataType: 'json',
                         success: function(data){
                             helper.remove();
-                            that.addMeasure(data.id, data.x, data.y, data.width, data.height);
+                            that.addModule(data.id, data.x, data.y, data.width, data.height);
                         }
                     });
                 },
@@ -107,17 +107,17 @@
             var screen = $('.modScreen').data('screen');
             $ctx.empty();
             $.ajax({
-                url: "/api/measure/get/" + screen,
+                url: "/api/module/get/" + screen,
                 dataType: 'json',
                 success: function(data){
                     $.each(data, function(key, entry) {
-                        that.addMeasure(entry.id, entry.x, entry.y, entry.width, entry.height);
+                        that.addModule(entry.id, entry.x, entry.y, entry.width, entry.height);
                     });
                 }
             });
         },
         
-        addMeasure: function(id, x, y, width, height) {
+        addModule: function(id, x, y, width, height) {
             var $ctx = this.$ctx;
             var that = this;
             var label = width + ' x ' + height;
@@ -132,7 +132,7 @@
                     var nx = $(this).position().left;
                     var ny = $(this).position().top;
                     $.ajax({
-                        url: "/api/measure/move/" + id + "/" + nx + "/" + ny,
+                        url: "/api/module/move/" + id + "/" + nx + "/" + ny,
                         dataType: 'json',
                         success: function(data){
                             // NOOP
@@ -154,7 +154,7 @@
                 },
                 stop: function() {
                     $.ajax({
-                        url: "/api/measure/resize/" + id + "/" + $(this).width() + "/" + $(this).height(),
+                        url: "/api/module/resize/" + id + "/" + $(this).width() + "/" + $(this).height(),
                         dataType: 'json',
                         type: 'POST',
                         success: function(data){
@@ -180,7 +180,7 @@
             // delete on double click
             measure.bind('dblclick', function(e) {
                 $.ajax({
-                    url: "/api/measure/delete/" + id,
+                    url: "/api/module/delete/" + id,
                     dataType: 'json',
                     success: function(data){
                         measure.remove();

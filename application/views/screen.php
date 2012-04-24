@@ -53,6 +53,7 @@ $colors = $db->data("SELECT id, hex, name FROM project_color WHERE project = '" 
         <div class="mod modLayerMeasure"></div>
         <div class="mod modLayerColor"></div>
         <div class="mod modLayerFont"></div>
+        <div class="mod modLayerModule"></div>
     </div>
     <div class="mod modColorLibrary">
     <? require TERRIFIC . 'modules/ColorLibrary/colorlibrary.phtml' ?>

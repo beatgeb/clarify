@@ -67,6 +67,7 @@
 .modToolbar .btn-measure,
 .modToolbar .btn-behaviour, 
 .modToolbar .btn-color,
+.modToolbar .btn-modules,
 .modToolbar .btn-fonts {
     float: right;
 }
