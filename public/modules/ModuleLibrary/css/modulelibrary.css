@@ -34,12 +34,42 @@
 
 .modModuleLibrary .module {
     float: left;
+    width: 120px;
     margin: 10px 0 10px 10px;
     background-color: transparent;
     border-radius: 4px;
     position: relative;
+    text-decoration: none;
 }
 
 .modModuleLibrary .module:hover {
     box-shadow: 0 0 8px #000;
+}
+
+.modModuleLibrary .rename {
+    position: absolute;
+    margin: 2px;
+    font-size: 12px;
+    border-radius: 9px;
+    font-family: helvetica, sans-serif;
+    color: #fff;
+    text-shadow: 1px 1px 0 #000;
+    background-color: #434343;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(45, 45, 45)));
+    background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -moz-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -o-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: -ms-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    background-image: linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#2d2d2d');
+    padding: 3px 6px;
+    white-space: nowrap;
+}
+
+.modModuleLibrary input {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #fff;
+    width: 85px;
 }

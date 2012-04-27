@@ -87,7 +87,7 @@ switch ($action) {
         // crop module thumbnail
         require LIBRARY . 'image.php';
         $path =  'upload/modules/'.$screen['project'].'/'.md5($id.config('security.general.hash')).'.'.$screen['ext'];
-        cropScreen($screen['id'], array( 'x' => $x, 'y' => $y, 'width' => $width, 'height' => $height), array('width' => 100), $path);
+        cropScreen($screen['id'], array( 'x' => $x, 'y' => $y, 'width' => $width, 'height' => $height), array('width' => 120), $path);
         $thumbnail = R .$path;
 
         // update module count for screen

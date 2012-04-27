@@ -10,14 +10,17 @@
     Tc.Module.ModuleLibrary = Tc.Module.extend({
         onBinding: function() {
             var $ctx = this.$ctx;
-            $ctx.on('click', '.rename', function() {
-                var $rename = $(this),
-                    $module = $rename.closest('a'),
+            $ctx.on('click', '.module', function() {
+                var $module = $(this),
+                    $rename = $('.rename', $module),
+                    $desc = $('.desc', $module),
                     id = $module.data('id'),
                     name = $module.data('name'),
                     $input = $('<input type="text" value="' + name + '" />');
 
-                $module.append($input)
+                $desc.hide();
+
+                $rename.prepend($input);
                 $input.on('blur', function() {
                     var $this = $(this);
                     $.ajax({
@@ -27,7 +30,7 @@
                             // rename all module instances on the current screen
                             var $layerModule = $('.modLayerModule');
                             $('.measure[data-module=' + data.id + ']', $layerModule).find('.meta').text(data.name);
-                            $rename.text(data.name);
+                            $desc.text(data.name).show();
                             $module.data('name', data.name);
                             $this.remove();
                         }
