@@ -17,7 +17,11 @@
                 url: '/api/screen/upload/' + project,
                 dropZone: $('.create'),
                 send: function(e, data) {
-                    // todo: show progress
+                    //console.log(data);
+                },
+                progress: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('.create').find('.meta').text(progress + '%');
                 },
                 done: function (e, data) {
                     window.location.reload();
