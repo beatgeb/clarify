@@ -1,0 +1,4 @@
+<? foreach ($modules as $module) { ?>
+<a href="javascript:;" rel="tooltip" title="<?= $module['name'] ?>" class="module module-<?= $module['id'] ?>" data-id="<?= $module['id'] ?>" data-name="<?= $module['name'] ?>"><?= $module['name'] ?></a>
+<? } ?>
+<div class="overlay"></div>

@@ -13,6 +13,7 @@ define('API_COLOR', 'color');
 define('API_COMMENT', 'comment');
 define('API_LIBRARY', 'library');
 define('API_MEASURE', 'measure');
+define('API_MODULE', 'module');
 define('API_PROJECT', 'project');
 define('API_SCREEN', 'screen');
 
@@ -23,6 +24,7 @@ switch ($api) {
     case API_COMMENT:
     case API_LIBRARY:
     case API_MEASURE:
+    case API_MODULE:
     case API_PROJECT:
     case API_SCREEN:
         $action = $api . '.' . $route[3];

@@ -1,7 +1,7 @@
 <? if ($project_id > 0) { ?>
 <?php
 $screens = $db->data('
-    SELECT id, title, width, height, ext, created, count_comment, count_measure, count_color, count_font 
+    SELECT id, title, width, height, ext, created, count_comment, count_measure, count_color, count_font, count_module
     FROM screen 
     WHERE project = ' . $project_id . ' AND creator = ' . userid() . ' 
     ORDER BY title ASC
@@ -22,6 +22,7 @@ $screens = $db->data('
                 <i class="icon icon-resize-vertical"></i> <span<?= $screen['count_measure'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_measure'] ?></span>
                 <i class="icon icon-tint"></i> <span<?= $screen['count_color'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_color'] ?></span>
                 <i class="icon icon-font"></i> <span<?= $screen['count_font'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_font'] ?></span>
+                <i class="icon icon-th-large"></i> <span<?= $screen['count_module'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_module'] ?></span>
             </div>
         </a>
         <p class="title"><a href="<?= R ?>screen/<?= $screen['id'] ?>"><span><?= truncate($screen['title'],25,'...') ?></span></a></p>

@@ -13,6 +13,7 @@
         resize: false,
         drag: false,
         hover: false,
+        next: 1,
         
         onBinding: function() {
             var that = this;
@@ -34,6 +35,7 @@
             $('.modScreen').css('cursor', 'auto');
             $('.btn-modules').removeClass('active');
             $('.picker').hide();
+            $('.modModuleLibrary').hide();
             this.$ctx.empty();
         },
         
@@ -43,13 +45,15 @@
             var $ctx = this.$ctx;
             var helper;
             $('.btn-modules').addClass('active');
+
+            $('.modModuleLibrary').show();
             $('.modScreen').eyedrop({
                 mode: 'range',
                 'display': false,
                 start: function(x, y) {
                     if (!that.hover) {
                         $('.measure').hide();
-                        helper = $('<div class="measure-helper"><div class="meta">0 x 0</div></div>');
+                        helper = $('<div class="measure-helper"></div>');
                         helper.css({
                             left: x + 'px',
                             top: y + 'px'
@@ -67,13 +71,13 @@
                             left: x + 'px',
                             top: y + 'px'
                         });
-                        helper.find('.meta').text(w + ' x ' + h);
                     }
                 },
                 pickRange: function(sx, sy, scolor, ex, ey, ecolor) {
                     if (that.resize || that.drag) {
                         return;
                     }
+
                     var height = ey > sy ? ey - sy : sy - ey;
                     var width = ex > sx ? ex - sx : sx - ex;
                     var screen = $('.modScreen').data('screen');
@@ -84,12 +88,16 @@
                     if (width == 1 && height == 1) {
                         return;
                     }
+                    var name =  'Module-' + (that.next++);
                     $.ajax({
-                        url: "/api/module/add/" + screen + "/" + sx + "/" + sy + "/" + width + "/" + height,
+                        url: "/api/module/add/" + screen + "/" + sx + "/" + sy + "/" + width + "/" + height + "/" + name,
                         dataType: 'json',
                         success: function(data){
                             helper.remove();
-                            that.addModule(data.id, data.x, data.y, data.width, data.height);
+                            that.addModule(data.id, data.x, data.y, data.width, data.height, data.name);
+                            var box = $('<a href="javascript:;" rel="tooltip" title="' + data.name + '" class="module module-' + data.module + '" data-id="' + data.module + '" data-name="' + data.name + '"></a>');
+                            $('.modModuleLibrary').append(box);
+                            box.tooltip();
                         }
                     });
                 },
@@ -111,18 +119,17 @@
                 dataType: 'json',
                 success: function(data){
                     $.each(data, function(key, entry) {
-                        that.addModule(entry.id, entry.x, entry.y, entry.width, entry.height);
+                        that.addModule(entry.id, entry.x, entry.y, entry.width, entry.height, entry.name);
                     });
                 }
             });
         },
         
-        addModule: function(id, x, y, width, height) {
+        addModule: function(id, x, y, width, height, name) {
             var $ctx = this.$ctx;
             var that = this;
-            var label = width + ' x ' + height;
-            var measure = $('<div class="measure"><div class="meta">' + label + '</div></div>');
-            
+            var measure = $('<div class="measure"><div class="meta">' + name + '</div></div>');
+
             // enable drag and drop for measures
             measure.draggable({
                 start: function() {
@@ -149,9 +156,6 @@
                 start: function() {
                     that.resize = true;
                 },
-                resize: function() {
-                    $('.meta', measure).text($(this).width() + ' x ' + $(this).height());
-                },
                 stop: function() {
                     $.ajax({
                         url: "/api/module/resize/" + id + "/" + $(this).width() + "/" + $(this).height(),
@@ -177,29 +181,38 @@
                 }
             );
                 
-            // delete on double click
+            // remove on double click
             measure.bind('dblclick', function(e) {
                 $.ajax({
-                    url: "/api/module/delete/" + id,
+                    url: "/api/module/remove/" + id,
                     dataType: 'json',
                     success: function(data){
+                        if(data.remove) {
+                            // delete the module from the module library
+                            $('[data-id=' + data.remove + ']',  $('.modModuleLibrary')).remove();
+                        }
                         measure.remove();
                     }
                 });
                 that.hover = false;
             });
-            
+
             // set width, height and position of measurement
             measure.css({ 
                 left: x + 'px', 
                 top: y + 'px', 
-                width: width, 
-                height: height,
+                width: width - 2,
+                height: height - 2,
                 cursor: 'move',
                 position: 'absolute'
             });
-            
+
             $ctx.append(measure);
+
+            if(focus) {
+                // focus the input meta field
+                $('input', measure).click();
+            }
         }
     });
 })(Tc.$);
