@@ -95,7 +95,7 @@
                         success: function(data){
                             helper.remove();
                             that.addModule(data.id, data.module, data.x, data.y, data.width, data.height, data.name);
-                            var box = $('<a href="javascript:;" title="' + data.name + '" class="module module-' + data.module + '" data-id="' + data.module + '" data-name="' + data.name + '"><div class="rename"><span class="desc">' + data.name + ' </span><i class="icon icon-white icon-pencil"></i></div><img src="' + data.thumbnail + '" /></a>');
+                            var box = $('<a href="javascript:;" title="' + data.name + '" class="module module-' + data.module + '" data-id="' + data.module + '" data-name="' + data.name + '"><div class="rename"><span class="desc">' + data.name + ' </span> <i class="icon icon-white icon-pencil"></i></div><img src="' + data.thumbnail + '" /></a>');
                             $('.modModuleLibrary').append(box);
                         }
                     });
@@ -139,7 +139,7 @@
         addModule: function(id, module, x, y, width, height, name) {
             var $ctx = this.$ctx;
             var that = this;
-            var measure = $('<div class="measure" data-module="' + module + '"><div class="meta">' + name + '</div></div>');
+            var measure = $('<div class="measure" data-module="' + module + '"><div class="meta"><span class="desc">' + name + '</span> <a href="#" title="recapture" class="screenshot"><i class="icon icon-white icon-camera"></i></a></div></div>');
 
             // enable drag and drop for measures
             measure.draggable({
@@ -216,6 +216,29 @@
                 height: height - 2,
                 cursor: 'move',
                 position: 'absolute'
+            });
+
+            $('.screenshot', measure).on('click', function() {
+                var $module = $(this).closest('.measure'),
+                    id = $module.data('module'),
+                    x = parseInt($module.css('left')),
+                    y = parseInt($module.css('top')),
+                    width = parseInt($module.css('width')),
+                    height = parseInt($module.css('height')),
+                    screen = $('.modScreen').data('screen');
+
+                $.ajax({
+                    url: "/api/module/recapture/" + screen + "/" + x + "/" + y + "/" + width + "/" + height  + "/"  + id,
+                    dataType: 'json',
+                    success: function(data){
+                        // reload img
+                        var $img = $('[data-id=' + data.id + '] img',  $('.modModuleLibrary'));
+                        var timestamp = new Date().getTime();
+                        $img.attr('src', data.thumbnail + '?time=' + timestamp);
+                    }
+                });
+
+                return false;
             });
 
             $ctx.append(measure);

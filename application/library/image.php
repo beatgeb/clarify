@@ -20,6 +20,7 @@ function cropScreen($id, $viewport, $dimension, $path) {
     global $db;
 
     $w = $dimension['width'];
+    $h = $dimension['height'];
     $screen = $db->single("SELECT id, project, type, ext FROM screen WHERE id = '" . $id . "' AND (embeddable = 'TRUE' or creator = '" . userid() . "') LIMIT 1");
     if (!$screen) { die(); }
     $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
@@ -30,10 +31,12 @@ function cropScreen($id, $viewport, $dimension, $path) {
             @mkdir(dirname($target), 0777, true);
         }
 
-        list($width, $height) = getimagesize($filename);
+        $width = $viewport['width'];
+        $height = $viewport['height'];
         $r = $width / $height;
         $newheight = $w / $r;
         $newwidth = $w;
+
         switch ($screen['type']) {
             case 'image/jpeg':
             case 'image/jpg':
@@ -44,7 +47,7 @@ function cropScreen($id, $viewport, $dimension, $path) {
                 break;
         }
         $dst = imagecreatetruecolor($newwidth, $newheight);
-        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+        imagecopyresampled($dst, $src, 0, 0, $viewport['x'], $viewport['y'], $newwidth, $newheight, $width, $height);
         imagepng($dst, $target);
     }
 }

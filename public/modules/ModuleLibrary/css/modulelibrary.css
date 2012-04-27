@@ -1,21 +1,15 @@
 .modModuleLibrary {
     display: none;
-    position: absolute;
-    width: 100%;
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    
+    overflow-x: scroll;
+    overflow-y: hidden;
     border-top: 1px solid #000;
     -webkit-box-shadow: inset 0px 1px 0px 0px #686868;
     -moz-box-shadow: inset 0px 1px 0px 0px #686868;
     box-shadow: inset 0px 1px 0px 0px #686868;
-    color: #FFF;
-    z-index: 99;
-}
-
-.modModuleLibrary .overlay {
     background-color: #434343;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(45, 45, 45)));
     background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
@@ -24,22 +18,23 @@
     background-image: -ms-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
     background-image: linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#2d2d2d');
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 150px;
-    width: 100%;
-    z-index: -1;
+    color: #FFF;
+    z-index: 99;
 }
 
 .modModuleLibrary .module {
     float: left;
-    width: 120px;
+    width: 150px;
+    height: 120px;
+    line-height: 120px;
+    padding: 0;
+    overflow: hidden;
     margin: 10px 0 10px 10px;
     background-color: transparent;
     border-radius: 4px;
     position: relative;
     text-decoration: none;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .modModuleLibrary .module:hover {
@@ -50,6 +45,7 @@
     position: absolute;
     margin: 2px;
     font-size: 12px;
+    line-height: 1em;
     border-radius: 9px;
     font-family: helvetica, sans-serif;
     color: #fff;
@@ -71,5 +67,9 @@
     border: none;
     padding: 0;
     color: #fff;
-    width: 85px;
+    width: 115px;
+}
+
+.modModuleLibrary img {
+    vertical-align: middle;
 }

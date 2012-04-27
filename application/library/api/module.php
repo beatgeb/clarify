@@ -9,6 +9,7 @@ define('API_MODULE_MOVE', 'module.move');
 define('API_MODULE_RESIZE', 'module.resize');
 define('API_MODULE_REMOVE', 'module.remove');
 define('API_MODULE_RENAME', 'module.rename');
+define('API_MODULE_RECAPTURE', 'module.recapture');
 
 switch ($action) {
     case API_MODULE_REMOVE:
@@ -87,7 +88,7 @@ switch ($action) {
         // crop module thumbnail
         require LIBRARY . 'image.php';
         $path =  'upload/modules/'.$screen['project'].'/'.md5($id.config('security.general.hash')).'.'.$screen['ext'];
-        cropScreen($screen['id'], array( 'x' => $x, 'y' => $y, 'width' => $width, 'height' => $height), array('width' => 120), $path);
+        cropScreen($screen['id'], array( 'x' => $x, 'y' => $y, 'width' => $width, 'height' => $height), array('width' => 150, 'height' => 120), $path);
         $thumbnail = R .$path;
 
         // update module count for screen
@@ -115,6 +116,33 @@ switch ($action) {
         echo json_encode($data);
         break;
 
+    case API_MODULE_RECAPTURE:
+        $screen = intval($route[4]);
+        $x = intval($route[5]);
+        $y = intval($route[6]);
+        $width = intval($route[7]);
+        $height = intval($route[8]);
+        $module = intval($route[9]);
+        if ($screen < 1) { die('Please provide a screen id'); }
+
+        // crop module thumbnail
+        $screen = $db->single("SELECT id, project, ext FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
+
+        require LIBRARY . 'image.php';
+        $path =  'upload/modules/'.$screen['project'].'/'.md5($module.config('security.general.hash')).'.'.$screen['ext'];
+        unlink(TERRIFIC . $path);
+        cropScreen($screen['id'], array( 'x' => $x, 'y' => $y, 'width' => $width, 'height' => $height), array('width' => 150, 'height' => 120), $path);
+        $thumbnail = R .$path;
+
+        $data = array();
+        $data['id'] = $module;
+        $data['thumbnail'] = $thumbnail;
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        break;
+
+        break;
     case API_MODULE_MOVE:
         $id = intval($route[4]);
         $x = intval($route[5]);

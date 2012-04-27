@@ -29,7 +29,7 @@
                         success: function(data){
                             // rename all module instances on the current screen
                             var $layerModule = $('.modLayerModule');
-                            $('.measure[data-module=' + data.id + ']', $layerModule).find('.meta').text(data.name);
+                            $('.measure[data-module=' + data.id + ']', $layerModule).find('.meta .desc').text(data.name);
                             $desc.text(data.name).show();
                             $module.data('name', data.name);
                             $this.remove();
