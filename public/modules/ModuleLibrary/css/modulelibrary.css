@@ -4,8 +4,6 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    overflow-x: scroll;
-    overflow-y: hidden;
     border-top: 1px solid #000;
     -webkit-box-shadow: inset 0px 1px 0px 0px #686868;
     -moz-box-shadow: inset 0px 1px 0px 0px #686868;

@@ -28,7 +28,12 @@ switch ($action) {
         $db->delete('module', array('id' => $id));
         $count = $db->exists('module', array('module' => $module['module']));
         if ($count < 1) {
+            $screen = $db->single("SELECT id, project, ext FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
+            $path =  'upload/modules/'.$screen['project'].'/'.md5($module.config('security.general.hash')).'.'.$screen['ext'];
+            unlink(TERRIFIC . $path);
+
             $db->delete('project_module', array('id' => $module['id'], 'creator' => userid()));
+
             $result['remove'] = $module['id'];
         }
         $db->query("UPDATE screen SET count_module = count_module - 1 WHERE id = " . $module['screen'] . "");

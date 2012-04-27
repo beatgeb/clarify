@@ -44,14 +44,19 @@
             var that = this;
             var $ctx = this.$ctx;
             var helper;
+            var $library = $('.modModuleLibrary');
+            var $modules = $('.module', $library);
+            $.each($modules, function() {
+                that.addLibraryModule($(this));
+            });
             $('.btn-modules').addClass('active');
 
-            $('.modModuleLibrary').show();
+            $library.show();
             $('.modScreen').eyedrop({
                 mode: 'range',
                 'display': false,
                 start: function(x, y) {
-                    if (!that.hover) {
+                    if (!that.hover && !that.drag) {
                         $('.measure').hide();
                         helper = $('<div class="measure-helper"></div>');
                         helper.css({
@@ -97,6 +102,7 @@
                             that.addModule(data.id, data.module, data.x, data.y, data.width, data.height, data.name);
                             var box = $('<a href="javascript:;" title="' + data.name + '" class="module module-' + data.module + '" data-id="' + data.module + '" data-name="' + data.name + '"><div class="rename"><span class="desc">' + data.name + ' </span> <i class="icon icon-white icon-pencil"></i></div><img src="' + data.thumbnail + '" /></a>');
                             $('.modModuleLibrary').append(box);
+                            that.addLibraryModule(box);
                         }
                     });
                 },
@@ -247,6 +253,31 @@
                 // focus the input meta field
                 $('input', measure).click();
             }
+        },
+
+        addLibraryModule: function(module) {
+            var that = this;
+            module.draggable({
+                helper: "clone",
+                revert: "true",
+                cursorAt: {top: 0, left: -20},
+                start: function(e) {
+                    that.drag = true;
+                },
+                stop: function(e) {
+                    var offset = $('.modScreen').offset();
+                    var x = e.pageX - offset.left;
+                    var y = e.pageY - offset.top;
+                    $.ajax({
+                        url: "/api/module/add/" + $('.modScreen').data('screen') + "/" + x + "/" + y + "/150/250/" + module.data('id'),
+                        dataType: 'json',
+                        success: function(data){
+                            that.addModule(data.id, data.module, data.x, data.y, data.width, data.height, data.name);
+                            that.drag = false;
+                        }
+                    });
+                }
+            });
         }
     });
 })(Tc.$);
