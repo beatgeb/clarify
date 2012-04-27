@@ -94,10 +94,9 @@
                         dataType: 'json',
                         success: function(data){
                             helper.remove();
-                            that.addModule(data.id, data.x, data.y, data.width, data.height, data.name);
-                            var box = $('<a href="javascript:;" rel="tooltip" title="' + data.name + '" class="module module-' + data.module + '" data-id="' + data.module + '" data-name="' + data.name + '"></a>');
+                            that.addModule(data.id, data.module, data.x, data.y, data.width, data.height, data.name);
+                            var box = $('<a href="javascript:;" title="' + data.name + '" class="module module-' + data.module + '" data-id="' + data.module + '" data-name="' + data.name + '"><span class="rename">' + data.name + '</span><img src="' + data.thumbnail + '" /></a>');
                             $('.modModuleLibrary').append(box);
-                            box.tooltip();
                         }
                     });
                 },
@@ -119,16 +118,28 @@
                 dataType: 'json',
                 success: function(data){
                     $.each(data, function(key, entry) {
-                        that.addModule(entry.id, entry.x, entry.y, entry.width, entry.height, entry.name);
+                        that.addModule(entry.id, entry.module, entry.x, entry.y, entry.width, entry.height, entry.name);
+                    });
+
+                    $('.meta', $ctx).each(function() {
+                        var $this = $(this),
+                            name = $this.text();
+
+                        if(name.indexOf('-') > 0) {
+                            var count = parseInt(name.split('-')[1]);
+                            if(count > 0) {
+                                that.next = ++count;
+                            }
+                        }
                     });
                 }
             });
         },
         
-        addModule: function(id, x, y, width, height, name) {
+        addModule: function(id, module, x, y, width, height, name) {
             var $ctx = this.$ctx;
             var that = this;
-            var measure = $('<div class="measure"><div class="meta">' + name + '</div></div>');
+            var measure = $('<div class="measure" data-module="' + module + '"><div class="meta">' + name + '</div></div>');
 
             // enable drag and drop for measures
             measure.draggable({

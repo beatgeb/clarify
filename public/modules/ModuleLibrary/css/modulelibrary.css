@@ -27,22 +27,19 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 62px;
+    height: 150px;
     width: 100%;
     z-index: -1;
 }
 
 .modModuleLibrary .module {
     float: left;
-    width: 39px;
-    height: 39px;
     margin: 10px 0 10px 10px;
     background-color: transparent;
     border-radius: 4px;
-    text-indent: -9999px;
     position: relative;
 }
 
-.modModuleLibrary .color:hover {
+.modModuleLibrary .module:hover {
     box-shadow: 0 0 8px #000;
 }

@@ -38,7 +38,7 @@ switch ($action) {
     case API_MODULE_GET:
         $screen = intval($route[4]);
         if ($screen < 1) { die('Please provide a screen id'); }
-        $data = $db->data("SELECT m.id, m.x, m.y, m.width, m.height, pm.name, pm.skin FROM module m LEFT JOIN project_module pm ON pm.id = m.module WHERE m.screen = " . $screen . " AND m.creator = " . userid());
+        $data = $db->data("SELECT m.id, m.module, m.x, m.y, m.width, m.height, pm.name, pm.skin FROM module m LEFT JOIN project_module pm ON pm.id = m.module WHERE m.screen = " . $screen . " AND m.creator = " . userid());
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
@@ -54,15 +54,15 @@ switch ($action) {
 
         // explicitly use a library module
         if ($module > 0) {
-            $module = $db->single("SELECT * FROM project_module WHERE id = '" . $module . "' AND creator = " . userid() . " LIMIT 1");
-            $name = $module['name'];
-            $skin = $module['skin'];
+            $refmodule = $db->single("SELECT * FROM project_module WHERE id = '" . $module . "' AND creator = " . userid() . " LIMIT 1");
+            $name = $refmodule['name'];
+            $skin = $refmodule['skin'];
         } else {
             $name = $route[9];
             $skin = '';
         }
 
-        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
+        $screen = $db->single("SELECT id, project, ext FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
         if (!$screen) { die(); }
         $data = array(
             'created' => date('Y-m-d H:i:s'),
@@ -84,6 +84,12 @@ switch ($action) {
             $result = 'NEW';
         }
 
+        // crop module thumbnail
+        require LIBRARY . 'image.php';
+        $path =  'upload/modules/'.$screen['project'].'/'.md5($id.config('security.general.hash')).'.'.$screen['ext'];
+        cropScreen($screen['id'], array( 'x' => $x, 'y' => $y, 'width' => $width, 'height' => $height), array('width' => 100), $path);
+        $thumbnail = R .$path;
+
         // update module count for screen
         $db->query("UPDATE screen SET count_module = count_module + 1 WHERE id = " . $screen['id'] . "");
 
@@ -103,6 +109,7 @@ switch ($action) {
         $data['result'] = $result;
         $data['name'] = $name;
         $data['skin'] = $skin;
+        $data['thumbnail'] = $thumbnail;
 
         header('Content-Type: application/json');
         echo json_encode($data);
@@ -143,58 +150,16 @@ switch ($action) {
         $name = $route[5];
         $skin = $route[6];
         if ($id < 1) { die('Please provide a module id'); }
-        $existing = $db->single('
-            SELECT m.module, count(m.id) as count
-            FROM module m, module m2
-            WHERE m.id = "' . $id . '" AND m.module = m2.module'
+        //  rename the project module
+        $data = array(
+            'modified' => date('Y-m-d H:i:s'),
+            'modifier' => userid(),
+            'name' => $name,
+            'skin' => $skin
         );
-        $project = $db->single('SELECT project FROM project_module WHERE id = ' . $existing['module'] . ' AND creator = ' . userid());
-        $result = 'EXISTING';
-        $count = $db->single('
-            SELECT id
-            FROM project_module
-            WHERE project = ' . $project['project'] . ' AND name = "' . $name . '" AND skin = "' . $skin . '"
-        ');
-        if (!$count) {
-            $result = 'NEW';
-        }
-        if($existing['count'] < 2) {
-            // just rename the project module
-            $remove = true;
-            $data = array(
-                'modified' => date('Y-m-d H:i:s'),
-                'modifier' => userid(),
-                'name' => $name,
-                'skin' => $skin
-            );
-            $moduleId = $existing['module'];
-            $db->update('project_module', $data, array('id' => $moduleId, 'creator' => userid()));
-        }
-        else {
-            $remove = false;
-            if($result == 'NEW') {
-                // create new project module
-                $entry = array(
-                    'created' => date('Y-m-d H:i:s'),
-                    'creator' => userid(),
-                    'name' => $name,
-                    'skin' => $skin,
-                    'project' => $project['project']
-                );
-                $moduleId = $db->insert('project_module', $entry);
-            }
-            else {
-                $moduleId = $existing['module'];
-            }
-            // set the new reference
-            $data = array(
-                'modified' => date('Y-m-d H:i:s'),
-                'modifier' => userid(),
-                'module' => $moduleId
-            );
-            $db->update('module', $data, array('id' => $id, 'creator' => userid()));
-        }
-        $data = array('result' => $result, 'remove' => $remove, 'id' => $moduleId, 'name' => $name);
+        $db->update('project_module', $data, array('id' => $id, 'creator' => userid()));
+
+        $data = array('id' => $id, 'name' => $name, 'skin' => $skin);
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
