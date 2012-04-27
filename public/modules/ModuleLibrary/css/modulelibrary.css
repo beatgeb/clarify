@@ -71,3 +71,8 @@
 .modModuleLibrary img {
     vertical-align: middle;
 }
+
+.modModuleLibrary .scroller {
+    overflow: visible;
+    width: 10000px;
+}
