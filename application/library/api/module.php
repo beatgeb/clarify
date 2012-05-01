@@ -16,7 +16,7 @@ switch ($action) {
         $id = intval($route[4]);
         if ($id < 1) { die('Please provide a module id'); }
         $module = $db->single("
-            SELECT m.screen, m.module, s.project, pm.id
+            SELECT m.screen, m.module, s.project, pm.id, s.ext
             FROM module m
                 LEFT JOIN project_module pm ON pm.id = m.module
                 LEFT JOIN screen s ON s.id = m.screen
@@ -28,8 +28,7 @@ switch ($action) {
         $db->delete('module', array('id' => $id));
         $count = $db->exists('module', array('module' => $module['module']));
         if ($count < 1) {
-            $screen = $db->single("SELECT id, project, ext FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
-            $path =  'upload/modules/'.$screen['project'].'/'.md5($module.config('security.general.hash')).'.'.$screen['ext'];
+            $path =  'upload/modules/'.$module['project'].'/'.md5($module['id'].config('security.general.hash')).'.'.$module['ext'];
             unlink(TERRIFIC . $path);
 
             $db->delete('project_module', array('id' => $module['id'], 'creator' => userid()));
