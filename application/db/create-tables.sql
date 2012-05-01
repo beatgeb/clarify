@@ -390,6 +390,7 @@ CREATE TABLE `screen` (
   `ext` varchar(40) DEFAULT NULL,
   `embeddable` ENUM('TRUE','FALSE') NULL DEFAULT NULL,
   `count_comment` INT(11) NOT NULL DEFAULT '0',
+  `count_module` INT(11) NOT NULL DEFAULT '0',
   `count_measure` INT(11) NOT NULL DEFAULT '0',
   `count_color` INT(11) NOT NULL DEFAULT '0',
   `count_font` INT(11) NOT NULL DEFAULT '0',
