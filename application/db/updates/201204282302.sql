@@ -20,7 +20,7 @@ CREATE TABLE `module` (
   `height` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `screen` (`screen`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
 -- --------------------------------------------------------
 
@@ -39,4 +39,4 @@ CREATE TABLE `project_module` (
   `skin` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project` (`project`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
