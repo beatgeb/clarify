@@ -31,6 +31,9 @@ foreach ($comments as $comment) {
 </head>
 <body>
     <div class="mod modGuide">
+        <div class="mod modToolbar">
+            <a class="button btn-screen" href="/project/<?= userid(); ?>/<?= $project['name']; ?>/"><i class="icon-white icon-chevron-left"></i> Back</a>
+        </div>
         <h1><?= $project['name'] ?></h1>
         <div class="chapter">
             <h2>1. Screens</h2>
