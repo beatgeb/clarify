@@ -12,8 +12,9 @@ http://blog.namics.com/2012/03/clarify-ein-toolkit-fur-den-frontend-workflow.htm
 # Requirements
 
 * PHP 5.2+
-* MySQL 5
-* Modern Browser (Chrome is tested, so use this one at the moment)
+* MySQL 5+
+* Apache (.htaccess Support)
+* Modern Browser (with HTML5 Canvas Support)
 
 # Installation
 
