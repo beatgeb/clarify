@@ -7,9 +7,8 @@
  * http://www.opensource.org/licenses/MIT
  */
 (function($){
-    
+    window.$canvas = null;
     $.fn.eyedrop = function(options) {
-        
         var settings = $.extend({
             'pick': function(x, y, color) {},
             'pickRange': function(startx, starty, startcolor, endx, endy, endcolor) {},
@@ -55,23 +54,26 @@
                     $('.picker').hide();
                 }
             );
-            
-            // create canvas element
-            $canvas = $('<canvas width="' + $this.data('width') + '" height="' + $this.data('height') + '"></canvas>');
-            $canvas.hide();
-            $('body').append($canvas);
-            
-            // draw image into canvas
-            if ($canvas[0].getContext) {
-                var imgctx = $canvas[0].getContext("2d"); 
-                var img = new Image();  
-                img.onload = function(){
-                    imgctx.drawImage(img, 0, 0);
-                };
-                img.src = $this.data('image');
+            var imgctx; 
+            if(!$canvas){
+                $canvas = $('<canvas class="eyedrop" height="'+$this.data('height')+'" width="'+$this.data('width')+'"></canvas>');
+
+                // draw image into canvas
+                if ($canvas[0].getContext) {
+                    imgctx = $canvas[0].getContext("2d"); 
+        
+                    var img = new Image();  
+                    img.onload = function(){
+                        imgctx.drawImage(img, 0, 0);
+                    };
+                    img.src = $this.data('image');
+                } else {
+                    return;
+                }
             } else {
-                return;
+                imgctx = $canvas[0].getContext("2d");
             }
+        
             
             // on click, run callback pick
             $this.bind('click', function(e) {
@@ -100,6 +102,11 @@
                 );
                 settings.stop();
             });
+
+			var ps = [];
+			for (var i = 0; i < settings.width * settings.height; i++) {
+				ps[i] = $('#picker' + (i + 1));
+            }
             
             // on mouse movement, show picker
             $this.bind('mousemove', function(e) {
@@ -133,7 +140,7 @@
                     var g = pixel.data[1+i*4];
                     var b = pixel.data[2+i*4];
                     var a = pixel.data[3+i*4];
-                    $('.p' + (i + 1)).css('backgroundColor', 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')');
+                    ps[i].css('backgroundColor', 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')');
                     if (i == ((settings.width*settings.height-1)/2)) {
                         var color = Color.rgb(r, g, b, a);
                         var hex = color.hexTriplet();
