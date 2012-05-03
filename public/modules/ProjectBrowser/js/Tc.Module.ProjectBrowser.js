@@ -11,6 +11,8 @@
         onBinding: function() {
             var $ctx = this.$ctx;
             var that = this;
+			var $modal = $('.modal-confirm');
+			
             $('.btn-add-project', $ctx).on('click', function() {
                 $('.add-project', $ctx).slideToggle('fast', function() {
                     $('.project-name', $ctx).focus();
@@ -26,10 +28,10 @@
             });
             $('.btn-delete-project').on('click', function() {
                 var project = $(this).data('project');
-                $('.modal-confirm h3').text('Delete Project');
-                $('.modal-confirm p').html('Do you really want to delete this project with all of its data?');
-                $('.modal-confirm .btn-confirm').text('Delete Project');
-                $('.modal-confirm .btn-confirm').on('click', function() {
+                $('h3', $modal).text('Delete Project');
+                $('p', $modal).html('Do you really want to delete this project with all of its data?');
+                $('.btn-confirm', $modal).text('Delete Project');
+                $('.btn-confirm', $modal).on('click', function() {
                     $.ajax({
                         url: "/api/project/delete/" + project,
                         dataType: 'json',
@@ -41,7 +43,29 @@
                     e.stopPropagation();
                     return false;
                 });
-                $('.modal-confirm').modal();
+                $modal.modal();
+            });
+
+            $('.btn-export-css').on('click', function(e) {
+				var $colors = $('.colors a', $ctx);
+				var colors = '';
+				$colors.each(function(){
+					 colors += $(this).data('less')+"\r\n"; 
+				});
+				
+                $('h3', $modal).text('Copy & Paste the following LESS Template');
+                $('p', $modal).empty();
+				
+                var code = $('<pre></pre>').text(colors);
+                $('p', $modal).append($('<span>Here are all your colors that you have specified for this project:</span>'));
+                $('p', $modal).append(code);
+                $('.btn-confirm', $modal).text('THANK YOU');
+                $('.btn-confirm', $modal).on('click', function() {
+					$modal.modal('hide');
+                    e.stopPropagation();
+                    return false;
+                });
+                $modal.modal();
             });
             
             $('.color', this.$ctx).tooltip();

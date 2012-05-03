@@ -18,7 +18,7 @@
     text-decoration: none;
 }
 
-code {
+code, pre {
     display: block;
     background-color: #333;
     color: #DDD;
@@ -28,6 +28,8 @@ code {
     margin-top: 15px;
     border-radius: 3px;
     line-height: 1.5;
-    white-space: nowrap;
     overflow: auto;
+}
+code {
+	white-space: nowrap;
 }
