@@ -360,7 +360,7 @@ CREATE TABLE `project_color` (
   `alpha` int(4) DEFAULT '0',
   `hue` int(4) NOT NULL DEFAULT '0',
   `saturation` int(4) NOT NULL DEFAULT '0',
-  `brightness` int(4) NOT NULL DEFAULT '0',
+  `lightness` int(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `project` (`project`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
