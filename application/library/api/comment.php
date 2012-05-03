@@ -86,7 +86,7 @@ switch ($action) {
         $data = array(
             'modified' => date('Y-m-d H:i:s'),
             'modifier' => userid(),
-            'content' => $db->escape($_REQUEST['content'])
+            'content' => addslashes(strip_tags(stripslashes($_REQUEST['content'])))
         );
         $db->update('comment', $data, array('id' => $id, 'creator' => userid()));
         break;
@@ -96,6 +96,7 @@ switch ($action) {
         if ($screen < 1) { die('Please provide a screen id'); }
         $query = "SELECT id, creator, nr, x, y, w, h, content FROM comment WHERE screen = " . $screen . " AND creator = " . userid();
         $data = $db->data($query);
+        if($data) $data[0]['content'] = stripslashes($data[0]['content']);
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
