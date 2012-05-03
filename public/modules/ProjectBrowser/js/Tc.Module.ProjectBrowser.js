@@ -59,7 +59,7 @@
                 var code = $('<pre></pre>').text(colors);
                 $('p', $modal).append($('<span>Here are all your colors that you have specified for this project:</span>'));
                 $('p', $modal).append(code);
-                $('.btn-confirm', $modal).text('THANK YOU');
+                $('.btn-confirm', $modal).text('Close');
                 $('.btn-confirm', $modal).on('click', function() {
 					$modal.modal('hide');
                     e.stopPropagation();
