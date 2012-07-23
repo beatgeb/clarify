@@ -18,6 +18,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#2d2d2d');
     color: #FFF;
     z-index: 99;
+    overflow: auto;
 }
 
 .modModuleLibrary .module {
@@ -44,7 +45,7 @@
     margin: 2px;
     font-size: 12px;
     line-height: 1em;
-    border-radius: 9px;
+    border-radius: 3px;
     font-family: helvetica, sans-serif;
     color: #fff;
     text-shadow: 1px 1px 0 #000;
