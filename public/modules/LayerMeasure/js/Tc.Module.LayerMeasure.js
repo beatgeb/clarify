@@ -149,16 +149,27 @@
                 start: function() {
                     that.resize = true;
                 },
-                resize: function() {
-                    $('.meta', measure).text($(this).width() + ' x ' + $(this).height());
+                resize: function(e, ui) {
+                    $('.meta', measure).text(ui.size.width + ' x ' + ui.size.height);
                 },
-                stop: function() {
+                stop: function(e, ui) {
                     $.ajax({
-                        url: "/api/measure/resize/" + id + "/" + $(this).width() + "/" + $(this).height(),
+                        url: "/api/measure/resize/" + id + "/" + ui.size.width + "/" + ui.size.height,
                         dataType: 'json',
                         type: 'POST',
                         success: function(data){
-                        // NOOP
+                            // if the position of the element has changed
+                            if (ui.originalPosition.top != ui.position.top || 
+                                ui.originalPosition.left != ui.position.left) {
+                                $.ajax({
+                                    url: "/api/measure/move/" + id + "/" + ui.position.left + "/" + ui.position.top,
+                                    dataType: 'json',
+                                    type: 'POST',
+                                    success: function(data){
+                                        // NOOP
+                                    }
+                                });
+                            }
                         }
                     });
                     that.resize = false;
