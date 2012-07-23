@@ -72,10 +72,6 @@
     z-index: 4;
 }
 
-.modLayerComment .def-delete .nr {
-    display: none;
-}
-
 .modLayerComment .ui-draggable-dragging .dot .nr {
     color: #000;
 }
