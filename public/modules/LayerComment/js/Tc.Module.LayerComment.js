@@ -68,7 +68,7 @@
                         dataType: 'json',
                         success: function(data){
                             $('.edit', container).fadeOut('fast');
-                            $('.dot', container).effect('puff');
+                            $('.dot', container).fadeOut();
                         }
                     });
                     return;
