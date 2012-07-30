@@ -108,4 +108,18 @@ function slug($string) {
     return $string;
 }
 
+function activity_add($actor, $actor_type, $verb, $object, $object_type) {
+    global $db;
+    $activity = array(
+        'created' => date('Y-m-d H:i:s'),
+        'creator' => userid(),
+        'actor' => $actor,
+        'actor_type' => $actor_type,
+        'verb' => $verb,
+        'object' => $object,
+        'object_type' => $object_type
+    );
+    $db->insert('activity', $activity);
+}
+
 ?>

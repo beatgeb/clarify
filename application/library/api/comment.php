@@ -32,6 +32,10 @@ switch ($action) {
         $id = $db->insert('comment', $comment);
         $db->query("UPDATE screen SET count_comment = count_comment + 1 WHERE id = " . $screen . "");
         $comment['id'] = $id;
+
+        // add to activity stream
+        activity_add(userid(), 'user', 'comment', $screen, 'screen');
+
         echo json_encode($comment);
         break;
     
