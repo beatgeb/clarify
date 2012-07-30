@@ -16,6 +16,10 @@ switch ($action) {
             'slug' => slug($_REQUEST['name'])
         );
         $id = $db->insert('project', $data);
+
+        // add to activity stream
+        activity_add(userid(), 'user', 'create', $id, 'project');
+        
         $data['id'] = $id;
         $data['url'] = R . 'project/' . userid() . '/' . $data['slug'] . '/';
         echo json_encode($data);

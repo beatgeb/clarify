@@ -230,6 +230,10 @@ class UploadHandler
         );
         
         $id = $db->insert('screen', $screen);
+
+        // add to activity stream
+        activity_add(userid(), 'user', 'add', $id, 'screen');
+
         $db->query("UPDATE project SET screen_count = screen_count + 1 WHERE id = " . $this->project);
         
         $file = new stdClass();

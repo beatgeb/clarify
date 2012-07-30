@@ -110,6 +110,10 @@ switch ($action) {
             'height' => $height
         );
         $id = $db->insert('module', $data);
+
+        // add to activity stream
+        activity_add(userid(), 'user', 'define', $id, 'module');
+
         $data['id'] = $id;
         $data['result'] = $result;
         $data['name'] = $name;
