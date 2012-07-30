@@ -332,6 +332,7 @@ CREATE TABLE `project` (
   `name` varchar(255) DEFAULT NULL,
   `screen_count`int(11) DEFAULT '0' NOT NULL,
   `slug` varchar(40) NOT NULL,
+  `public` tinyint(1) DEFAULT '0' NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX (`creator`, `slug`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
