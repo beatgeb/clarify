@@ -1,5 +1,15 @@
-<a class="button btn-screen" href="<?= R ?>project/<?= $screen['project_creator'] ?>/<?= $screen['project_slug'] ?>/"><i class="icon-white icon-chevron-left"></i> Back</a>
-<a class="button btn-embed" href="javascript:;" data-screen="<?= $screen['id'] ?>" data-url="<?= config('application.domain') . R . 'embed/' . $screen['code'] . '/800' ?>"><i class="icon-white icon-share-alt"></i> Embed</a>
+<a class="button btn-screen" href="<?= R ?>project/<?= $screen['project_creator'] ?>/<?= $screen['project_slug'] ?>/">
+	<i class="icon-white icon-chevron-left"></i> Back
+</a>
+<a class="button btn-embed" href="javascript:;" data-screen="<?= $screen['id'] ?>" data-url="<?= config('application.domain') . R . 'embed/' . $screen['code'] . '/800' ?>">
+	<i class="icon-white icon-share-alt"></i> 
+	Embed 
+	<? if ($screen['embeddable']) { ?>
+	<span class="enabled">Enabled</span>
+	<? } else { ?>
+	<span class="disabled">Disabled</span>
+	<? } ?>
+</a>
 <a class="button btn-delete" href="javascript:;"><i class="icon-white icon-trash"></i> Delete</a>
 <a class="button btn-modules btn-last" href="javascript:;"><i class="icon-white icon-th-large"></i> Modules</a>
 <a class="button btn-color" href="javascript:;"><i class="icon-white icon-tint"></i> Colors</a>

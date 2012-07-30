@@ -21,8 +21,9 @@ $screen = $db->single("
         s.project, 
         s.ext, 
         s.code,
+        s.embeddable,
         p.slug as project_slug, 
-        p.creator as project_creator 
+        p.creator as project_creator
     FROM screen s 
         LEFT JOIN project p ON (p.id = s.project)
     WHERE 

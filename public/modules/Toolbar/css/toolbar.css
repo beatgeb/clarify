@@ -22,6 +22,20 @@
     text-decoration: none;
 }
 
+.modToolbar .button .enabled {
+    color: #a9ea12;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.modToolbar .button .disabled {
+    color: #c11a00;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 11px;
+}
+
 .modToolbar .button:hover {
     box-shadow: 0 0 1px #FFF;
 }
