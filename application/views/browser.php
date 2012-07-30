@@ -19,9 +19,6 @@ lock();
     <? require 'partials/head.php' ?>
 </head>
 <body>
-    <div class="mod modBetaNotice">
-        <? require TERRIFIC . 'modules/BetaNotice/betanotice.phtml'; ?>
-    </div>
     <div class="mod modProjectBrowser">
         <? require TERRIFIC . 'modules/ProjectBrowser/projectbrowser.phtml'; ?>
     </div>
