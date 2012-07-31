@@ -12,11 +12,11 @@
 .modProjectBrowser h3 {
     font-size: 11px;
     text-transform: uppercase;
-    color: #999;
-    padding: 10px 10px 5px 5px;
-    margin: 0 10px 10px 10px;
+    font-weight: normal;
+    color: #666;
+    padding: 10px;
+    margin: 0 10px;
     text-shadow: 0 -1px 0 #111;
-    border-bottom: 1px solid #404040;
 }
 
 .modProjectBrowser h3 a {
@@ -31,14 +31,16 @@
     color: white;
 }
 
-.modProjectBrowser .add-project {
+.modProjectBrowser .add-project,
+.modProjectBrowser .add-collaborator {
     display: none;
     background: #2b2b2b;
     padding: 10px;
     margin-bottom: 10px;
 }
 
-.modProjectBrowser .add-project .project-name {
+.modProjectBrowser .add-project .project-name,
+.modProjectBrowser .add-collaborator .collaborator-email {
     display: block;
     width: 230px;
     background-color: #4a4b4b;
@@ -56,11 +58,13 @@
     margin-bottom: 10px;
     color: #FFF;
 }
-.modProjectBrowser .add-project .project-name:focus {
+.modProjectBrowser .add-project .project-name:focus,
+.modProjectBrowser .add-collaborator .collaborator-email:focus {
     outline: none;
 }
 
-.modProjectBrowser .add-project .add-project-submit {
+.modProjectBrowser .add-project .add-project-submit,
+.modProjectBrowser .add-collaborator .add-collaborator-submit {
     width: 250px;
     border-radius: 3px;
     background-color: #1290d3;
@@ -219,7 +223,7 @@
 .modProjectBrowser .usermeta .avatar img {
     border-radius: 3px;
     display: block;
-} 
+}
 
 .modProjectBrowser .notice {
     padding: 10px 20px;

@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 /**
  * Clarify.
- * 
+ *
  * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
  *
  * Licensed under the MIT license:
@@ -47,8 +47,6 @@ switch ($view) {
         break;
 }
 
-if ($view != 'empty' && is_file(VIEWS . $view . '.php')) { 
+if ($view != 'empty' && is_file(VIEWS . $view . '.php')) {
     require VIEWS . $view . '.php';
 }
-
-?>
