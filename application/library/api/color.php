@@ -123,6 +123,9 @@ switch ($action) {
         $data['name'] = $match[0];
         $data['match'] = $match[1];
 
+        // add to activity stream
+        activity_add(userid(), 'user', 'pick', $id, 'color');
+
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
