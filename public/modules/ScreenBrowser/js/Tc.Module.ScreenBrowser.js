@@ -35,6 +35,7 @@
             });
             $('.title > a').on('click', function(e) {
                 var screen = $(this).data('screen');
+                $('.modal-body').find('input').remove();
                 $('.modal-confirm h3').text('Rename Screen');
                 $('.modal-confirm p').html('New title for this screen:');
                 var input = $('<input class="fld" type="text" value="' + $(this).text() + '" />');
