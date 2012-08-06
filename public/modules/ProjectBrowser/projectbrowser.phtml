@@ -73,4 +73,5 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
     <a href="javascript:;" data-module="<?= $module['name'] ?>" data-terrific="terrific:generate:module <?= $module['name'] ?>"></a>
     <? } ?>
 </div>
+<div class="notice">You have <?= sizeof($modules) ?> modules in your library.</div>
 <? } ?>
