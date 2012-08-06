@@ -29,11 +29,32 @@
             });
             
             $('.create').on('click', function(e) {
-               $('.fileupload').click();
-               e.stopPropagation();
-               return false;
+                $('.fileupload').click();
+                e.stopPropagation();
+                return false;
             });
-            
+            $('.title > a').on('click', function(e) {
+                var screen = $(this).data('screen');
+                $('.modal-confirm h3').text('Rename Screen');
+                $('.modal-confirm p').html('New title for this screen:');
+                var input = $('<input class="fld" type="text" value="' + $(this).text() + '" />');
+                $('.modal-body').append(input);
+                $('.modal-confirm .btn-confirm').text('Rename Screen');
+                $('.modal-confirm .btn-confirm').on('click', function() {
+                    $.ajax({
+                        url: "/api/screen/setting/" + screen + "/title/" + encodeURIComponent(input.val()),
+                        dataType: 'json',
+                        type: 'POST',
+                        success: function(data){
+                            location.reload();
+                        }
+                    });
+                    e.stopPropagation();
+                    return false;
+                });
+                $('.modal-confirm').modal();
+                return false;
+            })
             $('.delete').on('click', function(e) {
                 var screen = $(this).data('screen');
                 $('.modal-confirm h3').text('Delete Screen');

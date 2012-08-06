@@ -13,6 +13,7 @@
             var $ctx = this.$ctx;
             var that = this;
             var $modal = $('.modal-confirm');
+            var $colors = $('.colors a', $ctx);
 
             $('.btn-add-project', $ctx).on('click', function() {
                 $('.add-project', $ctx).slideToggle('fast', function() {
@@ -55,7 +56,6 @@
             });
 
             $('.btn-export-css').on('click', function(e) {
-                var $colors = $('.colors a', $ctx);
                 var colors = '';
                 $colors.each(function(){
                      colors += $(this).data('less')+"\r\n"; 
@@ -77,7 +77,6 @@
             });
 
             $('.btn-export-sass').on('click', function(e) {
-                var $colors = $('.colors a', $ctx);
                 var colors = '';
                 $colors.each(function(){
                      colors += $(this).data('sass')+"\r\n"; 

@@ -13,15 +13,19 @@ switch ($action) {
     case API_SCREEN_SETTING:
         lock();
         $screen = intval($route[4]);
-        $setting = intval($route[5]);
-        $value = intval($route[6]);
+        $setting = $route[5];
         switch ($setting) {
             case 'embeddable':
+                $value = intval($route[6]);
                 if ($value == 'true') {
                     $db->update('screen', array('embeddable' => 'TRUE'), array('id' => $screen, 'creator' => userid()));
                 } else {
                     $db->update('screen', array('embeddable' => 'FALSE'), array('id' => $screen, 'creator' => userid()));
                 }
+                break;
+            case 'title':
+                $value = $route[6];
+                $db->update('screen', array('title' => urldecode($value)), array('id' => $screen, 'creator' => userid()));
                 break;
         }
         break;

@@ -4,6 +4,19 @@
     font-weight: bold;
 }
 
+.modal .fld {
+    display: block;
+    background-color: #FFF;
+    color: #444;
+    padding: 0 10px;
+    font-size: 14px;
+    margin-top: 15px;
+    border-radius: 3px;
+    overflow: auto;
+    border: 1px solid #999;
+    width: 510px;
+}
+
 .btn-danger {
     background-color: #1290d3;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(18, 144, 211)), to(rgb(12, 123, 184)));
