@@ -53,6 +53,7 @@
                     return false;
                 });
                 $('.modal-confirm').modal();
+                input.focus();
                 return false;
             })
             $('.delete').on('click', function(e) {
