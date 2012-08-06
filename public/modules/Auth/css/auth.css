@@ -11,14 +11,14 @@
 }
 
 .modAuth h1 {
-    color: #FFF;
+    color: #444;
     font-weight: bold;
     font-size: 48px;
     text-align: right;
 }
 
 .modAuth h2 {
-    color: #474747;
+    color: #999999;
     font-size: 18px;
     font-weight: bold;
     text-align: right;
@@ -27,7 +27,7 @@
 .modAuth .form {
     padding-left: 50px;
     margin-left: 350px;
-    border-left: 1px solid #494a4a;
+    border-left: 1px solid #999999;
 }
 
 .modAuth .form .code {
