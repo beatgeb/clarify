@@ -36,7 +36,7 @@ switch ($action) {
             echo json_encode($data);
             break;
         } else {
-            //header('The goggles, they do nawtink!', true, 400);
+            header('The goggles, they do nawtink!', true, 400);
             echo 'Please enter a valid e-mail address. You know, with @ and all that stuff...';
             break;
         }
