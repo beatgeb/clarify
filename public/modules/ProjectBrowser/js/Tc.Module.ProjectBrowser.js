@@ -98,6 +98,33 @@
                 $modal.modal();
             });
 
+            $('.btn-export-terrific').on('click', function(e) {
+                var $modules = $('.modules a', $ctx);
+                var modules = '';
+                var modules_all = 'terrific:generate:modules';
+                $modules.each(function(){
+                     modules += $(this).data('terrific')+"\r\n"; 
+                     modules_all += ' ' + $(this).data('module');
+                });
+
+                $('h3', $modal).text('Execute the following Terrific Composer Commands');
+                $('p', $modal).empty();
+
+                var code = $('<pre></pre>').text(modules);
+                $('p', $modal).append($('<span>Here are all your specified modules for this project:</span>'));
+                $('p', $modal).append(code);
+                $('p', $modal).append($('<br /><span>Or all in one command:</span>'));
+                code = $('<pre></pre>').text(modules_all);
+                $('p', $modal).append(code);
+                $('.btn-confirm', $modal).text('Close');
+                $('.btn-confirm', $modal).on('click', function() {
+                    $modal.modal('hide');
+                    e.stopPropagation();
+                    return false;
+                });
+                $modal.modal();
+            });
+
             $('.color', this.$ctx).tooltip();
         },
 
