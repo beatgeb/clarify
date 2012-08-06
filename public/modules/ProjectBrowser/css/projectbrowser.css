@@ -25,6 +25,7 @@
     color: white;
     color: #666;
     text-decoration: none;
+    margin-left: 10px;
 }
 
 .modProjectBrowser h3 a:hover {
