@@ -5,9 +5,22 @@ lock();
 // Project API
 define('API_PROJECT_ADD', 'project.add');
 define('API_PROJECT_DELETE', 'project.delete');
+define('API_PROJECT_SETTING', 'project.setting');
 
 switch ($action) {
     
+    case API_PROJECT_SETTING:
+        lock();
+        $project = intval($route[4]);
+        $setting = $route[5];
+        switch ($setting) {
+            case 'name':
+                $value = $route[6];
+                $db->update('project', array('name' => urldecode($value)), array('id' => $project, 'creator' => userid()));
+                break;
+        }
+        break;
+
     case API_PROJECT_ADD:
         $data = array(
             'created' => date('Y-m-d H:i:s'),
