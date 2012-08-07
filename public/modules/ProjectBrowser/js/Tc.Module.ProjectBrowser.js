@@ -135,7 +135,7 @@
                 $('p', $modal).empty();
 
                 var code = $('<pre></pre>').text(modules);
-                $('p', $modal).append($('<span>Here are all your specified modules for this project:</span>'));
+                $('p', $modal).append($('<span>Learn more about Terrific & Modules on <a href="http://terrifically.org">http://terrifically.org</a><br />Here are all your specified modules for this project:</span>'));
                 $('p', $modal).append(code);
                 $('p', $modal).append($('<br /><span>Or all in one command:</span>'));
                 code = $('<pre></pre>').text(modules_all);
