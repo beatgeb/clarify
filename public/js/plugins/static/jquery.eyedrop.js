@@ -103,9 +103,9 @@
                 settings.stop();
             });
 
-			var ps = [];
-			for (var i = 0; i < settings.width * settings.height; i++) {
-				ps[i] = $('#picker' + (i + 1));
+            var ps = [];
+            for (var i = 0; i < settings.width * settings.height; i++) {
+                ps[i] = $('#picker' + (i + 1));
             }
             
             // on mouse movement, show picker
@@ -138,15 +138,18 @@
 
                 // draw surrounding pixels into magnifier 
                 for (var i = 0; i < settings.width * settings.height; i++) {
+
                     var r = pixel.data[0+i*4];
                     var g = pixel.data[1+i*4];
                     var b = pixel.data[2+i*4];
                     var a = pixel.data[3+i*4];
 
                     ps[i].css('backgroundColor', 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')');
-                    if (i === ((settings.width*settings.height-1)/2)) {
 
-                        var inverted_rgba = 'inset 0px 0px 1px 1px rgba(' + (255 - r) + ', ' + (255 - g) + ', ' + (255 - b) + ', 0.7)';
+                    if (i == ((settings.width*settings.height-1)/2)) {
+
+                        // invert shadow to be more visible on dark backgrounds (not really inverted but top bit of each component of the RGB triple is toggled)
+                        var inverted_rgba = 'inset 0px 0px 1px 1px rgba(' + (r ^ 0x80) + ', ' + (g ^ 0x80) + ', ' + (b ^ 0x80) + ', 0.7)';
                         
                         ps[i].css({
                             '-webkit-box-shadow': inverted_rgba,
