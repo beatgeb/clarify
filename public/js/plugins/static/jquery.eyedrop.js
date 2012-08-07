@@ -126,6 +126,8 @@
                     top: data.y + offset.top + settings.offset
                 });
 
+
+
                 // get metadata of surrounding pixels
                 var pixel = imgctx.getImageData(
                     data.x - ((settings.width-1) / 2), 
@@ -140,8 +142,18 @@
                     var g = pixel.data[1+i*4];
                     var b = pixel.data[2+i*4];
                     var a = pixel.data[3+i*4];
+
                     ps[i].css('backgroundColor', 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')');
-                    if (i == ((settings.width*settings.height-1)/2)) {
+                    if (i === ((settings.width*settings.height-1)/2)) {
+
+                        var inverted_rgba = 'inset 0px 0px 1px 1px rgba(' + (255 - r) + ', ' + (255 - g) + ', ' + (255 - b) + ', 0.7)';
+                        
+                        ps[i].css({
+                            '-webkit-box-shadow': inverted_rgba,
+                            '-moz-box-shadow': inverted_rgba,
+                            'box-shadow': inverted_rgba
+                        });
+
                         var color = Color.rgb(r, g, b, a);
                         var hex = color.hexTriplet();
                         data.color = {
