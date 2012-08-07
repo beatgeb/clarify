@@ -68,7 +68,7 @@ $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE cre
 <?php
 $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $project_id . "' ORDER BY name ASC");
 ?>
-<h3>Module Library<a href="javascript:;" class="btn-export-terrific">&#8677; Terrific</a></h3>
+<h3>Module Library<? if (sizeof($modules) > 0) { ?><a href="javascript:;" class="btn-export-terrific">&#8677; Terrific</a><? } ?></h3>
 <div class="modules">
     <? foreach ($modules as $module) { ?>
     <a href="javascript:;" data-module="<?= $module['name'] ?>" data-terrific="terrific:generate:module <?= $module['name'] ?>"></a>
