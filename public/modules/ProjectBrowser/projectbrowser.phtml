@@ -34,7 +34,7 @@ $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project
     <li><a href="javascript:;" data-project="<?= $project_id ?>" class="btn-delete-project">Delete Project</a></li>
 </ul>
 <!-- Color Library -->
-<h3>Color Library<a class="btn-export-sass" href="javascript:;">&#8677; SCSS</a><a class="btn-export-css" href="javascript:;">&#8677; LESS</a></h3>
+<h3>Color Library<a class="btn-export-aco" href="<?= R ?>api/export/aco/<?= $project_id ?>">.ACO</a><a class="btn-export-sass" href="javascript:;">.SCSS</a><a class="btn-export-css" href="javascript:;">.LESS</a></h3>
 <? $colors = $db->data("SELECT id, hex, name, name_css FROM project_color WHERE project = '" . $project_id . "' ORDER BY hue ASC"); ?>
 <? if (sizeof($colors) == 0) { ?>
     <div class="notice">You don't have any colors yet.</div>
