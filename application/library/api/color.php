@@ -6,6 +6,7 @@ lock();
 define('API_COLOR_ADD', 'color.add');
 define('API_COLOR_GET', 'color.get');
 define('API_COLOR_REMOVE', 'color.remove');
+define('API_COLOR_EXPORT', 'color.export');
 
 switch ($action) {
     
@@ -129,5 +130,58 @@ switch ($action) {
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
+
+    case API_COLOR_EXPORT:
+        $project = intval($route[4]);
+        $type = strtolower($route[5]);
+
+        if ($project < 1) {
+            die('Please provide a project id');
+        }
+
+        if (empty($type)) {
+            die('Please provide a type to export to');
+        }
+
+        switch($type) {
+
+            case 'aco':
+                // get the aco-library
+                require_once LIBRARY . 'thirdparty/aco/aco.class.php';
+
+                // collect all the colors from the project including names
+                $colors = $db->data("
+                    SELECT
+                        p.`name` project,
+                        pc.`name`,
+                        pc.r,
+                        pc.g,
+                        pc.b
+                    FROM
+                        project_color pc
+                    LEFT JOIN
+                        project p ON (p.id = pc.project)
+                    WHERE
+                        pc.project = '" . $project . "' AND pc.creator = '" . userid() . "'
+                ");
+
+                if (!$colors) {
+                    die();
+                }
+
+                $aco = new acofile();
+
+                // assign project-name as file-name
+                $aco->acofile($colors[0]['project'] . '.aco');
+
+                foreach($colors as $color) {
+                    $aco->add($color['name'], $color['r'], $color['g'], $color['b']);
+                }
+
+                $aco->outputAcofile();
+
+                break;
+        }
+
         
 }

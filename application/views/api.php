@@ -17,7 +17,6 @@ define('API_MODULE', 'module');
 define('API_PROJECT', 'project');
 define('API_SCREEN', 'screen');
 define('API_COLLABORATOR', 'collaborator');
-define('API_EXPORT', 'export');
 
 $api = $route[2];
 
@@ -29,7 +28,6 @@ switch ($api) {
     case API_MODULE:
     case API_PROJECT:
     case API_SCREEN:
-    case API_EXPORT:
     case API_COLLABORATOR:
         $action = $api . '.' . $route[3];
         if (!is_file(LIBRARY . 'api/' . strtolower($api) . '.php')) {
