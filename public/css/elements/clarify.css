@@ -17,6 +17,15 @@
     width: 510px;
 }
 
+.modal p {
+    line-height: 1.5;
+}
+
+.modal p a {
+    color: #134070;
+    text-decoration: underline;
+}
+
 .btn-danger {
     background-color: #1290d3;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(18, 144, 211)), to(rgb(12, 123, 184)));
