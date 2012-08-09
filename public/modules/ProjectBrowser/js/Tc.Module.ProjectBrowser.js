@@ -75,7 +75,7 @@
                 input.focus();
                 return false;
             });
-            $('.edit-collaborator', this.$ctx).on('click', function() {
+            $('.edit-collaborator a', this.$ctx).on('click', function() {
                 var id = $(this).data('id');
                 $.ajax({
                     url: "/api/collaborator/remove/" + id,
