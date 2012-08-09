@@ -49,7 +49,12 @@ switch ($action) {
         lock();
         // TODO: CLEANUP UPLOAD CODE, make it ourself, no third-party library
         $project = intval($route[4]);
-        $p = $db->single("SELECT id FROM project WHERE id = " . $project . " AND creator = " . userid());
+
+        // check permission
+        permission($project, 'EDIT');
+
+        // prepare upload
+        $p = $db->single("SELECT id FROM project WHERE id = " . $project);
         if (!$p) { die(); }
         require LIBRARY . 'upload.php';
         $upload_dir = APP . '/../public/upload/screens/' . $project . '/';
