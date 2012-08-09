@@ -125,7 +125,13 @@ switch ($action) {
         $data['match'] = $match[1];
 
         // add to activity stream
-        activity_add(userid(), 'user', 'pick', $id, 'color');
+        activity_add(
+            '{actor} picked {object} on screen {target}', 
+            userid(), OBJECT_TYPE_USER, user('name'), 
+            ACTIVITY_VERB_PICK, 
+            $id, OBJECT_TYPE_COLOR, '#' . $hex, 
+            $screen['id'], OBJECT_TYPE_SCREEN, 'Title'
+        );
 
         header('Content-Type: application/json');
         echo json_encode($data);

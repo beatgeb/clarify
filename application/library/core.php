@@ -9,6 +9,23 @@
  * http://www.opensource.org/licenses/MIT
  */
 
+define('ACTIVITY_VERB_PICK', 'pick');
+define('ACTIVITY_VERB_CREATE', 'create');
+define('ACTIVITY_VERB_JOIN', 'join');
+define('ACTIVITY_VERB_COMMENT', 'comment');
+define('ACTIVITY_VERB_DEFINE', 'define');
+define('ACTIVITY_VERB_ADD', 'add');
+define('ACTIVITY_VERB_MEASURE', 'measure');
+
+define('OBJECT_TYPE_USER', 'user');
+define('OBJECT_TYPE_SCREEN', 'screen');
+define('OBJECT_TYPE_COLOR', 'color');
+define('OBJECT_TYPE_COMMENT', 'comment');
+define('OBJECT_TYPE_MODULE', 'module');
+define('OBJECT_TYPE_PROJECT', 'project');
+define('OBJECT_TYPE_MEASURE', 'measure');
+define('OBJECT_TYPE_FONT', 'font');
+
 /**
  * Get a configuration variable by path.
  * 
@@ -44,6 +61,13 @@ function login() {
  */
 function userid() {
     return $_SESSION['user']['id'];
+}
+
+/**
+ * Returns current users name. If anonymous, null will be returned.
+ */
+function user($field) {
+    return $_SESSION['user'][$field];
 }
 
 /**
@@ -106,20 +130,6 @@ function slug($string) {
     $string = preg_replace("/[\s-]+/", " ", $string);
     $string = preg_replace("/[\s_]/", "-", $string);
     return $string;
-}
-
-function activity_add($actor, $actor_type, $verb, $object, $object_type) {
-    global $db;
-    $activity = array(
-        'created' => date('Y-m-d H:i:s'),
-        'creator' => userid(),
-        'actor' => $actor,
-        'actor_type' => $actor_type,
-        'verb' => $verb,
-        'object' => $object,
-        'object_type' => $object_type
-    );
-    $db->insert('activity', $activity);
 }
 
 ?>

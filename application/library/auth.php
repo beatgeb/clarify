@@ -85,12 +85,13 @@ function auth_access_token($tmhOAuth) {
                 'name' => $userdata->name
             );
             $db->update('user', $user, array('twitter_user_id' => $_SESSION['access_token']['user_id']));
-            $user = $db->single("SELECT id FROM user WHERE twitter_user_id = '" . $_SESSION['access_token']['user_id'] . "' LIMIT 1");
+            $user = $db->single("SELECT id, name FROM user WHERE twitter_user_id = '" . $_SESSION['access_token']['user_id'] . "' LIMIT 1");
             $id = $user['id'];
             
         }
         $_SESSION['user']['twitter'] = $userdata;
         $_SESSION['user']['id'] = $id;
+        $_SESSION['user']['name'] = $user['name'];
         $_SESSION['auth'] = md5(config('security.password.hash') . $_SESSION['user']['id']);
         unset($_SESSION['oauth']);
         header('Location: ' . tmhUtilities::php_self());

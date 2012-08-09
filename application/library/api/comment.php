@@ -34,7 +34,13 @@ switch ($action) {
         $comment['id'] = $id;
 
         // add to activity stream
-        activity_add(userid(), 'user', 'comment', $screen, 'screen');
+        activity_add(
+            '{actor} left a comment on screen {target}', 
+            userid(), OBJECT_TYPE_USER, user('name'), 
+            ACTIVITY_VERB_COMMENT, 
+            $id, OBJECT_TYPE_COMMENT, "", 
+            $screen, OBJECT_TYPE_SCREEN, 'Title'
+        );
 
         echo json_encode($comment);
         break;

@@ -29,6 +29,7 @@ define('UPLOAD', APP . '../public/upload/');
 
 // load core function library
 require LIBRARY . 'core.php';
+require LIBRARY . 'api.php';
 require LIBRARY . 'db.php';
 require LIBRARY . 'session.php';
 require LIBRARY . 'auth.php';
@@ -44,6 +45,13 @@ $db = new Database(
     config('database.server.username'), 
     config('database.server.password'), 
     config('database.name')
+);
+
+global $cache;
+$cache = new Memcache;
+$cache->connect(
+    config('memcached.server.name'),
+    config('memcached.server.port')
 );
 
 // set timezone to UTC

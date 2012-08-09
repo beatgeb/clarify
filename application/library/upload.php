@@ -232,7 +232,13 @@ class UploadHandler
         $id = $db->insert('screen', $screen);
 
         // add to activity stream
-        activity_add(userid(), 'user', 'add', $id, 'screen');
+        activity_add(
+            '{actor} added a new screen {object} to project {target}', 
+            userid(), OBJECT_TYPE_USER, user('name'), 
+            ACTIVITY_VERB_ADD, 
+            $id, OBJECT_TYPE_SCREEN, $screen['title'],
+            $this->project, OBJECT_TYPE_PROJECT, 'Project Title'
+        );
 
         $db->query("UPDATE project SET screen_count = screen_count + 1 WHERE id = " . $this->project);
         

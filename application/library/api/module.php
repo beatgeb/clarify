@@ -112,7 +112,13 @@ switch ($action) {
         $id = $db->insert('module', $data);
 
         // add to activity stream
-        activity_add(userid(), 'user', 'define', $id, 'module');
+        activity_add(
+            '{actor} defined module {object} on screen {target}', 
+            userid(), OBJECT_TYPE_USER, user('name'), 
+            ACTIVITY_VERB_DEFINE, 
+            $id, OBJECT_TYPE_MODULE, $name, 
+            $screen, OBJECT_TYPE_SCREEN, 'Screen Title'
+        );
 
         $data['id'] = $id;
         $data['result'] = $result;

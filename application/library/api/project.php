@@ -32,6 +32,13 @@ switch ($action) {
 
         // add to activity stream
         activity_add(userid(), 'user', 'create', $id, 'project');
+        // add to activity stream
+        activity_add(
+            '{actor} created a new project {object}', 
+            userid(), OBJECT_TYPE_USER, user('name'), 
+            ACTIVITY_VERB_CREATE, 
+            $id, OBJECT_TYPE_PROJECT, $data['name']
+        );
         
         $data['id'] = $id;
         $data['url'] = R . 'project/' . userid() . '/' . $data['slug'] . '/';
