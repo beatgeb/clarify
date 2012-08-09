@@ -10,10 +10,9 @@ switch ($action) {
 	case API_ACTIVITY_STREAM:
 		$stream = $route[4];
 		switch ($stream) {
-			case OBJECT_TYPE_USER:
 			case OBJECT_TYPE_PROJECT:
-			case OBJECT_TYPE_SCREEN:
 				$id = intval($route[5]);
+				permission($id, 'VIEW');
 				$stream = "stream." . $stream . "." . $id;
 				$activity_ids = $cache->get($stream);
 				$activities = array();
