@@ -490,6 +490,26 @@ CREATE TABLE `activity` (
   KEY `object` (`object`,`object_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project_permission`
+--
+DROP TABLE IF EXISTS `project_permission`;
+
+CREATE TABLE `project_permission` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `creator` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `modifier` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `user` int(11) NOT NULL,
+  `project` int(11) NOT NULL,
+  `permission` enum('EDIT','COMMENT','VIEW','ADMIN') DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
