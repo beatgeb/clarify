@@ -55,7 +55,6 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
     <? } ?>
 </div>
 <div class="notice">You have <?= sizeof($modules) ?> modules in your library.</div>
-<? } ?>
 
 <?php
 $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE creator = ' . userid() . ' AND project = ' . $project_id . ' ORDER BY email ASC');
@@ -79,3 +78,5 @@ $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE cre
     </li>
     <? } ?>
 </ul>
+
+<? } ?>
