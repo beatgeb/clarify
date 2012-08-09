@@ -27,7 +27,7 @@ $screen = $db->single("
     FROM screen s 
         LEFT JOIN project p ON (p.id = s.project)
     WHERE 
-        s.id = '" . $screen_id . "' AND s.creator = '" . userid() . "'
+        s.id = '" . $screen_id . "'
     LIMIT 1
 ");
 if (!$screen) { die(); }

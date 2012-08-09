@@ -41,7 +41,9 @@ switch ($action) {
     case API_MEASURE_GET:
         $screen = intval($route[4]);
         if ($screen < 1) { die('Please provide a screen id'); }
-        $data = $db->data("SELECT id, x, y, width, height FROM measure WHERE screen = '" . $screen . "' AND creator = " . userid());
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
+        permission($screen['project'], 'VIEW');
+        $data = $db->data("SELECT id, x, y, width, height FROM measure WHERE screen = '" . $screen['id'] . "'");
         header('Content-Type: application/json');
         echo json_encode($data);
         break;

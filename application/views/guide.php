@@ -12,7 +12,11 @@
 lock();
 
 $project_id = intval($route[2]);
-$project = $db->single("SELECT id, name FROM project WHERE id = '" . $project_id . "' AND creator = '" . userid() . "'");
+
+// check project permissions
+permission($project_id, 'VIEW');
+
+$project = $db->single("SELECT id, creator, slug, name FROM project WHERE id = '" . $project_id . "'");
 if (!$project) { die(); }
 $screens = $db->data("SELECT id, title, description, code FROM screen WHERE project = '" . $project['id'] . "' ORDER BY title ASC");
 $colors = $db->data("SELECT id, hex, name, name_css, r, g, b, alpha FROM project_color WHERE project = '" . $project['id'] . "' ORDER BY hue ASC", "id");
@@ -32,7 +36,7 @@ foreach ($comments as $comment) {
 <body>
     <div class="mod modGuide">
         <div class="mod modToolbar">
-            <a class="button btn-screen" href="/project/<?= userid(); ?>/<?= $project['name']; ?>/"><i class="icon-white icon-chevron-left"></i> Back</a>
+            <a class="button btn-screen" href="/project/<?= $project['creator']; ?>/<?= $project['slug']; ?>/"><i class="icon-white icon-chevron-left"></i> Back</a>
         </div>
         <h1><?= $project['name'] ?></h1>
         <div class="chapter">

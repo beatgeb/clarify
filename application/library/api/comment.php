@@ -105,7 +105,9 @@ switch ($action) {
     case API_COMMENT_GET:
         $screen = intval($route[4]);
         if ($screen < 1) { die('Please provide a screen id'); }
-        $query = "SELECT id, creator, nr, x, y, w, h, content FROM comment WHERE screen = " . $screen . " AND creator = " . userid();
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
+        permission($screen['project'], 'VIEW');
+        $query = "SELECT id, creator, nr, x, y, w, h, content FROM comment WHERE screen = " . $screen['id'];
         $data = $db->data($query);
         if($data) $data[0]['content'] = stripslashes($data[0]['content']);
         header('Content-Type: application/json');
