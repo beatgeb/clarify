@@ -117,7 +117,7 @@ switch ($action) {
             userid(), OBJECT_TYPE_USER, user('name'), 
             ACTIVITY_VERB_DEFINE, 
             $id, OBJECT_TYPE_MODULE, $name, 
-            $screen, OBJECT_TYPE_SCREEN, 'Screen Title'
+            $screen['id'], OBJECT_TYPE_SCREEN, 'Screen Title'
         );
 
         $data['id'] = $id;
