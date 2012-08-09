@@ -33,10 +33,16 @@ require LIBRARY . 'api.php';
 require LIBRARY . 'db.php';
 require LIBRARY . 'session.php';
 require LIBRARY . 'auth.php';
+require LIBRARY . 'thirdparty/postmark/Postmark.php';
 
 // define additional constants
 define('R', config('application.baseurl'));
 define('S', R . 'static/');
+
+// postmark constants
+define('POSTMARKAPP_API_KEY', config('postmark.api.key'));
+define('POSTMARKAPP_MAIL_FROM_ADDRESS', config('postmark.from.address'));
+define('POSTMARKAPP_MAIL_FROM_NAME', config('postmark.from.name'));
 
 // create database connection instance
 global $db;

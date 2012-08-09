@@ -40,5 +40,10 @@ $config['cache.js.enabled'] = false;
 // Twitter Authentication
 $config['twitter.auth.consumerkey'] = '';
 $config['twitter.auth.consumersecret'] = '';
+
+// Mailservice
+$config['postmark.api.key'] = '';
+$config['postmark.from.address'] = '';
+$config['postmark.from.name'] = '';
  
 ?>
