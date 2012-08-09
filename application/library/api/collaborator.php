@@ -71,7 +71,9 @@ switch ($action) {
 
     case API_COLLABORATOR_REMOVE:
         $id = intval($route[4]);
-        $db->query("DELETE FROM project_collaborator WHERE id = '" . $id . "' AND creator = '" . userid() . "'");
+        $collaborator = $db->single("SELECT project FROM project_collaborator WHERE id = '" . $id . "' LIMIT 1");
+        $db->query("DELETE FROM project_collaborator WHERE id = '" . $id . "' AND creator = '" . userid() . "' LIMIT 1");
+        $db->query("DELETE FROM project_permission WHERE project = '" . $collaborator['project'] . "' LIMIT 1");
         header('Content-Type: application/json');
         $data = array();
         echo json_encode($data);
