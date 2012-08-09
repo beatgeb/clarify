@@ -46,6 +46,18 @@ $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project
 </div>
 
 <?php
+$modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $project_id . "' ORDER BY name ASC");
+?>
+<h3>Module Library<? if (sizeof($modules) > 0) { ?><a href="javascript:;" class="btn-export-terrific">&#8677; Terrific</a><? } ?></h3>
+<div class="modules">
+    <? foreach ($modules as $module) { ?>
+    <a href="javascript:;" data-module="<?= $module['name'] ?>" data-terrific="terrific:generate:module <?= $module['name'] ?>"></a>
+    <? } ?>
+</div>
+<div class="notice">You have <?= sizeof($modules) ?> modules in your library.</div>
+<? } ?>
+
+<?php
 $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE creator = ' . userid() . ' AND project = ' . $project_id . ' ORDER BY email ASC');
 ?>
 <h3>Collaborators<a class="btn-add-collaborator" href="javascript:;">+ Add</a></h3>
@@ -67,15 +79,3 @@ $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE cre
     </li>
     <? } ?>
 </ul>
-
-<?php
-$modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $project_id . "' ORDER BY name ASC");
-?>
-<h3>Module Library<? if (sizeof($modules) > 0) { ?><a href="javascript:;" class="btn-export-terrific">&#8677; Terrific</a><? } ?></h3>
-<div class="modules">
-    <? foreach ($modules as $module) { ?>
-    <a href="javascript:;" data-module="<?= $module['name'] ?>" data-terrific="terrific:generate:module <?= $module['name'] ?>"></a>
-    <? } ?>
-</div>
-<div class="notice">You have <?= sizeof($modules) ?> modules in your library.</div>
-<? } ?>
