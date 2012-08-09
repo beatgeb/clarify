@@ -35,6 +35,10 @@ switch ($action) {
         $screen = intval($route[4]);
         $screen = $db->single("SELECT id, project FROM screen WHERE id = " . $screen . " AND creator = " . userid());
         if (!$screen) { die(); }
+
+        // check permissions
+        permission($screen['project'], 'EDIT');
+
         // TODO: load colors referenced by this screen and delete
         //       color form library if it doesn't exist on another
         //       screen

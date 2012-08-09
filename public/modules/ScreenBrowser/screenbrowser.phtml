@@ -2,7 +2,19 @@
 <? permission($project_id, 'VIEW'); ?>
 <?php
 $screens = $db->data('
-    SELECT id, title, width, height, ext, created, count_comment, count_measure, count_color, count_font, count_module
+    SELECT 
+        id, 
+        project, 
+        title, 
+        width, 
+        height, 
+        ext, 
+        created, 
+        count_comment, 
+        count_measure, 
+        count_color, 
+        count_font, 
+        count_module
     FROM screen 
     WHERE project = ' . $project_id . ' 
     ORDER BY title ASC
@@ -31,7 +43,9 @@ $screens = $db->data('
         <p class="title"><a href="javascript:;" data-screen="<?= $screen['id'] ?>" data-title="<?= $screen['title'] ?>"><span><?= htmlspecialchars(truncate($screen['title'],25,'...')) ?></span></a></p>
         <p class="meta">
             <span class="size"><?= $screen['width'] ?> &times; <?= $screen['height'] ?></span>
+            <? if (has_permission($screen['project'], 'EDIT')) { ?>
             <a class="delete" data-screen="<?= $screen['id'] ?>" href="javascript:;">×</a>
+            <? } ?>
         </p>
     </li>
     <? } ?>
