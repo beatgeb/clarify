@@ -17,6 +17,7 @@ switch ($action) {
         $screen = intval($route[4]);
         $x = intval($route[5]);
         $y = intval($route[6]);
+
         if ($screen < 1) { die('Please provide a screen id'); }
         $max = $db->single("SELECT MAX(nr) as current FROM comment WHERE screen = '" . $screen . "' AND creator = " . userid());
         if ($max === null) { die(); }

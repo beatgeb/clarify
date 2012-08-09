@@ -31,6 +31,10 @@ $screen = $db->single("
     LIMIT 1
 ");
 if (!$screen) { die(); }
+
+// check for view permissions
+permission($screen['project'], 'VIEW');
+
 $screen['image'] = R . 'upload/screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
 $colors = $db->data("SELECT id, hex, name FROM project_color WHERE project = '" . $screen['project'] . "' ORDER BY hue ASC");
 $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $screen['project'] . "' ORDER BY name ASC");
