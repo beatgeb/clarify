@@ -12,12 +12,12 @@
 lock();
 
 $user_id = intval($route[2]);
-if ($user_id != userid()) {
-    die('Permission denied.');
-}
 $project_slug = addslashes($route[3]);
 $project = $db->single("SELECT * FROM project WHERE slug = '" . $project_slug . "' AND creator = " . $user_id . " LIMIT 1");
 $project_id = $project['id'];
+
+permission($project_id, 'VIEW');
+
 ?>
 <!DOCTYPE html>
 <html class="mod modLayout skinLayoutBrowser">

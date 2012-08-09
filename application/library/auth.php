@@ -87,8 +87,8 @@ function auth_access_token($tmhOAuth) {
             $db->update('user', $user, array('twitter_user_id' => $_SESSION['access_token']['user_id']));
             $user = $db->single("SELECT id, name FROM user WHERE twitter_user_id = '" . $_SESSION['access_token']['user_id'] . "' LIMIT 1");
             $id = $user['id'];
-            
         }
+
         $_SESSION['user']['twitter'] = $userdata;
         $_SESSION['user']['id'] = $id;
         $_SESSION['user']['name'] = $user['name'];

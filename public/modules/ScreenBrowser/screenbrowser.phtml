@@ -1,18 +1,21 @@
 <? if ($project_id > 0) { ?>
+<? permission($project_id, 'VIEW'); ?>
 <?php
 $screens = $db->data('
     SELECT id, title, width, height, ext, created, count_comment, count_measure, count_color, count_font, count_module
     FROM screen 
-    WHERE project = ' . $project_id . ' AND creator = ' . userid() . ' 
+    WHERE project = ' . $project_id . ' 
     ORDER BY title ASC
 ');
 ?>
 <ul>
+    <? if (has_permission($project_id, 'EDIT')) { ?>
     <li class="create">
         <a class="placeholder" href="javascript:;"><div>+</div></a>
         <p class="title"><a href="#"><span>Click to add screens</span></a></p>
         <p class="meta">JPG or PNG (max. 10 MB)</p>
     </li>
+    <? } ?>
     <? foreach ($screens as $screen) { ?>
     <li class="screen screen-<?= $screen['id'] ?>">
         <a class="image" href="<?= R ?>screen/<?= $screen['id'] ?>">

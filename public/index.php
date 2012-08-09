@@ -17,16 +17,7 @@ session_start();
 // check for login credentials
 login();
 
-define('VIEW_API', 'api');
-define('VIEW_BROWSER', 'browser');
-define('VIEW_SCREEN', 'screen');
-define('VIEW_AUTH', 'auth');
-define('VIEW_GUIDE', 'guide');
-define('VIEW_LIBRARY', 'library');
-define('VIEW_EMBED', 'embed');
-define('VIEW_PROJECT', 'project');
-define('VIEW_REGISTER', 'register');
-
+// define route
 $route = str_replace('?' . $_SERVER['QUERY_STRING'], '', explode('/', $_SERVER['REQUEST_URI']));
 if ($route[1] == "") { $route[1] = VIEW_BROWSER; }
 

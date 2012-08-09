@@ -1,5 +1,5 @@
 <?php
-$projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE creator = ' . userid() . ' ORDER BY name ASC');
+$projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') ORDER BY name ASC');
 ?>
 <h3>Account<a class="btn-logout" href="<?= R ?>auth/?wipe=1">Logout</a></h3>
 <div class="usermeta">
@@ -30,8 +30,10 @@ $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project
 <h3><?= $project['name'] ?></h3>
 <ul>
     <li><a href="<?= R ?>guide/<?= $project_id ?>">Styleguide (Draft)</a></li>
+    <? if (has_permission($project_id, 'ADMIN')) { ?>
     <li><a href="javascript:;" data-project="<?= $project_id ?>" data-name="<?= $project['name'] ?>" class="btn-rename-project">Rename Project</a></li>
     <li><a href="javascript:;" data-project="<?= $project_id ?>" class="btn-delete-project">Delete Project</a></li>
+    <? } ?>
 </ul>
 <!-- Color Library -->
 <h3>Color Library<a class="btn-export-aco" href="<?= R ?>api/color/export/<?= $project_id ?>/aco">.ACO</a><a class="btn-export-sass" href="javascript:;">.SCSS</a><a class="btn-export-css" href="javascript:;">.LESS</a></h3>
@@ -59,7 +61,12 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
 <?php
 $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE creator = ' . userid() . ' AND project = ' . $project_id . ' ORDER BY email ASC');
 ?>
-<h3>Collaborators<a class="btn-add-collaborator" href="javascript:;">+ Add</a></h3>
+<h3>
+    Collaborators
+    <? if (has_permission($project_id, 'ADMIN')) { ?>
+    <a class="btn-add-collaborator" href="javascript:;">+ Add</a>
+    <? } ?>
+</h3>
 <div class="add-collaborator">
     <input class="collaborator-email" data-project-id="<?= $project_id ?>" type="text" placeholder="E-Mail" />
     <input class="add-collaborator-submit" type="button" value="Add User" />

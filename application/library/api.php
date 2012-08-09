@@ -64,3 +64,45 @@ function stream_activity_add($type, $id, $activity_id) {
     $entries[] = $activity_id;
     $cache->set($stream, $entries);
 }
+
+/**
+ * Check project permission for current user
+ */
+function permission($project, $permission) {
+    if (!has_permission($project, $permission)) {
+        die('Permission denied.');
+    }
+}
+
+/**
+ * Check project permission for current user
+ */
+function has_permission($project, $permission) {
+    $allowed = false;
+    if (isset($_SESSION['user']['permissions']['project'][$project])) {
+        $p = $_SESSION['user']['permissions']['project'][$project];
+        switch ($permission) {
+            case 'EDIT':
+                if ($p == 'EDIT' || $p == 'ADMIN') {
+                    $allowed = true;
+                }
+                break;
+            case 'VIEW':
+                if ($p == 'VIEW' || $p == 'COMMENT' || $p == 'EDIT' || $p == 'ADMIN') {
+                    $allowed = true;
+                }
+                break;
+            case 'COMMENT':
+                if ($p == 'COMMENT' || $p == 'EDIT' || $p == 'ADMIN') {
+                    $allowed = true;
+                }
+                break;
+            case 'ADMIN':
+                if ($p == 'ADMIN') {
+                    $allowed = true;
+                }
+                break;
+        }
+    }
+    return $allowed;
+}

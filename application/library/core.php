@@ -26,6 +26,16 @@ define('OBJECT_TYPE_PROJECT', 'project');
 define('OBJECT_TYPE_MEASURE', 'measure');
 define('OBJECT_TYPE_FONT', 'font');
 
+define('VIEW_API', 'api');
+define('VIEW_BROWSER', 'browser');
+define('VIEW_SCREEN', 'screen');
+define('VIEW_AUTH', 'auth');
+define('VIEW_GUIDE', 'guide');
+define('VIEW_LIBRARY', 'library');
+define('VIEW_EMBED', 'embed');
+define('VIEW_PROJECT', 'project');
+define('VIEW_REGISTER', 'register');
+
 /**
  * Get a configuration variable by path.
  * 
@@ -53,14 +63,25 @@ function shutdown() {
 }
 
 function login() {
-    
+    global $db;
+    // load project permissions
+    $owned_projects = $db->data("SELECT id FROM project WHERE creator = '" . userid() . "'");
+    $projects = array();
+    foreach ($owned_projects as $project) {
+        $projects[$project['id']] = 'ADMIN';
+    }
+    $collaboration_projects = $db->data("SELECT project, permission FROM project_permission WHERE user = '" . userid() . "'");
+    foreach ($collaboration_projects as $project) {
+        $projects[$project['project']] = $project['permission'];
+    }
+    $_SESSION['user']['permissions']['project'] = $projects;
 }
 
 /**
  * Returns current users ID. If anonymous, null will be returned.
  */
 function userid() {
-    return $_SESSION['user']['id'];
+    return user('id');
 }
 
 /**
