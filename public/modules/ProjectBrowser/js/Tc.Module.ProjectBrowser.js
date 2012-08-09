@@ -76,7 +76,15 @@
                 return false;
             });
             $('.edit-collaborator', this.$ctx).on('click', function() {
-                $('.popbox').popbox();
+                var id = $(this).data('id');
+                $.ajax({
+                    url: "/api/collaborator/remove/" + id,
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function(data){
+                        location.reload();
+                    }
+                });
                 return false;
             });
 
@@ -181,14 +189,8 @@
                         'email': email,
                         'project': project
                     },
-                    statusCode:{
-                        200:function(data){
-                            $('ul.collaborators', $ctx).append('<li><a class="edit-collaborator" data-id="' + data.id + '" href="#">' + data.email + ' <span class="remove">×</span></a></li>');
-                        },
-                        400:function(data){
-                            $('.collaborator-email', $ctx).addClass('error');
-                            alert(data.responseText);
-                        }
+                    success: function(data) {
+                        location.reload();
                     }
                 });
             }

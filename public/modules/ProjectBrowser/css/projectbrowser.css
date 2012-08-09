@@ -116,7 +116,8 @@
     margin: 0 10px 15px 10px;
 }
 
-.modProjectBrowser ul li a {
+.modProjectBrowser ul li a,
+.modProjectBrowser .edit-collaborator {
     display: block;
     padding: 6px 10px;
     color: #999;
@@ -181,7 +182,8 @@
     color: #FFF;
 }
 
-.modProjectBrowser ul li a:hover {
+.modProjectBrowser ul li a:hover,
+.modProjectBrowser .edit-collaborator:hover {
     background-color: #555555;
 }
 
@@ -249,4 +251,23 @@
 
 .modProjectBrowser .color:hover {
     box-shadow: 0 0 5px #000;
+}
+.modProjectBrowser .edit-collaborator {
+    overflow: hidden;
+    padding: 5px 10px;
+}
+.modProjectBrowser .edit-collaborator img {
+    float: left;
+    margin-right: 10px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+.modProjectBrowser .edit-collaborator span {
+    float: left;
+    padding-top: 3px;
+}
+.modProjectBrowser .edit-collaborator a {
+    display: block;
+    float: right;
+    padding: 0 5px;
 }

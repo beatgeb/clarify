@@ -2,36 +2,33 @@
 
 lock();
 
-// Project API
-define('API_COLLABORATOR_SEARCH', 'collaborator.search');
+// Collaborator API
 define('API_COLLABORATOR_ADD', 'collaborator.add');
-define('API_COLLABORATOR_DELETE', 'collaborator.delete');
+define('API_COLLABORATOR_REMOVE', 'collaborator.remove');
 
 switch ($action) {
-/*
-    case API_COLLABORATOR_SEARCH:
-        $result = $db->data("
-            SELECT
-              id,
-              email
-            FROM
-              user
-            WHERE
-              email LIKE '%" . $_REQUEST['q'] . "%'
-        ");
 
-        echo json_encode($result);
-        break;
-*/
     case API_COLLABORATOR_ADD:
         if (filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)) {
+            $project_id = intval($_REQUEST['project']);
             $data = array(
                 'created' => date('Y-m-d H:i:s'),
                 'creator' => userid(),
                 'email' => $db->escape($_REQUEST['email']),
-                'project' => $db->escape($_REQUEST['project']),
+                'project' => $project_id,
             );
             $id = $db->insert('project_collaborator', $data);
+
+            // read project details
+            $project = $db->single("SELECT name FROM project WHERE id = '" . $project_id . "' AND creator = '" . userid() . "' LIMIT 1");
+
+            // send e-mail invitation to collaborator
+            $email = new Mail_Postmark();
+            $email->addTo('roger.dudler@gmail.com', 'Roger Dudler')
+                ->subject('Roger invites you to join the "' . $project['name'] . '" project!')
+                ->messagePlain('Click here')
+                ->send();
+
             $data['id'] = $id;
             echo json_encode($data);
             break;
@@ -41,8 +38,12 @@ switch ($action) {
             break;
         }
 
-    case API_COLLABORATOR_DELETE:
-        // TODO: all
+    case API_COLLABORATOR_REMOVE:
+        $id = intval($route[4]);
+        $db->query("DELETE FROM project_collaborator WHERE id = '" . $id . "' AND creator = '" . userid() . "'");
+        header('Content-Type: application/json');
+        $data = array();
+        echo json_encode($data);
         break;
 
 }
