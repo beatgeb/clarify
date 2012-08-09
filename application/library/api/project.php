@@ -31,8 +31,6 @@ switch ($action) {
         $id = $db->insert('project', $data);
 
         // add to activity stream
-        activity_add(userid(), 'user', 'create', $id, 'project');
-        // add to activity stream
         activity_add(
             '{actor} created a new project {object}', 
             userid(), OBJECT_TYPE_USER, user('name'), 
