@@ -25,7 +25,7 @@ $screens = $db->data('
                 <i class="icon icon-th-large"></i> <span<?= $screen['count_module'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_module'] ?></span>
             </div>
         </a>
-        <p class="title"><a href="javascript:;" data-screen="<?= $screen['id'] ?>"><span><?= htmlspecialchars(truncate($screen['title'],25,'...')) ?></span></a></p>
+        <p class="title"><a href="javascript:;" data-screen="<?= $screen['id'] ?>" data-title="<?= $screen['title'] ?>"><span><?= htmlspecialchars(truncate($screen['title'],25,'...')) ?></span></a></p>
         <p class="meta">
             <span class="size"><?= $screen['width'] ?> &times; <?= $screen['height'] ?></span>
             <a class="delete" data-screen="<?= $screen['id'] ?>" href="javascript:;">×</a>

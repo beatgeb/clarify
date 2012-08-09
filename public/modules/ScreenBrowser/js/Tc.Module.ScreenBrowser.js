@@ -35,10 +35,11 @@
             });
             $('.title > a').on('click', function(e) {
                 var screen = $(this).data('screen');
+                var title = $(this).data('title');
                 $('.modal-body').find('input').remove();
                 $('.modal-confirm h3').text('Rename Screen');
                 $('.modal-confirm p').html('New title for this screen:');
-                var input = $('<input class="fld" type="text" value="' + $(this).text() + '" />');
+                var input = $('<input class="fld" type="text" value="' + title + '" />');
                 $('.modal-body').append(input);
                 $('.modal-confirm .btn-confirm').text('Rename Screen');
                 $('.modal-confirm .btn-confirm').on('click', function() {
