@@ -38,8 +38,18 @@
     background-image: -ms-linear-gradient(top, rgb(103, 104, 104), rgb(58, 58, 58));
     background-image: linear-gradient(top, rgb(103, 104, 104), rgb(58, 58, 58));
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#676868', EndColorStr='#3a3a3a');
+    
+    background-color: #c0c0c0;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(192, 192, 192)), to(rgb(161, 161, 161)));
+    background-image: -webkit-linear-gradient(top, rgb(192, 192, 192), rgb(161, 161, 161));
+    background-image: -moz-linear-gradient(top, rgb(192, 192, 192), rgb(161, 161, 161));
+    background-image: -o-linear-gradient(top, rgb(192, 192, 192), rgb(161, 161, 161));
+    background-image: -ms-linear-gradient(top, rgb(192, 192, 192), rgb(161, 161, 161));
+    background-image: linear-gradient(top, rgb(192, 192, 192), rgb(161, 161, 161));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#c0c0c0', EndColorStr='#a1a1a1');
+
     padding: 4px 6px;
-    color: #FFF;
+    color: #444;
     width: 200px;
     font-size: 12px;
     font-weight: bold;
@@ -49,7 +59,7 @@
     width: 16px;
 }
 .modScreenBrowser ul li .image .info .zero {
-    color: #444;
+    color: #BBB;
     text-shadow: none;
 }
 
@@ -79,7 +89,7 @@
 }
 
 .modScreenBrowser ul li.create .placeholder div {
-    background: #333;
+    background: #EEE;
     width: 200px;
     height: 145px;
     padding-top: 15px;
@@ -93,7 +103,7 @@
 }
 
 .modScreenBrowser ul li .title a {
-    color: #DDD;
+    color: #444;
     text-decoration: none;
 }
 
@@ -110,7 +120,7 @@
 
 .modScreenBrowser ul li .meta .size {
     display: inline-block;
-    background: #111;
+    background: #EEE;
     color: #777;
     border-radius: 2px;
     font-size: 11px;
