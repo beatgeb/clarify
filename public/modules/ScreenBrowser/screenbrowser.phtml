@@ -19,7 +19,9 @@ $screens = $db->data('
     WHERE project = ' . $project_id . ' 
     ORDER BY title ASC
 ');
+$project = $db->single("SELECT name FROM project WHERE id = '" . $project_id . "'");
 ?>
+<h2><?= $project['name'] ?></h2>
 <ul>
     <? if (has_permission($project_id, 'EDIT')) { ?>
     <li class="create">
@@ -50,5 +52,7 @@ $screens = $db->data('
     </li>
     <? } ?>
 </ul>
-<? } ?>
 <input class="fileupload" type="file" name="files[]" multiple>
+<? } else { ?>
+<h2>Create or Choose a Project</h2>
+<? } ?>

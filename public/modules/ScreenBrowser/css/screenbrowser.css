@@ -1,9 +1,18 @@
 .modScreenBrowser {
     margin-left: 270px;
+}
+
+.modScreenBrowser h2 {
+    font-family:'Lexia W01 Thin', helvetica, arial, sans-serif;
+    font-size: 30px;
+    border-bottom: 1px solid #DDD;
+    padding: 30px 45px;
+    color: #454545;
+}
+.modScreenBrowser ul {
     padding: 30px;
     padding-right: 0;
 }
-
 .modScreenBrowser ul li {
     float: left;
     margin-right: 15px;

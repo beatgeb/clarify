@@ -33,9 +33,13 @@
 
 .modProjectBrowser .logo {
     display: block;
-    background: #333;
-    padding: 25px 10px 5px 10px;
+    font-family:'Lexia W01 Regular', helvetica, arial, sans-serif;
+    font-size: 30px;
+    border-bottom: 1px solid #222;
+    padding: 30px 45px;
+    color: #FFF;
     text-align: center;
+    text-decoration: none;
 }
 
 .modProjectBrowser .add-project,

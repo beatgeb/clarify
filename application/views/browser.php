@@ -22,6 +22,9 @@ lock();
     <div class="mod modProjectBrowser">
         <? require TERRIFIC . 'modules/ProjectBrowser/projectbrowser.phtml'; ?>
     </div>
+    <div class="mod modScreenBrowser" data-project="<?= $project_id ?>">
+        <? require TERRIFIC . 'modules/ScreenBrowser/screenbrowser.phtml'; ?>
+    </div>
     <? require 'partials/foot.php'; ?>
 </body>
 </html>
