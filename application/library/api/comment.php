@@ -19,7 +19,7 @@ switch ($action) {
         $y = intval($route[6]);
 
         if ($screen < 1) { die('Please provide a screen id'); }
-        $max = $db->single("SELECT MAX(nr) as current FROM comment WHERE screen = '" . $screen . "' AND creator = " . userid());
+        $max = $db->single("SELECT MAX(nr) as current FROM comment WHERE screen = '" . $screen . "'");
         if ($max === null) { die(); }
         $nr = $max['current'] + 1;
         $comment = array(
