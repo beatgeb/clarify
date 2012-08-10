@@ -40,6 +40,7 @@
     color: #FFF;
     text-align: center;
     text-decoration: none;
+    margin-bottom: 10px;
 }
 
 .modProjectBrowser .add-project,
@@ -199,43 +200,6 @@
 
 .modProjectBrowser ul li a:active {
     background-color: #444;
-}
-
-.modProjectBrowser .usermeta {
-    margin: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: inline-block;
-}
-
-.modProjectBrowser .usermeta .info {
-    float: left;
-    margin-left: 15px;
-    color: #999;
-}
-
-.modProjectBrowser .usermeta .info p {
-    line-height: 1.45;
-    color: #666;
-}
-
-.modProjectBrowser .usermeta .info .username {
-    color: #999;
-    font-weight: bold;
-    font-size: 15px;
-}
-
-.modProjectBrowser .usermeta .avatar {
-    float: left;
-    width: 48px;
-    height: 48px;
-    border-radius: 3px;
-    box-shadow: 0 0 2px #000;
-}
-
-.modProjectBrowser .usermeta .avatar img {
-    border-radius: 3px;
-    display: block;
 }
 
 .modProjectBrowser .notice {

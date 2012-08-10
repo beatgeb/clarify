@@ -2,14 +2,6 @@
 <?php
 $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') ORDER BY name ASC');
 ?>
-<h3>Account<a class="btn-logout" href="<?= R ?>auth/?wipe=1">Logout</a></h3>
-<div class="usermeta">
-    <div class="avatar"><img src="<?= $_SESSION['user']['twitter']->profile_image_url ?>" width="48" height="48" /></div>
-    <div class="info">
-        <p class="username"><?= $_SESSION['user']['twitter']->name ?></p>
-        <p>@<?= $_SESSION['user']['twitter']->screen_name ?></p>
-    </div>
-</div>
 <h3>Projects<a class="btn-add-project" href="javascript:;">+ Create</a></h3>
 <div class="add-project">
     <input class="project-name" type="text" placeholder="Project Name" />

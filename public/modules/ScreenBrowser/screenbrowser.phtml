@@ -1,27 +1,40 @@
-<? if ($project_id > 0) { ?>
-<? permission($project_id, 'VIEW'); ?>
 <?php
-$screens = $db->data('
-    SELECT 
-        id, 
-        project, 
-        title, 
-        width, 
-        height, 
-        ext, 
-        created, 
-        count_comment, 
-        count_measure, 
-        count_color, 
-        count_font, 
-        count_module
-    FROM screen 
-    WHERE project = ' . $project_id . ' 
-    ORDER BY title ASC
-');
-$project = $db->single("SELECT name FROM project WHERE id = '" . $project_id . "'");
+if ($project_id > 0) {
+    permission($project_id, 'VIEW');
+    $screens = $db->data('
+        SELECT 
+            id, 
+            project, 
+            title, 
+            width, 
+            height, 
+            ext, 
+            created, 
+            count_comment, 
+            count_measure, 
+            count_color, 
+            count_font, 
+            count_module
+        FROM screen 
+        WHERE project = ' . $project_id . ' 
+        ORDER BY title ASC
+    ');
+    $project = $db->single("SELECT name FROM project WHERE id = '" . $project_id . "'");
+}
 ?>
-<h2><?= $project['name'] ?></h2>
+<div class="head">
+    <h2><?= $project_id > 0 ? $project['name'] : 'Create or Choose a Project' ?></h2>
+    <div class="usermeta">
+        <div class="info">
+            <p class="username"><?= user('name') ?></p>
+            <a href="<?= R ?>auth/?wipe=1">Logout</a>
+        </div>
+        <div class="avatar">
+            <img src="<?= $_SESSION['user']['twitter']->profile_image_url ?>" width="48" height="48" />
+        </div>
+    </div>
+</div>
+<? if ($project_id > 0) { ?>
 <ul>
     <? if (has_permission($project_id, 'EDIT')) { ?>
     <li class="create">
@@ -53,6 +66,4 @@ $project = $db->single("SELECT name FROM project WHERE id = '" . $project_id . "
     <? } ?>
 </ul>
 <input class="fileupload" type="file" name="files[]" multiple>
-<? } else { ?>
-<h2>Create or Choose a Project</h2>
 <? } ?>

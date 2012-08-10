@@ -2,10 +2,15 @@
     margin-left: 270px;
 }
 
+.modScreenBrowser .head {
+    overflow: hidden;
+    border-bottom: 1px solid #DDD;
+}
+
 .modScreenBrowser h2 {
+    float: left;
     font-family:'Lexia W01 Thin', helvetica, arial, sans-serif;
     font-size: 30px;
-    border-bottom: 1px solid #DDD;
     padding: 30px 45px;
     color: #454545;
 }
@@ -179,4 +184,46 @@
 .modScreenBrowser .fileupload {
     position: absolute;
     top: -100px;
+}
+
+.modScreenBrowser .usermeta {
+    float: right;
+    margin: 23px 40px 23px 0;
+    display: inline-block;
+}
+
+.modScreenBrowser .usermeta .info {
+    float: left;
+    margin-right: 15px;
+    color: #999;
+    text-align: right;
+}
+.modScreenBrowser .usermeta .info a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #999;
+}
+.modScreenBrowser .usermeta .info a:hover {
+    text-decoration: underline;
+}
+.modScreenBrowser .usermeta .info p {
+    line-height: 1.45;
+    color: #454545;
+}
+
+.modScreenBrowser .usermeta .info .username {
+    font-family:'Lexia W01 Regular', helvetica, arial, sans-serif;
+    font-size: 18px;
+}
+
+.modScreenBrowser .usermeta .avatar {
+    float: left;
+    width: 48px;
+    height: 48px;
+    border-radius: 3px;
+}
+
+.modScreenBrowser .usermeta .avatar img {
+    border-radius: 3px;
+    display: block;
 }
