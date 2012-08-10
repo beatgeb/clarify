@@ -3,10 +3,11 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #444;
+    background-color: #FFF;
     color: #FFF;
     z-index: 99;
     padding-left: 5px;
+    border-bottom: 1px solid #DDD;
 }
 
 .modToolbar .button {
@@ -14,12 +15,21 @@
     font-weight: normal;
     font-family: helvetica, sans-serif;
     float: left;
-    background: #222;
+    background: #FFF;
+    border: 1px solid #DDD;
     margin: 5px 5px 5px 0;
     border-radius: 2px;
     padding: 8px 12px;
-    color: white;
+    color: #666;
     text-decoration: none;
+    background-color: #ffffff;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)), to(rgb(218, 218, 218)));
+    background-image: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(218, 218, 218));
+    background-image: -moz-linear-gradient(top, rgb(255, 255, 255), rgb(218, 218, 218));
+    background-image: -o-linear-gradient(top, rgb(255, 255, 255), rgb(218, 218, 218));
+    background-image: -ms-linear-gradient(top, rgb(255, 255, 255), rgb(218, 218, 218));
+    background-image: linear-gradient(top, rgb(255, 255, 255), rgb(218, 218, 218));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ffffff', EndColorStr='#dadada');
 }
 
 .modToolbar .button .enabled {
@@ -35,7 +45,8 @@
 }
 
 .modToolbar .button:hover {
-    box-shadow: 0 0 1px #FFF;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.5);
+    color: #000;
 }
 
 .modToolbar .button.delete {
@@ -50,11 +61,21 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+    color: #FFF;
+    border: 1px solid #760d0f;
 }
 
 .modToolbar .button.active {
-    background-color: #9bb61d;
-    color: #485609;
+    background-color: #dad9da;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(218, 217, 218)), to(rgb(187, 187, 187)));
+    background-image: -webkit-linear-gradient(top, rgb(218, 217, 218), rgb(187, 187, 187));
+    background-image: -moz-linear-gradient(top, rgb(218, 217, 218), rgb(187, 187, 187));
+    background-image: -o-linear-gradient(top, rgb(218, 217, 218), rgb(187, 187, 187));
+    background-image: -ms-linear-gradient(top, rgb(218, 217, 218), rgb(187, 187, 187));
+    background-image: linear-gradient(top, rgb(218, 217, 218), rgb(187, 187, 187));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#dad9da', EndColorStr='#bbbbbb');
+    border: 1px solid #999;
+    color: #000;
 }
 
 .modToolbar .button.active:hover {
@@ -76,10 +97,6 @@
     float: right;
 }
 
-.modToolbar .btn-embed {
-    margin-right: 50px;
-}
-
 .modToolbar .btn-last {
     margin-right: 10px;
 }
@@ -95,13 +112,18 @@
     width: 8px;
 }
 .modToolbar .title {
+    /*
+    font-family:'Lexia W01 Regular';
+    font-family:'Lexia W01 Thin';
+    font-family:'Lexia W01 XBold';
+    */
+    font-family:'Lexia W01 Regular', arial, sans-serif;
     float: left;
     display: block;
-    font-size: 15px;
-    padding: 7px 10px;
+    font-size: 17px;
+    padding: 7px 10px 0 10px;
     width: 300px;
-    background: #222;
-    color: #BBB;
+    color: #444;
     text-overflow: ellipsis;
     white-space: nowrap;
     margin: 5px 5px 5px 0;
