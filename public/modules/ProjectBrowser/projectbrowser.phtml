@@ -10,10 +10,10 @@ $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project
         <p>@<?= $_SESSION['user']['twitter']->screen_name ?></p>
     </div>
 </div>
-<h3>Projects<a class="btn-add-project" href="javascript:;">+ Add</a></h3>
+<h3>Projects<a class="btn-add-project" href="javascript:;">+ Create</a></h3>
 <div class="add-project">
     <input class="project-name" type="text" placeholder="Project Name" />
-    <input class="add-project-submit" type="button" value="Add Project" />
+    <input class="add-project-submit" type="button" value="Create Project" />
 </div>
 <? if (sizeof($projects) == 0) { ?>
 <div class="notice">You don't have any projects yet.</div>
