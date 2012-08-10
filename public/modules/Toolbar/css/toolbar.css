@@ -80,8 +80,14 @@
 .modToolbar .btn-behaviour, 
 .modToolbar .btn-color,
 .modToolbar .btn-modules,
-.modToolbar .btn-fonts {
+.modToolbar .btn-fonts,
+.modToolbar .btn-delete,
+.modToolbar .btn-embed {
     float: right;
+}
+
+.modToolbar .btn-embed {
+    margin-right: 50px;
 }
 
 .modToolbar .btn-last {
@@ -97,4 +103,19 @@
     -moz-box-shadow: none;
     box-shadow: none;
     width: 8px;
+}
+.modToolbar .title {
+    float: left;
+    display: block;
+    font-size: 15px;
+    padding: 7px 10px;
+    width: 300px;
+    background: #222;
+    color: #BBB;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 5px 5px 5px 0;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+
 }
