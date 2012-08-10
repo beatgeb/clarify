@@ -16,20 +16,19 @@
     font-family: helvetica, sans-serif;
     float: left;
     background: #FFF;
-    border: 1px solid #DDD;
     margin: 5px 5px 5px 0;
     border-radius: 2px;
     padding: 8px 12px;
     color: #666;
     text-decoration: none;
-    background-color: #ffffff;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)), to(rgb(218, 218, 218)));
-    background-image: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(218, 218, 218));
-    background-image: -moz-linear-gradient(top, rgb(255, 255, 255), rgb(218, 218, 218));
-    background-image: -o-linear-gradient(top, rgb(255, 255, 255), rgb(218, 218, 218));
-    background-image: -ms-linear-gradient(top, rgb(255, 255, 255), rgb(218, 218, 218));
-    background-image: linear-gradient(top, rgb(255, 255, 255), rgb(218, 218, 218));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ffffff', EndColorStr='#dadada');
+    background-color: #eeeeee;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(238, 238, 238)), to(rgb(220, 220, 220)));
+    background-image: -webkit-linear-gradient(top, rgb(238, 238, 238), rgb(220, 220, 220));
+    background-image: -moz-linear-gradient(top, rgb(238, 238, 238), rgb(220, 220, 220));
+    background-image: -o-linear-gradient(top, rgb(238, 238, 238), rgb(220, 220, 220));
+    background-image: -ms-linear-gradient(top, rgb(238, 238, 238), rgb(220, 220, 220));
+    background-image: linear-gradient(top, rgb(238, 238, 238), rgb(220, 220, 220));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#eeeeee', EndColorStr='#dcdcdc');
 }
 
 .modToolbar .button .enabled {
@@ -74,7 +73,6 @@
     background-image: -ms-linear-gradient(top, rgb(218, 217, 218), rgb(187, 187, 187));
     background-image: linear-gradient(top, rgb(218, 217, 218), rgb(187, 187, 187));
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#dad9da', EndColorStr='#bbbbbb');
-    border: 1px solid #999;
     color: #000;
 }
 
