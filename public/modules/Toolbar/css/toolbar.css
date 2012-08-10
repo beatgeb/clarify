@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #333;
+    background-color: #444;
     color: #FFF;
     z-index: 99;
     padding-left: 5px;
@@ -53,18 +53,8 @@
 }
 
 .modToolbar .button.active {
-    background-color: #1290d3;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(18, 144, 211)), to(rgb(12, 123, 184)));
-    background-image: -webkit-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
-    background-image: -moz-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
-    background-image: -o-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
-    background-image: -ms-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
-    background-image: linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#1290d3', EndColorStr='#0c7bb8');
-    -webkit-box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
-    -moz-box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
-    box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
-    color: white;
+    background-color: #9bb61d;
+    color: #485609;
 }
 
 .modToolbar .button.active:hover {
