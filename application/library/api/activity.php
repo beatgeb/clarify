@@ -10,6 +10,7 @@ switch ($action) {
 	case API_ACTIVITY_STREAM:
 		$stream = $route[4];
 		switch ($stream) {
+			case OBJECT_TYPE_USER:
 			case OBJECT_TYPE_PROJECT:
 				$id = intval($route[5]);
 				permission($id, 'VIEW');
