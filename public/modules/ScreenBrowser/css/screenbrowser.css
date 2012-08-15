@@ -110,25 +110,28 @@
     
 }
 
-.modScreenBrowser ul li .title {
+.modScreenBrowser ul li .title,
+.modScreenBrowser ul li .title-placeholder {
     margin-top: 15px;
-    text-align: center;
     line-height: 1.5;
+    font-size: 13px;
+    margin-bottom: 2px;
 }
 
-.modScreenBrowser ul li .title a {
+.modScreenBrowser ul li .title a,
+.modScreenBrowser ul li .title-placeholder a {
     color: #444;
     text-decoration: none;
 }
 
-.modScreenBrowser ul li:hover .title a {
+.modScreenBrowser ul li:hover .title a,
+.modScreenBrowser ul li:hover .title-placeholder a {
     color: #FFF;
 }
 
 .modScreenBrowser ul li .meta {
     color: #999;
     font-size: 12px;
-    text-align: center;
     position: relative;
 } 
 
@@ -139,7 +142,6 @@
     border-radius: 2px;
     font-size: 11px;
     padding: 1px 3px;
-    margin-left: 3px;
 }
 
 .modScreenBrowser ul li:hover .meta .size {
