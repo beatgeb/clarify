@@ -157,7 +157,6 @@
                 dataType: 'json',
                 success: function(data){
                     $.each(data, function(key, comment) {
-                        console.log(data);
                         that.addComment(comment);
                     });
                 }
