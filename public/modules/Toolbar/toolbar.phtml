@@ -1,32 +1,18 @@
-<a class="button btn-screen" href="<?= R ?>project/<?= $screen['project_creator'] ?>/<?= $screen['project_slug'] ?>/">
-	<i class="icon-chevron-left"></i> Back
-</a>
-<span class="title"><?= $screen['title'] ?></span>
-<a class="button btn-modules btn-last" href="javascript:;">
-	<i class="icon-th-large"></i> Modules
-</a>
-<a class="button btn-color" href="javascript:;">
-	<i class="icon-tint"></i> Colors
-</a>
-<a class="button btn-measure" href="javascript:;">
-	<i class="icon-resize-vertical"></i> Measures
-</a>
-<a class="button btn-comments" href="javascript:;">
-	<i class="icon-comment"></i> Comments
-</a>
+<div class="section section-nav">
+<a class="button btn-screen" href="<?= R ?>project/<?= $screen['project_creator'] ?>/<?= $screen['project_slug'] ?>/"><i></i><div class="tt">Back<i></i></div></a>
+</div>
+<div class="section section-tool">
+<a class="button btn-comments" href="javascript:;"><i></i><div class="tt">Comments<i></i></div></a>
+<a class="button btn-measure" href="javascript:;"><i></i><div class="tt">Measures<i></i></div></a>
+<a class="button btn-color" href="javascript:;"><i></i><div class="tt">Colors<i></i></div></a>
+<a class="button btn-modules btn-last" href="javascript:;"><i></i><div class="tt">Modules<i></i></div></a>
+</div>
+<div class="section section-settings">
 <? if (has_permission($screen['project'], 'ADMIN')) { ?>
-<a class="button btn-embed" href="javascript:;" data-screen="<?= $screen['id'] ?>" data-url="<?= config('application.domain') . R . 'embed/' . $screen['code'] . '/800' ?>">
-	<i class="icon-share-alt"></i> 
-	Embed 
+<a class="button btn-embed" href="javascript:;" data-screen="<?= $screen['id'] ?>" data-url="<?= config('application.domain') . R . 'embed/' . $screen['code'] . '/800' ?>"><i></i><div class="tt">Embed &amp; Share<i></i></div>
 	<? if ($screen['embeddable']) { ?>
-	<span class="enabled">&check;</span>
-	<? } else { ?>
-	<span class="disabled">&#9679;</span>
+	<span class="enabled">&#9679;</span>
 	<? } ?>
 </a>
 <? } ?>
-<? if (has_permission($screen['project'], 'COMMENT')) { ?>
-<a class="button btn-delete" href="javascript:;">
-	<i class="icon-trash"></i> Delete
-</a>
-<? } ?>
+</div>

@@ -1,130 +1,121 @@
 .modToolbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #FFF;
-    color: #FFF;
-    z-index: 99;
-    padding-left: 5px;
-    border-bottom: 1px solid #DDD;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 50;
 }
 
-.modToolbar .button {
-    font-size: 13px;
-    font-weight: normal;
-    font-family: helvetica, sans-serif;
-    float: left;
-    background: #FFF;
-    margin: 5px 5px 5px 0;
-    border-radius: 2px;
-    padding: 8px 12px;
-    color: #666;
-    text-decoration: none;
-    background-color: #eeeeee;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(238, 238, 238)), to(rgb(220, 220, 220)));
-    background-image: -webkit-linear-gradient(top, rgb(238, 238, 238), rgb(220, 220, 220));
-    background-image: -moz-linear-gradient(top, rgb(238, 238, 238), rgb(220, 220, 220));
-    background-image: -o-linear-gradient(top, rgb(238, 238, 238), rgb(220, 220, 220));
-    background-image: -ms-linear-gradient(top, rgb(238, 238, 238), rgb(220, 220, 220));
-    background-image: linear-gradient(top, rgb(238, 238, 238), rgb(220, 220, 220));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#eeeeee', EndColorStr='#dcdcdc');
+.modToolbar .section {
+	background: rgba(0,0,0,0.6);
+	margin-bottom: 20px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
 }
 
-.modToolbar .button .enabled {
-    color: #617f00;
+.modToolbar .section a {
+	display: block;
+	width: 47px;
+	height: 47px;
+	border-bottom: 1px solid #535353;
+	padding: 4px;
+	position: relative;
+}
+
+.modToolbar .section a:last-child {
+	border: none;
+}
+
+.modToolbar .section a > i {
+	display: block;
+	width: 47px;
+	height: 47px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.modToolbar .section a:hover > i {
+	background-color: #515151;
+}
+.modToolbar .section a:active > i {
+	background-color: #222;
+}
+
+.modToolbar .section a.active > i {
+	background-color: #3a3a3a;
+}
+
+.modToolbar .tt {
+	display: none;
+	position: absolute;
+	top: 12px;
+	left: 65px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	padding: 8px 10px;
+	color: #FFF;
+	font-family:'Lexia W01 Regular', arial, sans-serif;
+	text-transform: uppercase;
+	font-size: 12px;
+	white-space: nowrap;
+	background: #d8684a;
+}
+
+.modToolbar .tt i {
+	background: transparent url(/img/tooltip-arrow.png) center no-repeat;
+	width: 4px;
+	height: 8px;
+	display: block;
+	position: absolute;
+	top: 11px;
+	left: -4px;
+}
+
+.modToolbar .section a:hover .tt {
+	display: block;
+}
+
+.modToolbar .btn-screen > i {
+	background: transparent url(/img/toolbar-reply.png) center no-repeat;
+}
+
+.modToolbar .btn-comments > i {
+	background: transparent url(/img/toolbar-chat.png) center no-repeat;
+}
+
+.modToolbar .btn-measure > i {
+	background: transparent url(/img/toolbar-move.png) center no-repeat;
+}
+
+.modToolbar .btn-modules > i {
+	background: transparent url(/img/toolbar-grid.png) center no-repeat;
+}
+
+.modToolbar .btn-color > i {
+	background: transparent url(/img/toolbar-drop.png) center no-repeat;
+}
+
+.modToolbar .btn-embed > i {
+	background: transparent url(/img/toolbar-globe.png) center no-repeat;
+}
+
+.modToolbar .btn-embed {
+	position: relative;
+}
+
+.modToolbar .btn-embed span {
+	position: absolute;
+	bottom: 3px;
+	right: 5px;
+}
+
+.modToolbar .btn-embed .enabled {
+    color: #b9ff67;
     font-weight: bold;
     font-size: 12px;
 }
 
-.modToolbar .button .disabled {
+.modToolbar .btn-embed .disabled {
     color: #c11a00;
     font-weight: bold;
     font-size: 12px;
-}
-
-.modToolbar .button:hover {
-    box-shadow: 0 1px 1px rgba(0,0,0,0.5);
-    color: #000;
-}
-
-.modToolbar .button.delete {
-    background-color: #ee1f18;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(238, 31, 24)), to(rgb(171, 20, 14)));
-    background-image: -webkit-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
-    background-image: -moz-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
-    background-image: -o-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
-    background-image: -ms-linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
-    background-image: linear-gradient(top, rgb(238, 31, 24), rgb(171, 20, 14));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ee1f18', EndColorStr='#ab140e');
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    color: #FFF;
-}
-
-.modToolbar .button.active {
-    background-color: #dad9da;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(218, 217, 218)), to(rgb(187, 187, 187)));
-    background-image: -webkit-linear-gradient(top, rgb(218, 217, 218), rgb(187, 187, 187));
-    background-image: -moz-linear-gradient(top, rgb(218, 217, 218), rgb(187, 187, 187));
-    background-image: -o-linear-gradient(top, rgb(218, 217, 218), rgb(187, 187, 187));
-    background-image: -ms-linear-gradient(top, rgb(218, 217, 218), rgb(187, 187, 187));
-    background-image: linear-gradient(top, rgb(218, 217, 218), rgb(187, 187, 187));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#dad9da', EndColorStr='#bbbbbb');
-    color: #000;
-}
-
-.modToolbar .button.active:hover {
-    box-shadow: none;
-}
-
-.modToolbar .button.delete:hover {
-    box-shadow: none;
-}
-
-.modToolbar .btn-comments,
-.modToolbar .btn-measure,
-.modToolbar .btn-behaviour, 
-.modToolbar .btn-color,
-.modToolbar .btn-modules,
-.modToolbar .btn-fonts,
-.modToolbar .btn-delete,
-.modToolbar .btn-embed {
-    float: right;
-}
-
-.modToolbar .btn-last {
-    margin-right: 10px;
-}
-
-.modToolbar .btn-logo {
-    background: none;
-    background-image: url(/img/style-logo.png);
-    background-repeat: no-repeat;
-    background-position: 4px 3px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    width: 8px;
-}
-.modToolbar .title {
-    /*
-    font-family:'Lexia W01 Regular';
-    font-family:'Lexia W01 Thin';
-    font-family:'Lexia W01 XBold';
-    */
-    font-family:'Lexia W01 Regular', arial, sans-serif;
-    float: left;
-    display: block;
-    font-size: 17px;
-    padding: 7px 10px 0 10px;
-    width: 300px;
-    color: #444;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin: 5px 5px 5px 0;
-    border-radius: 2px;
-    -webkit-border-radius: 2px;
-
 }
