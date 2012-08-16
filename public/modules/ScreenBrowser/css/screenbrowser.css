@@ -233,8 +233,6 @@
 
 .modScreenBrowser .btn-create-project {
     display: inline-block;
-    padding: 20px 30px;
-    background: #d8684a;
     color: #FFF;
     margin: 40px 45px;
     font-family:'Lexia W01 Regular', helvetica, arial, sans-serif;
@@ -242,7 +240,10 @@
     text-decoration: none;
     -webkit-border-radius: 4px;
     border-radius: 4px;
+    background: #9BB61D;
+    padding: 14px 24px;
+    
 }
 .modScreenBrowser .btn-create-project:hover {
-    background: #5e2414;
+    color: #3a4507;
 }
