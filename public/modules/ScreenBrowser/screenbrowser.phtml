@@ -30,7 +30,7 @@ if ($project_id > 0) {
             <a href="<?= R ?>auth/?wipe=1">Logout</a>
         </div>
         <div class="avatar">
-            <img src="<?= $_SESSION['user']['twitter']->profile_image_url ?>" width="48" height="48" />
+            <img src="<?= str_replace('http:', 'https:', $_SESSION['user']['twitter']->profile_image_url) ?>" width="48" height="48" />
         </div>
     </div>
 </div>
