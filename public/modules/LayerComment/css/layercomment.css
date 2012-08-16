@@ -109,7 +109,7 @@
     -webkit-border-radius: 5px;
     resize: none;
     overflow: hidden;
-    border: 1px solid #FFF;
+    border: 1px solid #000;
 }
 
 .modLayerComment .def .edit .delete {
