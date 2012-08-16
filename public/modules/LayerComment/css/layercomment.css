@@ -114,20 +114,24 @@
 
 .modLayerComment .def .edit .delete {
     position: absolute;
-    top: -10px;
-    right: -10px;
+    top: 0px;
+    right: -25px;
     display: block;
     background: #d8684a;
-    color: white;
-    width: 25px;
-    height: 20px;
-    border-radius: 25px;
-    -webkit-border-radius: 25px;
+    color: #FFF;
+    width: 20px;
+    height: 17px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
     font-size: 13px;
     text-align: center;
     font-weight: bold;
-    padding-top: 5px;
+    padding-top: 3px;
     text-decoration: none;
+}
+
+.modLayerComment .def .edit .delete:hover {
+    color: #4c190c;
 }
 
 .modLayerComment .def .ui-resizable-resizing textarea {
