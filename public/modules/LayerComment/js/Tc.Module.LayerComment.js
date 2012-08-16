@@ -151,6 +151,7 @@
         
         addComment: function(data) {
             var $ctx = this.$ctx;
+            var that = this;
             var text = data.content ? data.content : '';
             var $delete = $('<a href="javascript:;" class="delete">X</a>');
             var def = $('<div class="def def-' + data.id + '"><a href="javascript:;" class="dot"><span class="nr">' + data.nr + '</span></a><div class="edit"><textarea>' + text + '</textarea></div></div>');
@@ -174,6 +175,7 @@
                     type: 'POST',
                     success: function(data){
                         def.remove();
+                        that.open = null;
                     }
                 });
             });
