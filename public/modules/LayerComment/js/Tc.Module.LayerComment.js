@@ -127,7 +127,7 @@
             $('.btn-delete').removeClass('delete');
             
             // Add data dots
-            $('.screen').on('dblclick', function(e) {
+            $('.screen').on('click', function(e) {
                 var offsetLeft = $('.modScreen').offset().left;
                 var offsetTop = $('.modScreen').offset().top;
                 var x = e.pageX - offsetLeft - 15;
@@ -139,6 +139,7 @@
                     dataType: 'json',
                     success: function(data){
                         that.addComment(data);
+                        $('.def-' + data.id + ' .dot').trigger('click');
                     }
                 });
             });
