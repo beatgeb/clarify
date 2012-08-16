@@ -1,7 +1,7 @@
 <a class="logo" href="<?= R ?>">Clarify</a>
 <?php
 $projects = array();
-if (is_array($_SESSION['user']['permissions']['project'])) {
+if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['user']['permissions']['project']) > 0) {
     $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') ORDER BY name ASC');
 }
 ?>
