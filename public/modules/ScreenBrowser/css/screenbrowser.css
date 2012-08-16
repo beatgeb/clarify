@@ -230,3 +230,19 @@
     -webkit-border-radius: 24px;
     display: block;
 }
+
+.modScreenBrowser .btn-create-project {
+    display: inline-block;
+    padding: 20px 30px;
+    background: #d8684a;
+    color: #FFF;
+    margin: 40px 45px;
+    font-family:'Lexia W01 Regular', helvetica, arial, sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+.modScreenBrowser .btn-create-project:hover {
+    background: #5e2414;
+}

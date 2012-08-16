@@ -10,6 +10,7 @@
     Tc.Module.ScreenBrowser = Tc.Module.extend({
         onBinding: function() {
             var project = this.$ctx.data('project'),
+                $ctx = this.$ctx,
                 that = this;
 
             $('.fileupload').fileupload({
@@ -85,6 +86,13 @@
                     $('.delete', $(this)).hide();
                 }
             );
+
+            $('.btn-create-project', $ctx).on('click', function() {
+                $(this).fadeOut('fast');
+                $('.add-project').slideToggle('fast', function() {
+                    $('.project-name').focus();
+                });
+            });
         }
     });
 })(Tc.$);
