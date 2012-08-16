@@ -1,6 +1,9 @@
 <a class="logo" href="<?= R ?>">Clarify</a>
 <?php
-$projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') ORDER BY name ASC');
+$projects = array();
+if (is_array($_SESSION['user']['permissions']['project'])) {
+    $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') ORDER BY name ASC');
+}
 ?>
 <h3>Projects<a class="btn-add-project" href="javascript:;">+ Create</a></h3>
 <div class="add-project">
