@@ -166,6 +166,7 @@
         addComment: function(data) {
             var $ctx = this.$ctx;
             var text = data.content ? data.content : '';
+            var $delete = $('<a href="javascript:;" class="delete">X</a>');
             var def = $('<div class="def def-' + data.id + '"><a href="javascript:;" class="dot"><span class="nr">' + data.nr + '</span></a><div class="edit"><textarea>' + text + '</textarea></div></div>');
             def.css('left', data.x + 'px');
             def.css('top', data.y + 'px');
@@ -176,7 +177,20 @@
                     height: data.h
                 });
             }
+            def.find('.edit').append($delete);
             $ctx.append(def);
+
+            // add click event on delete icon
+            $delete.on('click', function() {
+                $.ajax({
+                    url: "/api/comment/remove/" + data.id,
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function(data){
+                        def.remove();
+                    }
+                });
+            });
 
             // add blur event
             $('.edit > textarea', def).on('blur', function(e) {
@@ -212,8 +226,8 @@
             });
             $('.edit', def).resizable({
                 stop: function() {
-                    var w = $('.edit', def).width() - 22;
-                    var h = $('.edit', def).height() - 16;
+                    var w = $('.edit', def).width() - 31;
+                    var h = $('.edit', def).height() - 31;
                     $.ajax({
                         url: "/api/comment/resize/" + data.id + "/" + w + "/" + h,
                         dataType: 'json',

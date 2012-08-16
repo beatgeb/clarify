@@ -9,9 +9,9 @@
 
 .modLayerComment .def .dot {
     display: block;
-    border-radius: 30px;
-    width: 30px;
-    height: 30px;
+    border-radius: 25px;
+    width: 25px;
+    height: 25px;
     text-decoration: none;
     background-color: #060606;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(6, 6, 6)), to(rgb(43, 43, 43)));
@@ -35,10 +35,11 @@
     box-shadow: 0 0 10px #000;
     -webkit-transition-property: box-shadow;
     -webkit-transition-duration: 0.5s;
+    cursor: move;
 }
 
 .modLayerComment .def .dot-active {
-    background: orangered;
+    
 }
 
 .modLayerComment .ui-draggable-dragging .dot {
@@ -60,9 +61,9 @@
 .modLayerComment .def .nr {
     display: block;
     position: absolute;
-    width: 30px;
+    width: 25px;
     text-align: center;
-    top: 5px;
+    top: 3px;
     left: 0px;
     text-shadow: 0 -1px 0 #00708d;
     color: #FFF;
@@ -78,8 +79,8 @@
 
 .modLayerComment .def .edit {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 15px;
+    left: 15px;
     display: none;
     z-index: 1;
 }
@@ -89,25 +90,44 @@
 }
 
 .modLayerComment .def .edit textarea {
-    background-color: #212121;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(33, 33, 33)), to(rgb(50, 50, 50)));
-    background-image: -webkit-linear-gradient(top, rgb(33, 33, 33), rgb(50, 50, 50));
-    background-image: -moz-linear-gradient(top, rgb(33, 33, 33), rgb(50, 50, 50));
-    background-image: -o-linear-gradient(top, rgb(33, 33, 33), rgb(50, 50, 50));
-    background-image: -ms-linear-gradient(top, rgb(33, 33, 33), rgb(50, 50, 50));
-    background-image: linear-gradient(top, rgb(33, 33, 33), rgb(50, 50, 50));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#212121', EndColorStr='#323232');
+    background-color: #1d1e1e;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(29, 30, 30)), to(rgb(46, 46, 47)));
+    background-image: -webkit-linear-gradient(top, rgb(29, 30, 30), rgb(46, 46, 47));
+    background-image: -moz-linear-gradient(top, rgb(29, 30, 30), rgb(46, 46, 47));
+    background-image: -o-linear-gradient(top, rgb(29, 30, 30), rgb(46, 46, 47));
+    background-image: -ms-linear-gradient(top, rgb(29, 30, 30), rgb(46, 46, 47));
+    background-image: linear-gradient(top, rgb(29, 30, 30), rgb(46, 46, 47));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#1d1e1e', EndColorStr='#2e2e2f');
+
     color: #FFF;
     display: block;
-    padding: 7px 10px;
-    font-size: 14px;
+    padding: 15px 15px;
+    font-size: 13px;
     font-family: helvetica, sans-serif;
     line-height: 1.5;
-    border-radius: 3px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
     resize: none;
     overflow: hidden;
-    border: 2px solid #FFF;
-    box-shadow: 0 0 3px #000;
+    border: 1px solid #FFF;
+}
+
+.modLayerComment .def .edit .delete {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: block;
+    background: #d8684a;
+    color: white;
+    width: 25px;
+    height: 20px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    font-size: 13px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 5px;
+    text-decoration: none;
 }
 
 .modLayerComment .def .ui-resizable-resizing textarea {
