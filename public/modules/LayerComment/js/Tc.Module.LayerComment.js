@@ -11,6 +11,7 @@
         
         active: false,
         deletemode: false,
+        open: null,
         
         onBinding: function() { 
             var that = this;
@@ -62,38 +63,17 @@
             
             $('.dot').live('click', function(e) {
                 var container = $(this).parent();
-                if (that.deletemode) {
-                    $.ajax({
-                        url: "/api/comment/remove/" + container.data('id'),
-                        dataType: 'json',
-                        success: function(data){
-                            $('.edit', container).fadeOut('fast');
-                            $('.dot', container).fadeOut();
-                        }
-                    });
-                    return;
-                }
                 var edit = $('.edit', container);
+                
                 if (edit.is(':visible')) {
-                    /*
-                    // save changes
-                    var content = $('textarea', edit).val();
-                    $.ajax({
-                        url: "/api/comment/update/" + container.data('id'),
-                        dataType: 'json',
-                        type: 'POST',
-                        data: "content=" + content,
-                        success: function(data){
-                            // NOOP
-                        }
-                    });
-                    edit.toggle();
-                    container.css('z-index', 3);
-                    */
+                    edit.hide();
+                    $(this).parent().css('z-index', 1);
+                    that.open = null;
                 } else {
                     edit.toggle();
                     edit.find('textarea').focus();
                     $(this).parent().css('z-index', 10);
+                    that.open = edit;
                 }
             });
         },
@@ -128,6 +108,11 @@
             
             // Add data dots
             $('.screen').on('click', function(e) {
+                if (that.open) {
+                    that.open.hide();
+                    that.open = null;
+                    return false;
+                }
                 var offsetLeft = $('.modScreen').offset().left;
                 var offsetTop = $('.modScreen').offset().top;
                 var x = e.pageX - offsetLeft - 15;
