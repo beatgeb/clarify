@@ -7,6 +7,31 @@
     border-bottom: 1px solid #DDD;
 }
 
+.modScreenBrowser .head:hover .actions {
+    display: block;
+}
+
+.modScreenBrowser .actions {
+    display: none;
+    float: left;
+    padding-top: 36px;
+}
+
+.modScreenBrowser .actions a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 8px;
+    color: #666;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.modScreenBrowser .actions a:hover {
+    background: #EEE;
+    border: 1px solid transparent;
+}
+
 .modScreenBrowser h2 {
     float: left;
     font-family:'Lexia W01 Thin', helvetica, arial, sans-serif;

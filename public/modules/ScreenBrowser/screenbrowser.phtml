@@ -33,6 +33,14 @@ $colors = $db->data("
 ?>
 <div class="head">
     <h2><?= $project_id > 0 ? $project['name'] : 'Create or Choose a Project' ?></h2>
+    <? if ($project_id > 0) { ?>
+    <div class="actions">
+        <? if (has_permission($project_id, 'ADMIN')) { ?>
+        <a href="javascript:;" class="btn-rename-project" data-project="<?= $project_id ?>" data-name="<?= $project['name'] ?>">Rename</a>
+        <a href="javascript:;" class="btn-delete-project" data-project="<?= $project_id ?>">Delete</a>
+        <? } ?>
+    </div>
+    <? } ?>
     <div class="usermeta">
         <div class="info">
             <p class="username"><?= user('name') ?></p>

@@ -28,10 +28,6 @@ if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['u
 <h3><?= $project['name'] ?></h3>
 <ul>
     <li><a href="<?= R ?>guide/<?= $project_id ?>">Styleguide (Draft)</a></li>
-    <? if (has_permission($project_id, 'ADMIN')) { ?>
-    <li><a href="javascript:;" data-project="<?= $project_id ?>" data-name="<?= $project['name'] ?>" class="btn-rename-project">Rename Project</a></li>
-    <li><a href="javascript:;" data-project="<?= $project_id ?>" class="btn-delete-project">Delete Project</a></li>
-    <? } ?>
 </ul>
 
 <?php

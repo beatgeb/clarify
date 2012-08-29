@@ -30,50 +30,7 @@
             $('.add-collaborator-submit', $ctx).on('click', function() {
                 that.addCollaborator();
             });
-            $('.btn-delete-project').on('click', function() {
-                var project = $(this).data('project');
-                $('.modal-confirm h3').text('Delete Project');
-                $('.modal-confirm p').html('Do you really want to delete this project with all of its data?');
-                $('.modal-confirm .btn-confirm').text('Delete Project');
-                $('.modal-confirm .btn-confirm').on('click', function() {
-                    $.ajax({
-                        url: "/api/project/delete/" + project,
-                        dataType: 'json',
-                        type: 'POST',
-                        success: function(data){
-                            location.href='/';
-                        }
-                    });
-                    e.stopPropagation();
-                    return false;
-                });
-                $('.modal-confirm').modal();
-            });
-            $('.btn-rename-project').on('click', function() {
-                var project = $(this).data('project');
-                var name = $(this).data('name');
-                $('.modal-body').find('input').remove();
-                $('.modal-confirm h3').text('Rename Project');
-                $('.modal-confirm p').html('New title for this project:');
-                var input = $('<input class="fld" type="text" value="' + name + '" />');
-                $('.modal-body').append(input);
-                $('.modal-confirm .btn-confirm').text('Rename Project');
-                $('.modal-confirm .btn-confirm').on('click', function() {
-                    $.ajax({
-                        url: "/api/project/setting/" + project + "/name/" + encodeURIComponent(input.val()),
-                        dataType: 'json',
-                        type: 'POST',
-                        success: function(data){
-                            location.reload();
-                        }
-                    });
-                    e.stopPropagation();
-                    return false;
-                });
-                $('.modal-confirm').modal();
-                input.focus();
-                return false;
-            });
+            
             $('.edit-collaborator a', this.$ctx).on('click', function() {
                 var id = $(this).parent().data('id');
                 $.ajax({
