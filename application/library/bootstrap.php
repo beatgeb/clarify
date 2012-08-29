@@ -33,6 +33,7 @@ require LIBRARY . 'api.php';
 require LIBRARY . 'db.php';
 require LIBRARY . 'session.php';
 require LIBRARY . 'auth.php';
+require LIBRARY . 'cache.php';
 require LIBRARY . 'thirdparty/postmark/Postmark.php';
 
 // define additional constants
@@ -54,11 +55,15 @@ $db = new Database(
 );
 
 global $cache;
-$cache = new Memcache;
-$cache->connect(
-    config('memcached.server.name'),
-    config('memcached.server.port')
-);
+if (class_exists('Memcache')) {
+	$cache = new Memcache;
+	$cache->connect(
+	    config('memcached.server.name'),
+	    config('memcached.server.port')
+	);
+} else {
+	$cache = new Cache;
+}
 
 // set timezone to UTC
 date_default_timezone_set('UTC');

@@ -21,6 +21,15 @@ if ($project_id > 0) {
     ');
     $project = $db->single("SELECT name FROM project WHERE id = '" . $project_id . "'");
 }
+
+// load color library for this project
+$colors = $db->data("
+    SELECT id, hex, name, name_css 
+    FROM project_color 
+    WHERE project = '" . $project_id . "' 
+    ORDER BY hue ASC
+");
+
 ?>
 <div class="head">
     <h2><?= $project_id > 0 ? $project['name'] : 'Create or Choose a Project' ?></h2>
@@ -30,11 +39,19 @@ if ($project_id > 0) {
             <a href="<?= R ?>auth/?wipe=1">Logout</a>
         </div>
         <div class="avatar">
-            <img src="<?= str_replace('http:', 'https:', $_SESSION['user']['twitter']->profile_image_url) ?>" width="48" height="48" />
+            <img src="<?= $_SESSION['user']['twitter']->profile_image_url ?>" width="48" height="48" />
         </div>
     </div>
 </div>
 <? if ($project_id > 0) { ?>
+<div class="colors">
+    <? foreach ($colors as $color) { ?>
+    <a href="javascript:;" rel="tooltip" title="<?= $color['name'] ?> – #<?= $color['hex'] ?>" data-less="@<?= $color['name_css'] ?>: #<?= $color['hex'] ?>;" data-sass="$<?= $color['name_css'] ?>: #<?= $color['hex'] ?>;" data-hex="#<?= $color['hex'] ?>" class="color color-<?= $color['id'] ?>" style="background: #<?= $color['hex'] ?>"></a>
+    <? } ?>
+    <a href="javascript:;" class="export btn-export-css">.LESS</a>
+    <a href="javascript:;" class="export btn-export-sass">.SASS</a>
+    <a href="<?= R ?>api/color/export/<?= $project_id ?>/aco" class="export btn-export-aco">.ACO</a>
+</div>
 <ul>
     <? if (has_permission($project_id, 'EDIT')) { ?>
     <li class="create">

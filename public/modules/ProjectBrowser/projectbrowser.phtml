@@ -15,7 +15,9 @@ if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['u
 <? } ?>
 <ul>
     <? foreach ($projects as $p) { ?>
-    <? $notifications = $p['id'] == 5 ? '<span class="notifications">5</span>' : ''; ?>
+    <? 
+    //$notifications = $p['id'] == 5 ? '<span class="notifications">5</span>' : ''; 
+    ?>
     <li <?= $p['id'] == $project_id ? 'class="active"': '' ?>>
         <a href="<?= R ?>project/<?= $p['creator'] ?>/<?= $p['slug'] ?>/"><?= $p['name'] ?> <span class="count"><?= $p['screen_count'] ?></span><?= $notifications ?></a>
     </li>
@@ -31,17 +33,6 @@ if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['u
     <li><a href="javascript:;" data-project="<?= $project_id ?>" class="btn-delete-project">Delete Project</a></li>
     <? } ?>
 </ul>
-<!-- Color Library -->
-<h3>Color Library<a class="btn-export-aco" href="<?= R ?>api/color/export/<?= $project_id ?>/aco">.ACO</a><a class="btn-export-sass" href="javascript:;">.SCSS</a><a class="btn-export-css" href="javascript:;">.LESS</a></h3>
-<? $colors = $db->data("SELECT id, hex, name, name_css FROM project_color WHERE project = '" . $project_id . "' ORDER BY hue ASC"); ?>
-<? if (sizeof($colors) == 0) { ?>
-    <div class="notice">You don't have any colors yet.</div>
-<? } ?>
-<div class="colors">
-    <? foreach ($colors as $color) { ?>
-    <a href="javascript:;" rel="tooltip" title="<?= $color['name'] ?> – #<?= $color['hex'] ?>" data-less="@<?= $color['name_css'] ?>: #<?= $color['hex'] ?>;" data-sass="$<?= $color['name_css'] ?>: #<?= $color['hex'] ?>;" data-hex="#<?= $color['hex'] ?>" class="color color-<?= $color['id'] ?>" style="background: #<?= $color['hex'] ?>"><?= $color['hex'] ?></a>
-    <? } ?>
-</div>
 
 <?php
 $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $project_id . "' ORDER BY name ASC");
