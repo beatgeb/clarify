@@ -88,7 +88,7 @@ foreach ($comments as $comment) {
             <h3><?= $font['name'] ?> - .<?= $font['name_css'] ?></h3>
             <div class="fonts">
                 <div class="font">
-                    <div class="preview" style="font-family: <?= $font['family'] ?>; font-size: <?= $font['size'] ?>px; font-weight: <?= $font['weight'] ?>; font-style: <?= $font['style'] ?>;">
+                    <div class="preview" style="font-family: <?= $font['family'] ?>; font-size: <?= $font['size'] ?>px; font-weight: <?= $font['weight'] ?>; font-style: <?= $font['style'] ?>; color: #<?= $color['hex'] ?>; <?= $font['decoration'] != null ? 'text-decoration:' . $font['decoration'] .';' : '' ?>">
                     <?= $font['name'] ?>, <?= $font['family'] ?>, <?= $font['size'] ?>px
                     </div>
                 </div>
