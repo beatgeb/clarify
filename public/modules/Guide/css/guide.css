@@ -198,3 +198,25 @@
     font-style: normal;
     color: #333;
 }
+
+.modGuide .module {
+    overflow: hidden;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    padding: 0 30px 15px 30px;
+}
+
+.modGuide .module .screenshot {
+    float: left;
+    width: 200px;
+}
+
+.modGuide .module .screenshot img {
+    border: 1px solid #EEE;
+    padding: 10px;
+}
+
+.modGuide .module .meta {
+    margin-left: 200px;
+    font-size: 18px;
+}

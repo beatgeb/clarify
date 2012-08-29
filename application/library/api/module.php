@@ -93,7 +93,7 @@ switch ($action) {
 
         // crop module thumbnail
         require LIBRARY . 'image.php';
-        $path =  'upload/modules/'.$screen['project'].'/'.md5($id.config('security.general.hash')).'.'.$screen['ext'];
+        $path =  'upload/modules/'.$screen['project'].'/'.md5($id.config('security.general.hash')).'.png';
         cropScreen($screen['id'], array( 'x' => $x, 'y' => $y, 'width' => $width, 'height' => $height), array('width' => 150, 'height' => 120), $path);
         $thumbnail = R .$path;
 
@@ -145,7 +145,7 @@ switch ($action) {
         $screen = $db->single("SELECT id, project, ext FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
 
         require LIBRARY . 'image.php';
-        $path =  'upload/modules/'.$screen['project'].'/'.md5($module.config('security.general.hash')).'.'.$screen['ext'];
+        $path =  'upload/modules/'.$screen['project'].'/'.md5($module.config('security.general.hash')).'.png';
         unlink(TERRIFIC . $path);
         cropScreen($screen['id'], array( 'x' => $x, 'y' => $y, 'width' => $width, 'height' => $height), array('width' => 150, 'height' => 120), $path);
         $thumbnail = R .$path;

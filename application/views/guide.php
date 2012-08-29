@@ -22,6 +22,7 @@ $screens = $db->data("SELECT id, title, description, code FROM screen WHERE proj
 $colors = $db->data("SELECT id, hex, name, name_css, r, g, b, alpha FROM project_color WHERE project = '" . $project['id'] . "' ORDER BY hue ASC", "id");
 $comments = $db->data("SELECT d.id, d.content, d.nr, d.layer, d.screen FROM comment d LEFT JOIN screen s ON s.id = d.screen WHERE s.project = '" . $project['id'] . "'");
 $fonts = $db->data("SELECT * FROM project_font WHERE project = " . $project_id);
+$modules = $db->data("SELECT * FROM project_module WHERE project = " . $project_id);
 $layers = array();
 foreach ($comments as $comment) {
     $layers[$comment['screen']][] = $comment;
@@ -42,9 +43,9 @@ foreach ($comments as $comment) {
         </div>
         <h1><?= $project['name'] ?></h1>
         <div class="chapter">
-            <h2>1. Screens</h2>
+            <h2>Screens</h2>
             <? foreach ($screens as $index => $screen) { ?>
-            <h3>1.<?= $index + 1 ?>. <?= $screen['title'] ?></h3>
+            <h3><?= $index + 1 ?>. <?= $screen['title'] ?></h3>
             <div class="screen"><script type="text/javascript" src="<?= R ?>embed/<?= $screen['code'] ?>/580"></script></div>
             <? if (isset($layers[$screen['id']])) { ?>
             <ul class="definitions">
@@ -61,8 +62,24 @@ foreach ($comments as $comment) {
             <p><?= $screen['description'] ?></p>
             <? } ?>
         </div>
+
+        <? if (sizeof($modules) > 0) { ?>
         <div class="chapter pagebreak">
-            <h2>2. Colors</h2>
+            <h2>Modules</h2>
+            <div class="modules">
+                <? foreach ($modules as $index => $module) { ?>
+                <h3><?= $index + 1 ?>. <?= $module['name'] ?></h3>
+                <div class="module">
+                    <div class="screenshot"><img src="<?= R .'upload/modules/' . $project_id .'/'. md5($module['id'] . config('security.general.hash')) ?>.png" /></div>
+                    <div class="meta">&nbsp;</div>
+                </div>
+                <? } ?>
+            </div>
+        </div>
+        <? } ?>
+
+        <div class="chapter pagebreak">
+            <h2>Colors</h2>
             <h3>Palette</h3>
             <div class="colors">
             <? foreach ($colors as $color) { ?>
@@ -80,9 +97,10 @@ foreach ($comments as $comment) {
             <? } ?>
             </div>
         </div>
+
         <? if (sizeof($fonts) > 0) { ?>
         <div class="chapter pagebreak">
-            <h2>4. Fonts</h2>
+            <h2>Fonts</h2>
             <? foreach ($fonts as $font) { ?>
             <? $color = $colors[$font['color']]; ?>
             <h3><?= $font['name'] ?> - .<?= $font['name_css'] ?></h3>

@@ -2,7 +2,7 @@
 <? foreach ($modules as $module) { ?>
 <a href="javascript:;" rel="tooltip" title="<?= $module['name'] ?>" class="module module-<?= $module['id'] ?>" data-id="<?= $module['id'] ?>" data-name="<?= $module['name'] ?>">
     <div class="rename"><span class="desc"><?= $module['name'] ?></span> <i class="icon icon-white icon-pencil"></i></div>
-    <img src="<?= R .'upload/modules/' . $screen['project'] .'/'. md5($module['id'] . config('security.general.hash')) ?>.<?= $screen['ext'] ?>" />
+    <img src="<?= R .'upload/modules/' . $screen['project'] .'/'. md5($module['id'] . config('security.general.hash')) ?>.png" />
 </a>
 <? } ?>
 </div>
