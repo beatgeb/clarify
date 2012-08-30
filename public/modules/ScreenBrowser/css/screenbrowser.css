@@ -28,7 +28,8 @@
 }
 
 .modScreenBrowser .actions a:hover {
-    background: #EEE;
+    background: #d8684a;
+    color: #FFF;
     border: 1px solid transparent;
 }
 

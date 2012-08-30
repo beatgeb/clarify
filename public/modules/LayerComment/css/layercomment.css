@@ -117,21 +117,21 @@
     top: 0px;
     right: -25px;
     display: block;
-    background: #d8684a;
+    background: #FFF;
     color: #FFF;
-    width: 20px;
-    height: 17px;
+    width: 22px;
+    height: 19px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     font-size: 13px;
     text-align: center;
     font-weight: bold;
-    padding-top: 3px;
+    padding-top: 4px;
     text-decoration: none;
 }
 
 .modLayerComment .def .edit .delete:hover {
-    color: #4c190c;
+    background: #EEE;
 }
 
 .modLayerComment .def .ui-resizable-resizing textarea {

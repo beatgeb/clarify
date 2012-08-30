@@ -153,7 +153,7 @@
             var $ctx = this.$ctx;
             var that = this;
             var text = data.content ? data.content : '';
-            var $delete = $('<a href="javascript:;" class="delete">X</a>');
+            var $delete = $('<a href="javascript:;" class="delete"><i class="icon icon-trash"></i></a>');
             var def = $('<div class="def def-' + data.id + '"><a href="javascript:;" class="dot"><span class="nr">' + data.nr + '</span></a><div class="edit"><textarea>' + text + '</textarea></div></div>');
             def.css('left', data.x + 'px');
             def.css('top', data.y + 'px');
