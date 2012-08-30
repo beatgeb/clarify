@@ -220,3 +220,11 @@
     margin-left: 200px;
     font-size: 18px;
 }
+
+.modGuide .code {
+    background: #fffae6;
+    padding: 15px;
+    font-size: 14px;
+    font-family: menlo, monospace;
+    color: #555;
+}

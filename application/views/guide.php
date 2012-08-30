@@ -71,7 +71,7 @@ foreach ($comments as $comment) {
                 <h3><?= $index + 1 ?>. <?= $module['name'] ?></h3>
                 <div class="module">
                     <div class="screenshot"><img src="<?= R .'upload/modules/' . $project_id .'/'. md5($module['id'] . config('security.general.hash')) ?>.png" /></div>
-                    <div class="meta">&nbsp;</div>
+                    <div class="meta"><div class="code">&lt;div class="mod mod-<?= slug($module['name']) ?>"&gt;&lt;/div&gt;</div></div>
                 </div>
                 <? } ?>
             </div>

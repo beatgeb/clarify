@@ -269,7 +269,7 @@
                     var x = e.pageX - offset.left;
                     var y = e.pageY - offset.top;
                     $.ajax({
-                        url: "/api/module/add/" + $('.modScreen').data('screen') + "/" + x + "/" + y + "/150/250/" + module.data('id'),
+                        url: "/api/module/add/" + $('.modScreen').data('screen') + "/" + x + "/" + y + "/100/100/" + module.data('id'),
                         dataType: 'json',
                         success: function(data){
                             that.addModule(data.id, data.module, data.x, data.y, data.width, data.height, data.name);

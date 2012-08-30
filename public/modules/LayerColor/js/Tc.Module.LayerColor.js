@@ -121,8 +121,7 @@
             element.css({
                 left: color.x + 'px',
                 top: color.y + 'px',
-                position: 'absolute',
-                cursor: 'auto'
+                position: 'absolute'
             });
             $('.p', element).css('backgroundColor', '#' + color.hex);
 

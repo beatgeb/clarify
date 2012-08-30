@@ -25,6 +25,7 @@
     position: absolute;
     display: none;
     white-space: nowrap;
+    cursor: pointer;
 }
 .modLayerColor .color:hover {
     background-color: #282828;
@@ -55,4 +56,5 @@
 }
 .modLayerColor .color .meta span {
     font-weight: bold;
+    text-transform: uppercase;
 }
