@@ -1,3 +1,31 @@
+
+/*@import url("http://fast.fonts.com/t/1.css?apiType=css&projectid=9803a5bf-fbdf-44f6-a33f-29a977572db6");*/
+@font-face{
+font-family:"Lexia W01 Regular";
+src:url("/fonts/4f6dd601-12e7-4596-9157-ed04cbe40c3c.eot?iefix") format("eot");}
+@font-face{
+font-family:"Lexia W01 Regular";
+src:url("/fonts/4f6dd601-12e7-4596-9157-ed04cbe40c3c.eot?iefix");
+src:url("/fonts/f3f94fe8-54cf-4308-bea4-5b768d039460.woff") format("woff"),url("/fonts/052b446f-dcf0-495f-b1f4-160977abfd1e.ttf") format("truetype"),url("/fonts/cb8423f8-f29b-4b08-8343-87d76e5283d1.svg#cb8423f8-f29b-4b08-8343-87d76e5283d1") format("svg");
+}
+@font-face{
+font-family:"Lexia W01 Thin";
+src:url("/fonts/c4ab3628-ef19-484d-affd-197ec1162fb3.eot?iefix") format("eot");}
+@font-face{
+font-family:"Lexia W01 Thin";
+src:url("/fonts/c4ab3628-ef19-484d-affd-197ec1162fb3.eot?iefix");
+src:url("/fonts/9f3fda86-0b15-44c5-b013-da8257e17374.woff") format("woff"),url("/fonts/ceed237c-543c-4cad-9474-9146ce18b9c8.ttf") format("truetype"),url("/fonts/85c7d1cf-e2de-4515-9f49-d98d7b63f3e3.svg#85c7d1cf-e2de-4515-9f49-d98d7b63f3e3") format("svg");
+}
+@font-face{
+font-family:"Lexia W01 XBold";
+src:url("/fonts/9b3e3ec6-a9c3-4ba1-8704-45b915aa4e76.eot?iefix") format("eot");}
+@font-face{
+font-family:"Lexia W01 XBold";
+src:url("/fonts/9b3e3ec6-a9c3-4ba1-8704-45b915aa4e76.eot?iefix");
+src:url("/fonts/b447db2b-d01a-47d7-a62c-b58c621f5d74.woff") format("woff"),url("/fonts/4a3d9d9a-e637-4df5-a672-d9b118209da7.ttf") format("truetype"),url("/fonts/23daf979-a562-4d96-ac47-65727604d88d.svg#23daf979-a562-4d96-ac47-65727604d88d") format("svg");
+}
+
+
 .modal h3 {
     line-height: 27px;
     font-size: 18px;
