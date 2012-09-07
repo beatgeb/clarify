@@ -6,7 +6,7 @@
     <div class="form">
         <? if ($route[2] > 0) { ?>
         <? $_SESSION['user']['invitation_code'] = intval($route[2]); ?>
-        <input class="code" type="text" placeholder="Invitation Code" value="<?= intval($route[2]) ?>" />
+        <input class="code" type="text" placeholder="Invitation Code" value="<?php print intval($route[2]) ?>" />
         <a href="javascript:;" class="twitter">Create Account<span>with Twitter</span></a>
         <? } else { ?>
         <a href="javascript:;" class="twitter">Authenticate<span>with Twitter</span></a>

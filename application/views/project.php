@@ -22,14 +22,14 @@ permission($project_id, 'VIEW');
 <!DOCTYPE html>
 <html class="mod modLayout skinLayoutBrowser">
 <head>
-    <title><?= $project['name'] ?> - Clarify</title>
+    <title><?php print $project['name'] ?> - Clarify</title>
     <? require 'partials/head.php' ?>
 </head>
 <body>
-    <div class="mod modProjectBrowser" data-project="<?= $project_id ?>">
+    <div class="mod modProjectBrowser" data-project="<?php print $project_id ?>">
         <? require TERRIFIC . 'modules/ProjectBrowser/projectbrowser.phtml'; ?>
     </div>
-    <div class="mod modScreenBrowser" data-project="<?= $project_id ?>">
+    <div class="mod modScreenBrowser" data-project="<?php print $project_id ?>">
         <? require TERRIFIC . 'modules/ScreenBrowser/screenbrowser.phtml'; ?>
     </div>
     <? require 'partials/foot.php'; ?>

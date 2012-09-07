@@ -43,16 +43,16 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
 <!DOCTYPE html>
 <html class="mod modLayout skinLayoutScreen">
 <head>
-    <title><?= $screen['title'] ?> - Clarify</title>
+    <title><?php print $screen['title'] ?> - Clarify</title>
     <? require 'partials/head.php'; ?>
 </head>
 <body>
     <div class="mod modScreen" 
-         data-screen="<?= $screen['id'] ?>" 
+         data-screen="<?php print $screen['id'] ?>" 
          data-layer="1" 
-         data-width="<?= $screen['width'] ?>"
-         data-height="<?= $screen['height'] ?>"
-         data-image="<?= $screen['image'] ?>">
+         data-width="<?php print $screen['width'] ?>"
+         data-height="<?php print $screen['height'] ?>"
+         data-image="<?php print $screen['image'] ?>">
         
         <div class="screen"></div>
         <div class="mod modLayerComment"></div>

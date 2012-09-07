@@ -1,5 +1,5 @@
 <div class="section section-nav">
-<a class="button btn-screen" href="<?= R ?>project/<?= $screen['project_creator'] ?>/<?= $screen['project_slug'] ?>/"><i></i><div class="tt">Back<i></i></div></a>
+<a class="button btn-screen" href="<?php print R ?>project/<?php print $screen['project_creator'] ?>/<?php print $screen['project_slug'] ?>/"><i></i><div class="tt">Back<i></i></div></a>
 </div>
 <div class="section section-tool">
 <a class="button btn-comments" href="javascript:;"><i></i><div class="tt">Comments<i></i></div></a>
@@ -9,7 +9,7 @@
 </div>
 <div class="section section-settings">
 <? if (has_permission($screen['project'], 'ADMIN')) { ?>
-<a class="button btn-embed" href="javascript:;" data-screen="<?= $screen['id'] ?>" data-url="<?= config('application.domain') . R . 'embed/' . $screen['code'] . '/800' ?>"><i></i><div class="tt">Embed &amp; Share<i></i></div>
+<a class="button btn-embed" href="javascript:;" data-screen="<?php print $screen['id'] ?>" data-url="<?php print config('application.domain') . R . 'embed/' . $screen['code'] . '/800' ?>"><i></i><div class="tt">Embed &amp; Share<i></i></div>
 	<? if ($screen['embeddable']) { ?>
 	<span class="enabled">&#9679;</span>
 	<? } ?>

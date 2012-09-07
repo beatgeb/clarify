@@ -1,3 +1,3 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="<?= R ?>css/css.php" />
-<link rel="icon" href="<?= R ?>img/favicon.png" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="<?php print R ?>css/css.php" />
+<link rel="icon" href="<?php print R ?>img/favicon.png" type="image/x-icon" />

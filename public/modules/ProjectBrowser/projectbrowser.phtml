@@ -1,4 +1,4 @@
-<a class="logo" href="<?= R ?>">Clarify</a>
+<a class="logo" href="<?php print R ?>">Clarify</a>
 <?php
 $projects = array();
 if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['user']['permissions']['project']) > 0) {
@@ -18,16 +18,16 @@ if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['u
     <? 
     //$notifications = $p['id'] == 5 ? '<span class="notifications">5</span>' : ''; 
     ?>
-    <li <?= $p['id'] == $project_id ? 'class="active"': '' ?>>
-        <a href="<?= R ?>project/<?= $p['creator'] ?>/<?= $p['slug'] ?>/"><?= $p['name'] ?> <span class="count"><?= $p['screen_count'] ?></span><?= $notifications ?></a>
+    <li <?php print $p['id'] == $project_id ? 'class="active"': '' ?>>
+        <a href="<?php print R ?>project/<?php print $p['creator'] ?>/<?php print $p['slug'] ?>/"><?php print $p['name'] ?> <span class="count"><?php print $p['screen_count'] ?></span><?php print $notifications ?></a>
     </li>
     <? } ?>
 </ul>
 <!-- Project Settings -->
 <? if ($project_id > 0) { ?>
-<h3><?= $project['name'] ?></h3>
+<h3><?php print $project['name'] ?></h3>
 <ul>
-    <li><a href="<?= R ?>guide/<?= $project_id ?>">Generate Styleguide</a></li>
+    <li><a href="<?php print R ?>guide/<?php print $project_id ?>">Generate Styleguide</a></li>
 </ul>
 
 <?php
@@ -36,10 +36,10 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
 <h3>Module Library<? if (sizeof($modules) > 0) { ?><a href="javascript:;" class="btn-export-terrific">&#8677; Terrific</a><? } ?></h3>
 <div class="modules">
     <? foreach ($modules as $module) { ?>
-    <a href="javascript:;" data-module="<?= $module['name'] ?>" data-terrific="terrific:generate:module <?= $module['name'] ?>"></a>
+    <a href="javascript:;" data-module="<?php print $module['name'] ?>" data-terrific="terrific:generate:module <?php print $module['name'] ?>"></a>
     <? } ?>
 </div>
-<div class="notice">You have <?= sizeof($modules) ?> modules in your library.</div>
+<div class="notice">You have <?php print sizeof($modules) ?> modules in your library.</div>
 <? if (has_permission($project_id, 'ADMIN')) { ?>
 <?php
 $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE creator = ' . userid() . ' AND project = ' . $project_id . ' ORDER BY email ASC');
@@ -49,7 +49,7 @@ $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE cre
     <a class="btn-add-collaborator" href="javascript:;">+ Add</a>
 </h3>
 <div class="add-collaborator">
-    <input class="collaborator-email" data-project-id="<?= $project_id ?>" type="text" placeholder="E-Mail" />
+    <input class="collaborator-email" data-project-id="<?php print $project_id ?>" type="text" placeholder="E-Mail" />
     <input class="add-collaborator-submit" type="button" value="Add User" />
 </div>
 <? if (sizeof($collaborators) == 0) { ?>
@@ -58,9 +58,9 @@ $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE cre
 <ul class="collaborators">
     <? foreach ($collaborators as $c) { ?>
     <li>
-        <div class="edit-collaborator" data-id="<?= $c['id'] ?>" href="#">
-            <img src="<?= gravatar($c['email'], 24) ?>" width="24" height="24" />
-            <span><?= $c['email'] ?></span>
+        <div class="edit-collaborator" data-id="<?php print $c['id'] ?>" href="#">
+            <img src="<?php print gravatar($c['email'], 24) ?>" width="24" height="24" />
+            <span><?php print $c['email'] ?></span>
             <a href="javascript:;" class="remove">&times;</a>
         </div>
     </li>

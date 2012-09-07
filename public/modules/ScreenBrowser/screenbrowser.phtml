@@ -32,33 +32,33 @@ $colors = $db->data("
 
 ?>
 <div class="head">
-    <h2><?= $project_id > 0 ? $project['name'] : 'Create or Choose a Project' ?></h2>
+    <h2><?php print $project_id > 0 ? $project['name'] : 'Create or Choose a Project' ?></h2>
     <? if ($project_id > 0) { ?>
     <div class="actions">
         <? if (has_permission($project_id, 'ADMIN')) { ?>
-        <a href="javascript:;" class="btn-rename-project" data-project="<?= $project_id ?>" data-name="<?= $project['name'] ?>">Rename</a>
-        <a href="javascript:;" class="btn-delete-project" data-project="<?= $project_id ?>">Delete</a>
+        <a href="javascript:;" class="btn-rename-project" data-project="<?php print $project_id ?>" data-name="<?php print $project['name'] ?>">Rename</a>
+        <a href="javascript:;" class="btn-delete-project" data-project="<?php print $project_id ?>">Delete</a>
         <? } ?>
     </div>
     <? } ?>
     <div class="usermeta">
         <div class="info">
-            <p class="username"><?= user('name') ?></p>
-            <a href="<?= R ?>auth/?wipe=1">Logout</a>
+            <p class="username"><?php print user('name') ?></p>
+            <a href="<?php print R ?>auth/?wipe=1">Logout</a>
         </div>
         <div class="avatar">
-            <img src="<?= $_SESSION['user']['twitter']->profile_image_url ?>" width="48" height="48" />
+            <img src="<?php print $_SESSION['user']['twitter']->profile_image_url ?>" width="48" height="48" />
         </div>
     </div>
 </div>
 <? if ($project_id > 0) { ?>
 <div class="colors">
     <? foreach ($colors as $color) { ?>
-    <a href="javascript:;" rel="tooltip" title="<?= $color['name'] ?> – #<?= $color['hex'] ?>" data-less="@<?= $color['name_css'] ?>: #<?= $color['hex'] ?>;" data-sass="$<?= $color['name_css'] ?>: #<?= $color['hex'] ?>;" data-hex="#<?= $color['hex'] ?>" class="color color-<?= $color['id'] ?>" style="background: #<?= $color['hex'] ?>"></a>
+    <a href="javascript:;" rel="tooltip" title="<?php print $color['name'] ?> – #<?php print $color['hex'] ?>" data-less="@<?php print $color['name_css'] ?>: #<?php print $color['hex'] ?>;" data-sass="$<?php print $color['name_css'] ?>: #<?php print $color['hex'] ?>;" data-hex="#<?php print $color['hex'] ?>" class="color color-<?php print $color['id'] ?>" style="background: #<?php print $color['hex'] ?>"></a>
     <? } ?>
     <a href="javascript:;" class="export btn-export-css">.LESS</a>
     <a href="javascript:;" class="export btn-export-sass">.SASS</a>
-    <a href="<?= R ?>api/color/export/<?= $project_id ?>/aco" class="export btn-export-aco">.ACO</a>
+    <a href="<?php print R ?>api/color/export/<?php print $project_id ?>/aco" class="export btn-export-aco">.ACO</a>
 </div>
 <ul>
     <? if (has_permission($project_id, 'EDIT')) { ?>
@@ -69,22 +69,22 @@ $colors = $db->data("
     </li>
     <? } ?>
     <? foreach ($screens as $screen) { ?>
-    <li class="screen screen-<?= $screen['id'] ?>">
-        <a class="image" href="<?= R ?>screen/<?= $screen['id'] ?>">
-            <img src="/upload/screens/<?= $project_id ?>/thumbnails/<?= md5($screen['id'] .config('security.general.hash')) ?>.<?= $screen['ext'] ?>" width="200" alt="" />
+    <li class="screen screen-<?php print $screen['id'] ?>">
+        <a class="image" href="<?php print R ?>screen/<?php print $screen['id'] ?>">
+            <img src="/upload/screens/<?php print $project_id ?>/thumbnails/<?php print md5($screen['id'] .config('security.general.hash')) ?>.<?php print $screen['ext'] ?>" width="200" alt="" />
             <div class="info">
-                <i class="icon-white icon-comment"></i> <span<?= $screen['count_comment'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_comment'] ?></span>
-                <i class="icon-white icon-resize-vertical"></i> <span<?= $screen['count_measure'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_measure'] ?></span>
-                <i class="icon-white icon-tint"></i> <span<?= $screen['count_color'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_color'] ?></span>
-                <i class="icon-white icon-font"></i> <span<?= $screen['count_font'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_font'] ?></span>
-                <i class="icon-white icon-th-large"></i> <span<?= $screen['count_module'] == 0 ? ' class="zero"' : '' ?>><?= $screen['count_module'] ?></span>
+                <i class="icon-white icon-comment"></i> <span<?php print $screen['count_comment'] == 0 ? ' class="zero"' : '' ?>><?php print $screen['count_comment'] ?></span>
+                <i class="icon-white icon-resize-vertical"></i> <span<?php print $screen['count_measure'] == 0 ? ' class="zero"' : '' ?>><?php print $screen['count_measure'] ?></span>
+                <i class="icon-white icon-tint"></i> <span<?php print $screen['count_color'] == 0 ? ' class="zero"' : '' ?>><?php print $screen['count_color'] ?></span>
+                <i class="icon-white icon-font"></i> <span<?php print $screen['count_font'] == 0 ? ' class="zero"' : '' ?>><?php print $screen['count_font'] ?></span>
+                <i class="icon-white icon-th-large"></i> <span<?php print $screen['count_module'] == 0 ? ' class="zero"' : '' ?>><?php print $screen['count_module'] ?></span>
             </div>
         </a>
-        <p class="title"><a href="javascript:;" data-screen="<?= $screen['id'] ?>" data-title="<?= $screen['title'] ?>"><span><?= htmlspecialchars(truncate($screen['title'],30,'...')) ?></span></a></p>
+        <p class="title"><a href="javascript:;" data-screen="<?php print $screen['id'] ?>" data-title="<?php print $screen['title'] ?>"><span><?php print htmlspecialchars(truncate($screen['title'],30,'...')) ?></span></a></p>
         <p class="meta">
-            <span class="size"><?= $screen['width'] ?> &times; <?= $screen['height'] ?></span>
+            <span class="size"><?php print $screen['width'] ?> &times; <?php print $screen['height'] ?></span>
             <? if (has_permission($screen['project'], 'EDIT')) { ?>
-            <a class="delete" data-screen="<?= $screen['id'] ?>" href="javascript:;">×</a>
+            <a class="delete" data-screen="<?php print $screen['id'] ?>" href="javascript:;">×</a>
             <? } ?>
         </p>
     </li>

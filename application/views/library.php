@@ -41,7 +41,7 @@ $events = $db->data("SELECT * FROM library_behaviour_event ORDER BY name ASC", "
     <form class="form-add-behaviour-option" method="post">
         <select class="behaviour-option-behaviour">
             <? foreach ($behaviours as $behaviour) { ?>
-            <option value="<?= $behaviour['id'] ?>"><?= $behaviour['name'] ?> (<?= $behaviour['vendor'] ?>)</option>
+            <option value="<?php print $behaviour['id'] ?>"><?php print $behaviour['name'] ?> (<?php print $behaviour['vendor'] ?>)</option>
             <? } ?>
         </select>
         <input class="behaviour-option-name" type="text" value="" />
@@ -60,7 +60,7 @@ $events = $db->data("SELECT * FROM library_behaviour_event ORDER BY name ASC", "
     <form class="form-add-behaviour-event" method="post">
         <select class="behaviour-event-behaviour">
             <? foreach ($behaviours as $behaviour) { ?>
-            <option value="<?= $behaviour['id'] ?>"><?= $behaviour['name'] ?> (<?= $behaviour['vendor'] ?>)</option>
+            <option value="<?php print $behaviour['id'] ?>"><?php print $behaviour['name'] ?> (<?php print $behaviour['vendor'] ?>)</option>
             <? } ?>
         </select>
         <input class="behaviour-event-name" type="text" value="" />
@@ -69,20 +69,20 @@ $events = $db->data("SELECT * FROM library_behaviour_event ORDER BY name ASC", "
     </form>
     <h2>Components</h2>
     <? foreach ($components as $component) { ?>
-    <div><?= $component['name'] ?> (<?= $behaviour['vendor'] ?>)</div>
+    <div><?php print $component['name'] ?> (<?php print $behaviour['vendor'] ?>)</div>
     <? } ?>
     <br />
     <h2>Behaviours</h2>
     <? foreach ($behaviours as $behaviour) { ?>
-        <div><strong><?= $behaviour['name'] ?> (<?= $behaviour['vendor'] ?>)</strong></div>
+        <div><strong><?php print $behaviour['name'] ?> (<?php print $behaviour['vendor'] ?>)</strong></div>
         <? if (isset($options[$behaviour['id']])) { ?>
         <? foreach ($options[$behaviour['id']] as $option) { ?>
-        <div>Option: <strong><?= $option['name'] ?></strong> - <i><?= $option['description'] ?> (Default: <?= $option['value_default'] ?>)</i></div>
+        <div>Option: <strong><?php print $option['name'] ?></strong> - <i><?php print $option['description'] ?> (Default: <?php print $option['value_default'] ?>)</i></div>
         <? } ?>
         <? } ?>
         <? if (isset($events[$behaviour['id']])) { ?>
         <? foreach ($events[$behaviour['id']] as $event) { ?>
-        <div>Event: <strong><?= $event['name'] ?></strong> - <i><?= $event['description'] ?></i></div>
+        <div>Event: <strong><?php print $event['name'] ?></strong> - <i><?php print $event['description'] ?></i></div>
         <? } ?>
         <? } ?>
     <? } ?>

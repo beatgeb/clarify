@@ -38,28 +38,28 @@ foreach ($comments as $comment) {
     <div class="mod modGuide">
         <div class="mod modToolbar">
             <div class="section section-nav">
-                <a class="button btn-screen" href="/project/<?= $project['creator']; ?>/<?= $project['slug']; ?>/"><i></i><div class="tt">Back</div></a>
+                <a class="button btn-screen" href="/project/<?php print $project['creator']; ?>/<?php print $project['slug']; ?>/"><i></i><div class="tt">Back</div></a>
             </div>
         </div>
-        <h1><?= $project['name'] ?></h1>
+        <h1><?php print $project['name'] ?></h1>
         <div class="chapter">
             <h2>Screens</h2>
             <? foreach ($screens as $index => $screen) { ?>
-            <h3><?= $index + 1 ?>. <?= $screen['title'] ?></h3>
-            <div class="screen"><script type="text/javascript" src="<?= R ?>embed/<?= $screen['code'] ?>/580"></script></div>
+            <h3><?php print $index + 1 ?>. <?php print $screen['title'] ?></h3>
+            <div class="screen"><script type="text/javascript" src="<?php print R ?>embed/<?php print $screen['code'] ?>/580"></script></div>
             <? if (isset($layers[$screen['id']])) { ?>
             <ul class="definitions">
                 <? foreach ($layers[$screen['id']] as $comment) { ?>
                 <li>
                     <div class="dot">
-                        <div class="nr"><?= $comment['nr'] ?></div>
+                        <div class="nr"><?php print $comment['nr'] ?></div>
                     </div>
-                    <p><?= $comment['content'] ?>&nbsp;</p>
+                    <p><?php print $comment['content'] ?>&nbsp;</p>
                 </li>
                 <? } ?>
             </ul>
             <? } ?>
-            <p><?= $screen['description'] ?></p>
+            <p><?php print $screen['description'] ?></p>
             <? } ?>
         </div>
 
@@ -68,10 +68,10 @@ foreach ($comments as $comment) {
             <h2>Modules</h2>
             <div class="modules">
                 <? foreach ($modules as $index => $module) { ?>
-                <h3><?= $index + 1 ?>. <?= $module['name'] ?></h3>
+                <h3><?php print $index + 1 ?>. <?php print $module['name'] ?></h3>
                 <div class="module">
-                    <div class="screenshot"><img src="<?= R .'upload/modules/' . $project_id .'/'. md5($module['id'] . config('security.general.hash')) ?>.png" /></div>
-                    <div class="meta"><div class="code">&lt;div class="mod mod-<?= slug($module['name']) ?>"&gt;&lt;/div&gt;</div></div>
+                    <div class="screenshot"><img src="<?php print R .'upload/modules/' . $project_id .'/'. md5($module['id'] . config('security.general.hash')) ?>.png" /></div>
+                    <div class="meta"><div class="code">&lt;div class="mod mod-<?php print slug($module['name']) ?>"&gt;&lt;/div&gt;</div></div>
                 </div>
                 <? } ?>
             </div>
@@ -84,13 +84,13 @@ foreach ($comments as $comment) {
             <div class="colors">
             <? foreach ($colors as $color) { ?>
             <div class="color">
-                <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
-                <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
-                <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
-                <div class="meta meta-less">@<?= $color['name_css'] ?></div>
+                <div class="box" style="background: #<?php print $color['hex'] ?>;<?php print $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
+                <div class="meta meta-hex">#<?php print strtoupper($color['hex']) ?></div>
+                <div class="meta meta-rgb"><?php print $color['r'] ?>, <?php print $color['g'] ?>, <?php print $color['b'] ?></div>
+                <div class="meta meta-less">@<?php print $color['name_css'] ?></div>
                 <div class="meta meta-name">
                 <? if ($color['name'] != '') { ?>
-                <?= $color['name'] ?><br />
+                <?php print $color['name'] ?><br />
                 <? } ?>
                 </div>
             </div>
@@ -103,28 +103,28 @@ foreach ($comments as $comment) {
             <h2>Fonts</h2>
             <? foreach ($fonts as $font) { ?>
             <? $color = $colors[$font['color']]; ?>
-            <h3><?= $font['name'] ?> - .<?= $font['name_css'] ?></h3>
+            <h3><?php print $font['name'] ?> - .<?php print $font['name_css'] ?></h3>
             <div class="fonts">
                 <div class="font">
-                    <div class="preview" style="font-family: <?= $font['family'] ?>; font-size: <?= $font['size'] ?>px; font-weight: <?= $font['weight'] ?>; font-style: <?= $font['style'] ?>; color: #<?= $color['hex'] ?>; <?= $font['decoration'] != null ? 'text-decoration:' . $font['decoration'] .';' : '' ?>">
-                    <?= $font['name'] ?>, <?= $font['family'] ?>, <?= $font['size'] ?>px
+                    <div class="preview" style="font-family: <?php print $font['family'] ?>; font-size: <?php print $font['size'] ?>px; font-weight: <?php print $font['weight'] ?>; font-style: <?php print $font['style'] ?>; color: #<?php print $color['hex'] ?>; <?php print $font['decoration'] != null ? 'text-decoration:' . $font['decoration'] .';' : '' ?>">
+                    <?php print $font['name'] ?>, <?php print $font['family'] ?>, <?php print $font['size'] ?>px
                     </div>
                 </div>
                 <div class="font-meta">
-                    <div>Line Height: <strong><?= $font['line_height'] ?></strong></div>
-                    <div>Weight: <strong><?= $font['weight'] ?></strong></div>
-                    <div>Transform: <strong><?= $font['transform'] ?></strong></div>
+                    <div>Line Height: <strong><?php print $font['line_height'] ?></strong></div>
+                    <div>Weight: <strong><?php print $font['weight'] ?></strong></div>
+                    <div>Transform: <strong><?php print $font['transform'] ?></strong></div>
                 </div>
                 <!-- NORMAL -->
                 <div class="color">
                     <div class="state">Normal</div>
-                    <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
-                    <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
-                    <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
-                    <div class="meta meta-less">@<?= $color['name_css'] ?></div>
+                    <div class="box" style="background: #<?php print $color['hex'] ?>;<?php print $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
+                    <div class="meta meta-hex">#<?php print strtoupper($color['hex']) ?></div>
+                    <div class="meta meta-rgb"><?php print $color['r'] ?>, <?php print $color['g'] ?>, <?php print $color['b'] ?></div>
+                    <div class="meta meta-less">@<?php print $color['name_css'] ?></div>
                     <div class="meta meta-name">
                     <? if ($color['name'] != '') { ?>
-                    <?= $color['name'] ?><br />
+                    <?php print $color['name'] ?><br />
                     <? } ?>
                     </div>
                 </div>
@@ -133,13 +133,13 @@ foreach ($comments as $comment) {
                 <? $color = $colors[$font['color_hover']]; ?>
                 <div class="color">
                     <div class="state">Hover</div>
-                    <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
-                    <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
-                    <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
-                    <div class="meta meta-less">@<?= $color['name_css'] ?></div>
+                    <div class="box" style="background: #<?php print $color['hex'] ?>;<?php print $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
+                    <div class="meta meta-hex">#<?php print strtoupper($color['hex']) ?></div>
+                    <div class="meta meta-rgb"><?php print $color['r'] ?>, <?php print $color['g'] ?>, <?php print $color['b'] ?></div>
+                    <div class="meta meta-less">@<?php print $color['name_css'] ?></div>
                     <div class="meta meta-name">
                     <? if ($color['name'] != '') { ?>
-                    <?= $color['name'] ?><br />
+                    <?php print $color['name'] ?><br />
                     <? } ?>
                     </div>
                 </div>
@@ -149,13 +149,13 @@ foreach ($comments as $comment) {
                 <? $color = $colors[$font['color_active']]; ?>
                 <div class="color">
                     <div class="state">Active</div>
-                    <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
-                    <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
-                    <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
-                    <div class="meta meta-less">@<?= $color['name_css'] ?></div>
+                    <div class="box" style="background: #<?php print $color['hex'] ?>;<?php print $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
+                    <div class="meta meta-hex">#<?php print strtoupper($color['hex']) ?></div>
+                    <div class="meta meta-rgb"><?php print $color['r'] ?>, <?php print $color['g'] ?>, <?php print $color['b'] ?></div>
+                    <div class="meta meta-less">@<?php print $color['name_css'] ?></div>
                     <div class="meta meta-name">
                     <? if ($color['name'] != '') { ?>
-                    <?= $color['name'] ?><br />
+                    <?php print $color['name'] ?><br />
                     <? } ?>
                     </div>
                 </div>
@@ -165,13 +165,13 @@ foreach ($comments as $comment) {
                 <? $color = $colors[$font['color_visited']]; ?>
                 <div class="color">
                     <div class="state">Visited</div>
-                    <div class="box" style="background: #<?= $color['hex'] ?>;<?= $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
-                    <div class="meta meta-hex">#<?= strtoupper($color['hex']) ?></div>
-                    <div class="meta meta-rgb"><?= $color['r'] ?>, <?= $color['g'] ?>, <?= $color['b'] ?></div>
-                    <div class="meta meta-less">@<?= $color['name_css'] ?></div>
+                    <div class="box" style="background: #<?php print $color['hex'] ?>;<?php print $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
+                    <div class="meta meta-hex">#<?php print strtoupper($color['hex']) ?></div>
+                    <div class="meta meta-rgb"><?php print $color['r'] ?>, <?php print $color['g'] ?>, <?php print $color['b'] ?></div>
+                    <div class="meta meta-less">@<?php print $color['name_css'] ?></div>
                     <div class="meta meta-name">
                     <? if ($color['name'] != '') { ?>
-                    <?= $color['name'] ?><br />
+                    <?php print $color['name'] ?><br />
                     <? } ?>
                     </div>
                 </div>
