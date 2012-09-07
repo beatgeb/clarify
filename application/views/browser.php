@@ -16,15 +16,15 @@ lock();
 <html class="mod modLayout skinLayoutBrowser">
 <head>
     <title>Projects - Clarify</title>
-    <? require 'partials/head.php' ?>
+    <?php require 'partials/head.php' ?>
 </head>
 <body>
     <div class="mod modProjectBrowser">
-        <? require TERRIFIC . 'modules/ProjectBrowser/projectbrowser.phtml'; ?>
+        <?php require TERRIFIC . 'modules/ProjectBrowser/projectbrowser.phtml'; ?>
     </div>
     <div class="mod modScreenBrowser" data-project="<?php print $project_id ?>">
-        <? require TERRIFIC . 'modules/ScreenBrowser/screenbrowser.phtml'; ?>
+        <?php require TERRIFIC . 'modules/ScreenBrowser/screenbrowser.phtml'; ?>
     </div>
-    <? require 'partials/foot.php'; ?>
+    <?php require 'partials/foot.php'; ?>
 </body>
 </html>

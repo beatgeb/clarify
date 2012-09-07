@@ -44,7 +44,7 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
 <html class="mod modLayout skinLayoutScreen">
 <head>
     <title><?php print $screen['title'] ?> - Clarify</title>
-    <? require 'partials/head.php'; ?>
+    <?php require 'partials/head.php'; ?>
 </head>
 <body>
     <div class="mod modScreen" 
@@ -62,17 +62,17 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
         <div class="mod modLayerModule"></div>
     </div>
     <div class="mod modColorLibrary">
-    <? require TERRIFIC . 'modules/ColorLibrary/colorlibrary.phtml' ?>
+    <?php require TERRIFIC . 'modules/ColorLibrary/colorlibrary.phtml' ?>
     </div>
     <div class="mod modModuleLibrary">
-    <? require TERRIFIC . 'modules/ModuleLibrary/modulelibrary.phtml' ?>
+    <?php require TERRIFIC . 'modules/ModuleLibrary/modulelibrary.phtml' ?>
     </div>
     <div class="mod modToolbar">
-    <? require TERRIFIC . 'modules/Toolbar/toolbar.phtml' ?>
+    <?php require TERRIFIC . 'modules/Toolbar/toolbar.phtml' ?>
     </div>
     <div class="mod modEyedropper">
-    <? require TERRIFIC . 'modules/Eyedropper/eyedropper.phtml' ?>
+    <?php require TERRIFIC . 'modules/Eyedropper/eyedropper.phtml' ?>
     </div>
-    <? require 'partials/foot.php'; ?>
+    <?php require 'partials/foot.php'; ?>
 </body>
 </html>

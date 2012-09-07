@@ -4,13 +4,13 @@
         <h1>Clarify</h1>
     </div>
     <div class="form">
-        <? if ($route[2] > 0) { ?>
-        <? $_SESSION['user']['invitation_code'] = intval($route[2]); ?>
+        <?php if ($route[2] > 0) { ?>
+        <?php $_SESSION['user']['invitation_code'] = intval($route[2]); ?>
         <input class="code" type="text" placeholder="Invitation Code" value="<?php print intval($route[2]) ?>" />
         <a href="javascript:;" class="twitter">Create Account<span>with Twitter</span></a>
-        <? } else { ?>
+        <?php } else { ?>
         <a href="javascript:;" class="twitter">Authenticate<span>with Twitter</span></a>
-        <? } ?>
+        <?php } ?>
     </div>
     <div class="notice">&copy; 2012 clarify.io - a Project by <a href="http://www.twitter.com/rogerdudler">Roger Dudler</a>. Read the <a href="http://blog.clarify.io">Blog</a> or follow <a href="http://www.twitter.com/clarify_io">@clarify_io</a> on Twitter.
 </div>

@@ -33,14 +33,14 @@ $colors = $db->data("
 ?>
 <div class="head">
     <h2><?php print $project_id > 0 ? $project['name'] : 'Create or Choose a Project' ?></h2>
-    <? if ($project_id > 0) { ?>
+    <?php if ($project_id > 0) { ?>
     <div class="actions">
-        <? if (has_permission($project_id, 'ADMIN')) { ?>
+        <?php if (has_permission($project_id, 'ADMIN')) { ?>
         <a href="javascript:;" class="btn-rename-project" data-project="<?php print $project_id ?>" data-name="<?php print $project['name'] ?>">Rename</a>
         <a href="javascript:;" class="btn-delete-project" data-project="<?php print $project_id ?>">Delete</a>
-        <? } ?>
+        <?php } ?>
     </div>
-    <? } ?>
+    <?php } ?>
     <div class="usermeta">
         <div class="info">
             <p class="username"><?php print user('name') ?></p>
@@ -51,24 +51,24 @@ $colors = $db->data("
         </div>
     </div>
 </div>
-<? if ($project_id > 0) { ?>
+<?php if ($project_id > 0) { ?>
 <div class="colors">
-    <? foreach ($colors as $color) { ?>
+    <?php foreach ($colors as $color) { ?>
     <a href="javascript:;" rel="tooltip" title="<?php print $color['name'] ?> – #<?php print $color['hex'] ?>" data-less="@<?php print $color['name_css'] ?>: #<?php print $color['hex'] ?>;" data-sass="$<?php print $color['name_css'] ?>: #<?php print $color['hex'] ?>;" data-hex="#<?php print $color['hex'] ?>" class="color color-<?php print $color['id'] ?>" style="background: #<?php print $color['hex'] ?>"></a>
-    <? } ?>
+    <?php } ?>
     <a href="javascript:;" class="export btn-export-css">.LESS</a>
     <a href="javascript:;" class="export btn-export-sass">.SASS</a>
     <a href="<?php print R ?>api/color/export/<?php print $project_id ?>/aco" class="export btn-export-aco">.ACO</a>
 </div>
 <ul>
-    <? if (has_permission($project_id, 'EDIT')) { ?>
+    <?php if (has_permission($project_id, 'EDIT')) { ?>
     <li class="create">
         <a class="placeholder" href="javascript:;"><div></div></a>
         <p class="title-placeholder"><a href="#"><span>Click to upload screens</span></a></p>
         <p class="meta">JPG or PNG (max. 10 MB)</p>
     </li>
-    <? } ?>
-    <? foreach ($screens as $screen) { ?>
+    <?php } ?>
+    <?php foreach ($screens as $screen) { ?>
     <li class="screen screen-<?php print $screen['id'] ?>">
         <a class="image" href="<?php print R ?>screen/<?php print $screen['id'] ?>">
             <img src="/upload/screens/<?php print $project_id ?>/thumbnails/<?php print md5($screen['id'] .config('security.general.hash')) ?>.<?php print $screen['ext'] ?>" width="200" alt="" />
@@ -83,14 +83,14 @@ $colors = $db->data("
         <p class="title"><a href="javascript:;" data-screen="<?php print $screen['id'] ?>" data-title="<?php print $screen['title'] ?>"><span><?php print htmlspecialchars(truncate($screen['title'],30,'...')) ?></span></a></p>
         <p class="meta">
             <span class="size"><?php print $screen['width'] ?> &times; <?php print $screen['height'] ?></span>
-            <? if (has_permission($screen['project'], 'EDIT')) { ?>
+            <?php if (has_permission($screen['project'], 'EDIT')) { ?>
             <a class="delete" data-screen="<?php print $screen['id'] ?>" href="javascript:;">×</a>
-            <? } ?>
+            <?php } ?>
         </p>
     </li>
-    <? } ?>
+    <?php } ?>
 </ul>
 <input class="fileupload" type="file" name="files[]" multiple>
-<? } else { ?>
+<?php } else { ?>
 <a class="btn-create-project" href="#">Create Project</a>
-<? } ?>
+<?php } ?>

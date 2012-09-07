@@ -47,7 +47,7 @@ document.write('<?php print $css ?>');
 document.write('</style>');
 document.write('<div class="st-widget <?php print $class ?>">');
 document.write('<img src="<?php print config('application.domain') ?><?php print config('application.baseurl') ?>api/screen/thumbnail/<?php print $screen_id ?>/<?php print $width ?>" width="<?php print $width ?>" />');
-<? foreach ($comments as $comment) { ?>
+<?php foreach ($comments as $comment) { ?>
 document.write('<div class="st-def" style="top:<?php print round($comment['y']*$factor+$offset) ?>px;left:<?php print round($comment['x']*$factor+$offset) ?>px;"><a href="javascript:;" class="dot"><span class="nr"><?php print $comment['nr'] ?></span></a></div>');
-<? } ?>
+<?php } ?>
 document.write('</div>');

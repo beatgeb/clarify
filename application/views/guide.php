@@ -32,7 +32,7 @@ foreach ($comments as $comment) {
 <html class="mod modLayout skinLayoutGuide">
 <head>
     <title>Styleguide - Clarify</title>
-    <? require 'partials/head.php' ?>
+    <?php require 'partials/head.php' ?>
 </head>
 <body>
     <div class="mod modGuide">
@@ -44,65 +44,65 @@ foreach ($comments as $comment) {
         <h1><?php print $project['name'] ?></h1>
         <div class="chapter">
             <h2>Screens</h2>
-            <? foreach ($screens as $index => $screen) { ?>
+            <?php foreach ($screens as $index => $screen) { ?>
             <h3><?php print $index + 1 ?>. <?php print $screen['title'] ?></h3>
             <div class="screen"><script type="text/javascript" src="<?php print R ?>embed/<?php print $screen['code'] ?>/580"></script></div>
-            <? if (isset($layers[$screen['id']])) { ?>
+            <?php if (isset($layers[$screen['id']])) { ?>
             <ul class="definitions">
-                <? foreach ($layers[$screen['id']] as $comment) { ?>
+                <?php foreach ($layers[$screen['id']] as $comment) { ?>
                 <li>
                     <div class="dot">
                         <div class="nr"><?php print $comment['nr'] ?></div>
                     </div>
                     <p><?php print $comment['content'] ?>&nbsp;</p>
                 </li>
-                <? } ?>
+                <?php } ?>
             </ul>
-            <? } ?>
+            <?php } ?>
             <p><?php print $screen['description'] ?></p>
-            <? } ?>
+            <?php } ?>
         </div>
 
-        <? if (sizeof($modules) > 0) { ?>
+        <?php if (sizeof($modules) > 0) { ?>
         <div class="chapter pagebreak">
             <h2>Modules</h2>
             <div class="modules">
-                <? foreach ($modules as $index => $module) { ?>
+                <?php foreach ($modules as $index => $module) { ?>
                 <h3><?php print $index + 1 ?>. <?php print $module['name'] ?></h3>
                 <div class="module">
                     <div class="screenshot"><img src="<?php print R .'upload/modules/' . $project_id .'/'. md5($module['id'] . config('security.general.hash')) ?>.png" /></div>
                     <div class="meta"><div class="code">&lt;div class="mod mod-<?php print slug($module['name']) ?>"&gt;&lt;/div&gt;</div></div>
                 </div>
-                <? } ?>
+                <?php } ?>
             </div>
         </div>
-        <? } ?>
+        <?php } ?>
 
         <div class="chapter pagebreak">
             <h2>Colors</h2>
             <h3>Palette</h3>
             <div class="colors">
-            <? foreach ($colors as $color) { ?>
+            <?php foreach ($colors as $color) { ?>
             <div class="color">
                 <div class="box" style="background: #<?php print $color['hex'] ?>;<?php print $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
                 <div class="meta meta-hex">#<?php print strtoupper($color['hex']) ?></div>
                 <div class="meta meta-rgb"><?php print $color['r'] ?>, <?php print $color['g'] ?>, <?php print $color['b'] ?></div>
                 <div class="meta meta-less">@<?php print $color['name_css'] ?></div>
                 <div class="meta meta-name">
-                <? if ($color['name'] != '') { ?>
+                <?php if ($color['name'] != '') { ?>
                 <?php print $color['name'] ?><br />
-                <? } ?>
+                <?php } ?>
                 </div>
             </div>
-            <? } ?>
+            <?php } ?>
             </div>
         </div>
 
-        <? if (sizeof($fonts) > 0) { ?>
+        <?php if (sizeof($fonts) > 0) { ?>
         <div class="chapter pagebreak">
             <h2>Fonts</h2>
-            <? foreach ($fonts as $font) { ?>
-            <? $color = $colors[$font['color']]; ?>
+            <?php foreach ($fonts as $font) { ?>
+            <?php $color = $colors[$font['color']]; ?>
             <h3><?php print $font['name'] ?> - .<?php print $font['name_css'] ?></h3>
             <div class="fonts">
                 <div class="font">
@@ -123,14 +123,14 @@ foreach ($comments as $comment) {
                     <div class="meta meta-rgb"><?php print $color['r'] ?>, <?php print $color['g'] ?>, <?php print $color['b'] ?></div>
                     <div class="meta meta-less">@<?php print $color['name_css'] ?></div>
                     <div class="meta meta-name">
-                    <? if ($color['name'] != '') { ?>
+                    <?php if ($color['name'] != '') { ?>
                     <?php print $color['name'] ?><br />
-                    <? } ?>
+                    <?php } ?>
                     </div>
                 </div>
                 <!-- HOVER -->
-                <? if ($colors[$font['color_hover']]) { ?>
-                <? $color = $colors[$font['color_hover']]; ?>
+                <?php if ($colors[$font['color_hover']]) { ?>
+                <?php $color = $colors[$font['color_hover']]; ?>
                 <div class="color">
                     <div class="state">Hover</div>
                     <div class="box" style="background: #<?php print $color['hex'] ?>;<?php print $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
@@ -138,15 +138,15 @@ foreach ($comments as $comment) {
                     <div class="meta meta-rgb"><?php print $color['r'] ?>, <?php print $color['g'] ?>, <?php print $color['b'] ?></div>
                     <div class="meta meta-less">@<?php print $color['name_css'] ?></div>
                     <div class="meta meta-name">
-                    <? if ($color['name'] != '') { ?>
+                    <?php if ($color['name'] != '') { ?>
                     <?php print $color['name'] ?><br />
-                    <? } ?>
+                    <?php } ?>
                     </div>
                 </div>
-                <? } ?>
+                <?php } ?>
                 <!-- ACTIVE -->
-                <? if ($colors[$font['color_active']]) { ?>
-                <? $color = $colors[$font['color_active']]; ?>
+                <?php if ($colors[$font['color_active']]) { ?>
+                <?php $color = $colors[$font['color_active']]; ?>
                 <div class="color">
                     <div class="state">Active</div>
                     <div class="box" style="background: #<?php print $color['hex'] ?>;<?php print $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
@@ -154,15 +154,15 @@ foreach ($comments as $comment) {
                     <div class="meta meta-rgb"><?php print $color['r'] ?>, <?php print $color['g'] ?>, <?php print $color['b'] ?></div>
                     <div class="meta meta-less">@<?php print $color['name_css'] ?></div>
                     <div class="meta meta-name">
-                    <? if ($color['name'] != '') { ?>
+                    <?php if ($color['name'] != '') { ?>
                     <?php print $color['name'] ?><br />
-                    <? } ?>
+                    <?php } ?>
                     </div>
                 </div>
-                <? } ?>
+                <?php } ?>
                 <!-- VISITED -->
-                <? if ($colors[$font['color_visited']]) { ?>
-                <? $color = $colors[$font['color_visited']]; ?>
+                <?php if ($colors[$font['color_visited']]) { ?>
+                <?php $color = $colors[$font['color_visited']]; ?>
                 <div class="color">
                     <div class="state">Visited</div>
                     <div class="box" style="background: #<?php print $color['hex'] ?>;<?php print $color['hex'] == 'ffffff' ? 'border: 1px solid #666;' : '' ?>"></div>
@@ -170,17 +170,17 @@ foreach ($comments as $comment) {
                     <div class="meta meta-rgb"><?php print $color['r'] ?>, <?php print $color['g'] ?>, <?php print $color['b'] ?></div>
                     <div class="meta meta-less">@<?php print $color['name_css'] ?></div>
                     <div class="meta meta-name">
-                    <? if ($color['name'] != '') { ?>
+                    <?php if ($color['name'] != '') { ?>
                     <?php print $color['name'] ?><br />
-                    <? } ?>
+                    <?php } ?>
                     </div>
                 </div>
-                <? } ?>
+                <?php } ?>
             </div>
-            <? } ?>
+            <?php } ?>
         </div>
-        <? } ?>
+        <?php } ?>
     </div>
-    <? require 'partials/foot.php'; ?>
+    <?php require 'partials/foot.php'; ?>
 </body>
 </html>

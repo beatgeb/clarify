@@ -8,11 +8,11 @@
 <a class="button btn-modules btn-last" href="javascript:;"><i></i><div class="tt">Modules<i></i></div></a>
 </div>
 <div class="section section-settings">
-<? if (has_permission($screen['project'], 'ADMIN')) { ?>
+<?php if (has_permission($screen['project'], 'ADMIN')) { ?>
 <a class="button btn-embed" href="javascript:;" data-screen="<?php print $screen['id'] ?>" data-url="<?php print config('application.domain') . R . 'embed/' . $screen['code'] . '/800' ?>"><i></i><div class="tt">Embed &amp; Share<i></i></div>
-	<? if ($screen['embeddable']) { ?>
+	<?php if ($screen['embeddable']) { ?>
 	<span class="enabled">&#9679;</span>
-	<? } ?>
+	<?php } ?>
 </a>
-<? } ?>
+<?php } ?>
 </div>
