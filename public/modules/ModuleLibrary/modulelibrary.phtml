@@ -1,8 +1,8 @@
 <div class="scroller">
-<? foreach ($modules as $module) { ?>
-<a href="javascript:;" rel="tooltip" title="<?= $module['name'] ?>" class="module module-<?= $module['id'] ?>" data-id="<?= $module['id'] ?>" data-name="<?= $module['name'] ?>">
-    <div class="rename"><span class="desc"><?= $module['name'] ?></span> <i class="icon icon-white icon-pencil"></i></div>
-    <img src="<?= R .'upload/modules/' . $screen['project'] .'/'. md5($module['id'] . config('security.general.hash')) ?>.png" />
+<?php foreach ($modules as $module) { ?>
+<a href="javascript:;" rel="tooltip" title="<?php print $module['name'] ?>" class="module module-<?php print $module['id'] ?>" data-id="<?php print $module['id'] ?>" data-name="<?php print $module['name'] ?>">
+    <div class="rename"><span class="desc"><?php print $module['name'] ?></span> <i class="icon icon-white icon-pencil"></i></div>
+    <img src="<?php print R .'upload/modules/' . $screen['project'] .'/'. md5($module['id'] . config('security.general.hash')) ?>.png" />
 </a>
-<? } ?>
+<?php } ?>
 </div>

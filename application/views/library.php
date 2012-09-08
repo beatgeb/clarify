@@ -21,7 +21,7 @@ $events = $db->data("SELECT * FROM library_behaviour_event ORDER BY name ASC", "
 <html class="mod modLayout skinLayoutLibrary">
 <head>
     <title>Interactive Frontend Styleguide</title>
-    <? require 'partials/head.php' ?>
+    <?php require 'partials/head.php' ?>
 </head>
 <body>
     <h1>Library</h1>
@@ -40,9 +40,9 @@ $events = $db->data("SELECT * FROM library_behaviour_event ORDER BY name ASC", "
     <h2>Add Behaviour Option</h2>
     <form class="form-add-behaviour-option" method="post">
         <select class="behaviour-option-behaviour">
-            <? foreach ($behaviours as $behaviour) { ?>
-            <option value="<?= $behaviour['id'] ?>"><?= $behaviour['name'] ?> (<?= $behaviour['vendor'] ?>)</option>
-            <? } ?>
+            <?php foreach ($behaviours as $behaviour) { ?>
+            <option value="<?php print $behaviour['id'] ?>"><?php print $behaviour['name'] ?> (<?php print $behaviour['vendor'] ?>)</option>
+            <?php } ?>
         </select>
         <input class="behaviour-option-name" type="text" value="" />
         <select class="behaviour-option-type">
@@ -59,34 +59,34 @@ $events = $db->data("SELECT * FROM library_behaviour_event ORDER BY name ASC", "
     <h2>Add Behaviour Event</h2>
     <form class="form-add-behaviour-event" method="post">
         <select class="behaviour-event-behaviour">
-            <? foreach ($behaviours as $behaviour) { ?>
-            <option value="<?= $behaviour['id'] ?>"><?= $behaviour['name'] ?> (<?= $behaviour['vendor'] ?>)</option>
-            <? } ?>
+            <?php foreach ($behaviours as $behaviour) { ?>
+            <option value="<?php print $behaviour['id'] ?>"><?php print $behaviour['name'] ?> (<?php print $behaviour['vendor'] ?>)</option>
+            <?php } ?>
         </select>
         <input class="behaviour-event-name" type="text" value="" />
         <input class="behaviour-event-description" type="text" value="" />
         <input class="btn" type="submit" value="Add Behaviour Event" />
     </form>
     <h2>Components</h2>
-    <? foreach ($components as $component) { ?>
-    <div><?= $component['name'] ?> (<?= $behaviour['vendor'] ?>)</div>
-    <? } ?>
+    <?php foreach ($components as $component) { ?>
+    <div><?php print $component['name'] ?> (<?php print $behaviour['vendor'] ?>)</div>
+    <?php } ?>
     <br />
     <h2>Behaviours</h2>
-    <? foreach ($behaviours as $behaviour) { ?>
-        <div><strong><?= $behaviour['name'] ?> (<?= $behaviour['vendor'] ?>)</strong></div>
-        <? if (isset($options[$behaviour['id']])) { ?>
-        <? foreach ($options[$behaviour['id']] as $option) { ?>
-        <div>Option: <strong><?= $option['name'] ?></strong> - <i><?= $option['description'] ?> (Default: <?= $option['value_default'] ?>)</i></div>
-        <? } ?>
-        <? } ?>
-        <? if (isset($events[$behaviour['id']])) { ?>
-        <? foreach ($events[$behaviour['id']] as $event) { ?>
-        <div>Event: <strong><?= $event['name'] ?></strong> - <i><?= $event['description'] ?></i></div>
-        <? } ?>
-        <? } ?>
-    <? } ?>
-    <? require 'partials/foot.php'; ?>
+    <?php foreach ($behaviours as $behaviour) { ?>
+        <div><strong><?php print $behaviour['name'] ?> (<?php print $behaviour['vendor'] ?>)</strong></div>
+        <?php if (isset($options[$behaviour['id']])) { ?>
+        <?php foreach ($options[$behaviour['id']] as $option) { ?>
+        <div>Option: <strong><?php print $option['name'] ?></strong> - <i><?php print $option['description'] ?> (Default: <?php print $option['value_default'] ?>)</i></div>
+        <?php } ?>
+        <?php } ?>
+        <?php if (isset($events[$behaviour['id']])) { ?>
+        <?php foreach ($events[$behaviour['id']] as $event) { ?>
+        <div>Event: <strong><?php print $event['name'] ?></strong> - <i><?php print $event['description'] ?></i></div>
+        <?php } ?>
+        <?php } ?>
+    <?php } ?>
+    <?php require 'partials/foot.php'; ?>
     <script type="text/javascript">
     $(document).ready(function() {
         $('.form-add-component').submit(function() {

@@ -33,12 +33,12 @@ if (authenticated()) {
 <html class="mod modLayout skinLayoutAuth">
 <head>
     <title>Sign Up - Clarify</title>
-    <? require 'partials/head.php' ?>
+    <?php require 'partials/head.php' ?>
 </head>
 <body>
     <div class="mod modAuth">
-        <? require TERRIFIC . 'modules/Auth/auth.phtml'; ?>
+        <?php require TERRIFIC . 'modules/Auth/auth.phtml'; ?>
     </div>
-    <? require 'partials/foot.php'; ?>
+    <?php require 'partials/foot.php'; ?>
 </body>
 </html>
