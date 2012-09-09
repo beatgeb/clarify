@@ -108,7 +108,7 @@ class tmhUtilities {
    * @param bool $dropqs whether to drop the querystring or not. Default true
    * @return string the current URL
    */
-  function php_self($dropqs=true) {
+  static function php_self($dropqs=true) {
     $protocol = 'http';
     if (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') {
       $protocol = 'https';
