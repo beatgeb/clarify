@@ -31,7 +31,7 @@ foreach ($comments as $comment) {
 <!DOCTYPE html>
 <html class="mod modLayout skinLayoutGuide">
 <head>
-    <title>Styleguide - Clarify</title>
+    <title>Styleguide for <?= $project['name'] ?> - Clarify</title>
     <?php require 'partials/head.php' ?>
 </head>
 <body>
