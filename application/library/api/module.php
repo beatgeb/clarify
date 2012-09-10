@@ -28,7 +28,7 @@ switch ($action) {
         $db->delete('module', array('id' => $id));
         $count = $db->exists('module', array('module' => $module['module']));
         if ($count < 1) {
-            $path =  'upload/modules/'.$module['project'].'/'.md5($module['id'].config('security.general.hash')).'.'.$module['ext'];
+            $path =  'upload/modules/'.$module['project'].'/'.md5($module['id'].config('security.general.hash')).'.png';
             unlink(TERRIFIC . $path);
 
             $db->delete('project_module', array('id' => $module['id'], 'creator' => userid()));
