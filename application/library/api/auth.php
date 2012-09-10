@@ -10,7 +10,7 @@ switch ($action) {
 		$password = md5($_REQUEST['password'] . config('security.password.hash'));
 		$result = array('success' => false);
 
-		// validate authentification (only with valid email)
+		// validate authentication (only with valid email)
 		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			$user = $db->single("SELECT id, name FROM user WHERE email = '" . $email . "' AND password = '" . $password . "' LIMIT 1");
 			if ($user) {
