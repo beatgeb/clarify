@@ -11,7 +11,7 @@ switch ($action) {
 		$result = array('success' => false);
 
 		// validate authentification (only with valid email)
-		if (filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)) {
+		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			$user = $db->single("SELECT id, name FROM user WHERE email = '" . $email . "' AND password = '" . $password . "' LIMIT 1");
 			if ($user) {
 				$_SESSION['user']['id'] = $user['id'];
