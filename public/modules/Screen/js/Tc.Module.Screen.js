@@ -8,7 +8,7 @@
  */
 (function($) {
     Tc.Module.Screen = Tc.Module.extend({
-        onBinding: function() {
+        on: function(callback) {
             var $ctx = this.$ctx;
             
             // set the size of the view
@@ -26,6 +26,7 @@
             
             // activate the comments layer
             this.sandbox.getModuleById($('.modLayerComment').data('id')).activate();
+            callback();
         }
     });
 })(Tc.$);

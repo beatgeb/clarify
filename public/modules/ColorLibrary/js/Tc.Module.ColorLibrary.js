@@ -8,8 +8,9 @@
  */
 (function($) { 
     Tc.Module.ColorLibrary = Tc.Module.extend({        
-        onBinding: function() {
+        on: function(callback) {
             $('a', this.$ctx).tooltip();
+            callback();
         }
     });
 })(Tc.$);

@@ -8,7 +8,7 @@
  */
 (function($) { 
     Tc.Module.Auth = Tc.Module.extend({        
-        onBinding: function() {
+        on: function(callback) {
             var that = this;
             $('.code', this.$ctx).on('keypress', function(e) {
                 if (e.keyPress == 13) {
@@ -18,6 +18,7 @@
             $('.twitter', this.$ctx).on('click', function(e) {
                 that.auth();
             });
+            callback();
         },
         
         auth: function() {

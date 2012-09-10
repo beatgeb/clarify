@@ -13,7 +13,7 @@
         deletemode: false,
         open: null,
         
-        onBinding: function() { 
+        on: function(callback) { 
             var that = this;
             var $ctx = this.$ctx;
             $('.btn-comments').bind('click', function(e) {
@@ -76,6 +76,7 @@
                     that.open = edit;
                 }
             });
+            callback();
         },
         
         deactivate: function() {

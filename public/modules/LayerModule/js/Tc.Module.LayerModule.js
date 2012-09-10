@@ -15,7 +15,7 @@
         hover: false,
         next: 1,
         
-        onBinding: function() {
+        on: function(callback) {
             var that = this;
             $('.btn-modules').bind('click', function(e) {
                 if (that.active) {
@@ -27,6 +27,7 @@
                     that.activate();
                 }
             });
+            callback();
         },
         
         deactivate: function() {

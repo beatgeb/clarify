@@ -8,7 +8,7 @@
  */
 (function($) {
     Tc.Module.ScreenBrowser = Tc.Module.extend({
-        onBinding: function() {
+        on: function(callback) {
             var project = this.$ctx.data('project'),
                 $ctx = this.$ctx,
                 that = this;
@@ -186,6 +186,8 @@
             });
 
             $('.color', this.$ctx).tooltip();
+
+            callback();
         }
     });
 })(Tc.$);

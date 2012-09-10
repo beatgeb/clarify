@@ -8,7 +8,7 @@
  */
 (function($) { 
     Tc.Module.Toolbar = Tc.Module.extend({
-        onBinding: function() {
+        on: function(callback) {
             $('.btn-clear').bind('click', 
                 function(e) {
                     return;
@@ -23,6 +23,7 @@
                     });
                 }
             );
+            callback();
         }
     });
 })(Tc.$);

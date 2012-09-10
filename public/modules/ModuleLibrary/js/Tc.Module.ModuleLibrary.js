@@ -8,7 +8,7 @@
  */
 (function($) { 
     Tc.Module.ModuleLibrary = Tc.Module.extend({
-        onBinding: function() {
+        on: function(callback) {
             var $ctx = this.$ctx;
             $ctx.on('click', '.module', function() {
                 var $module = $(this),
@@ -42,6 +42,7 @@
                     }
                 }).show().focus();
             });
+            callback();
         }
     });
 })(Tc.$);

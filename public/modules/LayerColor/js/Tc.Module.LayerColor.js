@@ -13,7 +13,7 @@
         drag: false,
         hover: false,
         
-        onBinding: function() {
+        on: function(callback) {
             var that = this;
             $('.btn-color').bind('click', function(e) {
                 if (that.active) {
@@ -25,6 +25,7 @@
                     that.activate();
                 }
             });
+            callback();
         },
         
         load: function() {

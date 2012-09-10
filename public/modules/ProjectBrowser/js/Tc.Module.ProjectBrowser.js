@@ -8,7 +8,7 @@
  */
 (function($) {
     Tc.Module.ProjectBrowser = Tc.Module.extend({
-        onBinding: function() {
+        on: function(callback) {
 
             var $ctx = this.$ctx;
             var that = this;
@@ -70,6 +70,7 @@
                 });
                 $modal.modal();
             });
+            callback();
         },
 
         addProject: function() {
