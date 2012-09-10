@@ -510,6 +510,22 @@ CREATE TABLE `project_permission` (
   KEY `user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project_collaborator`
+--
+DROP TABLE IF EXISTS `project_collaborator`;
+
+CREATE TABLE `project_collaborator` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `creator` int(11) unsigned DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `project` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
