@@ -102,7 +102,7 @@
                             helper.remove();
                             that.addModule(data.id, data.module, data.x, data.y, data.width, data.height, data.name);
                             var box = $('<a href="javascript:;" title="' + data.name + '" class="module module-' + data.module + '" data-id="' + data.module + '" data-name="' + data.name + '"><div class="rename"><span class="desc">' + data.name + ' </span> <i class="icon icon-white icon-pencil"></i></div><img src="' + data.thumbnail + '" /></a>');
-                            $('.modModuleLibrary .scroller').append(box);
+                            $('.modModuleLibrary .scroller').prepend(box);
                             that.addLibraryModule(box);
                         }
                     });
