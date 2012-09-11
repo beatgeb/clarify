@@ -76,6 +76,10 @@ switch ($action) {
 
         $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
         if (!$screen) { die(); }
+        $sameColors = $db->single("SELECT count(id) AS number FROM project_color WHERE project = " . $screen['project'] ." AND hex <> '" . $hex . "' AND (name LIKE '" . $match[0] . "-%' OR name = '". $match[0] . "')");
+        if ($sameColors['number'] > 0) {
+            $match[0] = $match[0]."-".$sameColors['number'];
+        }
         $data = array(
             'created' => date('Y-m-d H:i:s'),
             'creator' => userid(),
