@@ -17,7 +17,7 @@ switch ($action) {
 				$_SESSION['user']['id'] = $user['id'];
 		        $_SESSION['user']['name'] = $user['name'];
 		        $_SESSION['auth'] = md5(config('security.password.hash') . $_SESSION['user']['id']);
-				$result = array('success' => true);
+				$result['success'] = true;
 			}
 		}
 
