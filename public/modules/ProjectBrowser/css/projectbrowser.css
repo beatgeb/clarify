@@ -260,3 +260,7 @@
     border-radius: 2px;
     -webkit-border-radius: 2px;
 }
+
+.modProjectBrowser .btn-disabled {
+    opacity: 0.2;
+}

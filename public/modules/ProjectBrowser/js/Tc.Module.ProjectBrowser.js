@@ -24,8 +24,18 @@
                     $('.collaborator-email', $ctx).focus();
                 });
             });
+            $('.project-name', $ctx).on('keypress', function(e) {
+                if (e.keyCode == 13 && $(this).val() != '') {
+                    that.addProject();
+                }
+            });
             $('.add-project-submit', $ctx).on('click', function() {
                 that.addProject();
+            });
+            $('.collaborator-email', $ctx).on('keypress', function(e) {
+                if (e.keyCode == 13 && $(this).val() != '') {
+                    that.addCollaborator();
+                }
             });
             $('.add-collaborator-submit', $ctx).on('click', function() {
                 that.addCollaborator();
@@ -75,6 +85,7 @@
 
         addProject: function() {
             var $ctx = this.$ctx;
+            $('.add-project-submit', $ctx).addClass('btn-disabled');
             var name = $('.project-name', $ctx).val();
             if (name != '') {
                 $.ajax({
@@ -91,6 +102,7 @@
 
         addCollaborator: function() {
             var $ctx = this.$ctx;
+            $('.add-collaborator-submit', $ctx).addClass('btn-disabled');
             var email = $('.collaborator-email', $ctx).val();
             var project = $('.collaborator-email', $ctx).data('project-id');
             if (email != '') {
