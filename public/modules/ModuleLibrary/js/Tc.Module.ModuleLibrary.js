@@ -24,8 +24,9 @@
                 $input.on('blur', function() {
                     var $this = $(this);
                     $.ajax({
-                        url: "/api/module/rename/" + id + "/" + $this.val(),
+                        url: "/api/module/rename/" + id,
                         dataType: 'json',
+                        data: { 'name': $this.val() },
                         success: function(data){
                             // rename all module instances on the current screen
                             var $layerModule = $('.modLayerModule');

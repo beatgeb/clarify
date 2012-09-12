@@ -191,14 +191,14 @@ switch ($action) {
 
     case API_MODULE_RENAME:
         $id = intval($route[4]);
-        $name = $route[5];
-        $skin = $route[6];
+        $name = $_REQUEST['name'];
+        $skin = null;
         if ($id < 1) { die('Please provide a module id'); }
         //  rename the project module
         $data = array(
             'modified' => date('Y-m-d H:i:s'),
             'modifier' => userid(),
-            'name' => $name,
+            'name' => $db->escape($name),
             'skin' => $skin
         );
         $db->update('project_module', $data, array('id' => $id, 'creator' => userid()));
