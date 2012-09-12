@@ -76,10 +76,25 @@ switch ($action) {
 
         $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
         if (!$screen) { die(); }
-        $sameColors = $db->single("SELECT count(id) AS number FROM project_color WHERE project = " . $screen['project'] ." AND hex <> '" . $hex . "' AND (name LIKE '" . $match[0] . "-%' OR name = '". $match[0] . "')");
-        if ($sameColors['number'] > 0) {
+
+        // handle if name with other hex-value already exists
+        $sameColors = $db->single("
+            SELECT count(id) AS number
+            FROM project_color
+            WHERE project = " . $screen['project'] ." AND hex <> '" . $hex . "' AND (name LIKE '" . $match[0] . "-%' OR name = '". $match[0] . "')
+        ");
+        $existing = $db->single('
+            SELECT id, name
+            FROM project_color
+            WHERE project = ' . $screen['project'] . ' AND r = ' . $r . ' AND g = ' . $g . ' AND b = ' . $b . ' AND alpha = ' . $a . '
+        ');
+        if ($sameColors['number'] > 0 && !$existing) {
             $match[0] = $match[0]."-".$sameColors['number'];
         }
+        else if ($existing) {
+            $match[0] = $existing['name'];
+        }
+
         $data = array(
             'created' => date('Y-m-d H:i:s'),
             'creator' => userid(),
@@ -96,11 +111,6 @@ switch ($action) {
             'name_css' => slug($match[0])
         );
         $result = 'EXISTING';
-        $existing = $db->single('
-            SELECT id 
-            FROM project_color 
-            WHERE project = ' . $screen['project'] . ' AND r = ' . $r . ' AND g = ' . $g . ' AND b = ' . $b . ' AND alpha = ' . $a . '
-        ');
         $id = $existing['id'];
         if (!$existing) {
             $id = $db->insert('project_color', $data);
