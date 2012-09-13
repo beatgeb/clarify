@@ -20,7 +20,7 @@ if ($width <= 0) {
 }
 
 // Load comments for this screen and layer
-$screen = $db->single("SELECT id, width, project FROM screen WHERE code = '" . $screen_code . "' LIMIT 1");
+$screen = $db->single("SELECT id, width, project, embeddable FROM screen WHERE code = '" . $screen_code . "' LIMIT 1");
 if (!$screen) { die(); }
 
 // check project permissions
