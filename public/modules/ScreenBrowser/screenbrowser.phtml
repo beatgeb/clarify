@@ -71,7 +71,7 @@ $colors = $db->data("
     <?php foreach ($screens as $screen) { ?>
     <li class="screen screen-<?php print $screen['id'] ?>">
         <a class="image" href="<?php print R ?>screen/<?php print $screen['id'] ?>">
-            <img src="<?= R ?>api/screen/thumbnail/<?= $screen['id'] ?>/200" width="200" alt="" />
+            <img src="/upload/screens/<?php print $project_id ?>/thumbnails/<?php print md5($screen['id'] .config('security.general.hash')) ?>.<?php print $screen['ext'] ?>" width="200" alt="" />
             <div class="info">
                 <span<?php print $screen['count_comment'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-comment"></i> <?php print $screen['count_comment'] ?></span>
                 <span<?php print $screen['count_measure'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-resize-vertical"></i> <?php print $screen['count_measure'] ?></span>
