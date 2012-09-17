@@ -49,7 +49,9 @@ function config($var, $value = null) {
     global $config;
     if ($config == null) {
         require CONFIG . 'config.php';
-        require CONFIG . 'config-private.php';
+        if (is_file(CONFIG . 'config-private.php')) {
+            require CONFIG . 'config-private.php';
+        }
     }
     return isset($config[$var]) ? $config[$var] : $value;
 }
