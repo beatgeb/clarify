@@ -8,6 +8,7 @@
  */
 (function($) {
     Tc.Module.ScreenBrowser = Tc.Module.extend({
+
         on: function(callback) {
             var project = this.$ctx.data('project'),
                 $ctx = this.$ctx,
@@ -20,9 +21,18 @@
                 dataType: 'json',
                 url: '/api/screen/upload/' + project,
                 dropZone: $('.create'),
-                send: function(e, data) {
-                    //console.log(data);
+                progress: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('.create').find('.meta').text(progress + '%');
                 },
+                done: function (e, data) {
+                    window.location.reload();
+                }
+            });
+
+            $('.fileupload-replace').fileupload({
+                dataType: 'json',
+                url: '/api/screen/replace/',
                 progress: function (e, data) {
                     var progress = parseInt(data.loaded / data.total * 100, 10);
                     $('.create').find('.meta').text(progress + '%');
@@ -32,7 +42,16 @@
                 }
             });
             
+            // replace action
+            $('.btn-replace').on('click', function(e) {
+                $('.fileupload-replace').fileupload('option', 'url', '/api/screen/replace/' + $(this).data('screen'));
+                $('.fileupload-replace').click();
+                e.stopPropagation();
+                return false;
+            });
+
             $('.create').on('click', function(e) {
+                that.screen = null;
                 $('.fileupload').click();
                 e.stopPropagation();
                 return false;

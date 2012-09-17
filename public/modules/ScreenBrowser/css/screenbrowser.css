@@ -235,7 +235,8 @@
     position: relative;
 }
 
-.modScreenBrowser .fileupload {
+.modScreenBrowser .fileupload,
+.modScreenBrowser .fileupload-replace {
     position: absolute;
     top: -100px;
 }
@@ -298,4 +299,21 @@
 }
 .modScreenBrowser .btn-create-project:hover {
     color: #3a4507;
+}
+.modScreenBrowser ul li:hover .btn-replace {
+    display: inline-block;
+}
+.modScreenBrowser .btn-replace {
+    display: none;
+    background: #111;
+    color: #777;
+    border-radius: 2px;
+    font-size: 11px;
+    padding: 1px 3px;
+    text-decoration: none;
+    margin-left: 5px;
+}
+.modScreenBrowser .btn-replace:hover {
+    background: #111;
+    color: #FFF;
 }

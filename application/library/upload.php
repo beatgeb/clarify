@@ -16,6 +16,8 @@ class UploadHandler
 {
     private $options;
     public $project = 1;
+    public $replace = false;
+    public $screen = null;
     
     function __construct($options=null) {
         $this->options = array(
@@ -217,31 +219,44 @@ class UploadHandler
             die();
         }
         list($width, $height, $itype, $attr) = @getimagesize($uploaded_file);
-        $screen = array(
-            'created' => date('Y-m-d H:i:s'),
-            'creator' => userid(),
-            'title' => substr(basename($name), 0, -(strlen($ext)+1)),
-            'type' => $type,
-            'width' => $width,
-            'height' => $height,
-            'ext' => substr($type,strpos($type,'/')+1),
-            'project' => $this->project,
-            'code' => gen_uuid(userid() . '-screen')
-        );
-        
-        $id = $db->insert('screen', $screen);
+        if ($this->replace) {
+            $id = $this->screen;
+            $screen = array(
+                'modified' => date('Y-m-d H:i:s'),
+                'modifier' => userid(),
+                'type' => $type,
+                'width' => $width,
+                'height' => $height,
+                'ext' => substr($type,strpos($type,'/')+1)
+            );
+            $db->update('screen', $screen, array('id' => $id));
+        } else {
+            $screen = array(
+                'created' => date('Y-m-d H:i:s'),
+                'creator' => userid(),
+                'title' => substr(basename($name), 0, -(strlen($ext)+1)),
+                'type' => $type,
+                'width' => $width,
+                'height' => $height,
+                'ext' => substr($type,strpos($type,'/')+1),
+                'project' => $this->project,
+                'code' => gen_uuid(userid() . '-screen-' . time())
+            );
+            $id = $db->insert('screen', $screen);
 
-        // add to activity stream
-        activity_add(
-            '{actor} added a new screen {object} to project {target}', 
-            userid(), OBJECT_TYPE_USER, user('name'), 
-            ACTIVITY_VERB_ADD, 
-            $id, OBJECT_TYPE_SCREEN, $screen['title'],
-            $this->project, OBJECT_TYPE_PROJECT, 'Project Title'
-        );
+            // add to activity stream
+            activity_add(
+                '{actor} added a new screen {object} to project {target}', 
+                userid(), OBJECT_TYPE_USER, user('name'), 
+                ACTIVITY_VERB_ADD, 
+                $id, OBJECT_TYPE_SCREEN, $screen['title'],
+                $this->project, OBJECT_TYPE_PROJECT, 'Project Title'
+            );
 
-        $db->query("UPDATE project SET screen_count = screen_count + 1 WHERE id = " . $this->project);
-        
+            $db->query("UPDATE project SET screen_count = screen_count + 1 WHERE id = " . $this->project);
+            
+        }
+
         $file = new stdClass();
         $file->name = $this->trim_file_name($name, $type);
         $file->size = intval($size);

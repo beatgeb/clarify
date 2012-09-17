@@ -84,6 +84,7 @@ $colors = $db->data("
         <p class="meta">
             <span class="size"><?php print $screen['width'] ?> &times; <?php print $screen['height'] ?></span>
             <?php if (has_permission($screen['project'], 'EDIT')) { ?>
+            <a href="javascript:;" class="btn-replace" data-screen="<?php print $screen['id'] ?>">Replace</a>
             <a class="delete" data-screen="<?php print $screen['id'] ?>" href="javascript:;">×</a>
             <?php } ?>
         </p>
@@ -91,6 +92,7 @@ $colors = $db->data("
     <?php } ?>
 </ul>
 <input class="fileupload" type="file" name="files[]" multiple>
+<input class="fileupload-replace" type="file" name="files_replace[]">
 <?php } else { ?>
 <a class="btn-create-project" href="#">Create Project</a>
 <?php } ?>

@@ -7,6 +7,7 @@ define('API_SCREEN_IMAGE', 'screen.image');
 define('API_SCREEN_THUMBNAIL', 'screen.thumbnail');
 define('API_SCREEN_EMBED', 'screen.embed');
 define('API_SCREEN_SETTING', 'screen.setting');
+define('API_SCREEN_REPLACE', 'screen.replace');
 
 switch ($action) {
     
@@ -33,7 +34,7 @@ switch ($action) {
     case API_SCREEN_DELETE:
         lock();
         $screen = intval($route[4]);
-        $screen = $db->single("SELECT id, project FROM screen WHERE id = " . $screen . " AND creator = " . userid());
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = " . $screen . "");
         if (!$screen) { die(); }
 
         // check permissions
@@ -48,12 +49,65 @@ switch ($action) {
         $db->delete('screen', array('id' => $screen['id']));
         $db->query("UPDATE project SET screen_count = screen_count - 1 WHERE id = " . $screen['project']);
         break;
+
+    case API_SCREEN_REPLACE: 
+        lock();
+        $screen = intval($route[4]);
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = " . $screen . "");
+        if (!$screen) { die(); }
+
+        // check permissions
+        $project = $screen['project'];
+        permission($screen['project'], 'EDIT');
+
+        require LIBRARY . 'upload.php';
+        $upload_dir = APP . '/../public/upload/screens/' . $project . '/';
+        $upload_dir_thumbs = APP . '/../public/upload/screens/' . $project . '/thumbnails';
+        @mkdir($upload_dir_thumbs, 0777, true);
+        $options = array(
+            'script_url' => R . '?view=api&action=screen.upload',
+            'upload_dir' => $upload_dir,
+            'upload_url' => R . 'upload/screens/' . $project . '/',
+            'image_versions' => array(),
+            'param_name' => 'files_replace'
+        );
+        
+        $upload_handler = new UploadHandler($options);
+        $upload_handler->project = $project;
+        $upload_handler->replace = true;
+        $upload_handler->screen = $screen['id'];
+
+        header('Pragma: no-cache');
+        header('Cache-Control: private, no-cache');
+        header('Content-Disposition: inline; filename="files.json"');
+        header('X-Content-Type-Options: nosniff');
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: OPTIONS, HEAD, GET, POST, PUT, DELETE');
+        header('Access-Control-Allow-Headers: X-File-Name, X-File-Type, X-File-Size');
+
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'OPTIONS':
+                break;
+            case 'HEAD':
+            case 'GET':
+                $upload_handler->get();
+                break;
+            case 'POST':
+                $upload_handler->post();
+                break;
+            case 'DELETE':
+                $upload_handler->delete();
+                break;
+            default:
+                header('HTTP/1.1 405 Method Not Allowed');
+        }
+        break;
     
     case API_SCREEN_UPLOAD:
         lock();
         // TODO: CLEANUP UPLOAD CODE, make it ourself, no third-party library
         $project = intval($route[4]);
-
+        
         // check permission
         permission($project, 'EDIT');
 
@@ -103,8 +157,7 @@ switch ($action) {
     case API_SCREEN_THUMBNAIL:
         $screen = intval($route[4]);
         $reqwidth = intval($route[5]);
-        $key = md5($screen . '-' . $reqwidth);
-        $screen = $db->single("SELECT id, project, embeddable, type, ext FROM screen WHERE id = '" . $screen . "' LIMIT 1");
+        $screen = $db->single("SELECT id, project, modified, embeddable, type, ext FROM screen WHERE id = '" . $screen . "' LIMIT 1");
         if (!$screen) { die(); }
 
         // check project permissions
@@ -112,6 +165,7 @@ switch ($action) {
             die();
         }
 
+        $key = md5($screen . '-' . $reqwidth . '-' . $screen['modified']);
         $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
         $target =  CACHE . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '/' . $key;
         
