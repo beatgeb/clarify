@@ -75,7 +75,7 @@ switch ($action) {
                     'max_width' => 200,
                     'max_height' => 1000
                 )
-            )
+            ),
             'param_name' => 'files_replace'
         );
         
