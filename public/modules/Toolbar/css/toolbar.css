@@ -27,10 +27,14 @@
 
 .modToolbar .section a > i {
 	display: block;
-	width: 47px;
-	height: 47px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
+	color: #FFF;
+	text-decoration: none;
+	font-size: 32px;
+	line-height: 1;
+	padding: 8px 0 5px 0;
+	text-align: center;
 }
 
 .modToolbar .section a:hover > i {
@@ -72,30 +76,6 @@
 
 .modToolbar .section a:hover .tt {
 	display: block;
-}
-
-.modToolbar .btn-screen > i {
-	background: transparent url(/img/toolbar-reply.png) center no-repeat;
-}
-
-.modToolbar .btn-comments > i {
-	background: transparent url(/img/toolbar-chat.png) center no-repeat;
-}
-
-.modToolbar .btn-measure > i {
-	background: transparent url(/img/toolbar-move.png) center no-repeat;
-}
-
-.modToolbar .btn-modules > i {
-	background: transparent url(/img/toolbar-grid.png) center no-repeat;
-}
-
-.modToolbar .btn-color > i {
-	background: transparent url(/img/toolbar-drop.png) center no-repeat;
-}
-
-.modToolbar .btn-embed > i {
-	background: transparent url(/img/toolbar-globe.png) center no-repeat;
 }
 
 .modToolbar .btn-embed {

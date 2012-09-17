@@ -73,11 +73,11 @@ $colors = $db->data("
         <a class="image" href="<?php print R ?>screen/<?php print $screen['id'] ?>">
             <img src="<?= R ?>api/screen/thumbnail/<?= $screen['id'] ?>/200" width="200" alt="" />
             <div class="info">
-                <i class="icon-white icon-comment"></i> <span<?php print $screen['count_comment'] == 0 ? ' class="zero"' : '' ?>><?php print $screen['count_comment'] ?></span>
-                <i class="icon-white icon-resize-vertical"></i> <span<?php print $screen['count_measure'] == 0 ? ' class="zero"' : '' ?>><?php print $screen['count_measure'] ?></span>
-                <i class="icon-white icon-tint"></i> <span<?php print $screen['count_color'] == 0 ? ' class="zero"' : '' ?>><?php print $screen['count_color'] ?></span>
-                <i class="icon-white icon-font"></i> <span<?php print $screen['count_font'] == 0 ? ' class="zero"' : '' ?>><?php print $screen['count_font'] ?></span>
-                <i class="icon-white icon-th-large"></i> <span<?php print $screen['count_module'] == 0 ? ' class="zero"' : '' ?>><?php print $screen['count_module'] ?></span>
+                <span<?php print $screen['count_comment'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-comment"></i> <?php print $screen['count_comment'] ?></span>
+                <span<?php print $screen['count_measure'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-resize-vertical"></i> <?php print $screen['count_measure'] ?></span>
+                <span<?php print $screen['count_color'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-tint"></i> <?php print $screen['count_color'] ?></span>
+                <span<?php print $screen['count_font'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-font"></i> <?php print $screen['count_font'] ?></span>
+                <span<?php print $screen['count_module'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-th-large"></i> <?php print $screen['count_module'] ?></span>
             </div>
         </a>
         <p class="title"><a href="javascript:;" data-screen="<?php print $screen['id'] ?>" data-title="<?php print $screen['title'] ?>"><span><?php print htmlspecialchars(truncate($screen['title'],30,'...')) ?></span></a></p>

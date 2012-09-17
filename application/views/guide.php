@@ -38,7 +38,7 @@ foreach ($comments as $comment) {
     <div class="mod modGuide">
         <div class="mod modToolbar">
             <div class="section section-nav">
-                <a class="button btn-screen" href="/project/<?php print $project['creator']; ?>/<?php print $project['slug']; ?>/"><i></i><div class="tt">Back</div></a>
+                <a class="button btn-screen" href="/project/<?php print $project['creator']; ?>/<?php print $project['slug']; ?>/"><i class="icon icon-arrow-left"></i><div class="tt">Back</div></a>
             </div>
         </div>
         <h1><?php print $project['name'] ?></h1>
