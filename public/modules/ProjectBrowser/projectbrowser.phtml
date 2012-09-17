@@ -59,7 +59,7 @@ $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE cre
     <?php foreach ($collaborators as $c) { ?>
     <li>
         <div class="edit-collaborator" data-id="<?php print $c['id'] ?>" href="#">
-            <img src="<?php print gravatar($c['email'], 24) ?>" width="24" height="24" />
+            <img src="<?php print gravatar($c['email'], 48) ?>" width="24" height="24" />
             <span><?php print $c['email'] ?></span>
             <a href="javascript:;" class="remove">&times;</a>
         </div>
