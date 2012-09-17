@@ -114,6 +114,7 @@ switch ($action) {
 
         $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
         $target =  CACHE . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '/' . $key;
+        
         if (is_file($target)) {
             header('Content-Type: image/png');
             readfile($target);
