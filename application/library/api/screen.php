@@ -68,14 +68,7 @@ switch ($action) {
             'script_url' => R . '?view=api&action=screen.upload',
             'upload_dir' => $upload_dir,
             'upload_url' => R . 'upload/screens/' . $project . '/',
-            'image_versions' => array(
-                'thumbnail' => array(
-                    'upload_dir' => $upload_dir . 'thumbnails/',
-                    'upload_url' => R . 'upload/screens/' . $project . '/thumbnails/',
-                    'max_width' => 200,
-                    'max_height' => 1000
-                 )
-            )
+            'image_versions' => array()
         );
         
         $upload_handler = new UploadHandler($options);
