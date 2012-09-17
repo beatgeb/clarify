@@ -11,6 +11,10 @@
     position: absolute;
 }
 
+.modLayerMeasure .measure:hover {
+    background-color: rgba(132, 207, 0, 0.6);
+}
+
 .modLayerMeasure .measure .meta,
 .modLayerMeasure .measure-helper .meta {
     font-family: helvetica; 

@@ -116,7 +116,7 @@ switch ($action) {
         $target =  CACHE . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '/' . $key;
         if (is_file($target)) {
             header('Content-Type: image/png');
-            echo file_get_contents($target);
+            readfile($target);
         } else {
             if (!is_dir(dirname($target))) {
                 @mkdir(dirname($target), 0777, true);
