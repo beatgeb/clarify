@@ -23,7 +23,12 @@ $screen = $db->single("
         s.code,
         s.embeddable,
         p.slug as project_slug, 
-        p.creator as project_creator
+        p.creator as project_creator,
+        s.count_comment,
+        s.count_measure,
+        s.count_color,
+        s.count_module,
+        s.count_font
     FROM screen s 
         LEFT JOIN project p ON (p.id = s.project)
     WHERE 

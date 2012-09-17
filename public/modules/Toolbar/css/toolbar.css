@@ -62,6 +62,7 @@
 	font-size: 12px;
 	white-space: nowrap;
 	background: #d8684a;
+	z-index: 5;
 }
 
 .modToolbar .tt i {
@@ -98,4 +99,26 @@
     color: #c11a00;
     font-weight: bold;
     font-size: 12px;
+}
+.modToolbar .section a:hover .count {
+	display: none;
+}
+.modToolbar .section a .count {
+	position: absolute;
+	background-color: #ffffff;
+	background-image: -webkit-gradient(linear, left center, right center, from(rgb(255, 255, 255)), to(rgb(238, 238, 238)));
+	background-image: -webkit-linear-gradient(left, rgb(255, 255, 255), rgb(238, 238, 238));
+	background-image: -moz-linear-gradient(left, rgb(255, 255, 255), rgb(238, 238, 238));
+	background-image: -o-linear-gradient(left, rgb(255, 255, 255), rgb(238, 238, 238));
+	background-image: -ms-linear-gradient(left, rgb(255, 255, 255), rgb(238, 238, 238));
+	background-image: linear-gradient(left, rgb(255, 255, 255), rgb(238, 238, 238));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#ffffff', EndColorStr='#eeeeee');
+	right: -20px;
+	width: 20px;
+	top: 10px;
+	color: #999;
+	border-radius: 0 4px 4px 0;
+	text-align: center;
+	font-size: 12px;
+	padding: 4px 0;
 }
