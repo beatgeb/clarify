@@ -19,7 +19,14 @@ if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['u
     //$notifications = $p['id'] == 5 ? '<span class="notifications">5</span>' : ''; 
     ?>
     <li <?php print $p['id'] == $project_id ? 'class="active"': '' ?>>
-        <a href="<?php print R ?>project/<?php print $p['creator'] ?>/<?php print $p['slug'] ?>/"><?php print $p['name'] ?> <span class="count"><?php print $p['screen_count'] ?></span><?php print $notifications ?></a>
+        <a href="<?php print R ?>project/<?php print $p['creator'] ?>/<?php print $p['slug'] ?>/">
+            <?php if ($p['creator'] != userid()) { ?>
+            <i class="icon icon-group"></i>
+            <?php } ?>
+            <?php print $p['name'] ?> 
+            <span class="count"><?php print $p['screen_count'] ?></span>
+            <?php print $notifications ?>
+        </a>
     </li>
     <?php } ?>
 </ul>
