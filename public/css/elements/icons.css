@@ -40,7 +40,8 @@
 }
 a [class^="icon-"], a [class*=" icon-"] {
   display: inline-block;
-  text-decoration: inherit;
+  text-decoration: none;
+  color: #FFF;
 }
 /* makes the font 33% larger relative to the icon container */
 .icon-large:before {
