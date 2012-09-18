@@ -414,6 +414,7 @@ CREATE TABLE `user` (
   `twitter_oauth_secret` varchar(100) DEFAULT NULL,
   `name` VARCHAR(100) NULL DEFAULT NULL,
   `invitation_code` VARCHAR(10) NULL DEFAULT NULL,
+  `password` CHAR(32) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `twitter_user_id` (`twitter_user_id`),

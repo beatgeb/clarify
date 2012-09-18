@@ -1,0 +1,1 @@
+ALTER TABLE `user` ADD `password` CHAR(32) NULL DEFAULT NULL AFTER `invitation_code`;
