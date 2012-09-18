@@ -25,11 +25,29 @@
         },
 
         authClarify: function() {
-            $('.btn-signin').addClass('btn-disabled');
+            var that = this;
+            $('input', that.$ctx).removeClass('error');
+            $('.btn-signin', this.$ctx).addClass('btn-disabled');
+            $.ajax({
+                url: "/api/auth/authenticate",
+                type: "POST",
+                dataType: 'json',
+                data: { 
+                    'email': $('.email').val(), 
+                    'password': $('.password').val() 
+                },
+                success: function(data){
+                    if (data.success) {
+                        location.href = '/';
+                    } else {
+                        $('input', that.$ctx).addClass('error');
+                    }
+                }
+            });
         },
         
         authTwitter: function() {
-            $('.btn-twitter').addClass('btn-disabled');
+            $('.btn-twitter', this.$ctx).addClass('btn-disabled');
             location.href = '/auth/?start=1';
         }
     });

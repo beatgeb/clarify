@@ -18,7 +18,14 @@
 }
 
 .modAuth .form {
-    background: #EEE;
+    background-color: #ebebeb;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(235, 235, 235)), to(rgb(248, 248, 248)));
+    background-image: -webkit-linear-gradient(top, rgb(235, 235, 235), rgb(248, 248, 248));
+    background-image: -moz-linear-gradient(top, rgb(235, 235, 235), rgb(248, 248, 248));
+    background-image: -o-linear-gradient(top, rgb(235, 235, 235), rgb(248, 248, 248));
+    background-image: -ms-linear-gradient(top, rgb(235, 235, 235), rgb(248, 248, 248));
+    background-image: linear-gradient(top, rgb(235, 235, 235), rgb(248, 248, 248));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ebebeb', EndColorStr='#f8f8f8');
     padding: 30px;
     border-radius: 5px;
     margin-bottom: 20px;
@@ -36,6 +43,10 @@
     border: 1px solid #DDD;
     -webkit-box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 1);
     box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 1);
+}
+.modAuth .form input.error {
+    background: #fffafc;
+    border: 1px solid #821414;
 }
 .modAuth .form .actions {
     overflow: hidden;
@@ -95,21 +106,18 @@
 
 .modAuth .notice {
     text-align: center;
-    color: #555;
+    color: #888;
     font-size: 14px;
     margin-top: 100px;
     font-family:'Lexia W01 Regular', helvetica, arial, sans-serif;
 }
 
 .modAuth .notice a {
-    color: #827d65;
+    color: #666;
     text-decoration: none;
-    background: #f0e7ba;
-    padding: 1px 4px;
-    border-radius: 3px;
 }
 
 .modAuth .notice a:hover {
-    background: #827d65;
-    color: #FFF;
+    border-bottom: 1px solid #444;
+    color: #000;
 }
