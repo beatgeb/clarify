@@ -25,10 +25,11 @@
         },
 
         authClarify: function() {
-            
+            $('.btn-signin').addClass('btn-disabled');
         },
         
         authTwitter: function() {
+            $('.btn-twitter').addClass('btn-disabled');
             location.href = '/auth/?start=1';
         }
     });

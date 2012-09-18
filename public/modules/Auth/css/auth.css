@@ -11,7 +11,7 @@
     margin-bottom: 10px;
 }
 .modAuth .signup {
-    width: 340px;
+    width: 360px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
@@ -19,7 +19,7 @@
 
 .modAuth .form {
     background: #EEE;
-    padding: 20px;
+    padding: 30px;
     border-radius: 5px;
     margin-bottom: 20px;
 }
@@ -81,7 +81,8 @@
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#02a4e9', EndColorStr='#0792cd');
 }
 
-.modAuth .form a.btn:active {
+.modAuth .form a.btn:active,
+.modAuth .form a.btn-disabled {
     background-color: #037cb2;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(3, 124, 178)), to(rgb(0, 97, 142)));
     background-image: -webkit-linear-gradient(top, rgb(3, 124, 178), rgb(0, 97, 142));
