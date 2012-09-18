@@ -1,69 +1,61 @@
+.modAuth .logo {
+    display: block;
+    background-color: #333;
+    font-family:'Lexia W01 Regular', helvetica, arial, sans-serif;
+    font-size: 30px;
+    border-bottom: 1px solid #222;
+    padding: 30px 45px;
+    color: #FFF;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
 .modAuth .signup {
-    width: 800px;
+    width: 340px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 250px;
-}
-
-.modAuth .branding {
-    float: left;
-    width: 300px;
-}
-
-.modAuth h1 {
-    color: #444;
-    font-weight: bold;
-    font-size: 48px;
-    text-align: right;
-}
-
-.modAuth h2 {
-    color: #999999;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: right;
+    margin-top: 100px;
 }
 
 .modAuth .form {
-    padding-left: 50px;
-    margin-left: 350px;
-    border-left: 1px solid #999999;
+    background: #EEE;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
-
-.modAuth .form .code {
-    width: 300px;
+ 
+.modAuth .form input {
+    width: 260px;
     color: #333;
     border: none;
     display: block;
-    padding: 18px 20px;
-    font-size: 24px;
+    padding: 14px 18px;
+    font-size: 18px;
     border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    margin-bottom: 20px;
-    background-color: #494a4a;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(73, 74, 74)), to(rgb(69, 70, 70)));
-    background-image: -webkit-linear-gradient(top, rgb(73, 74, 74), rgb(69, 70, 70));
-    background-image: -moz-linear-gradient(top, rgb(73, 74, 74), rgb(69, 70, 70));
-    background-image: -o-linear-gradient(top, rgb(73, 74, 74), rgb(69, 70, 70));
-    background-image: -ms-linear-gradient(top, rgb(73, 74, 74), rgb(69, 70, 70));
-    background-image: linear-gradient(top, rgb(73, 74, 74), rgb(69, 70, 70));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#494a4a', EndColorStr='#454646');
+    margin-bottom: 10px;
+    border: 1px solid #DDD;
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 1);
+    box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 1);
 }
-
-.modAuth .form .twitter {
+.modAuth .form .actions {
+    overflow: hidden;
+}
+.modAuth .form .btn {
     position: relative;
-    width: 300px;
+    width: 102px;
     color: #FFF;
     border: none;
     display: block;
-    padding: 18px 20px;
-    font-size: 24px;
+    padding: 15px 18px;
+    font-size: 18px;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     text-align: left;
     text-decoration: none;
+    margin-top: 10px;
+    margin-right: 20px;
+    float: left;
     background-color: #0792cd;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(7, 146, 205)), to(rgb(3, 124, 178)));
     background-image: -webkit-linear-gradient(top, rgb(7, 146, 205), rgb(3, 124, 178));
@@ -72,12 +64,13 @@
     background-image: -ms-linear-gradient(top, rgb(7, 146, 205), rgb(3, 124, 178));
     background-image: linear-gradient(top, rgb(7, 146, 205), rgb(3, 124, 178));
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#0792cd', EndColorStr='#037cb2');
-    -webkit-box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
-    -moz-box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
-    box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.2);
 }
 
-.modAuth .form a.twitter:hover {
+.modAuth .form .btn:last-child {
+    margin-right: 0;
+}
+
+.modAuth .form a.btn:hover {
     background-color: #02a4e9;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(2, 164, 233)), to(rgb(7, 146, 205)));
     background-image: -webkit-linear-gradient(top, rgb(2, 164, 233), rgb(7, 146, 205));
@@ -88,7 +81,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#02a4e9', EndColorStr='#0792cd');
 }
 
-.modAuth .form a.twitter:active {
+.modAuth .form a.btn:active {
     background-color: #037cb2;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(3, 124, 178)), to(rgb(0, 97, 142)));
     background-image: -webkit-linear-gradient(top, rgb(3, 124, 178), rgb(0, 97, 142));
@@ -99,42 +92,23 @@
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#037cb2', EndColorStr='#00618e');
 }
 
-.modAuth .form .twitter span {
-    display: block;
-    position: absolute;
-    top: 22px;
-    right: 20px;
-    height: 20px;
-    background: url('/img/signup-twitter.png') no-repeat right;
-    color: #024063;
-    font-size: 14px;
-    font-weight: bold;
-    padding-right: 35px;
-    line-height: 20px;
-}
-
-.modAuth .private-beta {
-    background: url('/img/private-beta.png') no-repeat;
-    position: absolute;
-    top: 120px;
-    left: 0;
-    width: 200px;
-    height: 35px;
-    color: #474848;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding-left: 128px;
-    line-height: 35px;
-}
-
-.modAuth .signup .notice {
+.modAuth .notice {
     text-align: center;
     color: #555;
-    font-size: 12px;
+    font-size: 14px;
     margin-top: 100px;
+    font-family:'Lexia W01 Regular', helvetica, arial, sans-serif;
 }
 
-.modAuth .signup .notice a {
-    color: #888;
+.modAuth .notice a {
+    color: #827d65;
+    text-decoration: none;
+    background: #f0e7ba;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.modAuth .notice a:hover {
+    background: #827d65;
+    color: #FFF;
 }

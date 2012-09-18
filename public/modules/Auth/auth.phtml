@@ -1,16 +1,23 @@
+<a class="logo" href="<?php print R ?>">Clarify</a>
 <div class="signup">
-    <div class="branding">
-        <h2>Frontend Development Toolkit</p>
-        <h1>Clarify</h1>
-    </div>
     <div class="form">
         <?php if ($route[2] > 0) { ?>
         <?php $_SESSION['user']['invitation_code'] = intval($route[2]); ?>
         <input class="code" type="text" placeholder="Invitation Code" value="<?php print intval($route[2]) ?>" />
-        <a href="javascript:;" class="twitter">Create Account<span>with Twitter</span></a>
+        <a href="javascript:;" class="btn">Create Account</a>
         <?php } else { ?>
-        <a href="javascript:;" class="twitter">Authenticate<span>with Twitter</span></a>
+        <input type="text" placeholder="E-Mail" />
+        <input class="password" type="password" placeholder="Password" />
+        <div class="actions cf">
+            <a href="javascript:;" class="btn btn-signin"><i class="icon icon-arrow-right"></i>&nbsp;&nbsp;Sign In</a>
+            <a href="javascript:;" class="btn btn-twitter"><i class="icon icon-twitter"></i>&nbsp;&nbsp;Twitter</a>
+        </div>
         <?php } ?>
     </div>
-    <div class="notice">&copy; 2012 clarify.io - a Project by <a href="http://www.twitter.com/rogerdudler">Roger Dudler</a>. Read the <a href="http://blog.clarify.io">Blog</a> or follow <a href="http://www.twitter.com/clarify_io">@clarify_io</a> on Twitter.
+</div>
+<div class="notice">
+    &copy; 2012 <a href="http://clarify.io">clarify.io</a> - a project by 
+    <a href="http://www.twitter.com/rogerdudler">@rogerdudler</a>. 
+    follow <a href="http://www.twitter.com/clarify_io">@clarify_io</a> 
+    for updates.
 </div>

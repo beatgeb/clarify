@@ -10,18 +10,25 @@
     Tc.Module.Auth = Tc.Module.extend({        
         on: function(callback) {
             var that = this;
-            $('.code', this.$ctx).on('keypress', function(e) {
-                if (e.keyPress == 13) {
-                    that.auth();
+            $('.password', this.$ctx).on('keypress', function(e) {
+                if (e.keyCode == 13) {
+                    that.authClarify();
                 }
             });
-            $('.twitter', this.$ctx).on('click', function(e) {
-                that.auth();
+            $('.btn-signin', this.$ctx).on('click', function(e) {
+                that.authClarify();
+            });
+            $('.btn-twitter', this.$ctx).on('click', function(e) {
+                that.authTwitter();
             });
             callback();
         },
+
+        authClarify: function() {
+            
+        },
         
-        auth: function() {
+        authTwitter: function() {
             location.href = '/auth/?start=1';
         }
     });
