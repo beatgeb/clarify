@@ -19,6 +19,7 @@ define('API_SCREEN', 'screen');
 define('API_COLLABORATOR', 'collaborator');
 define('API_ACTIVITY', 'activity');
 define('API_AUTH', 'auth');
+define('API_USER', 'user');
 
 $api = $route[2];
 
@@ -33,6 +34,7 @@ switch ($api) {
     case API_COLLABORATOR:
     case API_ACTIVITY:
     case API_AUTH:
+    case API_USER:
         $action = $api . '.' . $route[3];
         if (!is_file(LIBRARY . 'api/' . strtolower($api) . '.php')) {
             die('api not available');
