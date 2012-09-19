@@ -80,7 +80,7 @@ $colors = $db->data("
                 <span<?php print $screen['count_module'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-th-large"></i> <?php print $screen['count_module'] ?></span>
             </div>
         </a>
-        <p class="title"><a href="javascript:;" data-screen="<?php print $screen['id'] ?>" data-title="<?php print $screen['title'] ?>"><span><?php print htmlspecialchars(truncate($screen['title'],30,'...')) ?></span></a></p>
+        <p class="title"><a href="javascript:;" data-screen="<?php print $screen['id'] ?>" data-title="<?php print $screen['title'] ?>"><span><?php print htmlspecialchars(truncate($screen['title'],25,'...')) ?></span></a></p>
         <p class="meta">
             <span class="size"><?php print $screen['width'] ?> &times; <?php print $screen['height'] ?></span>
             <?php if (has_permission($screen['project'], 'EDIT')) { ?>
