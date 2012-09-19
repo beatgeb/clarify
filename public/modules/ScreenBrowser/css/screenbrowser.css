@@ -119,10 +119,12 @@
     color: #000;
     width: 200px;
     font-size: 12px;
-    font-weight: bold;
 }
 .modScreenBrowser ul li .image .info span {
-    padding-right: 5px;
+    padding-right: 2px;
+}
+.modScreenBrowser ul li .image .info .zero .count {
+    display: none;
 }
 .modScreenBrowser ul li .image .info .zero {
     color: #CCC;
