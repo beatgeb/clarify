@@ -37,6 +37,15 @@ $config['security.general.hash'] = 'jksuh4882';
 $config['cache.css.enabled'] = false;
 $config['cache.js.enabled'] = false;
 
+// Authentication
+$config['ldap.auth.enabled'] = false;
+$config['ldap.auth.server'] = 'ldaps://auth.yourdomain.com';
+$config['ldap.auth.server.port'] = 636;
+$config['ldap.auth.server.username'] = '';
+$config['ldap.auth.server.password'] = '';
+$config['ldap.auth.base'] = 'dc=company,dc=ag';
+$config['ldap.auth.userbase'] = 'ou=People,ou=ch,' . $config['ldap.base'];
+
 // Twitter Authentication
 $config['twitter.auth.consumerkey'] = '';
 $config['twitter.auth.consumersecret'] = '';
