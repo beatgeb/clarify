@@ -136,3 +136,7 @@
 .modAuth .btn-signup-beta:hover {
     text-decoration: underline;
 }
+.modAuth .form .btn-wide {
+    float: none;
+    width: auto;
+}

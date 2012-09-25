@@ -32,7 +32,7 @@ if (authenticated()) {
 <!DOCTYPE html>
 <html class="mod modLayout skinLayoutAuth">
 <head>
-    <title>Sign Up - Clarify</title>
+    <title>Sign In - Clarify</title>
     <?php require 'partials/head.php' ?>
 </head>
 <body>

@@ -1,35 +1,45 @@
-<a class="logo" href="<?php print R ?>">Clarify</a>
+<a class="logo" href="<?php print R ?>"><?php print config('application.title') ?></a>
 <div class="signup">
     <div class="form">
         <?php if ($route[2] > 0) { ?>
-        <?php $_SESSION['user']['invitation_code'] = intval($route[2]); ?>
-        <input class="code" type="hidden" placeholder="Invitation Code" value="<?php print intval($route[2]) ?>" />
-        <input class="name" type="text" placeholder="Name" />
-        <input class="email" type="text" placeholder="E-Mail" />
-        <input class="password" type="password" placeholder="Password" />
-        <input class="password-confirm" type="password" placeholder="Confirm Password" />
-        <div class="actions cf">
-            <a href="javascript:;" class="btn btn-signup">
-                <i class="icon icon-arrow-right"></i>&nbsp;&nbsp;Create Account
-            </a>
-            <a href="javascript:;" class="btn btn-signup-twitter">
-                <i class="icon icon-twitter"></i>&nbsp;&nbsp;Create Account with Twitter
-            </a>
-        </div>
+            <?php $_SESSION['user']['invitation_code'] = intval($route[2]); ?>
+            <input class="code" type="hidden" placeholder="Invitation Code" value="<?php print intval($route[2]) ?>" />
+            <input class="name" type="text" placeholder="Name" />
+            <input class="email" type="text" placeholder="E-Mail" />
+            <input class="password" type="password" placeholder="Password" />
+            <input class="password-confirm" type="password" placeholder="Confirm Password" />
+            <div class="actions cf">
+                <a href="javascript:;" class="btn btn-signup">
+                    <i class="icon icon-arrow-right"></i>&nbsp;&nbsp;Create Account
+                </a>
+                <a href="javascript:;" class="btn btn-signup-twitter">
+                    <i class="icon icon-twitter"></i>&nbsp;&nbsp;Create Account with Twitter
+                </a>
+            </div>
         <?php } else { ?>
-        <input class="email" type="text" placeholder="E-Mail" />
-        <input class="password" type="password" placeholder="Password" />
-        <div class="actions cf">
-            <a href="javascript:;" class="btn btn-signin">
-                <i class="icon icon-arrow-right"></i>&nbsp;&nbsp;Sign In
-            </a>
-            <a href="javascript:;" class="btn btn-twitter">
-                <i class="icon icon-twitter"></i>&nbsp;&nbsp;Twitter
-            </a>
-        </div>
+            <?php if (config('auth.ldap.enabled')) { ?>
+                <input class="username" type="text" placeholder="Username" />
+                <input class="password" type="password" placeholder="Password" />
+                <div class="actions cf">
+                    <a href="javascript:;" class="btn btn-signin btn-wide">
+                        <i class="icon icon-arrow-right"></i>&nbsp;&nbsp;Sign In
+                    </a>
+                </div>
+            <?php } else { ?>
+                <input class="email" type="text" placeholder="E-Mail" />
+                <input class="password" type="password" placeholder="Password" />
+                <div class="actions cf">
+                    <a href="javascript:;" class="btn btn-signin">
+                        <i class="icon icon-arrow-right"></i>&nbsp;&nbsp;Sign In
+                    </a>
+                    <a href="javascript:;" class="btn btn-twitter">
+                        <i class="icon icon-twitter"></i>&nbsp;&nbsp;Twitter
+                    </a>
+                </div>
+            <?php } ?>
         <?php } ?>
     </div>
-    <?php if ($route[2] <= 0) { ?>
+    <?php if ($route[2] <= 0 && !config('auth.ldap.enabled')) { ?>
     <a href="http://clarify.io" class="btn-signup-beta">
         <i class="icon icon-arrow-right"></i>&nbsp;&nbsp;Register for a Beta Account
     </a>

@@ -25,6 +25,7 @@ $config['memcached.server.name'] = 'localhost';
 $config['memcached.server.port'] = 30001;
  
 // Application
+$config['application.title'] = 'Clarify';
 $config['application.baseurl'] = '/';
 $config['application.domain'] = 'http://clarify.yourdomain.com';
 
