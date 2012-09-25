@@ -20,6 +20,7 @@ define('API_COLLABORATOR', 'collaborator');
 define('API_ACTIVITY', 'activity');
 define('API_AUTH', 'auth');
 define('API_USER', 'user');
+define('API_TYPOGRAPHY', 'font');
 
 $api = $route[2];
 
@@ -35,6 +36,7 @@ switch ($api) {
     case API_ACTIVITY:
     case API_AUTH:
     case API_USER:
+    case API_TYPOGRAPHY:
         $action = $api . '.' . $route[3];
         if (!is_file(LIBRARY . 'api/' . strtolower($api) . '.php')) {
             die('api not available');

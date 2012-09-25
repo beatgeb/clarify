@@ -1,0 +1,5 @@
+ALTER TABLE `font` ADD `width` INT(11)  NULL  DEFAULT NULL  AFTER `y`;
+ALTER TABLE `font` ADD `height` INT  NULL  DEFAULT NULL  AFTER `width`;
+ALTER TABLE `font` CHANGE `font` `font` INT(11)  NOT NULL;
+ALTER TABLE `font` CHANGE `font` `font` INT(11)  NULL  DEFAULT NULL;
+ALTER TABLE `font` ADD `nr` INT(11)  NULL  DEFAULT NULL  AFTER `height`;

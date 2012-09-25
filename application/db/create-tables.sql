@@ -148,9 +148,12 @@ CREATE TABLE `font` (
   `modifier` int(11) DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   `screen` int(11) NOT NULL,
-  `font` int(11) NOT NULL,
+  `font` int(11) DEFAULT NULL,
+  `nr` int(11) DEFAULT NULL,
   `x` int(11) NOT NULL,
   `y` int(11) NOT NULL,
+  `width` int(11) NOT NULL,
+  `height` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `screen` (`screen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
