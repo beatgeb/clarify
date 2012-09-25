@@ -16,24 +16,40 @@ switch ($action) {
 			$ldap = ldap_connect(config('auth.ldap.server'), config('auth.ldap.server.port')) or die("Can't connect to LDAP server");
 			$user = "uid=" . $username . "," . config('auth.ldap.userbase');
 			ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
-			if (ldap_bind($ldap, $user, $password)) {
+			if (ldap_bind($ldap, config('auth.ldap.server.username'), config('auth.ldap.server.password'))) {
+				$attributes = array(
+					'dn','uid',
+					config('auth.ldap.user.attribute.email'),
+					config('auth.ldap.user.attribute.firstname'),
+					config('auth.ldap.user.attribute.surname')
+				);
+				$r = ldap_search($ldap, config('auth.ldap.user.basedn'), 'uid=' . $username, $attributes);
+				if ($r) {
+		            $result = @ldap_get_entries($ldap, $r);
+		            if ($result[0]) {
+		                if (@ldap_bind($ldap, $result[0]['dn'], $password)) {
+		                    $entry = $result[0];
+		                    $user = $db->single("SELECT id, name FROM user WHERE username = '" . $username . "' LIMIT 1");
+							if (!$user) {
+								$name = $entry[config('auth.ldap.user.attribute.firstname')][0] . ' ' . $entry[config('auth.ldap.user.attribute.surname')][0];
+								$user = array(
+									'creator' => 1,
+									'created' => gmdate('Y-m-d H:i:s'),
+									'username' => $username,
+									'name' => $name,
+									'email' => $entry[config('auth.ldap.user.attribute.email')][0]
+								);
+								$id = $db->insert('user', $user);
+								$user['id'] = $id;
+							}
+							$_SESSION['user']['id'] = $user['id'];
+					        $_SESSION['user']['name'] = $user['name'];
+					        $_SESSION['auth'] = md5(config('security.password.hash') . $_SESSION['user']['id']);
+							$result['success'] = true;
+		                }
+		            }
+		        }
 				ldap_unbind($ldap);
-				// login is valid, check for user
-				$user = $db->single("SELECT id, name FROM user WHERE username = '" . $username . "' LIMIT 1");
-				if (!$user) {
-					$user = array(
-						'creator' => 1,
-						'created' => gmdate('Y-m-d H:i:s'),
-						'username' => $username,
-						'name' => $username
-					);
-					$id = $db->insert('user', $user);
-					$user['id'] = $id;
-				}
-				$_SESSION['user']['id'] = $user['id'];
-		        $_SESSION['user']['name'] = $user['name'];
-		        $_SESSION['auth'] = md5(config('security.password.hash') . $_SESSION['user']['id']);
-				$result['success'] = true;
 			} else {
 				$result['message'] = ldap_error($ldap) . ' (' . ldap_errno($ldap) . ')';
 			}

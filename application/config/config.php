@@ -40,12 +40,15 @@ $config['cache.js.enabled'] = false;
 
 // Authentication
 $config['auth.ldap.enabled'] = false;
-$config['auth.ldap.server'] = 'ldaps://auth.yourdomain.com';
-$config['auth.ldap.server.port'] = 636;
+$config['auth.ldap.server'] = 'auth.yourdomain.com';
+$config['auth.ldap.server.port'] = 389;
 $config['auth.ldap.server.username'] = '';
 $config['auth.ldap.server.password'] = '';
-$config['auth.ldap.base'] = 'dc=company,dc=ag';
-$config['auth.ldap.userbase'] = 'ou=People,ou=ch,' . $config['ldap.base'];
+$config['auth.ldap.user.basedn'] = 'dc=company,dc=ag';
+$config['auth.ldap.user.filter'] = '(!(|(!(objectClass=dominoPerson))(!(dominocertificate=*))))';
+$config['auth.ldap.user.attribute.email'] = 'mail';
+$config['auth.ldap.user.attribute.firstname'] = 'givenname';
+$config['auth.ldap.user.attribute.surname'] = 'sn';
 
 // Twitter Authentication
 $config['twitter.auth.consumerkey'] = '';

@@ -20,6 +20,9 @@
                     that.signup();
                 }
             });
+            $('.btn-signin-ldap', this.$ctx).on('click', function(e) {
+                that.authLdap();
+            });
             $('.btn-signin', this.$ctx).on('click', function(e) {
                 that.authClarify();
             });
@@ -83,6 +86,28 @@
                 dataType: 'json',
                 data: { 
                     'email': $('.email').val(), 
+                    'password': $('.password').val() 
+                },
+                success: function(data){
+                    if (data.success) {
+                        location.href = '/';
+                    } else {
+                        $('input', that.$ctx).addClass('error');
+                    }
+                }
+            });
+        },
+
+        authClarify: function() {
+            var that = this;
+            $('input', that.$ctx).removeClass('error');
+            $('.btn-signin-ldap', this.$ctx).addClass('btn-disabled');
+            $.ajax({
+                url: "/api/auth/authenticate",
+                type: "POST",
+                dataType: 'json',
+                data: { 
+                    'username': $('.username').val(), 
                     'password': $('.password').val() 
                 },
                 success: function(data){
