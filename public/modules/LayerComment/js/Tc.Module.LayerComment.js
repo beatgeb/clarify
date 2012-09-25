@@ -42,24 +42,19 @@
             
             $('.btn-embed').on('click', function(e) {
                 var screen = $(this).data('screen');
-                $('.modal-confirm h3').text('Copy & Paste the following snippet into your site');
-                $('.modal-confirm p').empty();
-                var code = $('<code></code>').text('<script type="text/javascript" src="' + $(this).data('url') + '"></script>');
-                $('.modal-confirm p').append($('<span>You can customize the width (e.g. 800px) to your needs.</span>'));
-                $('.modal-confirm p').append(code);
-                $('.modal-confirm .btn-confirm').text('Allow Embedding');
-                $('.modal-confirm .btn-confirm').on('click', function() {
+                var code = '&lt;script type="text/javascript" src="' + $(this).data('url') + '"&gt;&lt;/script&gt;';
+                var data = { 'code': code, 'screen': screen };
+                var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+                modal.open('comment-layer-share', data, function() {
                     $.ajax({
                         url: "/api/screen/setting/" + screen + "/embeddable/true",
                         dataType: 'json',
                         success: function(data){
-                            $('.modal-confirm').modal('hide');
+                            modal.cancel();
                         }
                     });
-                    e.stopPropagation();
-                    return false;
                 });
-                $('.modal-confirm').modal();
+                return false;
             });
             
             $('.dot').live('click', function(e) {

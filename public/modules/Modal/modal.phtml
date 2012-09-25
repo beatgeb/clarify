@@ -1,0 +1,99 @@
+<div class="mod modModal">
+	<div class="modal"></div>
+	<a href="javascript:;" class="btn-close"><i class="icon icon-remove"></i></a>
+</div>
+<div class="mod modModalBackdrop"></div>
+<!-- Project Rename -->
+<script id="tmpl-modal-rename-project" type="text/x-dot-template">
+	<div class="head">
+		<h2>Rename Project</h2>
+	</div>
+	<div class="body">
+		<label for="fld-name">Project Name</label>
+		<input class="fld fld-name" id="fld-name" type="text" value="{{=it.name}}" />
+	</div>
+	<div class="foot">
+		<a class="btn btn-primary" href="javascript:;">Rename</a>
+		<a class="btn btn-cancel" href="javascript:;">Cancel</a>
+	</div>
+</script>
+<!-- Screen Rename -->
+<script id="tmpl-modal-rename-screen" type="text/x-dot-template">
+	<div class="head">
+		<h2>Rename Screen</h2>
+	</div>
+	<div class="body">
+		<label for="fld-name">Screen Name</label>
+		<input class="fld fld-name" id="fld-name" type="text" value="{{=it.name}}" />
+	</div>
+	<div class="foot">
+		<a class="btn btn-primary" href="javascript:;">Rename</a>
+		<a class="btn btn-cancel" href="javascript:;">Cancel</a>
+	</div>
+</script>
+<!-- Project Delete -->
+<script id="tmpl-modal-delete-project" type="text/x-dot-template">
+	<div class="head">
+		<h2>Delete Project</h2>
+	</div>
+	<div class="body">
+		<label>Do you really want to delete this project?</label>
+	</div>
+	<div class="foot">
+		<a class="btn btn-primary" href="javascript:;">Delete</a>
+		<a class="btn btn-cancel" href="javascript:;">Cancel</a>
+	</div>
+</script>
+<!-- Screen Delete -->
+<script id="tmpl-modal-delete-screen" type="text/x-dot-template">
+	<div class="head">
+		<h2>Delete Screen</h2>
+	</div>
+	<div class="body">
+		<label>Do you really want to delete this screen?</label>
+	</div>
+	<div class="foot">
+		<a class="btn btn-primary" href="javascript:;">Delete</a>
+		<a class="btn btn-cancel" href="javascript:;">Cancel</a>
+	</div>
+</script>
+<!-- Export: LESS -->
+<script id="tmpl-modal-export-color-library-less" type="text/x-dot-template">
+	<div class="head">
+		<h2>Export Color Library to LESS</h2>
+	</div>
+	<div class="body">
+		<label>Copy &amp; Paste the following LESS Template</label>
+		<pre>{{=it.code}}</pre>
+	</div>
+	<div class="foot">
+		<a class="btn btn-cancel" href="javascript:;">Close</a>
+	</div>
+</script>
+<!-- Export: SASS -->
+<script id="tmpl-modal-export-color-library-sass" type="text/x-dot-template">
+	<div class="head">
+		<h2>Export Color Library to SASS</h2>
+	</div>
+	<div class="body">
+		<label>Copy &amp; Paste the following SASS Template</label>
+		<pre>{{=it.code}}</pre>
+	</div>
+	<div class="foot">
+		<a class="btn btn-cancel" href="javascript:;">Close</a>
+	</div>
+</script>
+<!-- Comment Layer: Share & Embed -->
+<script id="tmpl-modal-comment-layer-share" type="text/x-dot-template">
+	<div class="head">
+		<h2>Share &amp; Embed</h2>
+	</div>
+	<div class="body">
+		<label>Copy &amp; Paste the following snippet into your site and enable embedding</label>
+		<pre>{{=it.code}}</pre>
+	</div>
+	<div class="foot">
+		<a class="btn btn-primary" href="javascript:;">Enable Embedding</a>
+		<a class="btn btn-cancel" href="javascript:;">Close</a>
+	</div>
+</script>

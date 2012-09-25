@@ -26,34 +26,6 @@ src:url("/fonts/b447db2b-d01a-47d7-a62c-b58c621f5d74.woff") format("woff"),url("
 }
 
 
-.modal h3 {
-    line-height: 27px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.modal .fld {
-    display: block;
-    background-color: #FFF;
-    color: #444;
-    padding: 0 10px;
-    font-size: 14px;
-    margin-top: 15px;
-    border-radius: 3px;
-    overflow: auto;
-    border: 1px solid #999;
-    width: 510px;
-}
-
-.modal p {
-    line-height: 1.5;
-}
-
-.modal p a {
-    color: #134070;
-    text-decoration: underline;
-}
-
 .btn-danger {
     background-color: #1290d3;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(18, 144, 211)), to(rgb(12, 123, 184)));
@@ -74,7 +46,7 @@ code, pre {
     color: #DDD;
     padding: 15px;
     font-family: menlo, monospace;
-    font-size: 14px;
+    font-size: 12px;
     margin-top: 15px;
     border-radius: 3px;
     line-height: 1.5;

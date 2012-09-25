@@ -1,0 +1,148 @@
+.modModal {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 1050;
+	overflow: auto;
+	width: 560px;
+	margin: -250px 0 0 -280px;
+}
+
+.modModal .head {
+  	padding: 10px 15px 9px 15px;
+  	background-color: #333333;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(51, 51, 51)), to(rgb(33, 33, 33)));
+	background-image: -webkit-linear-gradient(top, rgb(51, 51, 51), rgb(33, 33, 33));
+	background-image: -moz-linear-gradient(top, rgb(51, 51, 51), rgb(33, 33, 33));
+	background-image: -o-linear-gradient(top, rgb(51, 51, 51), rgb(33, 33, 33));
+	background-image: -ms-linear-gradient(top, rgb(51, 51, 51), rgb(33, 33, 33));
+	background-image: linear-gradient(top, rgb(51, 51, 51), rgb(33, 33, 33));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#333333', EndColorStr='#212121');
+	border-bottom: 1px solid #000;
+  	-webkit-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.modModal .btn-close {
+	display: block;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	text-decoration: none;
+	color: #FFF;
+}
+
+.modModal .head > h2 {
+    line-height: 27px;
+    font-family: "Lexia W01 Regular", sans-serif;
+    font-size: 18px;
+    color: #FFF;
+}
+
+.modModal .body {
+    background-color: #ffffff;
+    overflow-y: auto;
+    max-height: 400px;
+    padding: 15px;
+    border-bottom: 1px solid #d1dae1;
+}
+
+.modModal .foot {
+	background-color: #f8f9fb;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(248, 249, 251)), to(rgb(231, 233, 241)));
+	background-image: -webkit-linear-gradient(top, rgb(248, 249, 251), rgb(231, 233, 241));
+	background-image: -moz-linear-gradient(top, rgb(248, 249, 251), rgb(231, 233, 241));
+	background-image: -o-linear-gradient(top, rgb(248, 249, 251), rgb(231, 233, 241));
+	background-image: -ms-linear-gradient(top, rgb(248, 249, 251), rgb(231, 233, 241));
+	background-image: linear-gradient(top, rgb(248, 249, 251), rgb(231, 233, 241));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#f8f9fb', EndColorStr='#e7e9f1');
+	border-top: 1px solid #fff;
+	padding: 15px;
+	-webkit-border-radius: 0px 0px 5px 5px;
+	border-radius: 0px 0px 5px 5px;
+}
+
+.modModal .btn {
+	display: inline-block;
+	background-color: #f8f9fb;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(248, 249, 251)), to(rgb(226, 228, 233)));
+	background-image: -webkit-linear-gradient(top, rgb(248, 249, 251), rgb(226, 228, 233));
+	background-image: -moz-linear-gradient(top, rgb(248, 249, 251), rgb(226, 228, 233));
+	background-image: -o-linear-gradient(top, rgb(248, 249, 251), rgb(226, 228, 233));
+	background-image: -ms-linear-gradient(top, rgb(248, 249, 251), rgb(226, 228, 233));
+	background-image: linear-gradient(top, rgb(248, 249, 251), rgb(226, 228, 233));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#f8f9fb', EndColorStr='#e2e4e9');
+	border: 1px solid #d1dae1;
+	margin-right: 10px;
+	padding: 8px 12px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font-size: 14px;
+	text-decoration: none;
+	color: #666;
+}
+
+.modModal .btn:hover {
+	border-color: #999;
+}
+
+.modModal .btn-primary {
+	background-color: #1290d3;
+  	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(18, 144, 211)), to(rgb(12, 123, 184)));
+  	background-image: -webkit-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+  	background-image: -moz-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+  	background-image: -o-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+  	background-image: -ms-linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+  	background-image: linear-gradient(top, rgb(18, 144, 211), rgb(12, 123, 184));
+  	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#1290d3', EndColorStr='#0c7bb8');
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid transparent;
+	color: #FFF;
+	font-weight: bold;
+}
+
+.modModal .btn-primary:hover {
+	border-color: #052742;
+}
+
+.modModal .fld {
+    display: block;
+    background-color: #FFF;
+    color: #444;
+    padding: 0 10px;
+    font-size: 14px;
+    margin-top: 15px;
+    overflow: auto;
+    border: 1px solid #999;
+    width: 510px;
+}
+
+.modModal p {
+    line-height: 1.5;
+}
+
+.modModal p a {
+    color: #134070;
+    text-decoration: underline;
+}
+
+.modModal label {
+	display: block;
+	text-transform: uppercase;
+	color: #666;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.modModalBackdrop {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+	background-color: rgba(0, 0, 0, 0.3);
+}
