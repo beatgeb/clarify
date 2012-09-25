@@ -1,4 +1,4 @@
-.modLayerFont {
+.modLayerTypography {
     position: absolute;
     z-index: 2;
     display: block;
@@ -6,19 +6,19 @@
     left: 0;
 }
 
-.modLayerFont .font {
+.modLayerTypography .font {
     -webkit-box-shadow: inset 0px 0 0 1px rgba(0, 0, 0, 0.5);
     box-shadow: inset 0px 0 0 1px rgba(0, 0, 0, 1, 0.5);
     background-color: rgba(255, 255, 255, 0.3);
     position: absolute;
 }
 
-.modLayerFont .font:hover {
+.modLayerTypography .font:hover {
     background-color: rgba(255, 255, 255, 0.8);
     z-index: 20;
 }
 
-.modLayerFont .font .meta  {
+.modLayerTypography .font .meta  {
     font-family: helvetica;
     font-size: 12px;
     position: absolute; 
@@ -34,7 +34,7 @@
     border-radius: 3px;
 }
 
-.modLayerFont .font .meta:after {
+.modLayerTypography .font .meta:after {
     right: 100%;
     border: solid transparent;
     content: " ";
@@ -44,7 +44,7 @@
     pointer-events: none;
 }
 
-.modLayerFont .font .meta:after {
+.modLayerTypography .font .meta:after {
     border-color: rgba(0, 0, 0, 0);
     border-right-color: #3A3A3A;
     border-width: 5px;
@@ -52,7 +52,7 @@
     margin-top: -5px;
 }
 
-.modLayerFont .font .meta .color {
+.modLayerTypography .font .meta .color {
     display: block;
     float: left;
     border-radius: 2px;
@@ -62,25 +62,25 @@
     margin-right: 5px;
 }
 
-.modLayerFont .font .meta strong {
+.modLayerTypography .font .meta strong {
     font-weight: bold;
 }
 
-.modLayerFont .font .meta .title {
+.modLayerTypography .font .meta .title {
     font-weight: bold;
     color: #FFF;
     text-shadow: 1px 1px 0 #000;
 }
 
-.modLayerFont .font:hover .meta {
+.modLayerTypography .font:hover .meta {
     background: #000;
 }
 
-.modLayerFont .font:hover .meta:after {
+.modLayerTypography .font:hover .meta:after {
     border-right-color: #000;
 }
 
-.modLayerFont .font-helper {
+.modLayerTypography .font-helper {
     position: absolute;
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(0, 0, 0, 1);

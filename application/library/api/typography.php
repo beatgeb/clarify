@@ -3,12 +3,12 @@
 lock();
 
 // Typography API
-define('API_TYPOGRAPHY_ADD', 'font.add');
-define('API_TYPOGRAPHY_GET', 'font.get');
-define('API_TYPOGRAPHY_DELETE', 'font.delete');
-define('API_TYPOGRAPHY_UPDATE', 'font.update');
-define('API_TYPOGRAPHY_MOVE', 'font.move');
-define('API_TYPOGRAPHY_RESIZE', 'font.resize');
+define('API_TYPOGRAPHY_ADD', 'typography.add');
+define('API_TYPOGRAPHY_GET', 'typography.get');
+define('API_TYPOGRAPHY_DELETE', 'typography.delete');
+define('API_TYPOGRAPHY_UPDATE', 'typography.update');
+define('API_TYPOGRAPHY_MOVE', 'typography.move');
+define('API_TYPOGRAPHY_RESIZE', 'typography.resize');
 
 switch ($action) {
     

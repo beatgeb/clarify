@@ -63,7 +63,7 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
         <div class="mod modLayerComment"></div>
         <div class="mod modLayerMeasure"></div>
         <div class="mod modLayerColor"></div>
-        <div class="mod modLayerFont"></div>
+        <div class="mod modLayerTypography"></div>
         <div class="mod modLayerModule"></div>
     </div>
     <div class="mod modColorLibrary">

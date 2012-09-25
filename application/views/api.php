@@ -20,7 +20,7 @@ define('API_COLLABORATOR', 'collaborator');
 define('API_ACTIVITY', 'activity');
 define('API_AUTH', 'auth');
 define('API_USER', 'user');
-define('API_TYPOGRAPHY', 'font');
+define('API_TYPOGRAPHY', 'typography');
 
 $api = $route[2];
 

@@ -24,7 +24,7 @@
                     that.sandbox.getModuleById($('.modLayerMeasure').data('id')).deactivate();
                     that.sandbox.getModuleById($('.modLayerColor').data('id')).deactivate();
                     that.sandbox.getModuleById($('.modLayerComment').data('id')).deactivate();
-                    that.sandbox.getModuleById($('.modLayerFont').data('id')).deactivate();
+                    that.sandbox.getModuleById($('.modLayerTypography').data('id')).deactivate();
                     that.activate();
                 }
             });

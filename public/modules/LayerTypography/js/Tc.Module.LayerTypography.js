@@ -7,7 +7,7 @@
  * http://www.opensource.org/licenses/MIT
  */
 (function($) { 
-    Tc.Module.LayerFont = Tc.Module.extend({
+    Tc.Module.LayerTypography = Tc.Module.extend({
         
         active: false,
         open: null,
@@ -26,23 +26,6 @@
                     that.activate();
                 }
             });
-            /* 
-            $('.dot').live('click', function(e) {
-                var container = $(this).parent();
-                var edit = $('.edit', container);
-                
-                if (edit.is(':visible')) {
-                    edit.hide();
-                    $(this).parent().css('z-index', 1);
-                    that.open = null;
-                } else {
-                    edit.toggle();
-                    edit.find('textarea').focus();
-                    $(this).parent().css('z-index', 10);
-                    that.open = edit;
-                }
-            });
-*/
             callback();
         },
         
@@ -109,7 +92,7 @@
                         return;
                     }
                     $.ajax({
-                        url: "/api/font/add/" + screen + "/" + sx + "/" + sy + "/" + width + "/" + height,
+                        url: "/api/typography/add/" + screen + "/" + sx + "/" + sy + "/" + width + "/" + height,
                         dataType: 'json',
                         success: function(data){
                             helper.remove();
@@ -131,7 +114,7 @@
             var that = this;
             var screen = $('.modScreen').data('screen');
             $.ajax({
-                url: "/api/font/get/" + screen,
+                url: "/api/typography/get/" + screen,
                 dataType: 'json',
                 success: function(data){
                     $.each(data, function(key, font) {
@@ -166,7 +149,7 @@
                     var nx = $(this).position().left;
                     var ny = $(this).position().top;
                     $.ajax({
-                        url: "/api/font/move/" + id + "/" + nx + "/" + ny,
+                        url: "/api/typography/move/" + id + "/" + nx + "/" + ny,
                         dataType: 'json',
                         success: function(data){
                             // NOOP
@@ -185,7 +168,7 @@
                 },
                 stop: function(e, ui) {
                     $.ajax({
-                        url: "/api/font/resize/" + id + "/" + ui.size.width + "/" + ui.size.height,
+                        url: "/api/typography/resize/" + id + "/" + ui.size.width + "/" + ui.size.height,
                         dataType: 'json',
                         type: 'POST',
                         success: function(data){
@@ -193,7 +176,7 @@
                             if (ui.originalPosition.top != ui.position.top || 
                                 ui.originalPosition.left != ui.position.left) {
                                 $.ajax({
-                                    url: "/api/font/move/" + id + "/" + ui.position.left + "/" + ui.position.top,
+                                    url: "/api/typography/move/" + id + "/" + ui.position.left + "/" + ui.position.top,
                                     dataType: 'json',
                                     type: 'POST',
                                     success: function(data){
@@ -222,7 +205,7 @@
             // delete on double click
             font.bind('dblclick', function(e) {
                 $.ajax({
-                    url: "/api/font/delete/" + id,
+                    url: "/api/typography/delete/" + id,
                     dataType: 'json',
                     success: function(data){
                         font.remove();
