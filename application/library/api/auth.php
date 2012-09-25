@@ -29,7 +29,7 @@ switch ($action) {
 		            if ($result[0]) {
 		                if (@ldap_bind($ldap, $result[0]['dn'], $password)) {
 		                    $entry = $result[0];
-		                    $user = $db->single("SELECT id, name FROM user WHERE username = '" . $username . "' LIMIT 1");
+		                    $user = $db->single("SELECT id, name, email FROM user WHERE username = '" . $username . "' LIMIT 1");
 							if (!$user) {
 								$name = $entry[config('auth.ldap.user.attribute.firstname')][0] . ' ' . $entry[config('auth.ldap.user.attribute.surname')][0];
 								$user = array(
@@ -44,6 +44,7 @@ switch ($action) {
 							}
 							$_SESSION['user']['id'] = $user['id'];
 					        $_SESSION['user']['name'] = $user['name'];
+					        $_SESSION['user']['email'] = $user['email'];
 					        $_SESSION['auth'] = md5(config('security.password.hash') . $_SESSION['user']['id']);
 							$result['success'] = true;
 		                }
@@ -62,10 +63,11 @@ switch ($action) {
 			
 			// validate authentication (only with valid email)
 			if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-				$user = $db->single("SELECT id, name FROM user WHERE email = '" . $email . "' AND password = '" . $password . "' LIMIT 1");
+				$user = $db->single("SELECT id, name, email FROM user WHERE email = '" . $email . "' AND password = '" . $password . "' LIMIT 1");
 				if ($user) {
 					$_SESSION['user']['id'] = $user['id'];
 			        $_SESSION['user']['name'] = $user['name'];
+			        $_SESSION['user']['email'] = $user['email'];
 			        $_SESSION['auth'] = md5(config('security.password.hash') . $_SESSION['user']['id']);
 					$result['success'] = true;
 				}
