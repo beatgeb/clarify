@@ -196,6 +196,7 @@
 .modProjectBrowser ul li a:hover,
 .modProjectBrowser .edit-collaborator:hover {
     background-color: #555555;
+    color: #FFF;
 }
 
 .modProjectBrowser ul li a:active {
