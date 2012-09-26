@@ -120,10 +120,10 @@
             if (!label) {
                 label = hex;
             }
-            var $meta = $('<a href="#" class="meta"><span class="name">' + label + '</span><br /><span class="hex">#' + color.hex + '</span></a>');
+            var $meta = $('<a href="#" class="meta" data-hex="' + hex + '" data-name="' + color.name + '"><span class="name">' + label + '</span><br /><span class="hex">#' + color.hex + '</span></a>');
             $meta.on('click', function() {
                 var $link = $(this);
-                var data = { 'hex': hex.toUpperCase(), 'name': label };
+                var data = { 'hex': $(this).data('hex').toUpperCase(), 'name': $(this).data('name') };
                 var modal = that.sandbox.getModuleById($('.modModal').data('id'));
                 modal.open('color-edit', data, function() {
                     var $name = $(this).closest('.modal').find('.fld-name');
@@ -133,8 +133,11 @@
                         dataType: 'json',
                         type: 'POST',
                         success: function(data){
+                            $link.parent().find('.p').css('backgroundColor', $hex.val());
                             $link.find('.name').text($name.val());
                             $link.find('.hex').text($hex.val());
+                            $link.data('name', $name.val());
+                            $link.data('hex', $hex.val());
                             modal.cancel();
                         }
                     });
