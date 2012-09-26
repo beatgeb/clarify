@@ -54,7 +54,7 @@ foreach ($comments as $comment) {
                     <div class="dot">
                         <div class="nr"><?php print $comment['nr'] ?></div>
                     </div>
-                    <p><?php print stripslashes($comment['content']) ?>&nbsp;</p>
+                    <p><?php print nl2br(stripslashes($comment['content'])) ?>&nbsp;</p>
                 </li>
                 <?php } ?>
             </ul>
