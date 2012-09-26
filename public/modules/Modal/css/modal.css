@@ -120,6 +120,10 @@
     margin-bottom: 15px;
 }
 
+.modModal pre {
+	margin-bottom: 15px;
+}
+
 .modModal p {
     line-height: 1.5;
 }

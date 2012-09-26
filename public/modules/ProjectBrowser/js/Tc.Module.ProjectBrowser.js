@@ -62,23 +62,10 @@
                      modules += $(this).data('terrific')+"\r\n"; 
                      modules_all += ' ' + $(this).data('module');
                 });
-
-                $('h3', $modal).text('Execute the following Terrific Composer Commands');
-                $('p', $modal).empty();
-
-                var code = $('<pre></pre>').text(modules);
-                $('p', $modal).append($('<span>Learn more about Terrific & Modules on <a href="http://terrifically.org">http://terrifically.org</a><br />Here are all your specified modules for this project:</span>'));
-                $('p', $modal).append(code);
-                $('p', $modal).append($('<br /><span>Or all in one command:</span>'));
-                code = $('<pre></pre>').text(modules_all);
-                $('p', $modal).append(code);
-                $('.btn-confirm', $modal).text('Close');
-                $('.btn-confirm', $modal).on('click', function() {
-                    $modal.modal('hide');
-                    e.stopPropagation();
-                    return false;
-                });
-                $modal.modal();
+                var data = { 'code': modules, 'code_single': modules_all };
+                var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+                modal.open('export-terrific', data, function() {});
+                return false;
             });
             callback();
         },
