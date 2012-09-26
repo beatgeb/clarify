@@ -52,11 +52,15 @@ switch ($action) {
         $y = intval($route[6]);
         if ($screen < 1) { die('Please provide a screen id'); }
         
+        // check permission
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
+        permission($screen['project'], 'VIEW');
+
         // explicitly use a library color
         if (sizeof($route) < 9) {
             $color = intval($route[7]);
             if ($color < 1) { die('Please provide a reference color'); }
-            $color = $db->single("SELECT * FROM project_color WHERE id = '" . $color . "' AND creator = " . userid() . " LIMIT 1");
+            $color = $db->single("SELECT * FROM project_color WHERE id = '" . $color . "' LIMIT 1");
             $r = $color['r'];
             $g = $color['g'];
             $b = $color['b'];
@@ -74,7 +78,7 @@ switch ($action) {
         $hsl = $colorHandler->HtmltoHsl("#".$hex);
         $match = $colorHandler->getColorMatch("#".$hex);
 
-        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
         if (!$screen) { die(); }
 
         // handle if name with other hex-value already exists
