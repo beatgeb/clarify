@@ -182,6 +182,7 @@ foreach ($comments as $comment) {
             <?php } ?>
         </div>
         <?php } ?>
+        <div style="clear: both;"></div>
     </div>
     <?php require 'partials/foot.php'; ?>
 </body>
