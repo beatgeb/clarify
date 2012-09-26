@@ -20,10 +20,7 @@
                     that.signup();
                 }
             });
-            $('.btn-signin-ldap', this.$ctx).on('click', function(e) {
-                that.authLdap();
-            });
-            $('.btn-signin', this.$ctx).on('click', function(e) {
+            $('.btn-signin,.btn-signin-ldap', this.$ctx).on('click', function(e) {
                 that.authClarify();
             });
             $('.btn-twitter', this.$ctx).on('click', function(e) {
@@ -79,35 +76,14 @@
         authClarify: function() {
             var that = this;
             $('input', that.$ctx).removeClass('error');
-            $('.btn-signin', this.$ctx).addClass('btn-disabled');
+            $('.btn-signin,.btn-signin-ldap', this.$ctx).addClass('btn-disabled');
             $.ajax({
                 url: "/api/auth/authenticate",
                 type: "POST",
                 dataType: 'json',
                 data: { 
+                    'username': $('.username').val(),
                     'email': $('.email').val(), 
-                    'password': $('.password').val() 
-                },
-                success: function(data){
-                    if (data.success) {
-                        location.href = '/';
-                    } else {
-                        $('input', that.$ctx).addClass('error');
-                    }
-                }
-            });
-        },
-
-        authClarify: function() {
-            var that = this;
-            $('input', that.$ctx).removeClass('error');
-            $('.btn-signin-ldap', this.$ctx).addClass('btn-disabled');
-            $.ajax({
-                url: "/api/auth/authenticate",
-                type: "POST",
-                dataType: 'json',
-                data: { 
-                    'username': $('.username').val(), 
                     'password': $('.password').val() 
                 },
                 success: function(data){
