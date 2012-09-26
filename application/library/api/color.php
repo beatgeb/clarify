@@ -54,7 +54,7 @@ switch ($action) {
         
         // check permission
         $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
-        permission($screen['project'], 'VIEW');
+        permission($screen['project'], 'EDIT');
 
         // explicitly use a library color
         if (sizeof($route) < 9) {

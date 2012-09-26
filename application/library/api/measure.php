@@ -20,8 +20,9 @@ switch ($action) {
         if ($screen < 1) { die('Please provide a screen id'); }
         if ($width < 1) { die('Please provide a width'); }
         if ($height < 1) { die('Please provide a height'); }
-        $screen = $db->single("SELECT id FROM screen WHERE id = " . $screen . " AND creator = " . userid());
+        $screen = $db->single("SELECT id FROM screen WHERE id = " . $screen . "");
         if (!$screen) { die(); }
+        permission($screen['project'], 'EDIT');
         $measure = array(
             'created' => date('Y-m-d H:i:s'),
             'creator' => userid(),
