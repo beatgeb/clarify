@@ -103,10 +103,12 @@
 		<h2>Edit Color</h2>
 	</div>
 	<div class="body">
-		<label for="fld-name">Color Name</label>
+		<label for="fld-name">Name</label>
 		<input class="fld fld-name" id="fld-name" type="text" value="{{=it.name}}" />
-		<label for="fld-hex">Color Hex Value</label>
+		<label for="fld-hex">Hex Value</label>
 		<input class="fld fld-hex" id="fld-hex" type="text" value="{{=it.hex}}" />
+		<label for="fld-slug">Machine Name (for LESS &amp; SASS)</label>
+		<input class="fld fld-slug" id="fld-slug" type="text" value="{{=it.slug}}" />
 	</div>
 	<div class="foot">
 		<a class="btn btn-primary" href="javascript:;">Save</a>

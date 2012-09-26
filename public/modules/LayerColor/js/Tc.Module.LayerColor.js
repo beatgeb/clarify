@@ -115,21 +115,23 @@
         
         addColor: function(color, fade) {
             var that = this;
+            var slug = color.name_css;
             var label = color.name;
             var hex = '#' + color.hex;
             if (!label) {
                 label = hex;
             }
-            var $meta = $('<a href="#" class="meta" data-hex="' + hex + '" data-name="' + color.name + '"><span class="name">' + label + '</span><br /><span class="hex">#' + color.hex + '</span></a>');
+            var $meta = $('<a href="#" class="meta" data-slug="' + slug + '" data-hex="' + hex + '" data-name="' + color.name + '"><span class="name">' + label + '</span><br /><span class="hex">#' + color.hex + '</span></a>');
             $meta.on('click', function() {
                 var $link = $(this);
-                var data = { 'hex': $(this).data('hex').toUpperCase(), 'name': $(this).data('name') };
+                var data = { 'hex': $(this).data('hex').toUpperCase(), 'name': $(this).data('name'), 'slug': $(this).data('slug') };
                 var modal = that.sandbox.getModuleById($('.modModal').data('id'));
                 modal.open('color-edit', data, function() {
                     var $name = $(this).closest('.modal').find('.fld-name');
                     var $hex = $(this).closest('.modal').find('.fld-hex');
+                    var $slug = $(this).closest('.modal').find('.fld-slug');
                     $.ajax({
-                        url: "/api/color/update/" + color.id + "/" + $hex.val().substring(1,7) + "/" + encodeURIComponent($name.val()),
+                        url: "/api/color/update/" + color.id + "/" + $hex.val().substring(1,7) + "/" + $slug.val() + "/" + encodeURIComponent($name.val()),
                         dataType: 'json',
                         type: 'POST',
                         success: function(data){
@@ -138,6 +140,7 @@
                             $link.find('.hex').text($hex.val());
                             $link.data('name', $name.val());
                             $link.data('hex', $hex.val());
+                            $link.data('slug', $slug.val());
                             modal.cancel();
                         }
                     });

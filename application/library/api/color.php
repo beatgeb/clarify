@@ -17,7 +17,8 @@ switch ($action) {
 
         $id = intval($route[4]);
         $hex = substr($route[5],0,6);
-        $name = urldecode($route[6]);
+        $name_css = $route[6];
+        $name = urldecode($route[7]);
 
         // check permission
         $color = $db->single("SELECT s.project, c.color FROM color c LEFT JOIN screen s ON s.id = c.screen WHERE c.id = '" . $id . "'");
@@ -31,6 +32,7 @@ switch ($action) {
         // update data
         $data = array(
             'name' => $name, 
+            'name_css' => $name_css,
             'hex' => $hex, 
             'hue' => $hsl['h'] . "", 
             'saturation' => $hsl['s'] . "", 
@@ -75,7 +77,7 @@ switch ($action) {
         if ($screen < 1) { die('Please provide a screen id'); }
         $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
         permission($screen['project'], 'VIEW');
-        $data = $db->data("SELECT c.id, c.x, c.y, pc.r, pc.g, pc.b, pc.alpha, pc.hex, pc.name FROM color c LEFT JOIN project_color pc ON pc.id = c.color WHERE c.screen = " . $screen['id']);
+        $data = $db->data("SELECT c.id, c.x, c.y, pc.r, pc.g, pc.b, pc.alpha, pc.hex, pc.name, pc.name_css FROM color c LEFT JOIN project_color pc ON pc.id = c.color WHERE c.screen = " . $screen['id']);
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
