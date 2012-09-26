@@ -119,7 +119,7 @@
             if (!label) {
                 label = hex;
             }
-            var element = $('<div class="color"><div class="circle"></div><div class="p"></div><div class="meta">' + label + '<br /><span>#' + color.hex + '</span></div></div>');
+            var element = $('<div class="color"><div class="p"></div><div class="meta">' + label + '<br /><span>#' + color.hex + '</span></div></div>');
             element.css({
                 left: color.x + 'px',
                 top: color.y + 'px',

@@ -24,7 +24,7 @@
     white-space: nowrap;
     cursor: pointer;
     margin-top: 6px;
-    margin-left: -18px;
+    margin-left: -19px;
 }
 .modLayerColor .color:hover {
     background-color: #434343;
@@ -68,14 +68,4 @@
     border-width: 5px;
     left: 19px;
     margin-left: -5px;
-}
-.modLayerColor .color .circle {
-    position: absolute;
-    top: -13px;
-    left: 11px;
-    border: 2px solid rgba(0,0,0,0.5);
-    width: 11px;
-    height: 11px;
-    border-radius: 11px;
-    z-index: -1;
 }
