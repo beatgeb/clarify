@@ -156,7 +156,7 @@ function slug($string) {
 }
 
 function gravatar($email, $size) {
-    $grav_url = "http://www.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=mm&s=" . $size;
+    $grav_url = "https://secure.gravatar.com/avatar/" . md5(strtolower(trim($email))) . "?d=mm&s=" . $size;
     return $grav_url;
 }
 
