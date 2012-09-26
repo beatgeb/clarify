@@ -56,15 +56,17 @@ switch ($action) {
             FROM color c 
                 LEFT JOIN project_color pc ON pc.id = c.color 
                 LEFT JOIN screen s ON s.id = c.screen 
-            WHERE c.id = '" . $id . "' AND c.creator = '" . userid() . "'
+            WHERE c.id = '" . $id . "'
             LIMIT 1
         ");
         if (!$color) { die(); }
+        permission($color['project'], 'EDIT');
+
         $result = array();
         $db->delete('color', array('id' => $id));
         $count = $db->exists('color', array('color' => $color['color']));
         if ($count < 1) {
-            $db->delete('project_color', array('id' => $color['id'], 'creator' => userid()));
+            $db->delete('project_color', array('id' => $color['id']));
             $result['remove'] = $color['id'];
         }
         $db->query("UPDATE screen SET count_color = count_color - 1 WHERE id = " . $color['screen'] . "");
