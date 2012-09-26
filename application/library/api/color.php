@@ -78,9 +78,6 @@ switch ($action) {
         $hsl = $colorHandler->HtmltoHsl("#".$hex);
         $match = $colorHandler->getColorMatch("#".$hex);
 
-        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
-        if (!$screen) { die(); }
-
         // handle if name with other hex-value already exists
         $sameColors = $db->single("
             SELECT count(id) AS number
