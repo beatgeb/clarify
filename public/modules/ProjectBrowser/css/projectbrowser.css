@@ -242,7 +242,7 @@
 .modProjectBrowser .edit-collaborator span,
 .modProjectBrowser .owner span {
     float: left;
-    padding-top: 4px;
+    padding-top: 3px;
 }
 .modProjectBrowser .edit-collaborator a,
 .modProjectBrowser .owner a {
@@ -273,4 +273,8 @@
 .modProjectBrowser .owner {
     margin: 0 10px;
     color: #666;
+}
+
+.modProjectBrowser .owner span {
+    padding-top: 4px;
 }
