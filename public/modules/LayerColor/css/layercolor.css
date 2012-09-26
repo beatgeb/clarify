@@ -15,38 +15,34 @@
     background-image: -ms-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
     background-image: linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#2d2d2d');
-    -moz-border-radius-topleft: 0px;
-    -moz-border-radius-topright: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    -webkit-border-radius: 0px 5px 5px 5px;
-    border-radius: 0px 5px 5px 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     padding: 3px 6px;
     position: absolute;
     display: none;
     white-space: nowrap;
     cursor: pointer;
+    margin-top: 14px;
+    margin-left: -17px;
 }
 .modLayerColor .color:hover {
-    background-color: #282828;
-    background-image: -webkit-gradient(linear, left center, right center, from(rgb(40, 40, 40)), to(rgb(0, 0, 0)));
-    background-image: -webkit-linear-gradient(left, rgb(40, 40, 40), rgb(0, 0, 0));
-    background-image: -moz-linear-gradient(left, rgb(40, 40, 40), rgb(0, 0, 0));
-    background-image: -o-linear-gradient(left, rgb(40, 40, 40), rgb(0, 0, 0));
-    background-image: -ms-linear-gradient(left, rgb(40, 40, 40), rgb(0, 0, 0));
-    background-image: linear-gradient(left, rgb(40, 40, 40), rgb(0, 0, 0));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#282828', EndColorStr='#000000');
+    background-color: #434343;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(34, 34, 34)));
+    background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(34, 34, 34));
+    background-image: -moz-linear-gradient(top, rgb(67, 67, 67), rgb(34, 34, 34));
+    background-image: -o-linear-gradient(top, rgb(67, 67, 67), rgb(34, 34, 34));
+    background-image: -ms-linear-gradient(top, rgb(67, 67, 67), rgb(34, 34, 34));
+    background-image: linear-gradient(top, rgb(67, 67, 67), rgb(34, 34, 34));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#222222');
     z-index: 20;
 }
 .modLayerColor .color .p {
     width: 26px;
     height: 26px;
-    -moz-border-radius-topleft: 0px;
-    -moz-border-radius-topright: 3px;
-    -moz-border-radius-bottomright: 3px;
-    -moz-border-radius-bottomleft: 3px;
-    -webkit-border-radius: 0px 3px 3px 3px;
-    border-radius: 0px 3px 3px 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
     display: inline-block;
 }
 .modLayerColor .color .meta {
@@ -58,4 +54,28 @@
 .modLayerColor .color .meta span {
     font-weight: bold;
     text-transform: uppercase;
+}
+.modLayerColor .color:after {
+    bottom: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 0, 0, 0);
+    border-bottom-color: #434343;
+    border-width: 5px;
+    left: 18px;
+    margin-left: -5px;
+}
+.modLayerColor .color .circle {
+    position: absolute;
+    top: -21px;
+    left: 11px;
+    border: 2px solid rgba(0,0,0,0.5);
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    z-index: -1;
 }
