@@ -79,28 +79,51 @@
             $this.bind('click', function(e) {
                 // NOOP
             });
+
+            var mouseClicked = false;
             
             $this.bind('mousedown', function(e) {
-                settings.start(data.x, data.y);
-                settings.pick(data.x, data.y, data.color);
-                data.startx = data.x;
-                data.starty = data.y;
-                data.startcolor = data.color;
-                if (e.preventDefault) {
-                    e.preventDefault();
+                if (mouseClicked === true) {
+                    mouseClicked = false;
+
+                    settings.pickRange(
+                        data.startx,
+                        data.starty,
+                        data.startcolor,
+                        data.x,
+                        data.y,
+                        data.color
+                    );
+
+                    settings.stop();
+                } else {
+                    mouseClicked = true;
+
+                    settings.start(data.x, data.y);
+                    settings.pick(data.x, data.y, data.color);
+                    data.startx = data.x;
+                    data.starty = data.y;
+                    data.startcolor = data.color;
+                    if (e.preventDefault) {
+                        e.preventDefault();
+                    }
                 }
             });
             
             $this.bind('mouseup', function(e) {
-                settings.pickRange(
-                    data.startx, 
-                    data.starty, 
-                    data.startcolor, 
-                    data.x, 
-                    data.y, 
-                    data.color
-                );
-                settings.stop();
+                if (data.startx !== data.x && data.starty !== data.y && mouseClicked === true) {
+                    mouseClicked = false;
+
+                    settings.pickRange(
+                        data.startx,
+                        data.starty,
+                        data.startcolor,
+                        data.x,
+                        data.y,
+                        data.color
+                    );
+                    settings.stop();
+                }
             });
 
             var ps = [];
