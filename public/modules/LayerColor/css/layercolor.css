@@ -22,7 +22,7 @@
     position: absolute;
     display: none;
     white-space: nowrap;
-    cursor: pointer;
+    cursor: auto;
     margin-top: 6px;
     margin-left: -19px;
 }
@@ -50,8 +50,13 @@
     display: inline-block;
     padding: 3px 5px;
     height: 24px;
+    color: #FFF;
+    text-decoration: none;
 }
-.modLayerColor .color .meta span {
+.modLayerColor .color .meta:hover {
+    text-decoration: underline;
+}
+.modLayerColor .color .meta span.hex {
     font-weight: bold;
     text-transform: uppercase;
 }

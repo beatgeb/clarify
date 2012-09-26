@@ -124,6 +124,14 @@ function hexToRgb($hex) {
     return hexdec(substr($hex,1,2)) . ',' . hexdec(substr($hex,3,2)) . ',' . hexdec(substr($hex,5,2));
 }
 
+function hexToRgbArray($hex) {
+    return array(
+        'r' => hexdec(substr($hex,1,2)), 
+        'g' => hexdec(substr($hex,3,2)), 
+        'b' => hexdec(substr($hex,5,2))
+    );
+}
+
 function getBoolean($category, $variable) {
     global $settings;
 }

@@ -117,6 +117,7 @@
     overflow: auto;
     border: 1px solid #999;
     width: 510px;
+    margin-bottom: 15px;
 }
 
 .modModal p {

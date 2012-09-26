@@ -15,6 +15,7 @@
         
         on: function(callback) {
             var that = this;
+
             $('.btn-color').bind('click', function(e) {
                 if (that.active) {
                     that.deactivate();
@@ -53,7 +54,7 @@
             
             var screen = $('.modScreen');
             $('.btn-color').addClass('active');
-            
+
             $('.modColorLibrary').show();
             $('.modScreen').eyedrop({
                 'display': true,
@@ -119,7 +120,29 @@
             if (!label) {
                 label = hex;
             }
-            var element = $('<div class="color"><div class="p"></div><div class="meta">' + label + '<br /><span>#' + color.hex + '</span></div></div>');
+            var $meta = $('<a href="#" class="meta"><span class="name">' + label + '</span><br /><span class="hex">#' + color.hex + '</span></a>');
+            $meta.on('click', function() {
+                var $link = $(this);
+                var data = { 'hex': hex.toUpperCase(), 'name': label };
+                var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+                modal.open('color-edit', data, function() {
+                    var $name = $(this).closest('.modal').find('.fld-name');
+                    var $hex = $(this).closest('.modal').find('.fld-hex');
+                    $.ajax({
+                        url: "/api/color/update/" + color.id + "/" + $hex.val().substring(1,7) + "/" + encodeURIComponent($name.val()),
+                        dataType: 'json',
+                        type: 'POST',
+                        success: function(data){
+                            $link.find('.name').text($name.val());
+                            $link.find('.hex').text($hex.val());
+                            modal.cancel();
+                        }
+                    });
+                });
+                return false;
+            });
+            var element = $('<div class="color"><div class="p"></div></div>');
+            element.append($meta);
             element.css({
                 left: color.x + 'px',
                 top: color.y + 'px',

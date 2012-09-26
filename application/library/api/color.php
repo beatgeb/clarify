@@ -7,9 +7,45 @@ define('API_COLOR_ADD', 'color.add');
 define('API_COLOR_GET', 'color.get');
 define('API_COLOR_REMOVE', 'color.remove');
 define('API_COLOR_EXPORT', 'color.export');
+define('API_COLOR_UPDATE', 'color.update');
 
 switch ($action) {
     
+    case API_COLOR_UPDATE:
+
+        require LIBRARY . 'color.php';
+
+        $id = intval($route[4]);
+        $hex = substr($route[5],0,6);
+        $name = urldecode($route[6]);
+
+        // check permission
+        $color = $db->single("SELECT s.project, c.color FROM color c LEFT JOIN screen s ON s.id = c.screen WHERE c.id = '" . $id . "'");
+        permission($color['project'], 'EDIT');
+
+        // build color values
+        $colorHandler = new ColorHandler();
+        $hsl = $colorHandler->HtmltoHsl("#" . $hex);
+        $rgb = hexToRgbArray("#" . $hex);
+
+        // update data
+        $data = array(
+            'name' => $name, 
+            'hex' => $hex, 
+            'hue' => $hsl['h'] . "", 
+            'saturation' => $hsl['s'] . "", 
+            'lightness' => $hsl['l'] . "", 
+            'r' => $rgb['r'] . "", 
+            'g' => $rgb['g'] . "", 
+            'b' => $rgb['b'] . ""
+        );
+
+        $db->update('project_color', $data, array('id' => $color['color']));
+        $result = array('success' => true);
+        header('Content-Type: application/json');
+        echo json_encode($result);
+        break;
+
     case API_COLOR_REMOVE:
         $id = intval($route[4]);
         if ($id < 1) { die('Please provide a color instance id'); }
