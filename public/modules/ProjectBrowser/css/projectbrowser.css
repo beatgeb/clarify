@@ -227,27 +227,32 @@
 .modProjectBrowser .color:hover {
     box-shadow: 0 0 5px #000;
 }
-.modProjectBrowser .edit-collaborator {
+.modProjectBrowser .edit-collaborator,
+.modProjectBrowser .owner {
     overflow: hidden;
     padding: 5px 10px;
 }
-.modProjectBrowser .edit-collaborator img {
+.modProjectBrowser .edit-collaborator img,
+.modProjectBrowser .owner img {
     float: left;
     margin-right: 10px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
 }
-.modProjectBrowser .edit-collaborator span {
+.modProjectBrowser .edit-collaborator span,
+.modProjectBrowser .owner span {
     float: left;
-    padding-top: 3px;
+    padding-top: 4px;
 }
-.modProjectBrowser .edit-collaborator a {
+.modProjectBrowser .edit-collaborator a,
+.modProjectBrowser .owner a {
     display: block;
     float: right;
     padding: 0 5px;
     margin-top: 2px;
 }
-.modProjectBrowser .edit-collaborator a:hover {
+.modProjectBrowser .edit-collaborator a:hover,
+.modProjectBrowser .owner a:hover {
     background-color: #b81618;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(184, 22, 24)), to(rgb(161, 17, 20)));
     background-image: -webkit-linear-gradient(top, rgb(184, 22, 24), rgb(161, 17, 20));
@@ -263,4 +268,9 @@
 
 .modProjectBrowser .btn-disabled {
     opacity: 0.2;
+}
+
+.modProjectBrowser .owner {
+    margin: 0 10px;
+    color: #666;
 }

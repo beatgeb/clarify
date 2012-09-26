@@ -2,7 +2,7 @@
 <?php
 $projects = array();
 if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['user']['permissions']['project']) > 0) {
-    $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') ORDER BY name ASC');
+    $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') ORDER BY name ASC', 'id');
 }
 ?>
 <h3>Projects<a class="btn-add-project" href="javascript:;">+ Create</a></h3>
@@ -48,6 +48,7 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
 </div>
 <div class="notice">You have <?php print sizeof($modules) ?> modules in your library.</div>
 <?php
+$owner = $db->single("SELECT id, email, name FROM user WHERE id = '" . $projects[$project_id]['creator'] . "'");
 $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE project = ' . $project_id . ' ORDER BY email ASC');
 ?>
 <h3>
@@ -59,6 +60,10 @@ $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE pro
 <div class="add-collaborator">
     <input class="collaborator-email" data-project-id="<?php print $project_id ?>" type="text" placeholder="E-Mail" />
     <input class="add-collaborator-submit" type="button" value="Add User" />
+</div>
+<div class="owner" data-id="<?php print $owner['id'] ?>" href="#">
+    <img src="<?php print gravatar($owner['email'], 48) ?>" width="24" height="24" />
+    <span><?php print $owner['name'] ?> (Owner)</span>
 </div>
 <?php if (sizeof($collaborators) == 0) { ?>
     <div class="notice">This project has no collaborators yet.</div>
