@@ -57,9 +57,9 @@ $colors = $db->data("
     <?php foreach ($colors as $color) { ?>
     <a href="javascript:;" rel="tooltip" title="<?php print $color['name'] ?> – #<?php print $color['hex'] ?>" data-less="@<?php print $color['name_css'] ?>: #<?php print $color['hex'] ?>;" data-sass="$<?php print $color['name_css'] ?>: #<?php print $color['hex'] ?>;" data-hex="#<?php print $color['hex'] ?>" class="color color-<?php print $color['id'] ?>" style="background: #<?php print $color['hex'] ?>"></a>
     <?php } ?>
-    <a href="javascript:;" class="export btn-export-css">.LESS</a>
-    <a href="javascript:;" class="export btn-export-sass">.SASS</a>
-    <a href="<?php print R ?>api/color/export/<?php print $project_id ?>/aco" class="export btn-export-aco">.ACO</a>
+    <a href="javascript:;" class="export btn-export-css"><i class="icon icon-share-alt"></i> .LESS</a>
+    <a href="javascript:;" class="export btn-export-sass"><i class="icon icon-share-alt"></i> .SASS</a>
+    <a href="<?php print R ?>api/color/export/<?php print $project_id ?>/aco" class="export btn-export-aco"><i class="icon icon-share-alt"></i> .ACO</a>
 </div>
 <?php } ?>
 <ul>
