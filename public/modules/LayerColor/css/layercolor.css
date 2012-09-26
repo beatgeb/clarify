@@ -21,7 +21,7 @@
     -moz-border-radius-bottomleft: 5px;
     -webkit-border-radius: 0px 5px 5px 5px;
     border-radius: 0px 5px 5px 5px;
-    padding: 3px;
+    padding: 3px 6px;
     position: absolute;
     display: none;
     white-space: nowrap;
@@ -39,20 +39,21 @@
     z-index: 20;
 }
 .modLayerColor .color .p {
-    width: 35px;
-    height: 35px;
+    width: 26px;
+    height: 26px;
     -moz-border-radius-topleft: 0px;
     -moz-border-radius-topright: 3px;
     -moz-border-radius-bottomright: 3px;
     -moz-border-radius-bottomleft: 3px;
     -webkit-border-radius: 0px 3px 3px 3px;
     border-radius: 0px 3px 3px 3px;
-    float: left;
+    display: inline-block;
 }
 .modLayerColor .color .meta {
     font-size: 12px;
-    float: left;
+    display: inline-block;
     padding: 3px 5px;
+    height: 24px;
 }
 .modLayerColor .color .meta span {
     font-weight: bold;
