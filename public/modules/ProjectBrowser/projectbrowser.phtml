@@ -47,13 +47,14 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
     <?php } ?>
 </div>
 <div class="notice">You have <?php print sizeof($modules) ?> modules in your library.</div>
-<?php if (has_permission($project_id, 'ADMIN')) { ?>
 <?php
 $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE creator = ' . userid() . ' AND project = ' . $project_id . ' ORDER BY email ASC');
 ?>
 <h3>
     Collaborators
+    <?php if (has_permission($project_id, 'ADMIN')) { ?>
     <a class="btn-add-collaborator" href="javascript:;">+ Add</a>
+    <?php } ?>
 </h3>
 <div class="add-collaborator">
     <input class="collaborator-email" data-project-id="<?php print $project_id ?>" type="text" placeholder="E-Mail" />
@@ -68,10 +69,11 @@ $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE cre
         <div class="edit-collaborator" data-id="<?php print $c['id'] ?>" href="#">
             <img src="<?php print gravatar($c['email'], 48) ?>" width="24" height="24" />
             <span><?php print $c['email'] ?></span>
+            <?php if (has_permission($project_id, 'ADMIN')) { ?>
             <a href="javascript:;" class="remove">&times;</a>
+            <?php } ?>
         </div>
     </li>
     <?php } ?>
 </ul>
-<?php } ?>
 <?php } ?>
