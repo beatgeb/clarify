@@ -52,6 +52,7 @@ $colors = $db->data("
     </div>
 </div>
 <?php if ($project_id > 0) { ?>
+<?php if (sizeof($colors) > 0) { ?>
 <div class="colors">
     <?php foreach ($colors as $color) { ?>
     <a href="javascript:;" rel="tooltip" title="<?php print $color['name'] ?> – #<?php print $color['hex'] ?>" data-less="@<?php print $color['name_css'] ?>: #<?php print $color['hex'] ?>;" data-sass="$<?php print $color['name_css'] ?>: #<?php print $color['hex'] ?>;" data-hex="#<?php print $color['hex'] ?>" class="color color-<?php print $color['id'] ?>" style="background: #<?php print $color['hex'] ?>"></a>
@@ -60,6 +61,7 @@ $colors = $db->data("
     <a href="javascript:;" class="export btn-export-sass">.SASS</a>
     <a href="<?php print R ?>api/color/export/<?php print $project_id ?>/aco" class="export btn-export-aco">.ACO</a>
 </div>
+<?php } ?>
 <ul>
     <?php if (has_permission($project_id, 'EDIT')) { ?>
     <li class="create">
