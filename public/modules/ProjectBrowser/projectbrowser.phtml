@@ -48,7 +48,7 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
 </div>
 <div class="notice">You have <?php print sizeof($modules) ?> modules in your library.</div>
 <?php
-$collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE creator = ' . userid() . ' AND project = ' . $project_id . ' ORDER BY email ASC');
+$collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE project = ' . $project_id . ' ORDER BY email ASC');
 ?>
 <h3>
     Collaborators
@@ -61,7 +61,7 @@ $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE cre
     <input class="add-collaborator-submit" type="button" value="Add User" />
 </div>
 <?php if (sizeof($collaborators) == 0) { ?>
-    <div class="notice">You don't have any collaborators yet.</div>
+    <div class="notice">This project has no collaborators yet.</div>
 <?php } ?>
 <ul class="collaborators">
     <?php foreach ($collaborators as $c) { ?>
