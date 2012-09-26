@@ -78,6 +78,7 @@ foreach ($comments as $comment) {
         </div>
         <?php } ?>
 
+        <?php if (sizeof($colors) > 0) { ?>
         <div class="chapter pagebreak">
             <h2>Colors</h2>
             <h3>Palette</h3>
@@ -97,6 +98,7 @@ foreach ($comments as $comment) {
             <?php } ?>
             </div>
         </div>
+        <?php } ?>
 
         <?php if (sizeof($fonts) > 0) { ?>
         <div class="chapter pagebreak">
