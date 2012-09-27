@@ -46,6 +46,9 @@
 .st-widget-large .dot { width: 30px; height: 30px; }
 
 @media print {
+    .st-widget { 
+        border: 1px solid #000;
+    }
     .st-def .dot {
         background: #FFF;
         color: #000;
