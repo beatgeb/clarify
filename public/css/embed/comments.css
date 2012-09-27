@@ -44,3 +44,15 @@
 .st-widget-medium .dot { width: 20px; height: 20px; }
 .st-widget-large .nr { font-size: 20px; width: 30px; top: 5px; }
 .st-widget-large .dot { width: 30px; height: 30px; }
+
+@media print {
+    .st-def .dot {
+        background: #FFF;
+        color: #000;
+        border-color: #000;
+    }
+    .st-def .nr { 
+        text-shadow: none;
+        color: #000;
+    }
+}
