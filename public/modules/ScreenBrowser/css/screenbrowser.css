@@ -295,12 +295,23 @@
     text-decoration: none;
     -webkit-border-radius: 4px;
     border-radius: 4px;
-    background: #9BB61D;
+    background-color: #ecebf0;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(236, 235, 240)), to(rgb(227, 224, 231)));
+    background-image: -webkit-linear-gradient(top, rgb(236, 235, 240), rgb(227, 224, 231));
+    background-image: -moz-linear-gradient(top, rgb(236, 235, 240), rgb(227, 224, 231));
+    background-image: -o-linear-gradient(top, rgb(236, 235, 240), rgb(227, 224, 231));
+    background-image: -ms-linear-gradient(top, rgb(236, 235, 240), rgb(227, 224, 231));
+    background-image: linear-gradient(top, rgb(236, 235, 240), rgb(227, 224, 231));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ecebf0', EndColorStr='#e3e0e7');
     padding: 14px 24px;
-    
+    color: #222;
+    border: 1px solid #d7d6dc;
+    -webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5);
 }
 .modScreenBrowser .btn-create-project:hover {
-    color: #3a4507;
+    color: #000;
+    border-color: #444;
 }
 .modScreenBrowser ul li:hover .btn-replace {
     display: inline-block;
