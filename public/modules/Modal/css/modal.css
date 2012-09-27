@@ -146,6 +146,8 @@
     border: 1px solid #999;
     width: 508px;
     margin-bottom: 15px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
 }
 
 .modModal pre {
