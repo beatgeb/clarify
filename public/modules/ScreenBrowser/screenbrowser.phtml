@@ -36,8 +36,7 @@ $colors = $db->data("
     <?php if ($project_id > 0) { ?>
     <div class="actions">
         <?php if (has_permission($project_id, 'ADMIN')) { ?>
-        <a href="javascript:;" class="btn-rename-project" data-project="<?php print $project_id ?>" data-name="<?php print $project['name'] ?>">Rename</a>
-        <a href="javascript:;" class="btn-delete-project" data-project="<?php print $project_id ?>">Delete</a>
+        <a href="javascript:;" class="btn-project-settings" data-project="<?php print $project_id ?>" data-name="<?php print $project['name'] ?>"><i class="icon icon-cog"></i> Settings</a>
         <?php } ?>
     </div>
     <?php } ?>

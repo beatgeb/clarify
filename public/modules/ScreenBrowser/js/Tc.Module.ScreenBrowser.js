@@ -98,30 +98,13 @@
                     $('.delete', $(this)).hide();
                 }
             );
-
-            $('.btn-delete-project').on('click', function() {
-                var project = $(this).data('project');
-                var data = { 'project': project };
-                var modal = that.sandbox.getModuleById($('.modModal').data('id'));
-                modal.open('delete-project', data, function() {
-                    $.ajax({
-                        url: "/api/project/delete/" + project,
-                        dataType: 'json',
-                        type: 'POST',
-                        success: function(data){
-                            location.href='/';
-                        }
-                    });
-                });
-                return false;
-            });
-
-            $('.btn-rename-project').on('click', function() {
+            
+            $('.btn-project-settings').on('click', function() {
                 var project = $(this).data('project');
                 var name = $(this).data('name');
                 var data = { 'project': project, 'name': name };
                 var modal = that.sandbox.getModuleById($('.modModal').data('id'));
-                modal.open('rename-project', data, function() {
+                modal.open('project-settings', data, function() {
                     var $input = $(this).closest('.modal').find('.fld-name');
                     $.ajax({
                         url: "/api/project/setting/" + project + "/name/" + encodeURIComponent($input.val()),
@@ -130,6 +113,17 @@
                         success: function(data){
                             location.reload();
                         }
+                    });
+                }, function() {
+                    modal.open('delete-project', data, function() {
+                        $.ajax({
+                            url: "/api/project/delete/" + project,
+                            dataType: 'json',
+                            type: 'POST',
+                            success: function(data){
+                                location.href='/';
+                            }
+                        });
                     });
                 });
                 return false;

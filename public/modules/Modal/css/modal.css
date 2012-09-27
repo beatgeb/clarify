@@ -9,6 +9,14 @@
 	margin: -250px 0 0 -280px;
 }
 
+.modModal .tab {
+	display: none;
+}
+
+.modModal .tab-1 {
+	display: block;
+}
+
 .modModal .head {
   	padding: 10px 15px 9px 15px;
   	background-color: #333333;
@@ -107,6 +115,26 @@
 	border-color: #052742;
 }
 
+.modModal .btn-delete {
+	float: right;
+	background-color: #cb2c00;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(203, 44, 0)), to(rgb(183, 42, 0)));
+	background-image: -webkit-linear-gradient(top, rgb(203, 44, 0), rgb(183, 42, 0));
+	background-image: -moz-linear-gradient(top, rgb(203, 44, 0), rgb(183, 42, 0));
+	background-image: -o-linear-gradient(top, rgb(203, 44, 0), rgb(183, 42, 0));
+	background-image: -ms-linear-gradient(top, rgb(203, 44, 0), rgb(183, 42, 0));
+	background-image: linear-gradient(top, rgb(203, 44, 0), rgb(183, 42, 0));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#cb2c00', EndColorStr='#b72a00');
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid transparent;
+	color: #FFF;
+	margin-right: 0;
+}
+.modModal .btn-delete:hover {
+	border-color: #7b0c01;
+}
+
 .modModal .fld {
     display: block;
     background-color: #FFF;
@@ -139,6 +167,64 @@
 	color: #666;
 	font-size: 11px;
 	font-weight: bold;
+}
+
+.modModal .nav {
+	background-color: #f8f9fb;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(248, 249, 251)), to(rgb(231, 233, 241)));
+	background-image: -webkit-linear-gradient(top, rgb(248, 249, 251), rgb(231, 233, 241));
+	background-image: -moz-linear-gradient(top, rgb(248, 249, 251), rgb(231, 233, 241));
+	background-image: -o-linear-gradient(top, rgb(248, 249, 251), rgb(231, 233, 241));
+	background-image: -ms-linear-gradient(top, rgb(248, 249, 251), rgb(231, 233, 241));
+	background-image: linear-gradient(top, rgb(248, 249, 251), rgb(231, 233, 241));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#f8f9fb', EndColorStr='#e7e9f1');
+	border-bottom: 1px solid #d1dae1;
+}
+.modModal .nav li {
+	display: inline-block;
+}
+
+.modModal .nav li a {
+	display: block;
+	width: 100px;
+	border-right: 1px solid #DDD;
+	color: #666;
+	font-size: 12px;
+	text-align: center;
+	text-decoration: none;
+	padding: 10px 0;
+}
+
+.modModal .nav li a i {
+	display: block;
+	font-size: 32px;
+	color: #666;
+	text-align: center;
+	width: 100px;
+}
+
+.modModal .nav li.active a {
+	background-color: #ffffff;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)), to(rgb(231, 233, 241)));
+	background-image: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(231, 233, 241));
+	background-image: -moz-linear-gradient(top, rgb(255, 255, 255), rgb(231, 233, 241));
+	background-image: -o-linear-gradient(top, rgb(255, 255, 255), rgb(231, 233, 241));
+	background-image: -ms-linear-gradient(top, rgb(255, 255, 255), rgb(231, 233, 241));
+	background-image: linear-gradient(top, rgb(255, 255, 255), rgb(231, 233, 241));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ffffff', EndColorStr='#e7e9f1');
+	color: #000;
+}
+
+.modModal .nav li.active a i {
+	color: #000;
+}
+
+.modModal .nav li:hover a {
+	color: #333;
+}
+
+.modModal .nav li:hover a i {
+	color: #333;
 }
 
 .modModalBackdrop {
