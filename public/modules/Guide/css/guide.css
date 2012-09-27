@@ -228,3 +228,9 @@
     font-family: menlo, monospace;
     color: #555;
 }
+
+@media print {
+    .modGuide .modToolbar {
+        display: none;
+    }
+}

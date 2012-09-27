@@ -45,7 +45,7 @@ foreach ($comments as $comment) {
         <div class="chapter">
             <h2>Screens</h2>
             <?php foreach ($screens as $index => $screen) { ?>
-            <h3><?php print $index + 1 ?>. <?php print $screen['title'] ?></h3>
+            <h3 class="<?php if ($index > 0) { ?>pagebreak<?php } ?>"><?php print $index + 1 ?>. <?php print $screen['title'] ?></h3>
             <div class="screen"><script type="text/javascript" src="<?php print R ?>embed/<?php print $screen['code'] ?>/580"></script></div>
             <?php if (isset($layers[$screen['id']])) { ?>
             <ul class="definitions">
