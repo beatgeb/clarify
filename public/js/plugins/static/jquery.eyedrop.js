@@ -128,8 +128,9 @@
                     }
                 });
             } else {
-                $this.bind('mouseup', function() {
+                $this.bind('mousedown', function() {
                     settings.pick(data.x, data.y, data.color);
+                    settings.stop();
                 });
             }
 
