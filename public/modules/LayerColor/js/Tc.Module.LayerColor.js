@@ -58,6 +58,7 @@
             $('.modColorLibrary').show();
             $('.modScreen').eyedrop({
                 'display': true,
+                'mode': 'point',
                 pick: function(x, y, color) {
                     if (that.drag || that.hover) {
                         return;

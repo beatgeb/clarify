@@ -17,7 +17,7 @@
             'height': 5,
             'cursor': 'crosshair',
             'display': false,
-            'mode': 'single',
+            'mode': 'point',
             'picker': $('.picker'),
             'start': function(x, y) {},
             'stop': function() {},
@@ -80,51 +80,60 @@
                 // NOOP
             });
 
-            var mouseClicked = false;
-            
-            $this.bind('mousedown', function(e) {
-                if (mouseClicked === true) {
-                    mouseClicked = false;
+            // in case of range we need to handle mousedown+move+mouseup and click+move+click
+            if (options.mode === 'range') {
+                var mouseClicked = false;
 
-                    settings.pickRange(
-                        data.startx,
-                        data.starty,
-                        data.startcolor,
-                        data.x,
-                        data.y,
-                        data.color
-                    );
+                $this.bind('mousedown', function(e) {
+                    if (mouseClicked === true) {
+                        mouseClicked = false;
 
-                    settings.stop();
-                } else {
-                    mouseClicked = true;
+                        settings.pickRange(
+                            data.startx,
+                            data.starty,
+                            data.startcolor,
+                            data.x,
+                            data.y,
+                            data.color
+                        );
 
-                    settings.start(data.x, data.y);
-                    settings.pick(data.x, data.y, data.color);
-                    data.startx = data.x;
-                    data.starty = data.y;
-                    data.startcolor = data.color;
-                    if (e.preventDefault) {
-                        e.preventDefault();
+                        settings.stop();
+                    } else {
+                        mouseClicked = true;
+
+                        settings.start(data.x, data.y);
+                        settings.pick(data.x, data.y, data.color);
+                        data.startx = data.x;
+                        data.starty = data.y;
+                        data.startcolor = data.color;
+                        if (e.preventDefault) {
+                            e.preventDefault();
+                        }
                     }
-                }
-            });
-            
-            $this.bind('mouseup', function(e) {
-                if (data.startx !== data.x && data.starty !== data.y && mouseClicked === true) {
-                    mouseClicked = false;
+                });
 
-                    settings.pickRange(
-                        data.startx,
-                        data.starty,
-                        data.startcolor,
-                        data.x,
-                        data.y,
-                        data.color
-                    );
-                    settings.stop();
-                }
-            });
+                $this.bind('mouseup', function() {
+                    if (data.startx !== data.x && data.starty !== data.y && mouseClicked === true) {
+                        mouseClicked = false;
+
+                        settings.pickRange(
+                            data.startx,
+                            data.starty,
+                            data.startcolor,
+                            data.x,
+                            data.y,
+                            data.color
+                        );
+                        settings.stop();
+                    }
+                });
+            } else {
+                $this.bind('mouseup', function() {
+                    settings.pick(data.x, data.y, data.color);
+                });
+            }
+
+
 
             var ps = [];
             for (var i = 0; i < settings.width * settings.height; i++) {
