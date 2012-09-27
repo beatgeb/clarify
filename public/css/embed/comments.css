@@ -47,7 +47,11 @@
 
 @media print {
     .st-widget { 
-        border: 1px solid #000;
+        border: 1px solid #666;
+    }
+    .st-widget img { 
+        width: 100%;
+        height: auto;
     }
     .st-def .dot {
         background: #FFF;
