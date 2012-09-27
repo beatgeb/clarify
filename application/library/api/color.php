@@ -179,6 +179,7 @@ switch ($action) {
         $data['alpha'] = $a;
         $data['result'] = $result;
         $data['name'] = $match[0];
+        $data['name_css'] = slug($match[0]);
         $data['match'] = $match[1];
 
         // add to activity stream
