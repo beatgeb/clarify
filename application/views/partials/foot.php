@@ -10,11 +10,13 @@
     });
 })(Tc.$);
 </script>
+<?php if (config('feedback.uservoice.enabled')) { ?>
 <script type="text/javascript">
   var uvOptions = {};
   (function() {
     var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/u5QnuwlRcK4saGqrAKVZEA.js';
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/<?php print config('feedback.uservoice.key') ?>.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
   })();
 </script>
+<?php } ?>
