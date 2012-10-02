@@ -179,7 +179,7 @@ switch ($action) {
             die();
         }
 
-        $key = md5($screen . '-' . $reqwidth . '-' . $screen['modified']);
+        $key = md5($screen['id'] . '-' . $reqwidth . '-' . $screen['modified']);
         $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
         $target =  CACHE . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '/' . $key;
         
