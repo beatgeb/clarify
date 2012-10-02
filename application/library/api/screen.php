@@ -171,7 +171,16 @@ switch ($action) {
     case API_SCREEN_THUMBNAIL:
         $screen = intval($route[4]);
         $reqwidth = intval($route[5]);
-        $screen = $db->single("SELECT id, project, modified, embeddable, type, ext FROM screen WHERE id = '" . $screen . "' LIMIT 1");
+        $key = md5($screen . '-' . $reqwidth);
+        $folder = substr($key, 0, 3);
+        $target =  CACHE . 'screens/' . $folder . '/' . $screen['id'] . '/' . $key;
+
+        if (is_file($target) && isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $_SERVER['HTTP_IF_MODIFIED_SINCE'] == date('r', filemtime($target))) {
+            header('Last-modified: ' . date(DATERFC_1123, filemtime($target)), true, 304);
+            exit;
+        }
+
+        $screen = $db->single("SELECT id, project, created, modified, embeddable, type, ext FROM screen WHERE id = '" . $screen . "' LIMIT 1");
         if (!$screen) { die(); }
 
         // check project permissions
@@ -179,14 +188,18 @@ switch ($action) {
             die();
         }
 
-        $key = md5($screen['id'] . '-' . $reqwidth . '-' . $screen['modified']);
+        $modified = !$screen['modified'] ? $screen['created'] : $screen['modified'];
         $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
-        $target =  CACHE . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '/' . $key;
+        
+        header('Content-Type: image/png');
+        header('Cache-Control: private');
+        header('Pragma: public');
         
         if (is_file($target)) {
-            header('Content-Type: image/png');
+            header('Last-Modified: ' . date('r', filemtime($target)));
             readfile($target);
         } else {
+            header('Last-Modified: ' . date('r'));
             if (!is_dir(dirname($target))) {
                 @mkdir(dirname($target), 0777, true);
             }
@@ -207,7 +220,6 @@ switch ($action) {
             $dst = imagecreatetruecolor($newwidth, $newheight);
             imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
             imagepng($dst, $target);
-            header('Content-Type: image/png');
             echo file_get_contents($target);
         }
         break;
