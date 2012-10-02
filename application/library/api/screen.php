@@ -174,9 +174,11 @@ switch ($action) {
         $key = md5($screen . '-' . $reqwidth);
         $folder = substr($key, 0, 3);
         $target =  CACHE . 'screens/' . $folder . '/' . $screen['id'] . '/' . $key;
-
+        header('X-Clarify-1: ' . $_SERVER['HTTP_IF_MODIFIED_SINCE']);
+        header('X-Clarify-2: ' . date('r', filemtime($target)));
         if (is_file($target) && isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $_SERVER['HTTP_IF_MODIFIED_SINCE'] == date('r', filemtime($target))) {
             header('Last-modified: ' . date(DATERFC_1123, filemtime($target)), true, 304);
+            header('X-Clarify: test');
             exit;
         }
 
@@ -193,6 +195,7 @@ switch ($action) {
         
         header('Content-Type: image/png');
         header('Cache-Control: private');
+        //header('Expires: ' . date('r', strtotime('+1 day')));
         header('Pragma: public');
         
         if (is_file($target)) {
