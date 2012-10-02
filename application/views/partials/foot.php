@@ -1,6 +1,6 @@
 <?php require TERRIFIC . 'modules/Modal/modal.phtml' ?>
 <div class="mod modKeyboardHandler"></div>
-<script type="text/javascript" src="<?php print R ?>js/js.php"></script>
+<script type="text/javascript" src="<?php print R ?>js/app.<?php print (config('cache.js.enabled') && is_file(TERRIFIC . 'js/app.js') ? 'js' : 'php') ?>"></script>
 <script type="text/javascript">
 (function($) {
     $(document).ready(function() {
