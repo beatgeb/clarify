@@ -58,5 +58,9 @@ $config['twitter.auth.consumersecret'] = '';
 $config['postmark.api.key'] = '';
 $config['postmark.from.address'] = '';
 $config['postmark.from.name'] = '';
+
+// API Testing
+$config['api.testing.enabled'] = false;
+$config['api.testing.screen.id'] = 1;
  
 ?>

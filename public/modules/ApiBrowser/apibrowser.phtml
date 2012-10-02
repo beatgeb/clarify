@@ -1,0 +1,33 @@
+<div class="sidebar">
+	<a class="logo" href="<?php print R ?>">Clarify</a>
+</div>
+<div class="content">
+	<div class="head">
+		<h2><i class="icon icon-question-sign"></i>&nbsp;&nbsp;API Status</h2>
+		<div class="actions">
+			<a href="javascript:;" class="btn-run">Run Tests</a>
+		</div>
+	</div>
+	<div class="services">
+		<h3>Authentication API</h3>
+		<ul>
+			<li data-url="/api/auth/authenticate" data-json="{}"><i class="icon icon-question-sign"></i> /api/auth/authenticate <span class="time"></span></li>
+		</ul>
+		<h3>Comment API</h3>
+		<ul>
+			<li data-url="/api/comment/get/<?php print config('api.testing.screen.id') ?>"><i class="icon icon-question-sign"></i> /api/comment/get <span class="time"></span></li>
+		</ul>
+		<h3>Measure API</h3>
+		<ul>
+			<li data-url="/api/measure/get/<?php print config('api.testing.screen.id') ?>"><i class="icon icon-question-sign"></i> /api/measure/get <span class="time"></span></li>
+		</ul>
+		<h3>Module API</h3>
+		<ul>
+			<li data-url="/api/module/get/<?php print config('api.testing.screen.id') ?>"><i class="icon icon-question-sign"></i> /api/module/get <span class="time"></span></li>
+		</ul>
+		<h3>Color API</h3>
+		<ul>
+			<li data-url="/api/color/get/<?php print config('api.testing.screen.id') ?>"><i class="icon icon-question-sign"></i> /api/color/get <span class="time"></span></li>
+		</ul>
+	</div>
+</div>
