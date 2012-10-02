@@ -31,7 +31,6 @@ define('UPLOAD', APP . '../public/upload/');
 require LIBRARY . 'core.php';
 require LIBRARY . 'api.php';
 require LIBRARY . 'db.php';
-require LIBRARY . 'session.php';
 require LIBRARY . 'auth.php';
 require LIBRARY . 'cache.php';
 require LIBRARY . 'thirdparty/postmark/Postmark.php';
@@ -61,6 +60,23 @@ if (class_exists('Memcache')) {
 	    config('memcached.server.name'),
 	    config('memcached.server.port')
 	);
+
+	// enable memcache session handling
+	require LIBRARY . 'session.php';
+
+	// set session save handler
+	session_set_save_handler(
+	    "sess_open", 
+	    "sess_close", 
+	    "sess_read", 
+	    "sess_write", 
+	    "sess_destroy", 
+	    "sess_gc"
+	);
+
+	// register shutdown functions
+	register_shutdown_function('session_write_close');	
+
 } else {
 	$cache = new Cache;
 }

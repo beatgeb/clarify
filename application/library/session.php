@@ -36,7 +36,7 @@ function sess_close() {
  */
 function sess_read($id) {
 	global $cache;
-    $cachedata = $cache->get('ect_session_' . $id);
+    $cachedata = $cache->get('clarify_session_' . $id);
 	return $cachedata;
 }
 
@@ -48,17 +48,17 @@ function sess_read($id) {
 function sess_write($id, $data) {
     global $cache;
 	$user_id = $_SESSION['user']['id'];
-    $cachedata = $cache->get('ect_session_' . $id);
-	$cache->set('ect_session_' . $id, $data, false);
-	$cache->set('ect_user_online_' . $user_id, true, false);
-	$online = $cache->get('ect_online');
+    $cachedata = $cache->get('clarify_session_' . $id);
+	$cache->set('clarify_session_' . $id, $data, false);
+	$cache->set('clarify_user_online_' . $user_id, true, false);
+	$online = $cache->get('clarify_online');
 	if (!is_array($online)) {
 		$online = array($user_id => true);
-		$cache->set('ect_online', $online);
+		$cache->set('clarify_online', $online);
 	} else {
 		if (!array_key_exists($user_id, $online)) {
 			$online[$user_id] = true;
-			$cache->set('ect_online', $online);
+			$cache->set('clarify_online', $online);
 		}
 	}
 }
@@ -70,13 +70,13 @@ function sess_write($id, $data) {
 function sess_destroy($id) {
 	global $cache;
 	$user_id = $_SESSION['user']['id'];
-	$cache->delete('ect_user_online_' . $user_id);
-    $cache->delete('ect_session_' . $id);
-	$online = $cache->get('ect_online');
+	$cache->delete('clarify_user_online_' . $user_id);
+    $cache->delete('clarify_session_' . $id);
+	$online = $cache->get('clarify_online');
 	if (is_array($online)) {
 		if (in_array($user_id, $online)) {
 			unset($online[$user_id]);
-			$cache->set('ect_online', $online);
+			$cache->set('clarify_online', $online);
 		}
 	}
 }

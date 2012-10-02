@@ -43,6 +43,9 @@ switch ($api) {
         }
         require LIBRARY . 'api/' . strtolower($api) . '.php';
         break;
+    default:
+        require VIEWS . 'apibrowser.php';
+        break;
 }
 
 ?>
