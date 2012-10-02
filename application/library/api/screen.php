@@ -195,7 +195,7 @@ switch ($action) {
         
         header('Content-Type: image/png');
         header('Cache-Control: private');
-        //header('Expires: ' . date('r', strtotime('+1 day')));
+        header('Expires: ' . date('r', strtotime('+1 day')));
         header('Pragma: public');
         
         if (is_file($target)) {
