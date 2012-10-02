@@ -1,4 +1,5 @@
 <?php require TERRIFIC . 'modules/Modal/modal.phtml' ?>
+<div class="mod modKeyboardHandler"></div>
 <script type="text/javascript" src="<?php print R ?>js/js.php"></script>
 <script type="text/javascript">
 (function($) {

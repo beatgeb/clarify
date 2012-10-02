@@ -20,6 +20,11 @@
         // that's where we store the registered modules
         registeredModules: [],
 
+        on: function(callback) {
+            this.sandbox.subscribe('keyboard', this);
+            callback();
+        },
+
         /**
          * Register shortcut
          *
@@ -27,7 +32,7 @@
          */
         onRegisterShortcut: function(data) {
             var self = this;
-
+            
             // check if module is already registered
             if ($.inArray({'id': data.moduleId, 'shortcut': data.modifier + '+' + data.shortcut}, self.registeredModules) > -1) {
                 return;
@@ -37,11 +42,14 @@
                 $(document).on('keydown', function(e) {
 
                     // TODO: make this bulletproof
-                    if (event.target.nodeName === 'INPUT' || event.target.nodeName === 'TEXTAREA') {
-                        return;
+                    if (data.exclude) {
+                        if ($.inArray(event.target.nodeName.toLowerCase(), data.exclude) > -1) {
+                            return;
+                        }
                     }
-
-                    if (String.fromCharCode( e.which ).toLowerCase() === data.shortcut) {
+                    if (typeof data.shortcut === 'number' && e.which == data.shortcut) {
+                        data.callback();
+                    } else if (String.fromCharCode(e.which).toLowerCase() === data.shortcut) {
                         data.callback();
                     }
                 });
