@@ -19,7 +19,7 @@ if (!config('api.testing.enabled')) {
 <!DOCTYPE html>
 <html class="mod modLayout skinLayoutBrowser">
 <head>
-    <title><?php print $project['name'] ?> - Clarify</title>
+    <title>API - Clarify</title>
     <?php require 'partials/head.php' ?>
 </head>
 <body>
