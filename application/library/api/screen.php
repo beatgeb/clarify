@@ -171,7 +171,8 @@ switch ($action) {
     case API_SCREEN_THUMBNAIL:
         $screen = intval($route[4]);
         $reqwidth = intval($route[5]);
-        $key = md5($screen . '-' . $reqwidth);
+        $version = intval($route[6]);
+        $key = md5($screen . '-' . $reqwidth . '-' . $version);
         $folder = substr($key, 0, 3);
         $target =  CACHE . 'screens/' . $folder . '/' . $screen['id'] . '/' . $key;
         if (is_file($target) && isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $_SERVER['HTTP_IF_MODIFIED_SINCE'] == date('r', filemtime($target))) {
@@ -192,14 +193,14 @@ switch ($action) {
         
         header('Content-Type: image/png');
         header('Cache-Control: private');
-        header('Expires: ' . date('r', strtotime('+1 minute')));
+        header('Expires: ' . date('r', strtotime('+1 year')));
         header('Pragma: public');
         
         if (is_file($target)) {
-            header('Last-Modified: ' . date('r', filemtime($target)));
+            header('Last-modified: ' . date('r', filemtime($target)));
             readfile($target);
         } else {
-            header('Last-Modified: ' . date('r'));
+            header('Last-modified: ' . date('r'));
             if (!is_dir(dirname($target))) {
                 @mkdir(dirname($target), 0777, true);
             }
