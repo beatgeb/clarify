@@ -24,8 +24,21 @@ elseif (isset($_REQUEST['wipe'])) :
   auth_wipe();
 endif;
 
+// save referer
+if (isset($_REQUEST['referer']) && substr($_REQUEST['referer'],0,1) == '/') {
+    $_SESSION['referer'] = $_REQUEST['referer'];
+}
+
 if (authenticated()) {
-    header('Location: ' . R);
+    if (isset($_SESSION['referer'])) {
+        $referer = $_SESSION['referer'];
+        unset($_SESSION['referer']);
+        header('Location: ' . $referer);
+        exit();
+    } else {
+        header('Location: ' . R);
+        exit();
+    }
 }
 
 ?>
