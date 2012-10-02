@@ -54,6 +54,9 @@ switch ($action) {
         $x = intval($route[5]);
         $y = intval($route[6]);
         if ($id < 1) { die('Please provide a measure id'); }
+        $measure = $db->single('SELECT m.screen, s.project FROM measure m LEFT JOIN screen s ON s.id = m.screen WHERE m.id = ' . $id);
+        if (!$measure) { die(); }
+        permission($measure['project'], 'EDIT');
         $data = array(
             'modified' => date('Y-m-d H:i:s'),
             'modifier' => userid(),
@@ -70,6 +73,9 @@ switch ($action) {
         if ($id < 1) { die('Please provide a measure id'); }
         if ($width < 1) { die('Please provide a width'); }
         if ($height < 1) { die('Please provide a height'); }
+        $measure = $db->single('SELECT m.screen, s.project FROM measure m LEFT JOIN screen s ON s.id = m.screen WHERE m.id = ' . $id);
+        if (!$measure) { die(); }
+        permission($measure['project'], 'EDIT');
         $data = array(
             'modified' => date('Y-m-d H:i:s'),
             'modifier' => userid(),
@@ -82,8 +88,9 @@ switch ($action) {
     case API_MEASURE_DELETE:
         $id = intval($route[4]);
         if ($id < 1) { die('Please provide a measure id'); }
-        $measure = $db->single('SELECT screen FROM measure WHERE id = ' . $id . ' AND creator = ' . userid());
+        $measure = $db->single('SELECT m.screen, s.project FROM measure m LEFT JOIN screen s ON s.id = m.screen WHERE m.id = ' . $id);
         if (!$measure) { die(); }
+        permission($measure['project'], 'EDIT');
         $db->delete('measure', array('id' => $id));
         $db->query("UPDATE screen SET count_measure = count_measure - 1 WHERE id = " . $measure['screen'] . "");
         echo json_encode(array('RESULT' => 'OK'));
