@@ -53,6 +53,9 @@ switch ($action) {
             );
             $db->insert('project_permission', $permission);
 
+            // invalidate permission cache
+            $cache->delete('projects-' . $user_id);
+
             // send e-mail invitation to collaborator
             $email = new Mail_Postmark();
             $email->addTo($_REQUEST['email'])
@@ -77,7 +80,10 @@ switch ($action) {
         $user = $db->single("SELECT id FROM user WHERE email = '" . $collaborator['email'] . "' LIMIT 1");
         if ($user) {
             $db->query("DELETE FROM project_permission WHERE project = '" . $collaborator['project'] . "' AND user = '" . $user['id'] . "' LIMIT 1");
+            // invalidate permission cache
+            $cache->delete('projects-' . $user['id']);
         }
+
         header('Content-Type: application/json');
         $data = array();
         echo json_encode($data);

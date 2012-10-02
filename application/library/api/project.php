@@ -38,6 +38,9 @@ switch ($action) {
             $id, OBJECT_TYPE_PROJECT, $data['name']
         );
         
+        // invalidate permission cache
+        $cache->delete('projects-' . userid());
+
         $data['id'] = $id;
         $data['url'] = R . 'project/' . userid() . '/' . $data['slug'] . '/';
         echo json_encode($data);

@@ -66,15 +66,21 @@ function shutdown() {
 
 function login() {
     global $db;
+    global $cache;
+
     // load project permissions
-    $owned_projects = $db->data("SELECT id FROM project WHERE creator = '" . userid() . "'");
-    $projects = array();
-    foreach ($owned_projects as $project) {
-        $projects[$project['id']] = 'ADMIN';
-    }
-    $collaboration_projects = $db->data("SELECT project, permission FROM project_permission WHERE user = '" . userid() . "'");
-    foreach ($collaboration_projects as $project) {
-        $projects[$project['project']] = $project['permission'];
+    $projects = $cache->get('projects-' . userid());
+    if (!$projects) {
+        $owned_projects = $db->data("SELECT id FROM project WHERE creator = '" . userid() . "'");
+        $projects = array();
+        foreach ($owned_projects as $project) {
+            $projects[$project['id']] = 'ADMIN';
+        }
+        $collaboration_projects = $db->data("SELECT project, permission FROM project_permission WHERE user = '" . userid() . "'");
+        foreach ($collaboration_projects as $project) {
+            $projects[$project['project']] = $project['permission'];
+        }
+        $cache->set('projects-' . userid(), $projects);
     }
     $_SESSION['user']['permissions']['project'] = $projects;
 }
