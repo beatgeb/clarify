@@ -12,6 +12,7 @@ http://blog.namics.com/2012/03/clarify-ein-toolkit-fur-den-frontend-workflow.htm
 * MySQL 5+
 * Apache (.htaccess Support)
 * Modern Browser (with HTML5 Canvas Support)
+* Memcached (optional)
 
 # Installation
 

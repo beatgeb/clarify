@@ -19,7 +19,7 @@ if ($project_id > 0) {
         WHERE project = ' . $project_id . ' 
         ORDER BY title ASC
     ');
-    $project = $db->single("SELECT name FROM project WHERE id = '" . $project_id . "'");
+    $project = $db->single("SELECT name, screen_background_color FROM project WHERE id = '" . $project_id . "'");
 }
 
 // load color library for this project
@@ -36,13 +36,18 @@ $colors = $db->data("
     <?php if ($project_id > 0) { ?>
     <div class="actions">
         <?php if (has_permission($project_id, 'ADMIN')) { ?>
-        <a href="javascript:;" class="btn-project-settings" data-project="<?php print $project_id ?>" data-name="<?php print $project['name'] ?>"><i class="icon icon-cog"></i> Settings</a>
+        <a href="javascript:;" class="btn-project-settings" 
+            data-project="<?php print $project_id ?>" 
+            data-name="<?php print $project['name'] ?>" 
+            data-screen-background-color="<?php print $project['screen_background_color'] ?>">
+            <i class="icon icon-cog"></i> Settings</a>
         <?php } ?>
     </div>
     <?php } ?>
     <div class="usermeta">
         <div class="info">
             <p class="username"><?php print user('name') ?></p>
+            <a href="javascript:;" data-name="<?php print user('name') ?>" class="btn-account-settings">Account</a> -
             <a href="<?php print R ?>auth/?wipe=1">Logout</a>
         </div>
         <div class="avatar">

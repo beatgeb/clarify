@@ -10,14 +10,20 @@
 	</div>
 	<ul class="nav">
 		<li class="active">
-			<a href="#" data-tab="1">
+			<a href="javascript:;" data-tab="1">
 				<i class="icon icon-briefcase"></i>
 				<span>General</span>
 			</a>
 		</li>
 		<!--
 		<li>
-			<a href="#" data-tab="2">
+			<a href="javascript:;" data-tab="2">
+				<i class="icon icon-group"></i>
+				<span>Members</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:;" data-tab="3">
 				<i class="icon icon-picture"></i>
 				<span>Appearance</span>
 			</a>
@@ -30,13 +36,42 @@
 			<input class="fld fld-name" id="fld-name" type="text" value="{{=it.name}}" />
 		</div>
 		<div class="tab tab-2">
-			<label for="fld-background-color">Background Color</label>
-			<input class="fld fld-background-color" id="fld-background-color" type="text" value="{{=it.backgroundColor}}" />
+			<label for="fld-name">Project Members</label>
+			<ul>
+				<li>Roger Dudler</li>
+			</ul>
+		</div>
+		<div class="tab tab-3">
+			<label for="fld-background-color">Screen Background Color</label>
+			<!--
+			<ul tabindex="0" class="fld-dropdown fld-screen-background">
+				<li class="current">Solid Color<i class="icon icon-chevron-down"></i></li>
+				<li>Image</li>
+				<li>Pattern</li>
+			</ul>
+			-->
+			<input class="fld fld-inline fld-background-color" id="fld-background-color" type="text" value="{{=it.screen_background_color}}" />
+			<label for="fld-background-color">Screen Background Image</label>
 		</div>
 	</div>
 	<div class="foot">
 		<a class="btn btn-primary" href="javascript:;">Save</a>
-		<a class="btn btn-delete" href="javascript:;">Delete</a>
+		<a class="btn btn-delete" href="javascript:;">Delete Project</a>
+		<a class="btn btn-cancel" href="javascript:;">Cancel</a>
+	</div>
+</script>
+<!-- Account Settings -->
+<script id="tmpl-modal-account-settings" type="text/x-dot-template">
+	<div class="head">
+		<h2>Account Settings</h2>
+	</div>
+	<div class="body">
+		<label for="fld-name">Your Name</label>
+		<input class="fld fld-name" id="fld-name" type="text" value="{{=it.name}}" />
+	</div>
+	<div class="foot">
+		<a class="btn btn-primary" href="javascript:;">Save</a>
+		<a class="btn btn-delete" href="javascript:;">Delete Account</a>
 		<a class="btn btn-cancel" href="javascript:;">Cancel</a>
 	</div>
 </script>
