@@ -2,8 +2,21 @@
 
 // User API
 define('API_USER_CREATE', 'user.create');
+define('API_USER_SETTING', 'user.setting');
 
 switch ($action) {
+
+	case API_USER_SETTING:
+		lock();
+        $setting = $route[4];
+        switch ($setting) {
+            case 'name':
+                $value = $route[5];
+                $db->update('user', array('name' => urldecode($value)), array('id' => userid()));
+                $_SESSION['user']['name'] = urldecode($value);
+                break;
+        }
+        break;
 
 	case API_USER_CREATE:
 		$name = $_REQUEST['name'];

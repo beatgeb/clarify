@@ -88,6 +88,8 @@
                         }
                     });
                 }, function() {
+                    alert('Not possible yet.');
+                    /*
                     $.ajax({
                         url: "/api/user/account/delete",
                         dataType: 'json',
@@ -96,6 +98,7 @@
                             location.reload();
                         }
                     });
+                     */
                 });
                 return false;
             });
