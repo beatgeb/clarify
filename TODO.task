@@ -1,0 +1,8 @@
+Screen Overview:
+	- Show screen number in screen list for better orientation [New]
+	- Keep scroll position when moving back from screen detail [New]
+	- Show author or date/time for each screen [New]
+
+Project Settings:
+	- Mark team member as "Client" [New]
+	- Notifications about new comments [New]
