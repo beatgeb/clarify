@@ -9,6 +9,7 @@ define('API_TYPOGRAPHY_DELETE', 'typography.delete');
 define('API_TYPOGRAPHY_UPDATE', 'typography.update');
 define('API_TYPOGRAPHY_MOVE', 'typography.move');
 define('API_TYPOGRAPHY_RESIZE', 'typography.resize');
+define('API_TYPOGRAPHY_DATA', 'typography.data');
 
 switch ($action) {
     
@@ -19,11 +20,25 @@ switch ($action) {
         $width = intval($route[7]);
         $height = intval($route[8]);
         if ($screen < 1) { die('Please provide a screen id'); }
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
+        permission($screen['project'], 'EDIT');
+
+        $project_font = array(
+            'created' => date('Y-m-d H:i:s'),
+            'creator' => userid(),
+            'project' => $screen['project'],
+            'name' => 'Untitled',
+            'name_css' => 'untitled',
+            'family' => 'inherit',
+            'size' => 12
+        );
+        $project_font_id = $db->insert('project_font', $project_font);
 
         $font = array(
             'created' => date('Y-m-d H:i:s'),
             'creator' => userid(),
-            'screen' => $screen,
+            'screen' => $screen['id'],
+            'font' => $project_font_id,
             'nr' => 1,
             'x' => $x,
             'y' => $y,
@@ -34,14 +49,40 @@ switch ($action) {
         $font['id'] = $id;
 
         // increase count on screen
-        $db->query("UPDATE screen SET count_font = count_font + 1 WHERE id = " . $screen . "");
+        $db->query("UPDATE screen SET count_font = count_font + 1 WHERE id = " . $screen['id'] . "");
         
         // return result
         header('Content-Type: application/json');
         echo json_encode($font);
         break;
+
+    case API_TYPOGRAPHY_DATA:
+        $id = intval($route[4]);
+        if ($id < 1) { die('Please provide a font id'); }
+        $font = $db->single("
+            SELECT 
+                f.id, f.creator, f.nr, f.x, f.y, f.width, f.height,
+                pf.project, pf.name, pf.family, pf.size, pf.line_height,
+                pc.name as color_name, pc.hex as color_hex
+            FROM font f 
+                LEFT JOIN project_font pf ON (pf.id = f.font)
+                LEFT JOIN project_color pc ON (pc.id = pf.color)
+            WHERE f.id = '" . $id . "'"
+        );
+        permission($font['project'], 'VIEW');
+        header('Content-Type: application/json');
+        echo json_encode($font);
+        break;
     
     case API_TYPOGRAPHY_UPDATE:
+    /*
+        $id = intval($route[4]);
+        if ($id < 1) { die('Please provide a font id'); }
+        $font = $db->single("SELECT pf.project FROM font f LEFT JOIN project_font pf ON (pf.id = f.font)
+                LEFT JOIN project_color pc ON (pc.id = pf.color)
+            WHERE f.id = '" . $id . "'"
+        );
+         */
         //$font_family = $route[7];
         //$font_size = intval($route[8]);
         //$font_color = substr($route[9],0,6);

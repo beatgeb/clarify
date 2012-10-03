@@ -26,6 +26,54 @@
                     that.activate();
                 }
             });
+            $ctx.on('click', '.font > .meta', function() {
+                var $font = $(this).parent();
+                that.drag = true;
+                $.ajax({
+                    url: "/api/typography/data/" + $font.data('id'),
+                    dataType: 'json',
+                    success: function(data){
+                        var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+                        modal.open('font-edit', data, function() {
+
+                            /*
+                            var $name = $(this).closest('.modal').find('.fld-name');
+                            var $hex = $(this).closest('.modal').find('.fld-hex');
+                            var $slug = $(this).closest('.modal').find('.fld-slug');
+                            $.ajax({
+                                url: "/api/font/update/" + color.id + "/" + $hex.val().substring(1,7) + "/" + $slug.val() + "/" + encodeURIComponent($name.val()),
+                                dataType: 'json',
+                                type: 'POST',
+                                success: function(data){
+                                    
+                                    $link.parent().find('.p').css('backgroundColor', $hex.val());
+                                    $link.find('.name').text($name.val());
+                                    $link.find('.hex').text($hex.val());
+                                    $link.data('name', $name.val());
+                                    $link.data('hex', $hex.val());
+                                    $link.data('slug', $slug.val());
+                                    
+                                    modal.cancel();
+                                }
+                            });
+        */
+                            modal.cancel();
+                            that.drag = false;
+                        }, function() {
+                            $.ajax({
+                                url: "/api/typography/delete/" + $font.data('id'),
+                                dataType: 'json',
+                                success: function(data){
+                                    $font.remove();
+                                    modal.cancel();
+                                    that.drag = false;
+                                }
+                            });
+                        });
+                    }
+                });
+                return false;
+            });
             callback();
         },
         
@@ -138,10 +186,10 @@
             var color_hex = font.color_hex ? '#' + font.color_hex : '#000000';
             var font_name = font.name ? font.name : 'Untitled';
             var font_family = font.family ? font.family : 'Default Font';
-            var font = $('<div class="font"><div class="meta"><div class="title">' + font_name + '</div><div>' + font_family + '&nbsp;&nbsp;<i class="icon icon-resize-vertical"></i> <strong>' + size + '</strong></div><div><span class="color" style="background: ' + color_hex + '"></span> ' + color_hex + ', ' + color_name + '</div></div></div>');
+            var $font = $('<div class="font" data-id="' + id + '"><div class="meta"><div class="title">' + font_name + '</div><div>' + font_family + '&nbsp;&nbsp;<i class="icon icon-resize-vertical"></i> <strong>' + size + '</strong></div><div><span class="color" style="background: ' + color_hex + '"></span> ' + color_hex + ', ' + color_name + '</div></div></div>');
             
             // enable drag and drop for fonts
-            font.draggable({
+            $font.draggable({
                 start: function() {
                     that.drag = true;
                 },
@@ -159,7 +207,7 @@
                 }
             });
             
-            font.resizable({
+            $font.resizable({
                 handles: 'n, e, s, w, se, ne, nw, sw',
                 minHeight: 1,
                 minWidth: 1,
@@ -173,7 +221,7 @@
                         type: 'POST',
                         success: function(data){
                             // if the position of the element has changed
-                            if (ui.originalPosition.top != ui.position.top || 
+                            if (ui.originalPosition.top != ui.position.top ||
                                 ui.originalPosition.left != ui.position.left) {
                                 $.ajax({
                                     url: "/api/typography/move/" + id + "/" + ui.position.left + "/" + ui.position.top,
@@ -191,40 +239,29 @@
             });
             
             // show / hide picker on hover
-            font.hover(
+            $font.hover(
                 function(){
                     $('.picker').hide();
                     that.hover = true;
-                }, 
+                },
                 function(){
                     $('.picker').show();
                     that.hover = false;
                 }
             );
-             
-            // delete on double click
-            font.bind('dblclick', function(e) {
-                $.ajax({
-                    url: "/api/typography/delete/" + id,
-                    dataType: 'json',
-                    success: function(data){
-                        font.remove();
-                    }
-                });
-                that.hover = false;
-            });
             
+
             // set width, height and position of font
-            font.css({ 
-                left: x + 'px', 
-                top: y + 'px', 
-                width: width, 
+            $font.css({
+                left: x + 'px',
+                top: y + 'px',
+                width: width,
                 height: height,
                 cursor: 'move',
                 position: 'absolute'
             });
             
-            $ctx.append(font);
+            $ctx.append($font);
         }
 
     });
