@@ -59,7 +59,7 @@
 
             this.$backdrop.show();
             $ctx.fadeIn('fast');
-            $('input:first', $modal).focus();
+            //$('input:first', $modal).focus();
         },
 
         cancel: function() {
