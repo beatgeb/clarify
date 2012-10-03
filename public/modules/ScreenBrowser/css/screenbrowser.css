@@ -95,6 +95,7 @@
     display: block;
 }
 .modScreenBrowser ul li .image {
+    background: #FFF;
     display: block;
     width: 200px;
     height: 160px;
