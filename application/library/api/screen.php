@@ -14,19 +14,26 @@ switch ($action) {
     case API_SCREEN_SETTING:
         lock();
         $screen = intval($route[4]);
+
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = " . $screen . "");
+        if (!$screen) { die(); }
+
+        // check permissions
+        permission($screen['project'], 'EDIT');
+
         $setting = $route[5];
         switch ($setting) {
             case 'embeddable':
                 $value = intval($route[6]);
                 if ($value == 'true') {
-                    $db->update('screen', array('embeddable' => 'TRUE'), array('id' => $screen, 'creator' => userid()));
+                    $db->update('screen', array('embeddable' => 'TRUE'), array('id' => $screen['id']));
                 } else {
-                    $db->update('screen', array('embeddable' => 'FALSE'), array('id' => $screen, 'creator' => userid()));
+                    $db->update('screen', array('embeddable' => 'FALSE'), array('id' => $screen['id']));
                 }
                 break;
             case 'title':
                 $value = $route[6];
-                $db->update('screen', array('title' => urldecode($value)), array('id' => $screen, 'creator' => userid()));
+                $db->update('screen', array('title' => urldecode($value)), array('id' => $screen['id']));
                 break;
         }
         break;
