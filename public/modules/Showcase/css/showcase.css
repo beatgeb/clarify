@@ -7,10 +7,89 @@
     font-family:'Lexia W01 Thin', arial, sans-serif;
     font-size: 48px;
     color: #FFF;
-    margin-bottom: 50px;
+    margin-bottom: 80px;
+}
+.modShowcase .visual {
+	position: relative;
+}
+.modShowcase .screens {
+	z-index: -2;
+	position: absolute;
+	top: 50px;
+	left: 0;
+}
+.modShowcase .screens .screen {
+	position: absolute;
+	-webkit-backface-visibility: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.3);
+	overflow: hidden;
+}
+.modShowcase .screens img {
+	display: block;
+}
+.modShowcase .screen-1 {
+	left: 550px;
+	transform: rotate(5deg);
+	-ms-transform: rotate(5deg); /* IE 9 */
+	-webkit-transform: rotate(5deg); /* Safari and Chrome */
+	-o-transform: rotate(5deg); /* Opera */
+	-moz-transform: rotate(5deg); /* Firefox */
+	max-height: 340px;
+}
+.modShowcase .screen-2 {
+	top: 20px;
+	left: -150px;
+	transform: rotate(-3deg);
+	-ms-transform: rotate(-3deg); /* IE 9 */
+	-webkit-transform: rotate(-3deg); /* Safari and Chrome */
+	-o-transform: rotate(-3deg); /* Opera */
+	-moz-transform: rotate(-3deg); /* Firefox */
+	max-height: 210px;
+}
+.modShowcase .screen-3 {
+	top: -20px;
+	left: 850px;
+	transform: rotate(-3deg);
+	-ms-transform: rotate(-3deg); /* IE 9 */
+	-webkit-transform: rotate(-3deg); /* Safari and Chrome */
+	-o-transform: rotate(-3deg); /* Opera */
+	-moz-transform: rotate(-3deg); /* Firefox */
+	max-height: 230px;
+}
+.modShowcase .screen-4 {
+	left: 1050px;
+	transform: rotate(3deg);
+	-ms-transform: rotate(3deg); /* IE 9 */
+	-webkit-transform: rotate(3deg); /* Safari and Chrome */
+	-o-transform: rotate(3deg); /* Opera */
+	-moz-transform: rotate(3deg); /* Firefox */
+	max-height: 190px;
+}
+.modShowcase .highlights {
+	position: relative;
+}
+.modShowcase .highlight {
+	overflow: hidden;
+	max-height: 407px;
+	box-shadow: 0 0 20px rgba(0,0,0,0.5);
+	width: 600px;
 }
 .modShowcase .highlight img {
-	box-shadow: 0 0 20px rgba(0,0,0,0.5);
+	display: block;
+}
+.modShowcase .highlight-second {
+	position: absolute;
+	top: 0;
+	transform: rotate(3deg);
+	-ms-transform: rotate(3deg); /* IE 9 */
+	-webkit-transform: rotate(3deg); /* Safari and Chrome */
+	-o-transform: rotate(3deg); /* Opera */
+	-moz-transform: rotate(3deg); /* Firefox */
+	-webkit-backface-visibility: hidden;
+	z-index: -1;
+}
+.modShowcase .highlight-second img {
+	box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
 .modShowcase .collaborators {
 	position: absolute;
@@ -25,4 +104,64 @@
 
 .modShowcase .collaborators li img {
 	border-radius: 50%;
+}
+
+.modShowcase .feedback {
+	position: absolute;
+	top: 500px;
+	right: 100px;
+}
+.modShowcase .feedback .btn {
+	display: inline-block;
+	padding: 10px 20px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	color: rgba(255, 255, 255, 0.5);
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 24px;
+	font-family:'Lexia W01 Thin', arial, sans-serif;
+}
+
+.modShowcase .feedback .btn i {
+	color: #FFF;
+}
+.modShowcase .feedback .btn:hover {
+	border-color: #FFF;
+	color: #FFF;
+}
+
+.modShowcase .btn-previous {
+	display: none;
+	background: rgba(0, 0, 0, 0.2);
+	padding: 10px 15px;
+	color: #FFF;
+	text-decoration: none;
+	font-size: 48px;
+	position: absolute;
+	left: -100px;
+	top: 150px;
+	z-index: 3;
+	border-radius: 0 10px 10px 0;
+}
+
+.modShowcase .btn-next {
+	display: none;
+	background: rgba(0, 0, 0, 0.2);
+	padding: 10px 15px;
+	color: #FFF;
+	text-decoration: none;
+	font-size: 48px;
+	position: absolute;
+	right: 0px;
+	top: 150px;
+	z-index: 3;
+	border-radius: 10px 0 0 10px;
+}
+
+.modShowcase .highlights:hover .btn-previous {
+
+}
+
+.modShowcase .highlights:hover .btn-next {
+
 }
