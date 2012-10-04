@@ -60,11 +60,7 @@ $highlight = current($screens);
             <div class="screens">
                 <?php foreach ($screens as $key => $screen) { ?>
                 <?php if ($key == 0) { continue; } ?>
-<<<<<<< HEAD
                 <?php if ($key > 4) { break; } ?>
-=======
-                <?php if ($key > 6) { break; } ?>
->>>>>>> a1fbf92ddeeeec0749d906990607098f01d023cc
                 <div class="screen screen-<?php print $key ?>">
                     <img src="<?php print R ?>api/screen/thumbnail/<?php print $screen['id'] ?>/<?php print round(500-$key*70) ?>" width="<?php print round(500-$key*70) ?>" alt="" />
                 </div>
