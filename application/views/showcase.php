@@ -13,7 +13,7 @@ lock();
 
 $user_id = intval($route[2]);
 $project_slug = addslashes($route[3]);
-$project = $db->single("SELECT id, creator, slug, name FROM project WHERE slug = '" . $project_slug . "' AND creator = " . $user_id . " LIMIT 1");
+$project = $db->single("SELECT id, creator, slug, name, showcase_background_color FROM project WHERE slug = '" . $project_slug . "' AND creator = " . $user_id . " LIMIT 1");
 if (!$project) { die(); }
 $project_id = $project['id'];
 
@@ -23,22 +23,14 @@ $owner = $db->single("SELECT id, email, name FROM user WHERE id = '" . $project[
 $collaborators = $db->data("SELECT u.id, u.name, u.email FROM project_permission pp LEFT JOIN user u ON u.id = pp.user WHERE pp.project = '" . $project['id'] . "'");
 $screens = $db->data("SELECT id, title, description, code FROM screen WHERE project = '" . $project['id'] . "' ORDER BY title ASC");
 $colors = $db->data("SELECT id, hex, name, name_css, r, g, b, alpha FROM project_color WHERE project = '" . $project['id'] . "' ORDER BY hue ASC", "id");
-$comments = $db->data("SELECT d.id, d.content, d.nr, d.layer, d.screen FROM comment d LEFT JOIN screen s ON s.id = d.screen WHERE s.project = '" . $project['id'] . "'");
-$fonts = $db->data("SELECT * FROM project_font WHERE project = " . $project_id);
-$modules = $db->data("SELECT * FROM project_module WHERE project = " . $project_id);
-$layers = array();
-foreach ($comments as $comment) {
-    $layers[$comment['screen']][] = $comment;
-}
 
 // screen highlight
 $highlight = current($screens);
-
 ?>
 <!DOCTYPE html>
-<html class="mod modLayout skinLayoutShowcase" style="background-color: #3B5998;">
+<html class="mod modLayout skinLayoutShowcase" style="background-color: <?php print $project['showcase_background_color'] ?>;">
 <head>
-    <title>Styleguide for <?php print $project['name'] ?> - Clarify</title>
+    <title><?php print $project['name'] ?> Showcase - Clarify</title>
     <?php require 'partials/head.php' ?>
 </head>
 <body>
@@ -49,8 +41,36 @@ $highlight = current($screens);
             </div>
         </div>
         <h1><?php print $project['name'] ?></h1>
-        <div class="highlight">
-            <img src="<?php print R ?>api/screen/thumbnail/<?php print $highlight['id'] ?>/580" width="580" alt="" />
+        <div class="visual">
+            <div class="highlights">
+                <div class="highlight">
+                    <img src="<?php print R ?>api/screen/thumbnail/<?php print $highlight['id'] ?>/600" width="600" alt="" />
+                </div>
+                <div class="highlight highlight-second">
+                    <img src="<?php print R ?>api/screen/thumbnail/<?php print $highlight['id'] ?>/600" width="600" alt="" />
+                </div>
+                <a class="btn-previous" href="javascript:;">
+                    <i class="icon icon-chevron-left"></i>
+                </a>
+                <a class="btn-next" href="javascript:;">
+                    <i class="icon icon-chevron-right"></i>
+                </a>
+            </div>
+            <?php if (sizeof($screens) > 1) { ?>
+            <div class="screens">
+                <?php foreach ($screens as $key => $screen) { ?>
+                <?php if ($key == 0) { continue; } ?>
+                <?php if ($key > 4) { break; } ?>
+                <div class="screen screen-<?php print $key ?>">
+                    <img src="<?php print R ?>api/screen/thumbnail/<?php print $screen['id'] ?>/<?php print round(500-$key*70) ?>" width="<?php print round(500-$key*70) ?>" alt="" />
+                </div>
+                <?php } ?>
+            </div>
+            <?php } ?>
+        </div>
+        <!-- Feedback -->
+        <div class="feedback">
+            <a class="btn btn-like" href="#"><i class="icon icon-heart-empty"></i>&nbsp;&nbsp;Like</a>
         </div>
         <!-- Collaborators -->
         <ul class="collaborators">
