@@ -195,9 +195,6 @@
 
             $('.color', this.$ctx).tooltip();
 
-            // fade in images
-            $('.image > img').fadeIn();
-
             callback();
         }
     });
