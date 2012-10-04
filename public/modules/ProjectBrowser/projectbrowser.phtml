@@ -20,10 +20,10 @@ if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['u
     ?>
     <li <?php print $p['id'] == $project_id ? 'class="active"': '' ?>>
         <a href="<?php print R ?>project/<?php print $p['creator'] ?>/<?php print $p['slug'] ?>/">
-            <?php if ($p['creator'] != userid()) { ?>
-            <i class="icon icon-share-alt"></i>
-            <?php } ?>
             <?php print $p['name'] ?> 
+            <?php if ($p['creator'] != userid()) { ?>
+            <i class="icon  icon-comments-alt"></i>
+            <?php } ?>
             <span class="count"><?php print $p['screen_count'] ?></span>
             <?php print $notifications ?>
         </a>
