@@ -158,12 +158,17 @@
 }
 
 .modScreenBrowser ul li.create .placeholder div {
-    background: #EEE;
-    width: 200px;
-    height: 133px;
+    background: #FFF;
+    border: 1px dashed #DDD;
+    width: 198px;
+    height: 131px;
     padding-top: 27px;
-    color: #CCC;
+    color: #DDD;
     
+}
+
+.modScreenBrowser ul li.create:hover .placeholder div {
+    color: #444;
 }
 
 .modScreenBrowser ul li .title,
