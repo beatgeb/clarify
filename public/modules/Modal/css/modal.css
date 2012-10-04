@@ -138,17 +138,16 @@
 .modModal .fld,
 .modModal .fld-dropdown {
     display: inline-block;
-    background-color: #FFF;
+    background-color: #ffffff;
     color: #444;
     padding: 0 10px;
     font-size: 14px;
     margin-top: 15px;
     overflow: auto;
-    border: 1px solid #999;
+    border: 2px solid #DDD;
     margin-bottom: 15px;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    width: 506px;
+    width: 504px;
+    border-radius: 4px;
 }
 
 .modModal .fld-inline {
