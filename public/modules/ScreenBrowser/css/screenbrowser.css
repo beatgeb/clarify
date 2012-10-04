@@ -92,7 +92,7 @@
 }
 
 .modScreenBrowser ul li img {
-    display: none;
+    display: block;
 }
 .modScreenBrowser ul li .image {
     background: #FFF;
