@@ -158,10 +158,11 @@
 }
 
 .modScreenBrowser ul li.create .placeholder div {
-    background: #EEE url(/img/upload.png) center no-repeat;
+    background: #EEE;
     width: 200px;
-    height: 145px;
-    padding-top: 15px;
+    height: 133px;
+    padding-top: 27px;
+    color: #CCC;
     
 }
 

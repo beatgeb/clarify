@@ -69,9 +69,11 @@ $colors = $db->data("
 <ul>
     <?php if (has_permission($project_id, 'EDIT')) { ?>
     <li class="create">
-        <a class="placeholder" href="javascript:;"><div></div></a>
+        <a class="placeholder" href="javascript:;">
+            <div><i class="icon icon-upload"></i></div>
+        </a>
         <p class="title-placeholder"><a href="#"><span>Click to upload screens</span></a></p>
-        <p class="meta">JPG or PNG (max. 10 MB)</p>
+        <p class="meta">PNG (better) or JPG</p>
     </li>
     <?php } ?>
     <?php foreach ($screens as $screen) { ?>
