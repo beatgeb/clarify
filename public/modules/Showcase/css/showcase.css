@@ -1,0 +1,28 @@
+.modShowcase {
+	margin-left: 100px;
+	position: relative;
+}
+.modShowcase h1 {
+    margin-top: 50px;
+    font-family:'Lexia W01 Thin', arial, sans-serif;
+    font-size: 48px;
+    color: #FFF;
+    margin-bottom: 50px;
+}
+.modShowcase .highlight img {
+	box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+.modShowcase .collaborators {
+	position: absolute;
+	top: 0;
+	right: 100px;
+}
+
+.modShowcase .collaborators li {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.modShowcase .collaborators li img {
+	border-radius: 50%;
+}
