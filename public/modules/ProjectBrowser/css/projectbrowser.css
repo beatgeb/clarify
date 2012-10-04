@@ -139,6 +139,8 @@
     line-height: 1.5;
     border-radius: 3px;
     position: relative;
+    overflow: hidden;
+    padding-right: 40px;
 }
 
 .modProjectBrowser ul li a .count {
