@@ -21,8 +21,9 @@
 .modShowcase .screens .screen {
 	position: absolute;
 	-webkit-backface-visibility: hidden;
-	box-shadow: 0 0 20px rgba(0,0,0,0.3);
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 	overflow: hidden;
+	display: none;
 }
 .modShowcase .screens img {
 	display: block;
@@ -73,6 +74,7 @@
 	max-height: 407px;
 	box-shadow: 0 0 20px rgba(0,0,0,0.5);
 	width: 600px;
+	display: none;
 }
 .modShowcase .highlight img {
 	display: block;
