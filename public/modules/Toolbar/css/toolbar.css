@@ -14,8 +14,8 @@
 
 .modToolbar .section a {
 	display: block;
-	width: 47px;
-	height: 47px;
+	width: 41px;
+	height: 41px;
 	border-bottom: 1px solid #535353;
 	padding: 4px;
 	position: relative;
@@ -31,7 +31,7 @@
 	border-radius: 4px;
 	color: #FFF;
 	text-decoration: none;
-	font-size: 32px;
+	font-size: 26px;
 	line-height: 1;
 	padding: 8px 0 5px 0;
 	text-align: center;
@@ -64,15 +64,22 @@
 	background: #d8684a;
 	z-index: 5;
 }
-
-.modToolbar .tt i {
-	background: transparent url(/img/tooltip-arrow.png) center no-repeat;
-	width: 4px;
-	height: 8px;
-	display: block;
+.modToolbar .tt:after {
+	right: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
 	position: absolute;
-	top: 11px;
-	left: -4px;
+	pointer-events: none;
+}
+
+.modToolbar .tt:after {
+	border-color: rgba(216, 104, 74, 0);
+	border-right-color: #d8684a;
+	border-width: 5px;
+	top: 50%;
+	margin-top: -5px;
 }
 
 .modToolbar .section a:hover .tt {

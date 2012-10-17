@@ -7,6 +7,8 @@
 	overflow: auto;
 	width: 560px;
 	margin: -250px 0 0 -280px;
+	box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);
+	border-radius: 5px;
 }
 
 .modModal .tab {
@@ -144,7 +146,7 @@
     font-size: 14px;
     margin-top: 15px;
     overflow: auto;
-    border: 2px solid #DDD;
+    border: 1px solid #DDD;
     margin-bottom: 15px;
     width: 504px;
     border-radius: 4px;
@@ -285,5 +287,5 @@
 	bottom: 0;
 	left: 0;
 	z-index: 1040;
-	background-color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(0, 0, 0, 0.6);
 }

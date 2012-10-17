@@ -23,7 +23,7 @@
                 width: $ctx.data('width'),
                 height: $ctx.data('height')
             });
-            
+
             // activate the comments layer
             this.sandbox.getModuleById($('.modLayerComment').data('id')).activate();
             callback();
