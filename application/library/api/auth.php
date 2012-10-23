@@ -6,10 +6,13 @@ define('API_AUTH_PASSWORD', 'auth.password');
 
 switch ($action) {
 
-	case API_PASSWORD:
+	case API_AUTH_PASSWORD:
 		lock();
 		$password = md5($_REQUEST['password'] . config('security.password.hash'));
 		$db->update('user', array('password' => $password), array('id' => userid()));
+		$result = array('success' => true);
+		header('Content-Type: application/json');
+		echo json_encode($result);
 		break;
 
 	case API_AUTH_AUTHENTICATE:
