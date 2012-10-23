@@ -2,8 +2,15 @@
 
 // Auth API
 define('API_AUTH_AUTHENTICATE', 'auth.authenticate');
+define('API_AUTH_PASSWORD', 'auth.password');
 
 switch ($action) {
+
+	case API_PASSWORD:
+		lock();
+		$password = md5($_REQUEST['password'] . config('security.password.hash'));
+		$db->update('user', array('password' => $password), array('id' => userid()));
+		break;
 
 	case API_AUTH_AUTHENTICATE:
 
