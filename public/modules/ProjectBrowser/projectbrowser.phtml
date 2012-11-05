@@ -2,7 +2,7 @@
 <?php
 $projects = array();
 if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['user']['permissions']['project']) > 0) {
-    $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') ORDER BY name ASC', 'id');
+    $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') ORDER BY created DESC', 'id');
 }
 ?>
 <h3>Projects<a class="btn-add-project" href="javascript:;"><i class="icon icon-plus-sign"></i> Create</a></h3>
