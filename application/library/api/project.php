@@ -6,11 +6,26 @@ lock();
 define('API_PROJECT_ADD', 'project.add');
 define('API_PROJECT_DELETE', 'project.delete');
 define('API_PROJECT_SETTING', 'project.setting');
+define('API_PROJECT_LIST', 'project.list');
 
 switch ($action) {
     
+    case API_PROJECT_LIST:
+        $projects = array();
+        $permissions = $_SESSION['user']['permissions']['project'];
+        if (is_array($permissions) && sizeof($permissions) > 0) {
+            $projects = $db->data('
+                SELECT id, creator, name, slug, screen_count 
+                FROM project 
+                WHERE id IN (' . implode(',', array_keys($permissions)) . ') 
+                ORDER BY name ASC'
+            );
+        }
+        header('Content-Type: application/json');
+        echo json_encode($projects); 
+        break;
+
     case API_PROJECT_SETTING:
-        lock();
         $project = intval($route[4]);
         $setting = $route[5];
         switch ($setting) {
