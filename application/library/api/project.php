@@ -22,7 +22,7 @@ switch ($action) {
             );
         }
         header('Content-Type: application/json');
-        echo json_encode($projects); 
+        echo json_encode(array('success' => true, 'projects' => $projects)); 
         break;
 
     case API_PROJECT_SETTING:
