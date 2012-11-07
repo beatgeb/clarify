@@ -28,7 +28,9 @@ switch ($action) {
                 ORDER BY p.name ASC'
             );
             while(list($key, $project) = each($projects)) {
-                $projects[$key]['image_url_thumbnail'] = config('application.domain') . R . 'upload/screens/' . $project['id'] . '/thumbnails/' . md5($project['screen_id'] . config('security.general.hash')) . '.' . $project['screen_ext'];
+                if ($project['screen_count'] > 0) {
+                    $projects[$key]['image_url_thumbnail'] = config('application.domain') . R . 'upload/screens/' . $project['id'] . '/thumbnails/' . md5($project['screen_id'] . config('security.general.hash')) . '.' . $project['screen_ext'];
+                }
                 unset($projects[$key]['screen_ext']);
                 unset($projects[$key]['screen_id']);
             }   
