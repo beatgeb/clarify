@@ -15,11 +15,22 @@ switch ($action) {
         $permissions = $_SESSION['user']['permissions']['project'];
         if (is_array($permissions) && sizeof($permissions) > 0) {
             $projects = $db->data('
-                SELECT id, creator, name, slug, screen_count 
-                FROM project 
-                WHERE id IN (' . implode(',', array_keys($permissions)) . ') 
-                ORDER BY name ASC'
+                SELECT 
+                    p.id, 
+                    p.name, 
+                    p.screen_count,
+                    s.id as screen_id,
+                    s.ext as screen_ext
+                FROM project p 
+                    LEFT JOIN screen s ON (s.project = p.id)
+                WHERE p.id IN (' . implode(',', array_keys($permissions)) . ') 
+                ORDER BY p.name ASC'
             );
+            while(list($key, $project) = each($projects)) {
+                $projects[$key]['image_url_thumbnail'] = config('application.domain') . R . 'upload/screens/' . $project['id'] . '/thumbnails/' . md5($project['screen_id'] . config('security.general.hash')) . '.' . $project['screen_ext'];
+                unset($projects[$key]['screen_ext']);
+                unset($projects[$key]['screen_id']);
+            }   
         }
         header('Content-Type: application/json');
         echo json_encode(array('success' => true, 'projects' => $projects)); 
