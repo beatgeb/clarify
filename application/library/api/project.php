@@ -24,6 +24,7 @@ switch ($action) {
                 FROM project p 
                     LEFT JOIN screen s ON (s.project = p.id)
                 WHERE p.id IN (' . implode(',', array_keys($permissions)) . ') 
+                GROUP BY p.id
                 ORDER BY p.name ASC'
             );
             while(list($key, $project) = each($projects)) {
