@@ -2,7 +2,7 @@
 <?php
 $projects = array();
 if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['user']['permissions']['project']) > 0) {
-    $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') ORDER BY name ASC', 'id');
+    $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') ORDER BY created DESC', 'id');
 }
 ?>
 <h3>Projects<a class="btn-add-project" href="javascript:;"><i class="icon icon-plus-sign"></i> Create</a></h3>
@@ -34,7 +34,8 @@ if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['u
 <?php if ($project_id > 0) { ?>
 <h3><?php print $project['name'] ?></h3>
 <ul>
-    <li><a href="<?php print R ?>guide/<?php print $project_id ?>"><i class="icon icon-book"></i> Generate Styleguide</a></li>
+    <li><a href="<?php print R ?>guide/<?php print $project_id ?>"><i class="icon icon-book"></i> Styleguide</a></li>
+    <li><a href="<?php print R ?>showcase/<?php print $project['creator'] ?>/<?php print $project['slug'] ?>/"><i class="icon icon-camera"></i> Showcase (Experimental)</a></li>
 </ul>
 
 <?php

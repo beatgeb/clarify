@@ -32,6 +32,7 @@
             $('.btn-signup-twitter', this.$ctx).on('click', function(e) {
                 that.authTwitter();
             });
+            $('input:first', this.$ctx).focus();
             callback();
         },
 

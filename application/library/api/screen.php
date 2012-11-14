@@ -8,8 +8,39 @@ define('API_SCREEN_THUMBNAIL', 'screen.thumbnail');
 define('API_SCREEN_EMBED', 'screen.embed');
 define('API_SCREEN_SETTING', 'screen.setting');
 define('API_SCREEN_REPLACE', 'screen.replace');
+define('API_SCREEN_LIST', 'screen.list');
 
 switch ($action) {
+
+    case API_SCREEN_LIST:
+        lock();
+        $project_id = intval($route[4]);
+        permission($project_id, 'VIEW');
+        $screens = $db->data('
+            SELECT 
+                id, 
+                project, 
+                title, 
+                width, 
+                height, 
+                ext, 
+                created, 
+                count_comment, 
+                count_measure, 
+                count_color, 
+                count_font, 
+                count_module
+            FROM screen 
+            WHERE project = ' . $project_id . ' 
+            ORDER BY title ASC
+        ');
+        while(list($key, $screen) = each($screens)) {
+            $screens[$key]['image_url_thumbnail'] = config('application.domain') . R . 'upload/screens/' . $project_id . '/thumbnails/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
+            $screens[$key]['image_url'] = config('application.domain') . R . 'upload/screens/' . $project_id . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
+        }
+        header('Content-Type: application/json');
+        echo json_encode(array('success' => true, 'screens' => $screens));
+        break;
     
     case API_SCREEN_SETTING:
         lock();

@@ -22,6 +22,12 @@ class Cache {
 
 	public function set($key, $value) {
 		$this->cache[$key] = $value;
+		return true;
+	}
+
+	public function delete($key) {
+		unset($this->cache[$key]);
+		return true;
 	}
 
 }
