@@ -21,7 +21,19 @@
         registeredModules: [],
 
         on: function(callback) {
-            this.sandbox.subscribe('keyboard', this);
+            var self = this;
+
+            // subscribe to the keyboard-channel
+            self.sandbox.subscribe('keyboard', this);
+
+            // handle the shortcuts-modal
+            $('.show-shortcuts', self.$ctx).on('click', function() {
+                var modal = self.sandbox.getModuleById($('.modModal').data('id'));
+                modal.open('keyboard-shortcuts', self._prepareModal(self.registeredModules), function() {});
+
+                return false;
+            });
+
             callback();
         },
 
@@ -34,7 +46,7 @@
             var self = this;
             
             // check if module is already registered
-            if ($.inArray({'id': data.moduleId, 'shortcut': data.modifier + '+' + data.shortcut}, self.registeredModules) > -1) {
+            if ($.inArray({'id': data.moduleId, 'shortcut': data.modifier + '+' + data.shortcut, 'description': data.description}, self.registeredModules) > -1) {
                 return;
             }
 
@@ -92,19 +104,52 @@
                 });
             }
 
-            self.registeredModules.push({'id': data.moduleId, 'shortcut': data.modifier + '+' + data.shortcut});
+            if (data.description) {
+                console.log(data.description);
+            }
+
+            self.registeredModules.push({'id': data.moduleId, 'shortcut': data.modifier + '+' + data.shortcut, 'description': data.description});
         },
 
         /**
-         * Unregister all shortcuts
+         * Unregisters all shortcuts
          *
-         * @param data Object contains module-id
+         * @param data {Object} contains module-id
          */
-        onUnregisterShortcut: function(data) {
+        onUnregisterShortcuts: function(data) {
+            var self = this;
+
             $(document).off('keydown');
             $(document).off('keyup');
 
-            this.registeredModules.splice( $.inArray(data.moduleID, this.registeredModules), 1 );
+            $.each(self.registeredModules, function(key, value) {
+                console.log($.inArray(value, self.registeredModules));
+                if (value.id === data.moduleId) {
+                    self.registeredModules.splice( $.inArray(value, self.registeredModules), 1 );
+                }
+            });
+
+        },
+
+        /**
+         * Makes the shortcut-string pretty for the modal
+         *
+         * @param data {Array} not nice looking array - not suitable for the modal
+         * @return data {Array} nice looking array for the modal
+         * @private
+         */
+        _prepareModal: function(data) {
+            if (data !== null) {
+                for (var i = 0, len = data.length; i < len; i++) {
+                    for (var key in data[i]) {
+                        if (data[i].hasOwnProperty(key)) {
+                            data[i].shortcut = data[i].shortcut.split('null+').pop();
+                        }
+                    }
+                }
+            }
+
+            return data;
         }
     });
 })(Tc.$);

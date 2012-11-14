@@ -1,5 +1,7 @@
 <?php require TERRIFIC . 'modules/Modal/modal.phtml' ?>
-<div class="mod modKeyboardHandler"></div>
+<div class="mod modKeyboardHandler">
+<?php require TERRIFIC . 'modules/KeyboardHandler/keyboardhandler.phtml' ?>
+</div>
 <script type="text/javascript" src="<?php print R ?>js/app.<?php print (config('cache.js.enabled') && is_file(TERRIFIC . 'js/app.js') ? 'js' : 'php') ?>"></script>
 <script type="text/javascript">
 (function($) {
