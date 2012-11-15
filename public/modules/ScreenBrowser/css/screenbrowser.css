@@ -359,7 +359,7 @@
 
 .modScreenBrowser .set .preview .image-2 {
     position: absolute;
-    top: 55px;
+    top: 52px;
     left: 17px;
     transform: rotate(5deg);
     -ms-transform: rotate(5deg); /* IE 9 */
@@ -371,7 +371,7 @@
 
 .modScreenBrowser .set .preview .image-1 {
     position: absolute;
-    top: 55px;
+    top: 52px;
     left: 15px;
     transform: rotate(2deg);
     -ms-transform: rotate(2deg); /* IE 9 */
