@@ -360,12 +360,12 @@
 .modScreenBrowser .set .preview .image-2 {
     position: absolute;
     top: 55px;
-    left: 20px;
-    transform: rotate(6deg);
-    -ms-transform: rotate(6deg); /* IE 9 */
-    -webkit-transform: rotate(6deg); /* Safari and Chrome */
-    -o-transform: rotate(6deg); /* Opera */
-    -moz-transform: rotate(6deg); /* Firefox */
+    left: 17px;
+    transform: rotate(5deg);
+    -ms-transform: rotate(5deg); /* IE 9 */
+    -webkit-transform: rotate(5deg); /* Safari and Chrome */
+    -o-transform: rotate(5deg); /* Opera */
+    -moz-transform: rotate(5deg); /* Firefox */
     box-shadow: 0 0 5px #000;
 }
 
