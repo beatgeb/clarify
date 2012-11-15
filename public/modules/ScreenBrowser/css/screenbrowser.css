@@ -367,7 +367,6 @@
     -o-transform: rotate(6deg); /* Opera */
     -moz-transform: rotate(6deg); /* Firefox */
     box-shadow: 0 0 5px #000;
-    max-height: 200px;
 }
 
 .modScreenBrowser .set .preview .image-1 {
