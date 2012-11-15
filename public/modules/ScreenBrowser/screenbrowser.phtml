@@ -1,50 +1,79 @@
 <?php
+
 if ($project_id > 0) {
     permission($project_id, 'VIEW');
-    $sets = $db->data('
-        SELECT
-            `set`.id,
-            `set`.screen_count,
-            `set`.name,
-            s.id as screen_id,
-            s.ext as screen_ext
-        FROM
-            `set` 
-            LEFT JOIN set_screen ss ON ss.`set` = `set`.id
-            LEFT JOIN screen s ON s.id = ss.screen
-        WHERE
-            `set`.project = ' . $project_id . '
-        GROUP BY
-            `set`.id
-        ORDER BY
-            `set`.name ASC
-    ');
-    while(list($key, $set) = each($sets)) {
-        if ($set['screen_count'] == 0) {
-            $sets[$key]['image'] = "/img/empty-screen.png";
-        } else {
-            $sets[$key]['image'] = "/upload/screens/" . $project_id . "/thumbnails/" . md5($set['screen_id'] . config('security.general.hash')) . "." . $set['screen_ext'];
+    $set_slug = isset($route[4]) && $route[4] != '' ? $route[4] : false;
+    $sets = array();
+    if (!$set_slug) {
+        $sets = $db->data('
+            SELECT
+                `set`.id,
+                `set`.screen_count,
+                `set`.name,
+                `set`.slug,
+                s.id as screen_id,
+                s.ext as screen_ext
+            FROM
+                `set` 
+                LEFT JOIN set_screen ss ON ss.`set` = `set`.id
+                LEFT JOIN screen s ON s.id = ss.screen
+            WHERE
+                `set`.project = ' . $project_id . '
+            GROUP BY
+                `set`.id
+            ORDER BY
+                `set`.name ASC
+        ');
+        while(list($key, $set) = each($sets)) {
+            if ($set['screen_count'] == 0) {
+                $sets[$key]['image'] = "/img/empty-screen.png";
+            } else {
+                $sets[$key]['image'] = "/upload/screens/" . $project_id . "/thumbnails/" . md5($set['screen_id'] . config('security.general.hash')) . "." . $set['screen_ext'];
+            }
         }
+        $screens = $db->data('
+            SELECT 
+                id, 
+                project, 
+                title, 
+                width, 
+                height, 
+                ext, 
+                created, 
+                count_comment, 
+                count_measure, 
+                count_color, 
+                count_font, 
+                count_module
+            FROM screen 
+            WHERE project = ' . $project_id . ' 
+            ORDER BY title ASC
+        ');
+    } else {
+        $set = $db->single("SELECT id, name FROM `set` WHERE slug = '" . $set_slug . "' AND project = " . $project_id);
+        $screens = $db->data('
+            SELECT 
+                s.id, 
+                s.project, 
+                s.title, 
+                s.width, 
+                s.height, 
+                s.ext, 
+                s.created, 
+                s.count_comment, 
+                s.count_measure, 
+                s.count_color, 
+                s.count_font, 
+                s.count_module
+            FROM
+                set_screen ss LEFT JOIN 
+                screen s ON s.id = ss.screen
+            WHERE ss.set = ' . $set['id'] . ' 
+            ORDER BY s.title ASC
+        ');
     }
-    $screens = $db->data('
-        SELECT 
-            id, 
-            project, 
-            title, 
-            width, 
-            height, 
-            ext, 
-            created, 
-            count_comment, 
-            count_measure, 
-            count_color, 
-            count_font, 
-            count_module
-        FROM screen 
-        WHERE project = ' . $project_id . ' 
-        ORDER BY title ASC
-    ');
-    $project = $db->single("SELECT name, screen_background_color FROM project WHERE id = '" . $project_id . "'");
+    
+    $project = $db->single("SELECT name, creator, slug, screen_background_color FROM project WHERE id = '" . $project_id . "'");
 }
 
 // load color library for this project
@@ -57,7 +86,15 @@ $colors = $db->data("
 
 ?>
 <div class="head">
-    <h2><?php print $project_id > 0 ? $project['name'] : 'Create or Choose a Project' ?></h2>
+    <?php if ($project_id > 0) { ?>
+        <?php if ($set) { ?>
+            <h2><?php print $project['name'] ?> <span>&gt; <?php print $set['name'] ?></span></h2>
+        <?php } else { ?>
+            <h2><?php print $project['name'] ?></h2>
+        <?php } ?>
+    <?php } else { ?>
+        <h2>Create or Choose a Project</h2>
+    <?php } ?>
     <?php if ($project_id > 0) { ?>
     <div class="actions">
         <?php if (has_permission($project_id, 'ADMIN')) { ?>
@@ -67,7 +104,7 @@ $colors = $db->data("
             data-screen-background-color="<?php print $project['screen_background_color'] ?>">
             <i class="icon icon-cog"></i> Settings</a>
         <?php } ?>
-        <?php if (has_permission($project_id, 'EDIT')) { ?>
+        <?php if (has_permission($project_id, 'EDIT') && !$set) { ?>
         <a href="javascript:;" class="btn-create-set" 
             data-project="<?php print $project_id ?>">
             <i class="icon icon-th"></i> Create Set</a>
@@ -108,7 +145,7 @@ $colors = $db->data("
     <?php } ?>
     <?php foreach ($sets as $set) { ?>
     <li class="set" data-id="<?php print $set['id'] ?>">
-        <a href="#">
+        <a href="<?php print R . 'project/' . $project['creator'] . '/' . $project['slug'] . '/' . $set['slug'] ?>/">
             <div class="preview">
                 <h4><?php print $set['name'] ?></h4>
                 <img class="image-1" alt="" width="160" src="<?php print $set['image'] ?>" />
@@ -122,6 +159,17 @@ $colors = $db->data("
             <a class="delete" data-set="<?php print $set['id'] ?>" href="javascript:;">×</a>
             <?php } ?>
         </p>
+    </li>
+    <?php } ?>
+    <?php if ($set_slug) { ?>
+    <li class="set">
+        <a href="<?php print R . 'project/' . $project['creator'] . '/' . $project['slug'] ?>">
+            <div class="preview">
+                <h4>All Screens</h4>
+                <img class="image-1" alt="" width="160" src="<?php print R . 'img/empty-screen.png' ?>" />
+                <img class="image-2" alt="" width="160" src="<?php print R . 'img/screen-overview.png' ?>" />
+            </div>
+        </a>
     </li>
     <?php } ?>
     <?php foreach ($screens as $screen) { ?>

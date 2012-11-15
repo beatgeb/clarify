@@ -39,6 +39,9 @@
     padding: 30px 45px;
     color: #454545;
 }
+.modScreenBrowser h2 > span {
+    color: #999;
+}
 .modScreenBrowser .colors {
     overflow: hidden;
     border-bottom: 1px dotted #EEE;
