@@ -143,6 +143,13 @@
     padding-right: 40px;
 }
 
+.modProjectBrowser .edit-collaborator span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 170px;
+}
+
 .modProjectBrowser ul li a .count {
     position: absolute;
     top: 5px;

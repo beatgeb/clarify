@@ -94,7 +94,7 @@
     display: block;
     border-radius: 3px;
 }
-.modScreenBrowser ul li .image {
+.modScreenBrowser ul li > a {
     display: block;
     width: 200px;
     height: 160px;
@@ -104,7 +104,7 @@
     font-size: 13px;
 }
 
-.modScreenBrowser ul li .image .info {
+.modScreenBrowser ul li > a .info {
     position: absolute;
     bottom: 0;
     background-color: #ffffff;
@@ -120,13 +120,13 @@
     width: 200px;
     font-size: 12px;
 }
-.modScreenBrowser ul li .image .info span {
+.modScreenBrowser ul li > a .info span {
     padding-right: 2px;
 }
-.modScreenBrowser ul li .image .info .zero .count {
+.modScreenBrowser ul li > a .info .zero .count {
     display: none;
 }
-.modScreenBrowser ul li .image .info .zero {
+.modScreenBrowser ul li > a .info .zero {
     color: #CCC;
     text-shadow: none;
 }
@@ -337,4 +337,63 @@
 .modScreenBrowser .btn-replace:hover {
     background: #111;
     color: #FFF;
+}
+
+.modScreenBrowser .set .preview {
+    background-color: #333333;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(51, 51, 51)), to(rgb(0, 0, 0)));
+    background-image: -webkit-linear-gradient(top, rgb(51, 51, 51), rgb(0, 0, 0));
+    background-image: -moz-linear-gradient(top, rgb(51, 51, 51), rgb(0, 0, 0));
+    background-image: -o-linear-gradient(top, rgb(51, 51, 51), rgb(0, 0, 0));
+    background-image: -ms-linear-gradient(top, rgb(51, 51, 51), rgb(0, 0, 0));
+    background-image: linear-gradient(top, rgb(51, 51, 51), rgb(0, 0, 0));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#333333', EndColorStr='#000000');
+    border-radius: 5px;
+    height: 132px;
+    padding: 14px;
+    position: relative;
+    overflow: hidden;
+    -webkit-box-shadow: inset 0 0 5px #000000;
+    box-shadow: inset 0 0 5px #000000;
+}
+
+.modScreenBrowser .set .preview .image-2 {
+    position: absolute;
+    top: 55px;
+    left: 20px;
+    transform: rotate(6deg);
+    -ms-transform: rotate(6deg); /* IE 9 */
+    -webkit-transform: rotate(6deg); /* Safari and Chrome */
+    -o-transform: rotate(6deg); /* Opera */
+    -moz-transform: rotate(6deg); /* Firefox */
+    box-shadow: 0 0 5px #000;
+    max-height: 200px;
+}
+
+.modScreenBrowser .set .preview .image-1 {
+    position: absolute;
+    top: 55px;
+    left: 15px;
+    transform: rotate(2deg);
+    -ms-transform: rotate(2deg); /* IE 9 */
+    -webkit-transform: rotate(2deg); /* Safari and Chrome */
+    -o-transform: rotate(2deg); /* Opera */
+    -moz-transform: rotate(2deg); /* Firefox */
+}
+
+.modScreenBrowser .set .preview h4 {
+    font-family:'Lexia W01 Regular', helvetica, arial, sans-serif;
+    color: #FFF;
+    font-size: 16px;
+
+}
+
+.modScreenBrowser .ui-draggable-dragging {
+    width: 100px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px #000;
+}
+
+.modScreenBrowser .ui-state-hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }

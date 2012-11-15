@@ -1,6 +1,31 @@
 <?php
 if ($project_id > 0) {
     permission($project_id, 'VIEW');
+    $sets = $db->data('
+        SELECT
+            `set`.id,
+            `set`.screen_count,
+            `set`.name,
+            s.id as screen_id,
+            s.ext as screen_ext
+        FROM
+            `set` 
+            LEFT JOIN set_screen ss ON ss.`set` = `set`.id
+            LEFT JOIN screen s ON s.id = ss.screen
+        WHERE
+            `set`.project = ' . $project_id . '
+        GROUP BY
+            `set`.id
+        ORDER BY
+            `set`.name ASC
+    ');
+    while(list($key, $set) = each($sets)) {
+        if ($set['screen_count'] == 0) {
+            $sets[$key]['image'] = "/img/empty-screen.png";
+        } else {
+            $sets[$key]['image'] = "/upload/screens/" . $project_id . "/thumbnails/" . md5($set['screen_id'] . config('security.general.hash')) . "." . $set['screen_ext'];
+        }
+    }
     $screens = $db->data('
         SELECT 
             id, 
@@ -42,6 +67,11 @@ $colors = $db->data("
             data-screen-background-color="<?php print $project['screen_background_color'] ?>">
             <i class="icon icon-cog"></i> Settings</a>
         <?php } ?>
+        <?php if (has_permission($project_id, 'EDIT')) { ?>
+        <a href="javascript:;" class="btn-create-set" 
+            data-project="<?php print $project_id ?>">
+            <i class="icon icon-th"></i> Create Set</a>
+        <?php } ?>
     </div>
     <?php } ?>
     <div class="usermeta">
@@ -76,16 +106,44 @@ $colors = $db->data("
         <p class="meta">PNG (better) or JPG</p>
     </li>
     <?php } ?>
+    <?php foreach ($sets as $set) { ?>
+    <li class="set" data-id="<?php print $set['id'] ?>">
+        <a href="#">
+            <div class="preview">
+                <h4><?php print $set['name'] ?></h4>
+                <img class="image-1" alt="" width="160" src="<?php print $set['image'] ?>" />
+                <img class="image-2" alt="" width="160" src="<?php print $set['image'] ?>" />
+            </div>
+        </a>
+        <p class="title"></p>
+        <p class="meta">
+            <span class="size screen_count"><?php print $set['screen_count'] ?> Screen(s)</span>
+            <?php if (has_permission($project_id, 'EDIT')) { ?>
+            <a class="delete" data-set="<?php print $set['id'] ?>" href="javascript:;">×</a>
+            <?php } ?>
+        </p>
+    </li>
+    <?php } ?>
     <?php foreach ($screens as $screen) { ?>
-    <li class="screen screen-<?php print $screen['id'] ?>">
+    <li class="screen screen-<?php print $screen['id'] ?>" data-id="<?php print $screen['id'] ?>">
         <a class="image" href="<?php print R ?>screen/<?php print $screen['id'] ?>">
             <img src="/upload/screens/<?php print $project_id ?>/thumbnails/<?php print md5($screen['id'] .config('security.general.hash')) ?>.<?php print $screen['ext'] ?>" width="200" alt="" />
             <div class="info">
-                <span<?php print $screen['count_comment'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-comment"></i> <span class="count"><?php print $screen['count_comment'] ?></span></span>
-                <span<?php print $screen['count_measure'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-resize-vertical"></i> <span class="count"><?php print $screen['count_measure'] ?></span></span>
-                <span<?php print $screen['count_color'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-tint"></i> <span class="count"><?php print $screen['count_color'] ?></span></span>
-                <span<?php print $screen['count_font'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-font"></i> <span class="count"><?php print $screen['count_font'] ?></span></span>
-                <span<?php print $screen['count_module'] == 0 ? ' class="zero"' : '' ?>><i class="icon-white icon-th-large"></i> <span class="count"><?php print $screen['count_module'] ?></span></span>
+                <span<?php print $screen['count_comment'] == 0 ? ' class="zero"' : '' ?>>
+                    <i class="icon-white icon-comment"></i> <span class="count"><?php print $screen['count_comment'] ?></span>
+                </span>
+                <span<?php print $screen['count_measure'] == 0 ? ' class="zero"' : '' ?>>
+                    <i class="icon-white icon-resize-vertical"></i> <span class="count"><?php print $screen['count_measure'] ?></span>
+                </span>
+                <span<?php print $screen['count_color'] == 0 ? ' class="zero"' : '' ?>>
+                    <i class="icon-white icon-tint"></i> <span class="count"><?php print $screen['count_color'] ?></span>
+                </span>
+                <span<?php print $screen['count_font'] == 0 ? ' class="zero"' : '' ?>>
+                    <i class="icon-white icon-font"></i> <span class="count"><?php print $screen['count_font'] ?></span>
+                </span>
+                <span<?php print $screen['count_module'] == 0 ? ' class="zero"' : '' ?>>
+                    <i class="icon-white icon-th-large"></i> <span class="count"><?php print $screen['count_module'] ?></span>
+                </span>
             </div>
         </a>
         <p class="title"><a href="javascript:;" data-screen="<?php print $screen['id'] ?>" data-title="<?php print $screen['title'] ?>"><span><?php print htmlspecialchars(truncate($screen['title'],25,'...')) ?></span></a></p>

@@ -74,6 +74,24 @@
                 return false;
             });
 
+            $('.btn-create-set').on('click', function(e) {
+                var project = $(this).data('project');
+                var data = { };
+                var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+                modal.open('create-set', data, function() {
+                    var $input = $(this).closest('.modal').find('.fld-name');
+                    $.ajax({
+                        url: "/api/set/create/" + project + "/" + encodeURIComponent($input.val()),
+                        dataType: 'json',
+                        type: 'POST',
+                        success: function(data){
+                            location.reload();
+                        }
+                    });
+                });
+                return false;
+            });
+
             $('.btn-account-settings').on('click', function(e) {
                 var data = { 'name': $(this).data('name') };
                 var modal = that.sandbox.getModuleById($('.modModal').data('id'));
@@ -194,6 +212,45 @@
             });
 
             $('.color', this.$ctx).tooltip();
+
+
+            $(".screen", $ctx).draggable({ 
+                handle: "img", 
+                cursor: "move", 
+                cursorAt: { top: 50, left: 50 },
+                revert: "invalid",
+                zIndex: 10,
+                opacity: 0.9, 
+                helper: function(event) {
+                    return $(this).find('img').clone();
+                }
+            });
+            $(".set", $ctx).droppable({
+                hoverClass: 'ui-state-hover',
+                drop: function(event, ui) {
+                    var $count = $(this).find('.screen_count');
+                    var $image1 = $(this).find('.image-1');
+                    var $image2 = $(this).find('.image-2');
+                    var set = $(this).data('id');
+                    var screen = ui.draggable.data('id');
+                    $.ajax({
+                        url: "/api/set/add/" + set + "/" + screen,
+                        dataType: 'json',
+                        type: 'POST',
+                        success: function(data){
+                            $image2.fadeOut(function() {
+                                $image2.attr('src', data.set.image);
+                                $image2.fadeIn();
+                            });
+                            $image1.fadeOut(function() {
+                                $image1.attr('src', data.set.image);
+                                $image1.fadeIn('fast');
+                            });
+                            $count.text(data.set.screen_count + " Screen(s)");
+                        }
+                    });
+                }
+            });
 
             callback();
         }
