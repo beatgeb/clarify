@@ -152,7 +152,7 @@ $colors = $db->data("
                 <img class="image-2" alt="" width="160" src="<?php print $set['image'] ?>" />
             </div>
         </a>
-        <p class="title"></p>
+        <p class="title"><?php print $set['name'] ?></p>
         <p class="meta">
             <span class="size screen_count"><?php print $set['screen_count'] ?> Screen(s)</span>
             <?php if (has_permission($project_id, 'EDIT')) { ?>
