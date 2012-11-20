@@ -2,7 +2,12 @@
 <?php
 $projects = array();
 if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['user']['permissions']['project']) > 0) {
-    $projects = $db->data('SELECT id, creator, name, slug, screen_count FROM project WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') ORDER BY created DESC', 'id');
+    $projects = $db->data('
+        SELECT id, creator, name, slug, screen_count 
+        FROM project 
+        WHERE id IN (' . implode(',', array_keys($_SESSION['user']['permissions']['project'])) . ') 
+        ORDER BY created DESC', 'id'
+    );
 }
 ?>
 <h3>Projects<a class="btn-add-project" href="javascript:;"><i class="icon icon-plus-sign"></i> Create</a></h3>
@@ -52,7 +57,19 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
 <?php } ?>
 <?php
 $owner = $db->single("SELECT id, email, name FROM user WHERE id = '" . $projects[$project_id]['creator'] . "'");
-$collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE project = ' . $project_id . ' ORDER BY email ASC');
+$collaborators = $db->data('
+    SELECT 
+        pc.id, 
+        pc.email,
+        u.name
+    FROM 
+        project_collaborator pc LEFT JOIN
+        user u ON u.email = pc.email
+    WHERE 
+        pc.project = ' . $project_id . ' 
+    ORDER BY 
+        pc.email ASC
+');
 ?>
 <h3>
     Collaborators
@@ -76,7 +93,7 @@ $collaborators = $db->data('SELECT id, email FROM project_collaborator WHERE pro
     <li>
         <div class="edit-collaborator" data-id="<?php print $c['id'] ?>" href="#">
             <img src="<?php print gravatar($c['email'], 48) ?>" width="24" height="24" />
-            <span><?php print $c['email'] ?></span>
+            <span><?php print isset($c['name']) ? $c['name'] : $c['email'] ?></span>
             <?php if (has_permission($project_id, 'ADMIN')) { ?>
             <a href="javascript:;" class="remove">&times;</a>
             <?php } ?>
