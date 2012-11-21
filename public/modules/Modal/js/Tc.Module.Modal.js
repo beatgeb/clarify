@@ -59,11 +59,9 @@
 
             this.$backdrop.show();
             $ctx.fadeIn('fast');
-            //$('input:first', $modal).focus();
         },
 
         cancel: function() {
-            //$(document).off('keyup');
             this.fire('UnregisterShortcut', { 'moduleId': this.id });
             this.$ctx.hide();
             this.$backdrop.fadeOut('fast');

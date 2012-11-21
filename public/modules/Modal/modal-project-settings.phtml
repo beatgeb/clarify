@@ -1,0 +1,57 @@
+<!-- Project Settings -->
+<script id="tmpl-modal-project-settings" type="text/x-dot-template">
+	<div class="head">
+		<h2>Project Settings</h2>
+	</div>
+	<ul class="nav">
+		<li class="active">
+			<a href="javascript:;" data-tab="1">
+				<i class="icon icon-briefcase"></i>
+				<span>General</span>
+			</a>
+		</li>
+		<!--
+		<li>
+			<a href="javascript:;" data-tab="2">
+				<i class="icon icon-group"></i>
+				<span>Members</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:;" data-tab="3">
+				<i class="icon icon-picture"></i>
+				<span>Appearance</span>
+			</a>
+		</li>
+		-->
+	</ul>
+	<div class="body">
+		<div class="tab tab-1">
+			<label for="fld-name">Project Name</label>
+			<input class="fld fld-name" id="fld-name" type="text" value="{{=it.name}}" />
+		</div>
+		<div class="tab tab-2">
+			<label for="fld-name">Project Members</label>
+			<ul>
+				<li>Roger Dudler</li>
+			</ul>
+		</div>
+		<div class="tab tab-3">
+			<label for="fld-background-color">Screen Background Color</label>
+			<!--
+			<ul tabindex="0" class="fld-dropdown fld-screen-background">
+				<li class="current">Solid Color<i class="icon icon-chevron-down"></i></li>
+				<li>Image</li>
+				<li>Pattern</li>
+			</ul>
+			-->
+			<input class="fld fld-inline fld-background-color" id="fld-background-color" type="text" value="{{=it.screen_background_color}}" />
+			<label for="fld-background-color">Screen Background Image</label>
+		</div>
+	</div>
+	<div class="foot">
+		<a class="btn btn-primary" href="javascript:;">Save</a>
+		<a class="btn btn-delete" href="javascript:;">Delete Project</a>
+		<a class="btn btn-cancel" href="javascript:;">Cancel</a>
+	</div>
+</script>
