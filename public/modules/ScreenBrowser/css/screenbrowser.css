@@ -113,14 +113,14 @@
     padding: 4px 6px;
     color: #666;
     width: 188px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     border-top: 1px solid #FFF;
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
 }
 .modScreenBrowser ul li > a .info span {
-    padding-right: 2px;
+    padding-right: 1px;
 }
 .modScreenBrowser ul li > a .info .zero .count {
     display: none;
@@ -297,28 +297,30 @@
     display: inline-block;
     color: #FFF;
     margin: 40px 45px;
-    font-family:'Lexia W01 Regular', helvetica, arial, sans-serif;
     font-size: 18px;
     text-decoration: none;
     -webkit-border-radius: 4px;
     border-radius: 4px;
-    background-color: #f4f4f4;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(244, 244, 244)), to(rgb(228, 228, 228)));
-    background-image: -webkit-linear-gradient(top, rgb(244, 244, 244), rgb(228, 228, 228));
-    background-image: -moz-linear-gradient(top, rgb(244, 244, 244), rgb(228, 228, 228));
-    background-image: -o-linear-gradient(top, rgb(244, 244, 244), rgb(228, 228, 228));
-    background-image: -ms-linear-gradient(top, rgb(244, 244, 244), rgb(228, 228, 228));
-    background-image: linear-gradient(top, rgb(244, 244, 244), rgb(228, 228, 228));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#f4f4f4', EndColorStr='#e4e4e4');
+    background-color: #0792cd;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(7, 146, 205)), to(rgb(3, 124, 178)));
+    background-image: -webkit-linear-gradient(top, rgb(7, 146, 205), rgb(3, 124, 178));
+    background-image: -moz-linear-gradient(top, rgb(7, 146, 205), rgb(3, 124, 178));
+    background-image: -o-linear-gradient(top, rgb(7, 146, 205), rgb(3, 124, 178));
+    background-image: -ms-linear-gradient(top, rgb(7, 146, 205), rgb(3, 124, 178));
+    background-image: linear-gradient(top, rgb(7, 146, 205), rgb(3, 124, 178));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#0792cd', EndColorStr='#037cb2');
     padding: 14px 24px;
-    color: #222;
-    border: 1px solid #ddd;
-    -webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5);
-    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5);
+    color: #FFF;
 }
 .modScreenBrowser .btn-create-project:hover {
-    color: #000;
-    border-color: #444;
+    background-color: #02a4e9;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(2, 164, 233)), to(rgb(7, 146, 205)));
+    background-image: -webkit-linear-gradient(top, rgb(2, 164, 233), rgb(7, 146, 205));
+    background-image: -moz-linear-gradient(top, rgb(2, 164, 233), rgb(7, 146, 205));
+    background-image: -o-linear-gradient(top, rgb(2, 164, 233), rgb(7, 146, 205));
+    background-image: -ms-linear-gradient(top, rgb(2, 164, 233), rgb(7, 146, 205));
+    background-image: linear-gradient(top, rgb(2, 164, 233), rgb(7, 146, 205));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#02a4e9', EndColorStr='#0792cd');
 }
 .modScreenBrowser ul li:hover .btn-replace {
     display: inline-block;

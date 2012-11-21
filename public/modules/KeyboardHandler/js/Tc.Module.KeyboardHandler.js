@@ -30,7 +30,6 @@
             $('.show-shortcuts', self.$ctx).on('click', function() {
                 var modal = self.sandbox.getModuleById($('.modModal').data('id'));
                 modal.open('keyboard-shortcuts', self._prepareModal(self.registeredModules), function() {});
-
                 return false;
             });
 
@@ -102,10 +101,6 @@
                         data.callback();
                     }
                 });
-            }
-
-            if (data.description) {
-                console.log(data.description);
             }
 
             self.registeredModules.push({'id': data.moduleId, 'shortcut': data.modifier + '+' + data.shortcut, 'description': data.description});

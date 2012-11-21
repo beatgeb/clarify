@@ -93,7 +93,7 @@ $colors = $db->data("
             <h2><?php print $project['name'] ?></h2>
         <?php } ?>
     <?php } else { ?>
-        <h2>Create or Choose a Project</h2>
+        <h2>Dashboard</h2>
     <?php } ?>
     <?php if ($project_id > 0) { ?>
     <div class="actions">
@@ -175,7 +175,7 @@ $colors = $db->data("
     <?php foreach ($screens as $screen) { ?>
     <li class="screen screen-<?php print $screen['id'] ?>" data-id="<?php print $screen['id'] ?>">
         <a class="image" href="<?php print R ?>screen/<?php print $screen['id'] ?>">
-            <img src="/upload/screens/<?php print $project_id ?>/thumbnails/<?php print md5($screen['id'] .config('security.general.hash')) ?>.<?php print $screen['ext'] ?>" width="200" alt="" />
+            <img src="/upload/screens/<?php print $project_id ?>/thumbnails/<?php print md5($screen['id'] .config('security.general.hash')) ?>.<?php print $screen['ext'] ?>" width="200" alt="Screen" />
             <div class="info">
                 <span<?php print $screen['count_comment'] == 0 ? ' class="zero"' : '' ?>>
                     <i class="icon-white icon-comment"></i> <span class="count"><?php print $screen['count_comment'] ?></span>
