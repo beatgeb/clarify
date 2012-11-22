@@ -25,6 +25,7 @@
     cursor: auto;
     margin-top: 6px;
     margin-left: -19px;
+    font-family: "Lexia W01 Regular", sans-serif;
 }
 .modLayerColor .color:hover {
     background-color: #434343;
@@ -50,14 +51,14 @@
     display: inline-block;
     padding: 3px 5px;
     height: 24px;
-    color: #FFF;
+    color: #BBB;
     text-decoration: none;
 }
 .modLayerColor .color .meta:hover {
     text-decoration: underline;
 }
 .modLayerColor .color .meta span.hex {
-    font-weight: bold;
+    color: #DDD;
     text-transform: uppercase;
 }
 .modLayerColor .color:after {

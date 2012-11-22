@@ -68,6 +68,10 @@
                         'line_height': $modal.find('.fld-font-line-height').val()
                     }
                 };
+
+                // preprocess data
+                request.font.size.substring(-2) == 'px' ? request.font.size : request.font.size + 'px';
+
                 $.ajax({
                     url: "/api/typography/update/",
                     dataType: 'json',
@@ -75,38 +79,36 @@
                     type: 'POST',
                     success: function(data){
                         $font.find('.preview .name').text(request.font.family);
-                        $font.find('.preview .size').text(request.font.size + 'px');
+                        $font.find('.preview .size').text(request.font.size);
                         $font.find('.preview .line-height').text(request.font.line_height);
                         $font.find('.preview .name').css('fontFamily', request.font.family);
-                        $font.find('.preview .name').css('fontSize', request.font.size + 'px');
-                        $font.find('.preview .name').css('color', '#' + request.font.color);
-                        $font.find('.color-normal .box').css('backgroundColor', '#' + request.font.color);
-                        $font.find('.color-normal .hex').text('#' + request.font.color);
-                        /*
-                        if (request.font.color_normal && request.font.color_normal != '') {
+                        $font.find('.preview .name').css('fontSize', request.font.size);
+                        $font.find('.preview .name').css('color', request.font.color);
+
+                        $font.find('.color-normal .box').css('backgroundColor', request.font.color);
+                        $font.find('.color-normal .hex').text(request.font.color);
+                        if (request.font.color && request.font.color != '') {
                             $font.find('.color-normal').fadeIn();
                         } else {
                             $font.find('.color-normal').fadeOut();
                         }
-                        */
-                        $font.find('.color-hover .box').css('backgroundColor', '#' + request.font.color_hover);
-                        $font.find('.color-hover .hex').text('#' + request.font.color_hover);
-                        /*
+                        
+                        $font.find('.color-hover .box').css('backgroundColor', request.font.color_hover);
+                        $font.find('.color-hover .hex').text(request.font.color_hover);
                         if (request.font.color_hover && request.font.color_hover != '') {
                             $font.find('.color-hover').fadeIn();
                         } else {
                             $font.find('.color-hover').fadeOut();
                         }
-                        */
-                        $font.find('.color-active .box').css('backgroundColor', '#' + request.font.color_active);
-                        $font.find('.color-active .hex').text('#' + request.font.color_active);
-                        /*
+                        
+                        $font.find('.color-active .box').css('backgroundColor', request.font.color_active);
+                        $font.find('.color-active .hex').text(request.font.color_active);
                         if (request.font.color_active && request.font.color_active != '') {
                             $font.find('.color-active').fadeIn();
                         } else {
                             $font.find('.color-active').fadeOut();
                         }
-                        */
+                        
                         modal.cancel();
                         that.drag = false;
                         return false;

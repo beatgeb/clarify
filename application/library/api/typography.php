@@ -89,6 +89,9 @@ switch ($action) {
                 LEFT JOIN project_color pca ON (pca.id = pf.color_active)
             WHERE f.id = '" . $id . "'"
         );
+        $font['color_hex'] = $font['color_hex'] != null ? '#' . $font['color_hex'] : null;
+        $font['color_hover_hex'] = $font['color_hover_hex'] != null ? '#' . $font['color_hover_hex'] : null;
+        $font['color_active_hex'] = $font['color_active_hex'] != null ? '#' . $font['color_active_hex'] : null;
         permission($font['project'], 'VIEW');
         header('Content-Type: application/json');
         echo json_encode($font);
@@ -181,6 +184,11 @@ switch ($action) {
             WHERE 
                 f.screen = " . $screen['id']
         );
+        while(list($key, $screen) = each($data)) {
+            $data[$key]['color_hex'] = $data[$key]['color_hex'] != null ? '#' . $data[$key]['color_hex'] : null;
+            $data[$key]['color_hover_hex'] = $data[$key]['color_hover_hex'] != null ? '#' . $data[$key]['color_hover_hex'] : null;
+            $data[$key]['color_active_hex'] = $data[$key]['color_active_hex'] != null ? '#' . $data[$key]['color_active_hex'] : null;
+        }
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
