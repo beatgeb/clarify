@@ -19,9 +19,22 @@
             'display': false,
             'mode': 'point',
             'picker': $('.picker'),
+            '_start': function(x, y) {
+                settings._started = true;
+                settings.start(x, y);
+            },
             'start': function(x, y) {},
             'stop': function() {},
-            'picking': function(x, y, w, h) {}
+            '_stop': function() {
+                settings._started = false;
+                settings.stop();
+            },
+            'picking': function(x, y, w, h) {},
+            '_pickRange': function(startx, starty, startcolor, endx, endy, endcolor) {
+                if (!settings._started) { return; }
+                settings.pickRange(startx, starty, startcolor, endx, endy, endcolor);
+            },
+            '_started': false
         }, options);
 
         return this.each(function() {
@@ -73,22 +86,15 @@
             } else {
                 imgctx = $canvas[0].getContext("2d");
             }
-        
-            
-            // on click, run callback pick
-            $this.bind('click', function(e) {
-                // NOOP
-            });
 
             // in case of range we need to handle mousedown+move+mouseup and click+move+click
             if (options.mode === 'range') {
                 var mouseClicked = false;
 
-                $this.bind('mousedown', function(e) {
+                $this.on('mousedown', function(e) {
                     if (mouseClicked === true) {
                         mouseClicked = false;
-
-                        settings.pickRange(
+                        settings._pickRange(
                             data.startx,
                             data.starty,
                             data.startcolor,
@@ -96,12 +102,10 @@
                             data.y,
                             data.color
                         );
-
-                        settings.stop();
+                        settings._stop();
                     } else {
                         mouseClicked = true;
-
-                        settings.start(data.x, data.y);
+                        settings._start(data.x, data.y);
                         settings.pick(data.x, data.y, data.color);
                         data.startx = data.x;
                         data.starty = data.y;
@@ -112,11 +116,10 @@
                     }
                 });
 
-                $this.bind('mouseup', function() {
+                $this.on('mouseup', function() {
                     if (data.startx !== data.x && data.starty !== data.y && mouseClicked === true) {
                         mouseClicked = false;
-
-                        settings.pickRange(
+                        settings._pickRange(
                             data.startx,
                             data.starty,
                             data.startcolor,
@@ -124,13 +127,13 @@
                             data.y,
                             data.color
                         );
-                        settings.stop();
+                        settings._stop();
                     }
                 });
             } else {
-                $this.bind('mousedown', function() {
+                $this.on('mousedown', function() {
                     settings.pick(data.x, data.y, data.color);
-                    settings.stop();
+                    settings._stop();
                 });
             }
 
@@ -142,7 +145,7 @@
             }
             
             // on mouse movement, show picker
-            $this.bind('mousemove', function(e) {
+            $this.on('mousemove', function(e) {
                 
                 var offset = $this.offset();
                 data.x = e.pageX - offset.left;

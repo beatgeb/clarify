@@ -30,7 +30,8 @@ switch ($action) {
             'name' => 'Untitled',
             'name_css' => 'untitled',
             'family' => 'inherit',
-            'size' => 12
+            'size' => 12,
+            'line_height' => 1
         );
         $project_font_id = $db->insert('project_font', $project_font);
 
@@ -47,6 +48,8 @@ switch ($action) {
         );
         $id = $db->insert('font', $font);
         $font['id'] = $id;
+        $font['family'] = $project_font['family'];
+        $font['size'] = $project_font['size'];
 
         // increase count on screen
         $db->query("UPDATE screen SET count_font = count_font + 1 WHERE id = " . $screen['id'] . "");
@@ -61,12 +64,29 @@ switch ($action) {
         if ($id < 1) { die('Please provide a font id'); }
         $font = $db->single("
             SELECT 
-                f.id, f.creator, f.nr, f.x, f.y, f.width, f.height,
-                pf.project, pf.name, pf.family, pf.size, pf.line_height,
-                pc.name as color_name, pc.hex as color_hex
+                f.id, 
+                f.creator, 
+                f.nr, 
+                f.x, 
+                f.y, 
+                f.width, 
+                f.height,
+                pf.project, 
+                pf.name, 
+                pf.family, 
+                pf.size, 
+                pf.line_height,
+                pc.name as color_name, 
+                pc.hex as color_hex,
+                pch.name as color_hover_name, 
+                pch.hex as color_hover_hex,
+                pca.name as color_active_name, 
+                pca.hex as color_active_hex
             FROM font f 
                 LEFT JOIN project_font pf ON (pf.id = f.font)
                 LEFT JOIN project_color pc ON (pc.id = pf.color)
+                LEFT JOIN project_color pch ON (pch.id = pf.color_hover)
+                LEFT JOIN project_color pca ON (pca.id = pf.color_active)
             WHERE f.id = '" . $id . "'"
         );
         permission($font['project'], 'VIEW');
@@ -75,6 +95,43 @@ switch ($action) {
         break;
     
     case API_TYPOGRAPHY_UPDATE:
+        $response = array('success' => false);
+        $request = json_decode(file_get_contents('php://input'));
+        if ($request) {
+            $font = $db->single("
+                SELECT 
+                    f.font,
+                    pf.project 
+                FROM font f
+                    LEFT JOIN project_font pf ON (pf.id = f.font)
+                WHERE 
+                    f.id = " . intval($request->font->id) . "
+                LIMIT 1
+            ");
+
+            // check permission
+            permission($font['project'], 'VIEW');
+
+            // build data
+            $update = array(
+                'family' => $request->font->family,
+                'size' => $request->font->size,
+                'name' => $request->font->name,
+                'name_css' => slug($request->font->name),
+                'line_height' => $request->font->line_height
+            );
+
+            // check, if new color already exists in the library
+            $update['color'] = typography_color($project, $request->font->color);
+            $update['color_hover'] = typography_color($project, $request->font->color_hover);
+            $update['color_active'] = typography_color($project, $request->font->color_active);
+            
+            $db->update('project_font', $update, array('id' => $font['font']));
+            $response['font'] = $font;
+            $response['success'] = true;
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
     /*
         $id = intval($route[4]);
         if ($id < 1) { die('Please provide a font id'); }
@@ -99,13 +156,30 @@ switch ($action) {
         permission($screen['project'], 'VIEW');
         $data = $db->data("
             SELECT 
-                f.id, f.creator, f.nr, f.x, f.y, f.width, f.height,
-                pf.name, pf.family, pf.size, pf.line_height,
-                pc.name as color_name, pc.hex as color_hex
+                f.id, 
+                f.creator, 
+                f.nr, 
+                f.x, 
+                f.y, 
+                f.width, 
+                f.height,
+                pf.name, 
+                pf.family, 
+                pf.size, 
+                pf.line_height,
+                pc.name as color_name, 
+                pc.hex as color_hex,
+                pch.name as color_hover_name, 
+                pch.hex as color_hover_hex,
+                pca.name as color_active_name, 
+                pca.hex as color_active_hex
             FROM font f 
                 LEFT JOIN project_font pf ON (pf.id = f.font)
                 LEFT JOIN project_color pc ON (pc.id = pf.color)
-            WHERE f.screen = " . $screen['id']
+                LEFT JOIN project_color pch ON (pch.id = pf.color_hover)
+                LEFT JOIN project_color pca ON (pca.id = pf.color_active)
+            WHERE 
+                f.screen = " . $screen['id']
         );
         header('Content-Type: application/json');
         echo json_encode($data);
@@ -151,4 +225,38 @@ switch ($action) {
         echo json_encode(array('RESULT' => 'OK'));
         break;
 
+}
+
+function typography_color($project, $color) {
+    global $db;
+    if ($color == null) {
+        return null;
+    }
+    $color = strlen($color) == 7 ? substr($color,1) : $color;
+    $project_color = $db->single("SELECT id FROM project_color WHERE hex = '" . $color . "' AND project = '" . $project . "' LIMIT 1");
+    if ($project_color) {
+        return $project_color['id'];
+    } else {
+        require LIBRARY . 'color.php';
+        $colorHandler = new ColorHandler();
+        $hsl = $colorHandler->HtmltoHsl("#" . $color);
+        $match = $colorHandler->getColorMatch("#" . $color);
+        $rgb = hexToRgbArray("#" . $color);
+        $data = array(
+            'created' => date('Y-m-d H:i:s'),
+            'creator' => userid(),
+            'project' => $project,
+            'name' => $match[0], 
+            'name_css' => slug($match[0]),
+            'hex' => $color, 
+            'hue' => $hsl['h'] . "", 
+            'saturation' => $hsl['s'] . "", 
+            'lightness' => $hsl['l'] . "", 
+            'r' => $rgb['r'] . "", 
+            'g' => $rgb['g'] . "", 
+            'b' => $rgb['b'] . ""
+        );
+        $color_id = $db->insert('project_color', $data);
+        return $color_id;
+    }
 }

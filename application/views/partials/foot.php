@@ -2,6 +2,7 @@
 <div class="mod modKeyboardHandler">
 <?php require TERRIFIC . 'modules/KeyboardHandler/keyboardhandler.phtml' ?>
 </div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="<?php print R ?>js/app.<?php print (config('cache.js.enabled') && is_file(TERRIFIC . 'js/app.js') ? 'js' : 'php') ?>"></script>
 <script type="text/javascript">
 (function($) {

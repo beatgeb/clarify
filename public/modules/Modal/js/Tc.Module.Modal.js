@@ -26,6 +26,7 @@
                 that.$ctx.find('.tab-' + tab).show();
                 that.$ctx.find('.nav li').removeClass('active');
                 $(this).parent().addClass('active');
+                return false;
             });
             this.sandbox.subscribe('keyboard', this);
             callback();
@@ -64,7 +65,7 @@
         cancel: function() {
             this.fire('UnregisterShortcut', { 'moduleId': this.id });
             this.$ctx.hide();
-            this.$backdrop.fadeOut('fast');
+            this.$backdrop.hide();
         }
 
     });

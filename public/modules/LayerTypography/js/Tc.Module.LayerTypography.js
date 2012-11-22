@@ -11,10 +11,14 @@
         
         active: false,
         open: null,
+        tmpl: null,
         
         on: function(callback) { 
             var that = this;
             var $ctx = this.$ctx;
+
+            this.tmpl = doT.template($('#tmpl-layertypography-tooltip-font').text());
+
             $('.btn-fonts').bind('click', function(e) {
                 if (that.active) {
                     that.deactivate();
@@ -26,55 +30,102 @@
                     that.activate();
                 }
             });
-            $ctx.on('click', '.font > .meta', function() {
+            $ctx.on('mousedown', '.font > .meta', function(e) {
                 var $font = $(this).parent();
                 that.drag = true;
+                e.stopPropagation();
                 $.ajax({
                     url: "/api/typography/data/" + $font.data('id'),
                     dataType: 'json',
                     success: function(data){
-                        var modal = that.sandbox.getModuleById($('.modModal').data('id'));
-                        modal.open('font-edit', data, function() {
-
-                            /*
-                            var $name = $(this).closest('.modal').find('.fld-name');
-                            var $hex = $(this).closest('.modal').find('.fld-hex');
-                            var $slug = $(this).closest('.modal').find('.fld-slug');
-                            $.ajax({
-                                url: "/api/font/update/" + color.id + "/" + $hex.val().substring(1,7) + "/" + $slug.val() + "/" + encodeURIComponent($name.val()),
-                                dataType: 'json',
-                                type: 'POST',
-                                success: function(data){
-                                    
-                                    $link.parent().find('.p').css('backgroundColor', $hex.val());
-                                    $link.find('.name').text($name.val());
-                                    $link.find('.hex').text($hex.val());
-                                    $link.data('name', $name.val());
-                                    $link.data('hex', $hex.val());
-                                    $link.data('slug', $slug.val());
-                                    
-                                    modal.cancel();
-                                }
-                            });
-        */
-                            modal.cancel();
-                            that.drag = false;
-                        }, function() {
-                            $.ajax({
-                                url: "/api/typography/delete/" + $font.data('id'),
-                                dataType: 'json',
-                                success: function(data){
-                                    $font.remove();
-                                    modal.cancel();
-                                    that.drag = false;
-                                }
-                            });
-                        });
+                        that.edit(data);
+                        return false;
                     }
                 });
                 return false;
             });
+            $ctx.on('mousedown', '.font', function() {
+                return false;
+            });
             callback();
+        },
+
+        edit: function(data) {
+            var that = this;
+            var $font = $('.font[data-id="' + data.id + '"]', this.$ctx);
+            var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+            modal.open('font-edit', data, function() {
+                var $modal = $(this).closest('.modal');
+                var request = {
+                    'font': {
+                        'id': $font.data('id'),
+                        'name': $modal.find('.fld-name').val(),
+                        'family': $modal.find('.fld-font-family').val(),
+                        'color': $modal.find('.fld-font-color').val(),
+                        'color_hover': $modal.find('.fld-hover-font-color').val(),
+                        'color_active': $modal.find('.fld-active-font-color').val(),
+                        'size': $modal.find('.fld-font-size').val(),
+                        'line_height': $modal.find('.fld-font-line-height').val()
+                    }
+                };
+                $.ajax({
+                    url: "/api/typography/update/",
+                    dataType: 'json',
+                    data: JSON.stringify(request),
+                    type: 'POST',
+                    success: function(data){
+                        $font.find('.preview .name').text(request.font.family);
+                        $font.find('.preview .size').text(request.font.size + 'px');
+                        $font.find('.preview .line-height').text(request.font.line_height);
+                        $font.find('.preview .name').css('fontFamily', request.font.family);
+                        $font.find('.preview .name').css('fontSize', request.font.size + 'px');
+                        $font.find('.preview .name').css('color', '#' + request.font.color);
+                        $font.find('.color-normal .box').css('backgroundColor', '#' + request.font.color);
+                        $font.find('.color-normal .hex').text('#' + request.font.color);
+                        /*
+                        if (request.font.color_normal && request.font.color_normal != '') {
+                            $font.find('.color-normal').fadeIn();
+                        } else {
+                            $font.find('.color-normal').fadeOut();
+                        }
+                        */
+                        $font.find('.color-hover .box').css('backgroundColor', '#' + request.font.color_hover);
+                        $font.find('.color-hover .hex').text('#' + request.font.color_hover);
+                        /*
+                        if (request.font.color_hover && request.font.color_hover != '') {
+                            $font.find('.color-hover').fadeIn();
+                        } else {
+                            $font.find('.color-hover').fadeOut();
+                        }
+                        */
+                        $font.find('.color-active .box').css('backgroundColor', '#' + request.font.color_active);
+                        $font.find('.color-active .hex').text('#' + request.font.color_active);
+                        /*
+                        if (request.font.color_active && request.font.color_active != '') {
+                            $font.find('.color-active').fadeIn();
+                        } else {
+                            $font.find('.color-active').fadeOut();
+                        }
+                        */
+                        modal.cancel();
+                        that.drag = false;
+                        return false;
+                    }
+                });
+                that.drag = false;
+                return false;
+            }, function() {
+                $.ajax({
+                    url: "/api/typography/delete/" + $font.data('id'),
+                    dataType: 'json',
+                    success: function(data){
+                        $font.remove();
+                        modal.cancel();
+                        that.drag = false;
+                    }
+                });
+                return false;
+            });
         },
         
         deactivate: function() {
@@ -126,6 +177,7 @@
                     }
                 },
                 pickRange: function(sx, sy, scolor, ex, ey, ecolor) {
+
                     if (that.resize || that.drag) {
                         return;
                     }
@@ -145,6 +197,7 @@
                         success: function(data){
                             helper.remove();
                             that.addFont(data);
+                            that.edit({ "id": data.id });
                         }
                     });
                 },
@@ -183,13 +236,26 @@
             var size = font.size ? font.size + 'px' : 'Default';
             var line_height = font.line_height ? font.line_height : '1';
             var color_name = font.color_name ? font.color_name : 'Default';
-            var color_hex = font.color_hex ? '#' + font.color_hex : '#000000';
             var font_name = font.name ? font.name : 'Untitled';
             var font_family = font.family ? font.family : 'Default Font';
-            var $font = $('<div class="font" data-id="' + id + '"><div class="meta"><div class="title">' + font_name + '</div><div>' + font_family + '&nbsp;&nbsp;<i class="icon icon-resize-vertical"></i> <strong>' + size + '</strong></div><div><span class="color" style="background: ' + color_hex + '"></span> ' + color_hex + ', ' + color_name + '</div></div></div>');
-            
+            var data = {
+                'id': font.id,
+                'font_family': font_family,
+                'font_name': font_name,
+                'line_height': line_height,
+                'color_hex': font.color_hex,
+                'color_name': font.color_name,
+                'size': size,
+                'color_hover_hex': font.color_hover_hex,
+                'color_hover_name': font.color_hover_name,
+                'color_active_hex': font.color_active_hex,
+                'color_active_name': font.color_active_name
+            };
+            var $font = $(this.tmpl(data));
+
             // enable drag and drop for fonts
             $font.draggable({
+                cancel: '.meta',
                 start: function() {
                     that.drag = true;
                 },
@@ -260,7 +326,7 @@
                 cursor: 'move',
                 position: 'absolute'
             });
-            
+
             $ctx.append($font);
         }
 

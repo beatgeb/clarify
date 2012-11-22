@@ -1,0 +1,32 @@
+<script id="tmpl-layertypography-tooltip-font" type="text/x-dot-template">
+<div class="font" data-id="{{=it.id}}">
+	<div class="meta">
+		<div class="preview">
+			<span class="name" style="color: #{{=it.color_hex}}; font-size: {{=it.size}}; font-family: {{=it.font_family}}">{{=it.font_family}}</span>
+			<br /><span class="size">{{=it.size}}</span>&nbsp;&nbsp;
+			<i class="icon icon-resize-vertical"></i> <span class="line-height">{{=it.line_height}}</span>
+		</div>
+		<div class="color color-normal {{?!it.color_hex}}color-disabled{{?}}">
+			<div class="box" style="background: #{{=it.color_hex}};"></div>
+			<p>
+				<span class="hex">#{{=it.color_hex}}</span>&nbsp;
+				<span class="name">{{=it.color_name}}</span>
+			</p>
+		</div>
+		<div class="color color-hover {{?!it.color_hover_hex}}color-disabled{{?}}">
+			<div class="box" style="background: #{{=it.color_hover_hex}};">:h</div>
+			<p>
+				<span class="hex">#{{=it.color_hover_hex}}</span>&nbsp;
+				<span class="name">{{=it.color_hover_name}}</span>
+			</p>
+		</div>
+		<div class="color color-active {{?!it.color_active_hex}}color-disabled{{?}}">
+			<div class="box" style="background: #{{=it.color_active_hex}};">:a</div>
+			<p>
+				<span class="hex">#{{=it.color_active_hex}}</span>&nbsp;
+				<span class="name">{{=it.color_active_name}}</span>
+			</p>
+		</div>
+	</div>
+</div>
+</script>

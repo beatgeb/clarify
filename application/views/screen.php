@@ -78,6 +78,7 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
     <div class="mod modEyedropper">
     <?php require TERRIFIC . 'modules/Eyedropper/eyedropper.phtml' ?>
     </div>
+    <?php require TERRIFIC . 'modules/LayerTypography/layertypography.phtml' ?>
     <?php require 'partials/foot.php'; ?>
 </body>
 </html>

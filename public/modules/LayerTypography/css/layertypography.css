@@ -18,22 +18,38 @@
     background-color: rgba(255, 255, 255, 0.8);
     z-index: 20;
 }
-
+.modLayerTypography .font .meta .preview {
+    background: #FFF;
+    border-radius: 2px;
+    padding: 10px 12px;
+    color: #666;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Lexia W01 Regular", sans-serif;
+}
+.modLayerTypography .font .meta .preview .name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #444;
+}
 .modLayerTypography .font .meta  {
     font-family: helvetica;
     font-size: 12px;
     position: absolute; 
-    top: 0; 
-    right: -160px;
-    width: 140px;
+    top: -15px; 
+    right: -200px;
+    width: 180px;
     color: #BBB;  
     background-color: #3A3A3A;
-    padding: 6px 8px;
+    padding: 5px;
     white-space: nowrap;
     z-index: 3;
     line-height: 1.4;
     border-radius: 3px;
     cursor: pointer;
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
 }
 
 .modLayerTypography .font .meta:after {
@@ -52,16 +68,6 @@
     border-width: 5px;
     top: 20%;
     margin-top: -5px;
-}
-
-.modLayerTypography .font .meta .color {
-    display: block;
-    float: left;
-    border-radius: 2px;
-    height: 11px;
-    width: 11px;
-    margin-top: 2px;
-    margin-right: 5px;
 }
 
 .modLayerTypography .font .meta strong {
@@ -86,4 +92,40 @@
     position: absolute;
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(0, 0, 0, 1);
+}
+.modLayerTypography .font .color {
+    font-family: "Lexia W01 Regular", sans-serif;
+    margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+}
+.modLayerTypography .font .color-disabled {
+    display: none;
+}
+.modLayerTypography .font .color .box {
+    width: 24px;
+    height: 18px;
+    margin-right: 5px;
+    -webkit-border-radius: 2px 0px 0px 2px;
+    border-radius: 2px 0px 0px 2px;
+    float: left;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
+    line-height: 18px;
+}
+.modLayerTypography .font .color p {
+    display: inline-block; 
+    float: left;
+    font-size: 12px;
+    line-height: 18px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 145px;
+}
+.modLayerTypography .font .color p .hex {
+    color: #DDD;
 }

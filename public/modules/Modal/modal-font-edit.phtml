@@ -5,21 +5,39 @@
 	</div>
 	<ul class="nav">
 		<li class="active">
-			<a href="#" data-tab="1">
+			<a href="javascript:;" data-tab="1">
+				<i class="icon icon-check-empty"></i>
 				<span>Normal</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:;" data-tab="2">
+				<i class="icon icon-check-empty"></i>
+				<span>Hover</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:;" data-tab="3">
+				<i class="icon icon-check-empty"></i>
+				<span>Active</span>
 			</a>
 		</li>
 	</ul>
 	<div class="body">
 		<div class="tab tab-1">
-			<label for="fld-name">Name</label>
-			<input class="fld fld-name" id="fld-name" type="text" value="{{=it.name}}" />
-			<label for="fld-family">Family</label>
-			<input class="fld fld-family" id="fld-family" type="text" value="{{=it.family}}" />
-			<label for="fld-color">Color (Hex)</label>
-			<input class="fld fld-color" id="fld-color" type="text" value="#{{=it.color_hex}}" />
-			<label for="fld-size">Size</label>
-			<input class="fld fld-size" id="fld-size" type="text" value="{{=it.size}}" />
+			<input class="fld fld-name" id="fld-name" type="text" placeholder="Name" value="{{?it.name}}{{=it.name}}{{?}}" />
+			<input class="fld fld-font-family" id="fld-font-family" type="text" placeholder="Font Family, e.g. Arial, Helvetica, Lucida Grande, etc." value="{{?it.family}}{{=it.family}}{{?}}" />
+			<input class="fld fld-font-color" id="fld-font-color" type="text" placeholder="Text Color, e.g. #000000" value="{{?it.color_hex}}{{=it.color_hex}}{{?}}" />
+			<input class="fld fld-font-size" id="fld-font-size" type="text" placeholder="Font Size, e.g. 12px" value="{{?it.size}}{{=it.size}}{{?}}" />
+			<input class="fld fld-font-line-height" id="fld-font-line-height" type="text" placeholder="Line Height, e.g. 1.4 (Factor)" value="{{?it.line_height}}{{=it.line_height}}{{?}}" />
+		</div>
+		<div class="tab tab-2">
+			<input class="fld fld-hover-font-family" type="text" placeholder="Font Family, e.g. Arial, Helvetica, Lucida Grande, etc." value="{{?it.hover_family}}{{=it.hover_family}}{{?}}" />
+			<input class="fld fld-hover-font-color" type="text" placeholder="Text Color, e.g. #000000" value="{{?it.color_hover_hex}}{{=it.color_hover_hex}}{{?}}" />
+		</div>
+		<div class="tab tab-3">
+			<input class="fld fld-active-font-family" type="text" placeholder="Font Family, e.g. Arial, Helvetica, Lucida Grande, etc." value="{{?it.active_family}}{{=it.active_family}}{{?}}" />
+			<input class="fld fld-active-font-color" type="text" placeholder="Text Color, e.g. #000000" value="{{?it.color_active_hex}}{{=it.color_active_hex}}{{?}}" />
 		</div>
 	</div>
 	<div class="foot">

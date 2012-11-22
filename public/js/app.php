@@ -27,8 +27,7 @@ if (config('cache.js.enabled') && is_file(TERRIFIC . 'js/app.js')) {
 }
 
 // initialize
-$core = file_get_contents(TERRIFIC . 'js/core/static/jquery.min.js');
-$core .= file_get_contents(TERRIFIC . 'js/core/static/terrific.min.js');
+$core = file_get_contents(TERRIFIC . 'js/core/static/terrific.min.js');
 
 $output = '';
 
@@ -46,31 +45,28 @@ foreach (glob(TERRIFIC . 'js/plugins/static/*.js') as $entry) {
     }
 }
 
-// load connectors
-foreach (glob(TERRIFIC . 'js/connectors/static/*.js') as $entry) {
-    if (is_file($entry)) {
-        $output .= file_get_contents($entry);
-    }
-}
-
 // load modules
+$module_output = '';
 foreach (glob(TERRIFIC . 'modules/*', GLOB_ONLYDIR) as $dir) {
     $module = basename($dir);
     $js = $dir . '/js/Tc.Module.' . $module . '.js';
     if (is_file($js)) {
-        $output .= file_get_contents($js);
+        $module_output .= file_get_contents($js);
     }
     foreach (glob($dir . '/js/skin/*.js') as $entry) {
         if (is_file($entry)) {
-            $output .= file_get_contents($entry);
+            $module_output .= file_get_contents($entry);
         }
     }
 }
     
 if (config('cache.js.enabled')) {
-    //require LIBRARY . 'thirdparty/jsmin/jsmin.php';
-    //$output = JSMin::minify($output);
+    require LIBRARY . 'thirdparty/jsmin/jsmin.php';
+    $module_output = JSMin::minify($module_output);
+    $output .= $module_output;
     file_put_contents(TERRIFIC . 'js/app.js', $core . $output);
+} else {
+    $output .= $module_output;
 }
 header("Content-Type: text/javascript; charset=utf-8");
 echo $core . $output;
