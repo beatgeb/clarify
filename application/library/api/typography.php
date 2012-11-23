@@ -125,9 +125,9 @@ switch ($action) {
             );
 
             // check, if new color already exists in the library
-            $update['color'] = typography_color($project, $request->font->color);
-            $update['color_hover'] = typography_color($project, $request->font->color_hover);
-            $update['color_active'] = typography_color($project, $request->font->color_active);
+            $update['color'] = typography_color($font['project'], $request->font->color);
+            $update['color_hover'] = typography_color($font['project'], $request->font->color_hover);
+            $update['color_active'] = typography_color($font['project'], $request->font->color_active);
             
             $db->update('project_font', $update, array('id' => $font['font']));
             $response['font'] = $font;
