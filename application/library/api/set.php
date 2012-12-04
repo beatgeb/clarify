@@ -5,9 +5,17 @@ lock();
 // Project API
 define('API_SET_ADD', 'set.add');
 define('API_SET_CREATE', 'set.create');
+define('API_SET_DELETE', 'set.delete');
 
 switch ($action) {
     
+    case API_SET_DELETE:
+        $set_id = intval($route[4]);
+        $set = $db->single("SELECT project FROM `set` WHERE id = " . $set_id);
+        permission($set['project'], 'EDIT');
+        $db->delete('set', array('id' => $set_id));
+        break;
+
     case API_SET_CREATE:
         $project_id = intval($route[4]);
         $name = urldecode($route[5]);

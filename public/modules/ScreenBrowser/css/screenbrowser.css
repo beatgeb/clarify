@@ -185,6 +185,7 @@
     text-decoration: none;
 }
 
+.modScreenBrowser ul li:hover .title,
 .modScreenBrowser ul li:hover .title a,
 .modScreenBrowser ul li:hover .title-placeholder a {
     color: #FFF;
@@ -222,6 +223,10 @@
     padding: 1px 4px 1px 3px;
     margin-left: 3px;
     text-decoration: none;
+}
+
+.modScreenBrowser ul li:hover a.delete {
+    display: block;
 }
 
 .modScreenBrowser ul li a.delete:hover {

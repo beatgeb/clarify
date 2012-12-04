@@ -156,7 +156,7 @@ $colors = $db->data("
         <p class="meta">
             <span class="size screen_count"><?php print $set['screen_count'] ?> Screen(s)</span>
             <?php if (has_permission($project_id, 'EDIT')) { ?>
-            <a class="delete" data-set="<?php print $set['id'] ?>" href="javascript:;">×</a>
+            <a class="delete delete-set" data-set="<?php print $set['id'] ?>" href="javascript:;">×</a>
             <?php } ?>
         </p>
     </li>
@@ -203,7 +203,7 @@ $colors = $db->data("
             <span class="size"><?php print $screen['width'] ?> &times; <?php print $screen['height'] ?></span>
             <?php if (has_permission($screen['project'], 'EDIT')) { ?>
             <a href="javascript:;" class="btn-replace" data-screen="<?php print $screen['id'] ?>">Replace</a>
-            <a class="delete" data-screen="<?php print $screen['id'] ?>" href="javascript:;">×</a>
+            <a class="delete delete-screen" data-screen="<?php print $screen['id'] ?>" href="javascript:;">×</a>
             <?php } ?>
         </p>
     </li>

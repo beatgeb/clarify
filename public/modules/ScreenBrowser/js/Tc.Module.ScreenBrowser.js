@@ -121,7 +121,7 @@
                 return false;
             });
 
-            $('.delete').on('click', function(e) {
+            $('.delete-screen').on('click', function(e) {
                 var screen = $(this).data('screen');
                 var data = { 'screen': screen };
                 var modal = that.sandbox.getModuleById($('.modModal').data('id'));
@@ -138,14 +138,22 @@
                 return false;
             });
 
-            $('.screen').hover(
-                function(e) {
-                    $('.delete', $(this)).show();
-                },
-                function(e) {
-                    $('.delete', $(this)).hide();
-                }
-            );
+            $('.delete-set').on('click', function(e) {
+                var set = $(this).data('set');
+                var data = { 'set': set };
+                var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+                modal.open('delete-set', data, function() {
+                    $.ajax({
+                        url: "/api/set/delete/" + set,
+                        dataType: 'json',
+                        type: 'POST',
+                        success: function(data){
+                            location.reload();
+                        }
+                    });
+                });
+                return false;
+            });
             
             $('.btn-project-settings').on('click', function() {
                 var project = $(this).data('project');
