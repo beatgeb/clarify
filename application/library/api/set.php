@@ -14,6 +14,7 @@ switch ($action) {
         $set = $db->single("SELECT project FROM `set` WHERE id = " . $set_id);
         permission($set['project'], 'EDIT');
         $db->delete('set', array('id' => $set_id));
+        $db->delete('set_screen', array('set' => $set_id));
         break;
 
     case API_SET_CREATE:
