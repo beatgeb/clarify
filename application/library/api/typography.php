@@ -226,9 +226,19 @@ switch ($action) {
     case API_TYPOGRAPHY_DELETE:
         $id = intval($route[4]);
         if ($id < 1) { die('Please provide a font id'); }
-        $font = $db->single('SELECT screen FROM font WHERE id = ' . $id . ' AND creator = ' . userid());
+        $font = $db->single('
+            SELECT f.screen, f.font, pf.project
+            FROM font f LEFT JOIN project_font pf ON pf.id = f.font
+            WHERE f.id = ' . $id . ' AND f.creator = ' . userid()
+        );
         if (!$font) { die(); }
+        permission($font['project'], 'EDIT');
+        // check if there are other definitions using the exact same font
+        $others = $db->single('SELECT COUNT(id) as total FROM font WHERE font = "' . $font['font'] . '"');
         $db->delete('font', array('id' => $id));
+        if ($others['total'] == 0) {
+            $db->delete('project_font', array('id' => $font['font']));
+        }
         $db->query("UPDATE screen SET count_font = count_font - 1 WHERE id = " . $font['screen'] . "");
         echo json_encode(array('RESULT' => 'OK'));
         break;

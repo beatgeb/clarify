@@ -271,6 +271,7 @@
     font-size: 14px;
     text-decoration: none;
     color: #999;
+    font-family:'Lexia W01 Thin', helvetica, arial, sans-serif;
 }
 .modScreenBrowser .usermeta .info a:hover {
     text-decoration: underline;
