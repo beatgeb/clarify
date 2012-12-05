@@ -33,21 +33,25 @@ if ($project_id > 0) {
         }
         $screens = $db->data('
             SELECT 
-                id, 
-                project, 
-                title, 
-                width, 
-                height, 
-                ext, 
-                created, 
-                count_comment, 
-                count_measure, 
-                count_color, 
-                count_font, 
-                count_module
-            FROM screen 
-            WHERE project = ' . $project_id . ' 
-            ORDER BY title ASC
+                s.id, 
+                s.project, 
+                s.title, 
+                s.width, 
+                s.height, 
+                s.ext, 
+                s.created, 
+                s.count_comment, 
+                s.count_measure, 
+                s.count_color, 
+                s.count_font, 
+                s.count_module,
+                ss.id as ss_id
+            FROM screen s 
+                LEFT JOIN set_screen ss ON ss.screen = s.id
+            WHERE s.project = ' . $project_id . ' 
+            GROUP BY s.id
+            HAVING ss_id IS NULL
+            ORDER BY s.title ASC
         ');
     } else {
         $set = $db->single("SELECT id, name FROM `set` WHERE slug = '" . $set_slug . "' AND project = " . $project_id);

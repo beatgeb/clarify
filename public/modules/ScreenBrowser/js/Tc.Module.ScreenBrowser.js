@@ -255,6 +255,7 @@
                                 $image1.fadeIn('fast');
                             });
                             $count.text(data.set.screen_count + " Screen(s)");
+                            $('.screen-' + screen).fadeOut();
                         }
                     });
                 }
