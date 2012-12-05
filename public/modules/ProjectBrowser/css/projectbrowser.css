@@ -9,12 +9,11 @@
 }
 
 .modProjectBrowser h3 {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: normal;
     color: #666;
     padding: 10px;
     margin: 0 10px;
-    font-family:'Lexia W01 Thin', helvetica, arial, sans-serif;
 }
 
 .modProjectBrowser h3 a {
@@ -129,7 +128,6 @@
 .modProjectBrowser ul li a,
 .modProjectBrowser .edit-collaborator {
     display: block;
-    font-family:'Lexia W01 Thin', helvetica, arial, sans-serif;
     padding: 6px 10px;
     color: #999;
     text-decoration: none;
@@ -264,7 +262,6 @@
 .modProjectBrowser .owner {
     margin: 0 10px;
     color: #666;
-    font-family:'Lexia W01 Thin', helvetica, arial, sans-serif;
 }
 
 .modProjectBrowser .owner span {
