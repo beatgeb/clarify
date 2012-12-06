@@ -224,11 +224,9 @@ switch ($action) {
         if ($id < 1) { die('Please provide a module id'); }
 
         $module = $db->single("
-            SELECT m.screen, m.module, s.project, pm.id, s.ext
-            FROM module m
-                LEFT JOIN project_module pm ON pm.id = m.module
-                LEFT JOIN screen s ON s.id = m.screen
-            WHERE m.id = '" . $id . "'
+            SELECT project
+            FROM project_module
+            WHERE id = '" . $id . "'
             LIMIT 1
         ");
         if (!$module) { die(); }
