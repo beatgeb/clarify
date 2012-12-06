@@ -186,7 +186,7 @@ switch ($action) {
             'x' => $x,
             'y' => $y
         );
-        $db->update('module', $data, array('id' => $id, 'creator' => userid()));
+        $db->update('module', $data, array('id' => $id));
         break;
     
     case API_MODULE_RESIZE:
@@ -214,7 +214,7 @@ switch ($action) {
             'width' => $width,
             'height' => $height
         );
-        $db->update('module', $data, array('id' => $id, 'creator' => userid()));
+        $db->update('module', $data, array('id' => $id));
         break;
 
     case API_MODULE_RENAME:
@@ -241,7 +241,7 @@ switch ($action) {
             'name' => $db->escape($name),
             'skin' => $skin
         );
-        $db->update('project_module', $data, array('id' => $id, 'creator' => userid()));
+        $db->update('project_module', $data, array('id' => $id));
 
         $data = array('id' => $id, 'name' => $name, 'skin' => $skin);
         header('Content-Type: application/json');
