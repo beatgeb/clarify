@@ -20,10 +20,11 @@ switch ($action) {
             FROM module m
                 LEFT JOIN project_module pm ON pm.id = m.module
                 LEFT JOIN screen s ON s.id = m.screen
-            WHERE m.id = '" . $id . "' AND m.creator = '" . userid() . "'
+            WHERE m.id = '" . $id . "'
             LIMIT 1
         ");
         if (!$module) { die(); }
+        permission($module['project'], 'EDIT');
         $result = array();
         $db->delete('module', array('id' => $id));
         $count = $db->exists('module', array('module' => $module['module']));
@@ -61,7 +62,7 @@ switch ($action) {
 
         // explicitly use a library module
         if ($module > 0) {
-            $refmodule = $db->single("SELECT * FROM project_module WHERE id = '" . $module . "' AND creator = " . userid() . " LIMIT 1");
+            $refmodule = $db->single("SELECT * FROM project_module WHERE id = '" . $module . "' LIMIT 1");
             $name = $refmodule['name'];
             $skin = $refmodule['skin'];
         } else {
@@ -69,8 +70,9 @@ switch ($action) {
             $skin = '';
         }
 
-        $screen = $db->single("SELECT id, project, ext FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
+        $screen = $db->single("SELECT id, project, ext FROM screen WHERE id = '" . $screen . "'");
         if (!$screen) { die(); }
+        permission($screen['project'], 'EDIT');
         $data = array(
             'created' => date('Y-m-d H:i:s'),
             'creator' => userid(),
@@ -142,7 +144,8 @@ switch ($action) {
         if ($screen < 1) { die('Please provide a screen id'); }
 
         // crop module thumbnail
-        $screen = $db->single("SELECT id, project, ext FROM screen WHERE id = '" . $screen . "' AND creator = " . userid());
+        $screen = $db->single("SELECT id, project, ext FROM screen WHERE id = '" . $screen . "'");
+        permission($screen['project'], 'EDIT');
 
         require LIBRARY . 'image.php';
         $path =  'upload/modules/'.$screen['project'].'/'.md5($module.config('security.general.hash')).'.png';
@@ -164,6 +167,17 @@ switch ($action) {
         $x = intval($route[5]);
         $y = intval($route[6]);
         if ($id < 1) { die('Please provide a module id'); }
+
+        $module = $db->single("
+            SELECT m.screen, m.module, s.project, pm.id, s.ext
+            FROM module m
+                LEFT JOIN project_module pm ON pm.id = m.module
+                LEFT JOIN screen s ON s.id = m.screen
+            WHERE m.id = '" . $id . "'
+            LIMIT 1
+        ");
+        if (!$module) { die(); }
+        permission($module['project'], 'EDIT');
         $data = array(
             'modified' => date('Y-m-d H:i:s'),
             'modifier' => userid(),
@@ -180,6 +194,18 @@ switch ($action) {
         if ($id < 1) { die('Please provide a module id'); }
         if ($width < 1) { die('Please provide a width'); }
         if ($height < 1) { die('Please provide a height'); }
+
+        $module = $db->single("
+            SELECT m.screen, m.module, s.project, pm.id, s.ext
+            FROM module m
+                LEFT JOIN project_module pm ON pm.id = m.module
+                LEFT JOIN screen s ON s.id = m.screen
+            WHERE m.id = '" . $id . "'
+            LIMIT 1
+        ");
+        if (!$module) { die(); }
+        permission($module['project'], 'EDIT');
+
         $data = array(
             'modified' => date('Y-m-d H:i:s'),
             'modifier' => userid(),
@@ -194,6 +220,18 @@ switch ($action) {
         $name = $_REQUEST['name'];
         $skin = null;
         if ($id < 1) { die('Please provide a module id'); }
+
+        $module = $db->single("
+            SELECT m.screen, m.module, s.project, pm.id, s.ext
+            FROM module m
+                LEFT JOIN project_module pm ON pm.id = m.module
+                LEFT JOIN screen s ON s.id = m.screen
+            WHERE m.id = '" . $id . "'
+            LIMIT 1
+        ");
+        if (!$module) { die(); }
+        permission($module['project'], 'EDIT');
+        
         //  rename the project module
         $data = array(
             'modified' => date('Y-m-d H:i:s'),
