@@ -32,7 +32,7 @@ switch ($action) {
             $path =  'upload/modules/'.$module['project'].'/'.md5($module['id'].config('security.general.hash')).'.png';
             unlink(TERRIFIC . $path);
 
-            $db->delete('project_module', array('id' => $module['id'], 'creator' => userid()));
+            $db->delete('project_module', array('id' => $module['id']));
 
             $result['remove'] = $module['id'];
         }
@@ -63,7 +63,7 @@ switch ($action) {
         // check permissions
         $screen = $db->single("SELECT id, project, ext FROM screen WHERE id = '" . $screen . "'");
         if (!$screen) { die(); }
-        //permission($screen['project'], 'EDIT');
+        permission($screen['project'], 'EDIT');
 
         // explicitly use a library module
         if ($module > 0) {
