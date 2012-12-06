@@ -21,8 +21,11 @@ function cropScreen($id, $viewport, $dimension, $path) {
 
     $w = $dimension['width'];
     $h = $dimension['height'];
-    $screen = $db->single("SELECT id, project, type, ext FROM screen WHERE id = '" . $id . "' AND (embeddable = 'TRUE' or creator = '" . userid() . "') LIMIT 1");
+    $screen = $db->single("SELECT id, project, type, ext, embeddable FROM screen WHERE id = '" . $id . "' LIMIT 1");
     if (!$screen) { die(); }
+    if (!$screen['embeddable']) {
+        permission($screen['project'], 'VIEW');
+    }
     $filename =  UPLOAD . 'screens/' . $screen['project'] . '/' . md5($screen['id'] . config('security.general.hash')) . '.' . $screen['ext'];
     $target =  TERRIFIC . $path;
 
