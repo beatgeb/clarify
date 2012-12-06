@@ -60,6 +60,11 @@ switch ($action) {
         $module = intval($route[9]);
         if ($screen < 1) { die('Please provide a screen id'); }
 
+        // check permissions
+        $screen = $db->single("SELECT id, project, ext FROM screen WHERE id = '" . $screen . "'");
+        if (!$screen) { die(); }
+        //permission($screen['project'], 'EDIT');
+
         // explicitly use a library module
         if ($module > 0) {
             $refmodule = $db->single("SELECT * FROM project_module WHERE id = '" . $module . "' LIMIT 1");
@@ -70,9 +75,6 @@ switch ($action) {
             $skin = '';
         }
 
-        $screen = $db->single("SELECT id, project, ext FROM screen WHERE id = '" . $screen . "'");
-        if (!$screen) { die(); }
-        permission($screen['project'], 'EDIT');
         $data = array(
             'created' => date('Y-m-d H:i:s'),
             'creator' => userid(),
