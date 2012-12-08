@@ -11,6 +11,6 @@
 		<img src="<?php print gravatar(user('email'), 32) ?>" width="16" height="16" />
 		<p>&nbsp;</p>
 	</div>
-	<p class="content">{{=it.content}}</p>
+	<p class="content">{{?it.content}}{{=it.content}}{{??}}<i>Empty</i>{{?}}</p>
 </div>
 </script>

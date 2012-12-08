@@ -7,6 +7,14 @@
     position: absolute;
 }
 
+.modLayerComment .def.highlight .dot {
+    background: #d8684a;
+    box-shadow: 0 0 10px #000;
+}
+.modLayerComment .def.highlight .dot .nr {
+    text-shadow: none;
+    color: #FFF;
+}
 .modLayerComment .def .dot {
     display: block;
     border-radius: 25px;

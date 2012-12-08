@@ -51,6 +51,12 @@
             var id = 'comment';
             var $item = $(this.templates[id](data));
             this.$ctx.find('.items-comments').append($item);
+            $item.hover(function() {
+                $('.def').css('opacity', 0.2);
+                $('.def-' + data.id).css('opacity', 1);
+            }, function() {
+                $('.def').css('opacity', 1);
+            });
         }
 
     });
