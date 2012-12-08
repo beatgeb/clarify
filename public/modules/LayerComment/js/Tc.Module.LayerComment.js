@@ -16,6 +16,9 @@
         on: function(callback) { 
             var that = this;
             var $ctx = this.$ctx;
+
+            that.sandbox.subscribe('activity.comment', this);
+
             $('.btn-comments').bind('click', function(e) {
                 if (that.active) {
                     that.deactivate();
@@ -97,6 +100,7 @@
             $ctx.empty();
             this.active = true;
             this.deletemode = false;
+            this.fire('layerActivated', 'comment');
             
             $('.btn-delete').show();
             $('.btn-embed').show();
@@ -210,6 +214,7 @@
                     });
                 }
             });
+
             $('.edit', def).resizable({
                 stop: function() {
                     var w = $('.edit', def).width() - 31;
@@ -228,6 +233,8 @@
                     });
                 }
             });
+
+            that.fire('commentAdded', data);
         }
     });
 })(Tc.$);

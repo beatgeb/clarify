@@ -1,0 +1,92 @@
+.modSidebar {
+	background: #FFF;
+	position: fixed;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 260px;
+	z-index: 2;
+	border-left: 1px solid rgba(0,0,0,0.1);
+	overflow: hidden;
+	display: none;
+}
+
+.modSidebar .item {
+	padding: 10px;
+	font-size: 13px;
+	border-bottom: 1px solid #EEE;
+	line-height: 1.4;
+	cursor: pointer;
+}
+
+.modSidebar .item > p {
+	background: #EEE;
+	color: #444;
+	padding: 5px 8px;
+	font-size: 11px;
+	border-radius: 2px;
+	position: relative;
+}
+.modSidebar .item > p:after {
+	bottom: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+.modSidebar .item > p:after {
+	border-color: rgba(238, 238, 238, 0);
+	border-bottom-color: #EEEEEE;
+	border-width: 4px;
+	left: 30px;
+	margin-left: -4px;
+}
+.modSidebar .item .author {
+	line-height: 1.6;
+	font-size: 12px;
+	color: #666;
+	margin-bottom: 5px;
+}
+.modSidebar .item .author .nr {
+	float: left;
+    color: #555;
+    border: 1px solid #EEE;
+    border-radius: 8px;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    font-size: 10px;
+    margin-right: 5px;
+    line-height: 15px;
+    font-weight: bold;
+}
+.modSidebar .item .author img {
+	display: block;
+	float: left;
+	border-radius: 8px;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+.modSidebar .item .author p {
+	font-family:"Lexia W01 Regular", "helvetica neue", helvetica, arial, sans-serif;
+	float: left;
+}
+.modSidebar .item:hover {
+	
+}
+
+.modSidebar .item:hover .author .nr {
+	border-color: transparent;
+	background-color: #060606;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(6, 6, 6)), to(rgb(43, 43, 43)));
+    background-image: -webkit-linear-gradient(top, rgb(6, 6, 6), rgb(43, 43, 43));
+    background-image: -moz-linear-gradient(top, rgb(6, 6, 6), rgb(43, 43, 43));
+    background-image: -o-linear-gradient(top, rgb(6, 6, 6), rgb(43, 43, 43));
+    background-image: -ms-linear-gradient(top, rgb(6, 6, 6), rgb(43, 43, 43));
+    background-image: linear-gradient(top, rgb(6, 6, 6), rgb(43, 43, 43));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#060606', EndColorStr='#2b2b2b');
+    color: #FFF;
+}

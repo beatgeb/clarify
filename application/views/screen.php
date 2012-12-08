@@ -79,6 +79,7 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
     <?php require TERRIFIC . 'modules/Eyedropper/eyedropper.phtml' ?>
     </div>
     <?php require TERRIFIC . 'modules/LayerTypography/layertypography.phtml' ?>
+    <?php require TERRIFIC . 'modules/Sidebar/sidebar.phtml' ?>
     <?php require 'partials/foot.php'; ?>
 </body>
 </html>

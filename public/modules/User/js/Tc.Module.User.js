@@ -35,6 +35,8 @@
                 return false;
             });
 
+            $('.btn-plan', this.$ctx).tooltip({'placement': 'left'});
+
             callback();
         }
     });
