@@ -92,35 +92,6 @@
                 return false;
             });
 
-            $('.btn-account-settings').on('click', function(e) {
-                var data = { 'name': $(this).data('name') };
-                var modal = that.sandbox.getModuleById($('.modModal').data('id'));
-                modal.open('account-settings', data, function() {
-                    var $input = $(this).closest('.modal').find('.fld-name');
-                    $.ajax({
-                        url: "/api/user/setting/name/" + encodeURIComponent($input.val()),
-                        dataType: 'json',
-                        type: 'POST',
-                        success: function(data){
-                            location.reload();
-                        }
-                    });
-                }, function() {
-                    alert('Not possible yet.');
-                    /*
-                    $.ajax({
-                        url: "/api/user/account/delete",
-                        dataType: 'json',
-                        type: 'POST',
-                        success: function(data){
-                            location.reload();
-                        }
-                    });
-                     */
-                });
-                return false;
-            });
-
             $('.delete-screen').on('click', function(e) {
                 var screen = $(this).data('screen');
                 var data = { 'screen': screen };

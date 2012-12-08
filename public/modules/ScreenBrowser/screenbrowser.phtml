@@ -115,15 +115,8 @@ $colors = $db->data("
         <?php } ?>
     </div>
     <?php } ?>
-    <div class="usermeta">
-        <div class="info">
-            <p class="username"><?php print user('name') ?></p>
-            <a href="javascript:;" data-name="<?php print user('name') ?>" class="btn-account-settings">Account</a> -
-            <a href="<?php print R ?>auth/?wipe=1">Logout</a>
-        </div>
-        <div class="avatar">
-            <img src="<?php print gravatar(user('email'), 96) ?>" width="48" height="48" />
-        </div>
+    <div class="mod modUser">
+        <?php require TERRIFIC . 'modules/User/user.phtml'; ?>
     </div>
 </div>
 <?php if ($project_id > 0) { ?>

@@ -255,50 +255,6 @@
     top: -100px;
 }
 
-.modScreenBrowser .usermeta {
-    float: right;
-    margin: 23px 40px 23px 0;
-    display: inline-block;
-}
-
-.modScreenBrowser .usermeta .info {
-    float: left;
-    margin-right: 15px;
-    color: #999;
-    text-align: right;
-}
-.modScreenBrowser .usermeta .info a {
-    font-size: 14px;
-    text-decoration: none;
-    color: #999;
-    font-family:'Lexia W01 Thin', helvetica, arial, sans-serif;
-}
-.modScreenBrowser .usermeta .info a:hover {
-    text-decoration: underline;
-}
-.modScreenBrowser .usermeta .info p {
-    line-height: 1.45;
-    color: #454545;
-}
-
-.modScreenBrowser .usermeta .info .username {
-    font-family:'Lexia W01 Regular', helvetica, arial, sans-serif;
-    font-size: 18px;
-}
-
-.modScreenBrowser .usermeta .avatar {
-    float: left;
-    width: 48px;
-    height: 48px;
-    border-radius: 3px;
-}
-
-.modScreenBrowser .usermeta .avatar img {
-    border-radius: 24px;
-    -webkit-border-radius: 24px;
-    display: block;
-}
-
 .modScreenBrowser .btn-create-project {
     display: inline-block;
     color: #FFF;
