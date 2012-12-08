@@ -172,13 +172,15 @@
 
             // add click event on delete icon
             $delete.on('click', function() {
+                var id = data.id;
                 $.ajax({
-                    url: "/api/comment/remove/" + data.id,
+                    url: "/api/comment/remove/" + id,
                     dataType: 'json',
                     type: 'POST',
                     success: function(data){
                         def.remove();
                         that.open = null;
+                        that.fire('commentRemoved', id);
                     }
                 });
             });
@@ -193,7 +195,7 @@
                     type: 'POST',
                     data: "content=" + content,
                     success: function(data){
-                        // NOOP
+                        that.fire('commentUpdated', data);
                     }
                 });
                 container.parent().css('z-index', 3);

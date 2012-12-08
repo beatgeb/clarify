@@ -39,6 +39,14 @@
             $('.items').empty();
         },
 
+        onCommentRemoved: function(id) {
+            $('.items-comments .item-' + id).fadeOut();
+        },
+
+        onCommentUpdated: function(data) {
+            $('.items-comments .item-' + data.id + ' .content').text(data.content);
+        },
+
         onCommentAdded: function(data) {
             var id = 'comment';
             var $item = $(this.templates[id](data));

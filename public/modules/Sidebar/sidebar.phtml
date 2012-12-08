@@ -5,12 +5,12 @@
 </div>
 
 <script id="tmpl-sidebar-comment" type="text/x-dot-template">
-<div class="item">
+<div class="item item-{{=it.id}}">
 	<div class="author clearfix">
 		<div class="nr">{{=it.nr}}</div>
 		<img src="<?php print gravatar(user('email'), 32) ?>" width="16" height="16" />
-		<p>Roger Dudler</p>
+		<p>&nbsp;</p>
 	</div>
-	<p>{{=it.content}}</p>
+	<p class="content">{{=it.content}}</p>
 </div>
 </script>

@@ -100,6 +100,9 @@ switch ($action) {
             'content' => addslashes(strip_tags(stripslashes($_REQUEST['content'])))
         );
         $db->update('comment', $data, array('id' => $id, 'creator' => userid()));
+        $data = $db->single("SELECT id, creator, nr, content FROM comment WHERE id = " . $id);
+        header('Content-Type: application/json');
+        echo json_encode($data);
         break;
     
     case API_COMMENT_GET:
