@@ -17,7 +17,8 @@
             var that = this;
             var $ctx = this.$ctx;
 
-            that.sandbox.subscribe('activity.comment', this);
+            this.sandbox.subscribe('activity.comment', this);
+            this.sandbox.subscribe('keyboard', this);
 
             $('.btn-comments').bind('click', function(e) {
                 if (that.active) {
@@ -28,18 +29,6 @@
                     that.sandbox.getModuleById($('.modLayerMeasure').data('id')).deactivate();
                     that.sandbox.getModuleById($('.modLayerTypography').data('id')).deactivate();
                     that.activate();
-                }
-            });
-            
-            $('.btn-delete').on('click', function(e) {
-                that.deletemode = !that.deletemode;
-                if (that.deletemode) {
-                    $('.def', $ctx).addClass('def-delete');
-                    $('.btn-delete').addClass('delete');
-                    $('.edit', $ctx).hide();
-                } else {
-                    $('.def', $ctx).removeClass('def-delete');
-                    $('.btn-delete').removeClass('delete');
                 }
             });
             
@@ -77,7 +66,20 @@
             });
             callback();
         },
-        
+
+        after: function() {
+            var that = this;
+            this.fire('RegisterShortcut', {
+                'moduleId': that.id,
+                'shortcut': 'a',
+                'modifier': null,
+                'description': 'Switch to annotations layer',
+                'callback': function() {
+                    $('.btn-comments').click();
+                }
+            });
+        },
+
         deactivate: function() {
             var $ctx = this.$ctx;
             $ctx.empty();
@@ -91,7 +93,6 @@
         },
         
         activate: function() {
-            
             var $ctx = this.$ctx;
             var that = this;
             var screen = $('.modScreen').data('screen');
@@ -233,7 +234,6 @@
                     });
                 }
             });
-
             that.fire('commentAdded', data);
         }
     });

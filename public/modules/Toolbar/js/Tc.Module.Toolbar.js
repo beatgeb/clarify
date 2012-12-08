@@ -9,6 +9,8 @@
 (function($) { 
     Tc.Module.Toolbar = Tc.Module.extend({
         on: function(callback) {
+            this.sandbox.subscribe('keyboard', this);
+            /*
             $('.btn-clear').bind('click', 
                 function(e) {
                     return;
@@ -23,7 +25,12 @@
                     });
                 }
             );
+            */
             callback();
+        },
+
+        after: function() {
+            
         }
     });
 })(Tc.$);

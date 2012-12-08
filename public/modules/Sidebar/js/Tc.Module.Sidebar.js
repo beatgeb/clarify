@@ -17,21 +17,32 @@
             var $ctx = this.$ctx;
 
             this.templates['comment'] = doT.template($('#tmpl-sidebar-comment').text());
-            that.sandbox.subscribe('activity.comment', this);
+            this.sandbox.subscribe('keyboard', this);
 
             callback();
         },
 
+        after: function() {
+            var that = this;
+            this.fire('RegisterShortcut', {
+                'moduleId': that.id,
+                'shortcut': 's',
+                'modifier': null,
+                'description': 'Toggle sidebar',
+                'callback': function() {
+                    that.$ctx.toggle();
+                }
+            });
+        },
+
         onLayerActivated: function(layer) {
             $('.items').empty();
-            this.$ctx.show();
         },
 
         onCommentAdded: function(data) {
             var id = 'comment';
             var $item = $(this.templates[id](data));
             this.$ctx.find('.items-comments').append($item);
-            console.log(data);
         }
 
     });

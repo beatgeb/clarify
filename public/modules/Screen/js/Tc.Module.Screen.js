@@ -31,19 +31,6 @@
             // activate the comments layer
             this.sandbox.getModuleById($('.modLayerComment').data('id')).activate();
             callback();
-        },
-
-        after: function() {
-            var that = this;
-            this.fire('registerShortcut', {
-                'moduleId': that.id,
-                'modifier': 'ctrl',
-                'shortcut': 'm', 
-                'description': 'Switch to measure layer',
-                'callback': function() {
-                    alert(1);
-                }
-            });
         }
     });
 })(Tc.$);

@@ -16,6 +16,8 @@
         on: function(callback) {
             var that = this;
 
+            this.sandbox.subscribe('keyboard', this);
+
             $('.btn-color').bind('click', function(e) {
                 if (that.active) {
                     that.deactivate();
@@ -43,7 +45,20 @@
                 }
             });
         },
-        
+
+        after: function() {
+            var that = this;
+            this.fire('RegisterShortcut', {
+                'moduleId': that.id,
+                'shortcut': 'c',
+                'modifier': null,
+                'description': 'Switch to colors layer',
+                'callback': function() {
+                    $('.btn-color').click();
+                }
+            });
+        },
+
         activate: function() {
             var that = this;
             this.active = true;

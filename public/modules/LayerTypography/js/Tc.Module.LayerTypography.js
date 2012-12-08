@@ -19,6 +19,8 @@
 
             this.tmpl = doT.template($('#tmpl-layertypography-tooltip-font').text());
 
+            this.sandbox.subscribe('keyboard', this);
+
             $('.btn-fonts').bind('click', function(e) {
                 if (that.active) {
                     that.deactivate();
@@ -48,6 +50,19 @@
                 return false;
             });
             callback();
+        },
+
+        after: function() {
+            var that = this;
+            this.fire('RegisterShortcut', {
+                'moduleId': that.id,
+                'shortcut': 't',
+                'modifier': null,
+                'description': 'Switch to typography layer',
+                'callback': function() {
+                    $('.btn-fonts').click();
+                }
+            });
         },
 
         edit: function(data) {

@@ -17,6 +17,9 @@
         
         on: function(callback) {
             var that = this;
+
+            this.sandbox.subscribe('keyboard', this);
+            
             $('.btn-modules').bind('click', function(e) {
                 if (that.active) {
                     that.deactivate();
@@ -30,7 +33,20 @@
             });
             callback();
         },
-        
+
+        after: function() {
+            var that = this;
+            this.fire('RegisterShortcut', {
+                'moduleId': that.id,
+                'shortcut': 'm',
+                'modifier': null,
+                'description': 'Switch to modules layer',
+                'callback': function() {
+                    $('.btn-modules').click();
+                }
+            });
+        },
+
         deactivate: function() {
             this.active = false;
             $('.modScreen').unbind('click mousemove mouseup mousedown mouseenter mouseleave');

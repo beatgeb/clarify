@@ -27,7 +27,24 @@
                     that.activate();
                 }
             });
+            
+            // subscribe to the keyboard-channel
+            this.sandbox.subscribe('keyboard', this);
+
             callback();
+        },
+
+        after: function() {
+            var that = this;
+            this.fire('RegisterShortcut', {
+                'moduleId': that.id,
+                'shortcut': 'd',
+                'modifier': null,
+                'description': 'Switch to measure layer',
+                'callback': function() {
+                    $('.btn-measure').click();
+                }
+            });
         },
         
         deactivate: function() {
