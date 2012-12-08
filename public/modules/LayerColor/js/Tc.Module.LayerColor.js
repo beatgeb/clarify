@@ -50,7 +50,7 @@
             var that = this;
             this.fire('RegisterShortcut', {
                 'moduleId': that.id,
-                'shortcut': 'c',
+                'shortcut': 'i',
                 'modifier': null,
                 'description': 'Switch to colors layer',
                 'callback': function() {

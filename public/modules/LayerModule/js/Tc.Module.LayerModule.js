@@ -38,7 +38,7 @@
             var that = this;
             this.fire('RegisterShortcut', {
                 'moduleId': that.id,
-                'shortcut': 'm',
+                'shortcut': 'o',
                 'modifier': null,
                 'description': 'Switch to modules layer',
                 'callback': function() {

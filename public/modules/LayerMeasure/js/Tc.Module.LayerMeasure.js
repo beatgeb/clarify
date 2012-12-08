@@ -38,7 +38,7 @@
             var that = this;
             this.fire('RegisterShortcut', {
                 'moduleId': that.id,
-                'shortcut': 'd',
+                'shortcut': 'm',
                 'modifier': null,
                 'description': 'Switch to measure layer',
                 'callback': function() {

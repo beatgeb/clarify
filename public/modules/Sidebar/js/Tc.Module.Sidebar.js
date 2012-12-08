@@ -30,7 +30,11 @@
                 'modifier': null,
                 'description': 'Toggle sidebar',
                 'callback': function() {
-                    that.$ctx.toggle();
+                    if (that.$ctx.css('right') == '0px') {
+                        that.$ctx.stop().animate({ 'right': -260 }, 100);
+                    } else {
+                        that.$ctx.stop().animate({ 'right': 0 }, 100);
+                    }
                 }
             });
         },
