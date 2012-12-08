@@ -52,6 +52,8 @@
             if (data.modifier === null) {
                 $(document).on('keydown', function(e) {
 
+                    if (e.srcElement.localName == 'textarea' || e.srcElement.localName == 'input' || e.srcElement.localName == 'select') { return; }
+
                     // TODO: make this bulletproof
                     if (data.exclude) {
                         if ($.inArray(event.target.nodeName.toLowerCase(), data.exclude) > -1) {
@@ -83,6 +85,9 @@
                 });
 
                 $(document).on('keydown', function(e) {
+
+                    if (e.srcElement.localName == 'textarea' || e.srcElement.localName == 'input' || e.srcElement.localName == 'select') { return; }
+                    
                     switch (e.which) {
                         case 16:
                             self.modifiers.shift = true;
