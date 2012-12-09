@@ -122,13 +122,13 @@
         close: function() {
             this.$ctx.stop().animate({ 'right': -260 }, 100);
             $('.btn-sidebar-toggle .icon-remove').hide();
-            $('.btn-sidebar-toggle .icon-reorder').fadeIn('fast');
+            $('.btn-sidebar-toggle .icon-reorder').show();
         },
 
         open: function() {
             this.$ctx.stop().animate({ 'right': 0 }, 100);
             $('.btn-sidebar-toggle .icon-reorder').hide();
-            $('.btn-sidebar-toggle .icon-remove').fadeIn('fast');
+            $('.btn-sidebar-toggle .icon-remove').show();
         }
 
     });
