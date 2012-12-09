@@ -32,8 +32,12 @@
                 $('.modLayerColor .color').css('opacity', 1);
             });
 
-            $('.btn-remove', $ctx).on('click', function() {
-                that.close();
+            $('.btn-sidebar-toggle').on('click', function() {
+                if (that.$ctx.css('right') == '0px') {
+                    that.close();
+                } else {
+                    that.open();
+                }
             });
 
             this.sandbox.subscribe('keyboard', this);
@@ -105,15 +109,6 @@
             var id = 'color';
             var $item = $(this.templates[id](data));
             this.$ctx.find('.items-colors').append($item);
-            /*
-            $item.hover(function() {
-                console.log(1);
-                $('.modLayerColor .color').css('opacity', 0.2);
-                $('.modLayerColor .color[data-project-color="' + data.id + '"]').css('opacity', 1);
-            }, function() {
-                $('.modLayerColor .color').css('opacity', 1);
-            });
-            */
         },
 
         onColorRemoved: function(id) {
@@ -126,10 +121,14 @@
 
         close: function() {
             this.$ctx.stop().animate({ 'right': -260 }, 100);
+            $('.btn-sidebar-toggle .icon-remove').hide();
+            $('.btn-sidebar-toggle .icon-reorder').fadeIn('fast');
         },
 
         open: function() {
             this.$ctx.stop().animate({ 'right': 0 }, 100);
+            $('.btn-sidebar-toggle .icon-reorder').hide();
+            $('.btn-sidebar-toggle .icon-remove').fadeIn('fast');
         }
 
     });

@@ -10,7 +10,28 @@
 	-webkit-box-shadow: -1px 0px 3px 0px rgba(0, 0, 0, 0.1);
 	box-shadow: -1px 0px 3px 0px rgba(0, 0, 0, 0.1);
 }
-
+a.btn-sidebar-toggle {
+	position: fixed;
+	right: 0;
+	top: 0;
+	background: rgba(85,85,85,0.5);
+	z-index: 3;
+	color: #999;
+	text-decoration: none;
+	padding: 8px 10px;
+	width: 14px;
+}
+a.btn-sidebar-toggle:hover {
+	background: rgba(85,85,85,1);
+	color: #FFF;
+}
+a.btn-sidebar-toggle .icon-reorder {
+	display: none;
+	color: #333;
+}
+a.btn-sidebar-toggle:hover .icon-reorder {
+	color: #FFF;
+}
 .modSidebar .nav {
 	background: #555;
 }
@@ -29,10 +50,10 @@
 	background: #444;
 	color: #FFF;
 }
-.modSidebar .nav li.btn-remove {
+.modSidebar .nav li.btn-close {
 	float: right;
 }
-.modSidebar .nav li.btn-remove:hover a {
+.modSidebar .nav li.btn-close:hover a {
 	color: #FFF;
 }
 .modSidebar .items {
