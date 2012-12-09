@@ -4,6 +4,9 @@
 		<h2>Edit Color</h2>
 	</div>
 	<div class="body">
+		{{?it.hex}}
+		<div class="color" style="background: {{=it.hex}}"></div>
+		{{?}}
 		<label for="fld-name">Name</label>
 		<input class="fld fld-name" id="fld-name" type="text" value="{{=it.name}}" />
 		<label for="fld-hex">Hex Value</label>

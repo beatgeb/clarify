@@ -59,6 +59,7 @@
             });
 
             this.$backdrop.show();
+            //$ctx.css('width', 300);
             $ctx.fadeIn('fast');
         },
 

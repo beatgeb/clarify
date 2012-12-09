@@ -31,9 +31,9 @@
                 'description': 'Toggle sidebar',
                 'callback': function() {
                     if (that.$ctx.css('right') == '0px') {
-                        that.$ctx.stop().animate({ 'right': -260 }, 100);
+                        that.close();
                     } else {
-                        that.$ctx.stop().animate({ 'right': 0 }, 100);
+                        that.open();
                     }
                 }
             });
@@ -41,6 +41,15 @@
 
         onLayerActivated: function(layer) {
             $('.items').empty();
+            switch (layer) {
+                case 'comment':
+                    this.open();
+                    break;
+            }
+        },
+
+        onLayerDeactivated: function(layer) {
+            this.close();
         },
 
         onCommentRemoved: function(id) {
@@ -61,6 +70,14 @@
             }, function() {
                 $('.def').css('opacity', 1);
             });
+        },
+
+        close: function() {
+            this.$ctx.stop().animate({ 'right': -260 }, 100);
+        },
+
+        open: function() {
+            this.$ctx.stop().animate({ 'right': 0 }, 100);
         }
 
     });

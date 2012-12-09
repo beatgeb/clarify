@@ -279,6 +279,12 @@
 	color: #333;
 }
 
+.modModal .color {
+	height: 80px;
+	margin: -15px;
+	margin-bottom: 15px;
+}
+
 .modModalBackdrop {
 	display: none;
 	position: fixed;

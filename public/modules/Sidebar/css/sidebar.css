@@ -1,5 +1,5 @@
 .modSidebar {
-	background: #FFF;
+	background: #444;
 	position: fixed;
 	right: -260px;
 	top: 0;
@@ -8,22 +8,22 @@
 	z-index: 2;
 	overflow: hidden;
 	-webkit-box-shadow: -1px 0px 3px 0px rgba(0, 0, 0, 0.1);
-	box-shadow: -1px 0px 3px 0px rgba(0, 0, 0, 0.1)
+	box-shadow: -1px 0px 3px 0px rgba(0, 0, 0, 0.1);
 }
 
 .modSidebar .item {
 	padding: 10px;
 	font-size: 13px;
-	border-bottom: 1px solid #EEE;
+	border-bottom: 1px solid #333;
 	line-height: 1.4;
 	cursor: pointer;
 }
 
 .modSidebar .item > p {
-	background: #EEE;
+	background: #BBB;
 	color: #444;
 	padding: 5px 8px;
-	font-size: 11px;
+	font-size: 12px;
 	border-radius: 2px;
 	position: relative;
 }
@@ -38,7 +38,7 @@
 }
 .modSidebar .item > p:after {
 	border-color: rgba(238, 238, 238, 0);
-	border-bottom-color: #EEEEEE;
+	border-bottom-color: #BBB;
 	border-width: 4px;
 	left: 30px;
 	margin-left: -4px;
@@ -46,13 +46,13 @@
 .modSidebar .item .author {
 	line-height: 1.6;
 	font-size: 12px;
-	color: #666;
+	color: #999;
 	margin-bottom: 5px;
 }
 .modSidebar .item .author .nr {
 	float: left;
-    color: #555;
-    border: 1px solid #EEE;
+    color: #999;
+    border: 1px solid #222;
     border-radius: 8px;
     width: 15px;
     height: 15px;
@@ -77,7 +77,12 @@
 .modSidebar .item:hover {
 	
 }
-
+.modSidebar .item:hover > p {
+	background: #FFF;
+}
+.modSidebar .item:hover > p:after {
+	border-bottom-color: #FFF;
+}
 .modSidebar .item:hover .author .nr {
 	border-color: transparent;
 	background-color: #060606;

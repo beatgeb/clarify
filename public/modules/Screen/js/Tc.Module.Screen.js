@@ -28,9 +28,14 @@
             // subscribe to the keyboard-channel
             this.sandbox.subscribe('keyboard', this);
 
+            callback();
+        },
+
+        after: function() {
+
             // activate the comments layer
             this.sandbox.getModuleById($('.modLayerComment').data('id')).activate();
-            callback();
+            
         }
     });
 })(Tc.$);

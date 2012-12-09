@@ -81,6 +81,7 @@
         },
 
         deactivate: function() {
+            this.fire('layerDeactivated', 'comment');
             var $ctx = this.$ctx;
             $ctx.empty();
             $('.screen').unbind('click');
@@ -93,6 +94,7 @@
         },
         
         activate: function() {
+            this.fire('layerActivated', 'comment');
             var $ctx = this.$ctx;
             var that = this;
             var screen = $('.modScreen').data('screen');
@@ -101,7 +103,6 @@
             $ctx.empty();
             this.active = true;
             this.deletemode = false;
-            this.fire('layerActivated', 'comment');
             
             $('.btn-delete').show();
             $('.btn-embed').show();
