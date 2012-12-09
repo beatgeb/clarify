@@ -32,6 +32,7 @@ switch ($action) {
         );
         $id = $db->insert('comment', $comment);
         $db->query("UPDATE screen SET count_comment = count_comment + 1 WHERE id = " . $screen . "");
+        $comment['creator_name'] = user('name');
         $comment['id'] = $id;
 
         // add to activity stream
@@ -110,8 +111,21 @@ switch ($action) {
         if ($screen < 1) { die('Please provide a screen id'); }
         $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
         permission($screen['project'], 'VIEW');
-        $query = "SELECT id, creator, nr, x, y, w, h, content FROM comment WHERE screen = " . $screen['id'];
-        $data = $db->data($query);
+        $data = $db->data("
+            SELECT 
+                c.id, 
+                c.creator, 
+                c.nr, 
+                c.x, 
+                c.y, 
+                c.w, 
+                c.h, 
+                c.content, 
+                c.creator, 
+                u.name as creator_name
+            FROM comment c LEFT JOIN user u ON u.id = c.creator
+            WHERE c.screen = " . $screen['id']
+        );
         if($data) $data[0]['content'] = stripslashes($data[0]['content']);
         header('Content-Type: application/json');
         echo json_encode($data);

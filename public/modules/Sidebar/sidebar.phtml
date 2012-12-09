@@ -2,6 +2,7 @@
 	<ul class="nav clearfix">
 		<li class="tab-comment active"><a href="#"><i class="icon icon-comment"></i></a></li>
 		<li class="tab-color"><a href="#"><i class="icon icon-tint"></i></a></li>
+		<li class="btn-remove"><a href="#"><i class="icon icon-remove"></i></a></li>
 	</ul>
 	<div class="items items-comments"></div>
 	<div class="items items-colors">
@@ -22,7 +23,7 @@
 	<div class="author clearfix">
 		<div class="nr">{{=it.nr}}</div>
 		<!--<img src="<?php print gravatar(user('email'), 32) ?>" width="16" height="16" />-->
-		<p>Roger Dudler</p>
+		<p>{{=it.creator_name}}</p>
 	</div>
 	<p class="content">{{?it.content}}{{=it.content}}{{??}}<i>Empty</i>{{?}}</p>
 </div>

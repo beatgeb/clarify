@@ -32,6 +32,10 @@
                 $('.modLayerColor .color').css('opacity', 1);
             });
 
+            $('.btn-remove', $ctx).on('click', function() {
+                that.close();
+            });
+
             this.sandbox.subscribe('keyboard', this);
 
             callback();

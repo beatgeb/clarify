@@ -29,6 +29,12 @@
 	background: #444;
 	color: #FFF;
 }
+.modSidebar .nav li.btn-remove {
+	float: right;
+}
+.modSidebar .nav li.btn-remove:hover a {
+	color: #FFF;
+}
 .modSidebar .items {
 	display: none;
 }
