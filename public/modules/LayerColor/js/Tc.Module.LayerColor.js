@@ -160,7 +160,7 @@
                 });
                 return false;
             });
-            var element = $('<div class="color"><div class="p"></div></div>');
+            var element = $('<div class="color" data-project-color="' + color.color + '"><div class="p"></div></div>');
             element.append($meta);
             element.css({
                 left: color.x + 'px',

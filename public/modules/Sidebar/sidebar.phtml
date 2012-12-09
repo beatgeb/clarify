@@ -6,7 +6,7 @@
 	<div class="items items-comments"></div>
 	<div class="items items-colors">
 		<?php foreach ($colors as $color) { ?>
-		<div class="item item-<?php echo $color['id'] ?> clearfix">
+		<div class="item item-<?php echo $color['id'] ?> clearfix" data-id="<?php echo $color['id'] ?>">
 			<div class="color" style="background: #<?php echo $color['hex'] ?>"></div>
 			<div class="title">
 				<span class="name"><?php echo $color['name'] ?></span>
@@ -29,7 +29,7 @@
 </script>
 
 <script id="tmpl-sidebar-color" type="text/x-dot-template">
-<div class="item item-{{=it.color}} clearfix">
+<div class="item item-{{=it.color}} clearfix" data-id="{{=it.color}}">
 	<div class="color" style="background: #{{=it.hex}}"></div>
 	<div class="title">
 		<span class="name">{{=it.name}}</span>

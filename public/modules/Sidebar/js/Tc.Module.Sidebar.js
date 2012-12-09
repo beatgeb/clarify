@@ -19,12 +19,17 @@
             this.templates['comment'] = doT.template($('#tmpl-sidebar-comment').text());
             this.templates['color'] = doT.template($('#tmpl-sidebar-color').text());
             
-            $('.tab-comment', $ctx).on('click', function() {
-                that.onLayerActivated('comment', true);
-            });
+            $('.tab-comment', $ctx).on('click', function() { that.onLayerActivated('comment', true); });
+            $('.tab-color', $ctx).on('click', function() { that.onLayerActivated('color', true); });
 
-            $('.tab-color', $ctx).on('click', function() {
-                that.onLayerActivated('color', true);
+            $ctx.on('mouseover', '.items-colors .item', function() {
+                var id = $(this).data('id');
+                $('.modLayerColor .color').css('opacity', 0.2);
+                console.log(id);
+                $('.modLayerColor .color[data-project-color="' + id + '"]').css('opacity', 1);
+            });
+            $ctx.on('mouseleave', '.items-colors', function() {
+                $('.modLayerColor .color').css('opacity', 1);
             });
 
             this.sandbox.subscribe('keyboard', this);
@@ -96,12 +101,15 @@
             var id = 'color';
             var $item = $(this.templates[id](data));
             this.$ctx.find('.items-colors').append($item);
+            /*
             $item.hover(function() {
-                $('.def').css('opacity', 0.2);
-                $('.def-' + data.id).css('opacity', 1);
+                console.log(1);
+                $('.modLayerColor .color').css('opacity', 0.2);
+                $('.modLayerColor .color[data-project-color="' + data.id + '"]').css('opacity', 1);
             }, function() {
-                $('.def').css('opacity', 1);
+                $('.modLayerColor .color').css('opacity', 1);
             });
+            */
         },
 
         onColorRemoved: function(id) {
