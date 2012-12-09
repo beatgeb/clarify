@@ -123,7 +123,6 @@
             $(document).off('keyup');
 
             $.each(self.registeredModules, function(key, value) {
-                console.log($.inArray(value, self.registeredModules));
                 if (value.id === data.moduleId) {
                     self.registeredModules.splice( $.inArray(value, self.registeredModules), 1 );
                 }

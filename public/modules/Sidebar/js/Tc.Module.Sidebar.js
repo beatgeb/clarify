@@ -25,7 +25,6 @@
             $ctx.on('mouseover', '.items-colors .item', function() {
                 var id = $(this).data('id');
                 $('.modLayerColor .color').css('opacity', 0.2);
-                console.log(id);
                 $('.modLayerColor .color[data-project-color="' + id + '"]').css('opacity', 1);
             });
             $ctx.on('mouseleave', '.items-colors', function() {
