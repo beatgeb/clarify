@@ -80,11 +80,7 @@
                         dataType: 'json',
                         success: function(data){
                             if (data.result == 'NEW') {
-                                var box = $('<a href="javascript:;" rel="tooltip" title="' + data.name + ' - ' + color.hex + '" class="color color-' + data.color + '" data-id="' + data.color + '" data-color="' + color.hex.substring(1) + '"></a>');
-                                box.css('backgroundColor', color.hex);
-                                $('.modColorLibrary').append(box);
-                                box.tooltip();
-                                that.addLibraryColor(box);
+                                that.addLibraryColor(data);
                             }
                             that.addColor(data, true);
                         }
@@ -105,9 +101,10 @@
             $('.picker').hide();
         },
         
-        addLibraryColor: function(color) {
+        addLibraryColor: function(data) {
             var that = this;
-            $(color).css('backgroundColor', '#' + $(color).data('color'));
+            /*
+            $(color).css('backgroundColor', data.hex));
             $(color).draggable({
                 helper: "clone",
                 revert: "true",
@@ -125,10 +122,7 @@
                     });
                 }
             });
-            var data = {
-                'id': $(color).data('id'),
-                'hex': $(color).data('color')
-            }
+            */
             this.fire('colorAdded', data);
         },
         
