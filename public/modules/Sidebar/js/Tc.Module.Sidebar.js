@@ -17,6 +17,16 @@
             var $ctx = this.$ctx;
 
             this.templates['comment'] = doT.template($('#tmpl-sidebar-comment').text());
+            this.templates['color'] = doT.template($('#tmpl-sidebar-color').text());
+            
+            $('.tab-comment', $ctx).on('click', function() {
+                that.onLayerActivated('comment', true);
+            });
+
+            $('.tab-color', $ctx).on('click', function() {
+                that.onLayerActivated('color', true);
+            });
+
             this.sandbox.subscribe('keyboard', this);
 
             callback();
@@ -39,10 +49,20 @@
             });
         },
 
-        onLayerActivated: function(layer) {
-            $('.items').empty();
+        onLayerActivated: function(layer, tab) {
+            $('.items').hide();
+            $('.nav li', this.$ctx).removeClass('active');
+            $('.tab-' + layer, this.$ctx).addClass('active');
             switch (layer) {
                 case 'comment':
+                    if (!tab) {
+                        $('.items-comments').empty();
+                    }
+                    $('.items-comments').fadeIn();
+                    this.open();
+                    break;
+                case 'color':
+                    $('.items-colors').fadeIn();
                     this.open();
                     break;
             }
@@ -70,6 +90,26 @@
             }, function() {
                 $('.def').css('opacity', 1);
             });
+        },
+
+        onColorAdded: function(data) {
+            var id = 'color';
+            var $item = $(this.templates[id](data));
+            this.$ctx.find('.items-colors').append($item);
+            $item.hover(function() {
+                $('.def').css('opacity', 0.2);
+                $('.def-' + data.id).css('opacity', 1);
+            }, function() {
+                $('.def').css('opacity', 1);
+            });
+        },
+
+        onColorRemoved: function(id) {
+            $('.items-colors .item-' + id).fadeOut();
+        },
+
+        onColorUpdated: function(data) {
+            
         },
 
         close: function() {

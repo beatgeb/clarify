@@ -60,12 +60,9 @@
         },
 
         activate: function() {
+            this.fire('layerActivated', 'color');
             var that = this;
             this.active = true;
-            var colors = $('.color');
-            $.each(colors, function(key, color) {
-                that.addLibraryColor(color);
-            });
             
             var screen = $('.modScreen');
             $('.btn-color').addClass('active');
@@ -98,6 +95,7 @@
         },
         
         deactivate: function() {
+            this.fire('layerDeactivated', 'color');
             this.active = false;
             this.$ctx.empty();
             $('.modColorLibrary').hide();
@@ -127,6 +125,11 @@
                     });
                 }
             });
+            var data = {
+                'id': $(color).data('id'),
+                'hex': $(color).data('color')
+            }
+            this.fire('colorAdded', data);
         },
         
         addColor: function(color, fade) {
@@ -198,6 +201,7 @@
                         element.remove();
                         if (data.remove > 0) {
                             $('.color-' + data.remove).remove();
+                            that.fire('colorRemoved', data.remove);
                         }
                     }
                 });

@@ -66,9 +66,7 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
         <div class="mod modLayerTypography"></div>
         <div class="mod modLayerModule"></div>
     </div>
-    <div class="mod modColorLibrary">
-    <?php require TERRIFIC . 'modules/ColorLibrary/colorlibrary.phtml' ?>
-    </div>
+    <?php require TERRIFIC . 'modules/Sidebar/sidebar.phtml' ?>
     <div class="mod modModuleLibrary">
     <?php require TERRIFIC . 'modules/ModuleLibrary/modulelibrary.phtml' ?>
     </div>
@@ -79,7 +77,6 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
     <?php require TERRIFIC . 'modules/Eyedropper/eyedropper.phtml' ?>
     </div>
     <?php require TERRIFIC . 'modules/LayerTypography/layertypography.phtml' ?>
-    <?php require TERRIFIC . 'modules/Sidebar/sidebar.phtml' ?>
     <?php require 'partials/foot.php'; ?>
 </body>
 </html>
