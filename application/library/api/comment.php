@@ -19,19 +19,21 @@ switch ($action) {
         $y = intval($route[6]);
 
         if ($screen < 1) { die('Please provide a screen id'); }
-        $max = $db->single("SELECT MAX(nr) as current FROM comment WHERE screen = '" . $screen . "'");
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
+        permission($screen['project'], 'EDIT');
+        $max = $db->single("SELECT MAX(nr) as current FROM comment WHERE screen = '" . $screen['id'] . "'");
         if ($max === null) { die(); }
         $nr = $max['current'] + 1;
         $comment = array(
             'created' => date('Y-m-d H:i:s'),
             'creator' => userid(),
-            'screen' => $screen,
+            'screen' => $screen['id'],
             'nr' => intval($nr),
             'x' => $x,
             'y' => $y
         );
         $id = $db->insert('comment', $comment);
-        $db->query("UPDATE screen SET count_comment = count_comment + 1 WHERE id = " . $screen . "");
+        $db->query("UPDATE screen SET count_comment = count_comment + 1 WHERE id = " . $screen['id'] . "");
         $comment['creator_name'] = user('name');
         $comment['id'] = $id;
 
@@ -41,7 +43,7 @@ switch ($action) {
             userid(), OBJECT_TYPE_USER, user('name'), 
             ACTIVITY_VERB_COMMENT, 
             $id, OBJECT_TYPE_COMMENT, "", 
-            $screen, OBJECT_TYPE_SCREEN, 'Title'
+            $screen['id'], OBJECT_TYPE_SCREEN, 'Title'
         );
 
         echo json_encode($comment);
@@ -67,7 +69,9 @@ switch ($action) {
             'x' => $x,
             'y' => $y
         );
-        $db->update('comment', $data, array('id' => $id, 'creator' => userid()));
+        $screen = $db->single("SELECT s.project FROM comment c LEFT JOIN screen s ON s.id = c.screen WHERE c.id = '" . $id . "'");
+        permission($screen['project'], 'VIEW');
+        $db->update('comment', $data, array('id' => $id));
         break;
     
     case API_COMMENT_CLEAR:

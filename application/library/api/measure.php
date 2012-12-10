@@ -63,7 +63,7 @@ switch ($action) {
             'x' => $x,
             'y' => $y
         );
-        $db->update('measure', $data, array('id' => $id, 'creator' => userid()));
+        $db->update('measure', $data, array('id' => $id));
         break;
     
     case API_MEASURE_RESIZE:
@@ -82,7 +82,7 @@ switch ($action) {
             'width' => $width,
             'height' => $height
         );
-        $db->update('measure', $data, array('id' => $id, 'creator' => userid()));
+        $db->update('measure', $data, array('id' => $id));
         break;
     
     case API_MEASURE_DELETE:

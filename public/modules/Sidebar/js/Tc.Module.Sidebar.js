@@ -39,6 +39,25 @@
                 }
             });
 
+            $('.items-colors .color').draggable({
+                helper: "clone",
+                revert: "true",
+                cursorAt: {top: 0, left: -20},
+                stop: function(e) {
+                    var offset = $('.modScreen').offset();
+                    var x = e.pageX - offset.left;
+                    var y = e.pageY - offset.top;
+                    $.ajax({
+                        url: "/api/color/add/" + $('.modScreen').data('screen') + "/" + x + "/" + y + "/" + $(this).parent().data('id'),
+                        dataType: 'json',
+                        success: function(data){
+                            var mod = that.sandbox.getModuleById($('.modLayerColor').data('id'));
+                            mod.addColor(data, true);
+                        }
+                    });
+                }
+            });
+
             this.sandbox.subscribe('keyboard', this);
 
             callback();
