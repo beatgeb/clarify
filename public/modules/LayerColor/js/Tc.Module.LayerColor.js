@@ -135,9 +135,15 @@
                 label = hex;
             }
             var $meta = $('<a href="#" class="meta" data-slug="' + slug + '" data-hex="' + hex + '" data-name="' + color.name + '"><span class="name">' + label + '</span><br /><span class="hex">#' + color.hex + '</span></a>');
-            $meta.on('click', function() {
-                var $link = $(this);
-                var data = { 'hex': $(this).data('hex').toUpperCase(), 'name': $(this).data('name'), 'slug': $(this).data('slug') };
+            var $element = $('<div class="color" data-project-color="' + color.color + '"><div class="p"></div></div>');
+            
+            $element.on('click', function() {
+                var $meta = $(this).find('.meta');
+                var data = { 
+                    'hex': $meta.data('hex').toUpperCase(), 
+                    'name': $meta.data('name'), 
+                    'slug': $meta.data('slug')
+                };
                 var modal = that.sandbox.getModuleById($('.modModal').data('id'));
                 modal.open('color-edit', data, function() {
                     var $name = $(this).closest('.modal').find('.fld-name');
@@ -148,34 +154,42 @@
                         dataType: 'json',
                         type: 'POST',
                         success: function(data){
-                            $link.parent().find('.p').css('backgroundColor', $hex.val());
-                            $link.find('.name').text($name.val());
-                            $link.find('.hex').text($hex.val());
-                            $link.data('name', $name.val());
-                            $link.data('hex', $hex.val());
-                            $link.data('slug', $slug.val());
+                            $meta.parent().find('.p').css('backgroundColor', $hex.val());
+                            $meta.find('.name').text($name.val());
+                            $meta.find('.hex').text($hex.val());
+                            $meta.data('name', $name.val());
+                            $meta.data('hex', $hex.val());
+                            $meta.data('slug', $slug.val());
+                            modal.cancel();
+                        }
+                    });
+                }, function() {
+                    $.ajax({
+                        url: "/api/color/remove/" + color.id,
+                        dataType: 'json',
+                        success: function(data){
+                            $element.remove();
+                            if (data.remove > 0) {
+                                $('.color-' + data.remove).remove();
+                                that.fire('colorRemoved', data.remove);
+                            }
                             modal.cancel();
                         }
                     });
                 });
                 return false;
             });
-            var element = $('<div class="color" data-project-color="' + color.color + '"><div class="p"></div></div>');
-            element.append($meta);
-            element.css({
+
+            $element.append($meta);
+            $element.css({
                 left: color.x + 'px',
                 top: color.y + 'px',
                 position: 'absolute'
             });
-            $('.p', element).css('backgroundColor', '#' + color.hex);
-
-            element.bind('click', function(e) {
-                e.stopPropagation();
-                return false;
-            })
+            $element.find('.p').css('backgroundColor', '#' + color.hex);
             
             // show / hide picker on hover
-            element.hover(
+            $element.hover(
                 function(){
                     $('.picker').hide();
                     that.hover = true;
@@ -187,6 +201,7 @@
             );
                 
             // delete on double click
+            /*
             element.bind('dblclick', function(e) {
                 $.ajax({
                     url: "/api/color/remove/" + color.id,
@@ -203,14 +218,11 @@
                 e.stopPropagation();
                 return false;
             });
+            */
             
             // draw element
-            this.$ctx.append(element);
-            if (fade) {
-                element.fadeIn('fast');
-            } else {
-                element.show();
-            }
+            this.$ctx.append($element);
+            $element.show();
         }
     });
 })(Tc.$);

@@ -22,20 +22,14 @@
     position: absolute;
     display: none;
     white-space: nowrap;
-    cursor: auto;
+    cursor: pointer;
     margin-top: 6px;
     margin-left: -19px;
     font-family: "Lexia W01 Regular", sans-serif;
 }
 .modLayerColor .color:hover {
-    background-color: #434343;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(34, 34, 34)));
-    background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(34, 34, 34));
-    background-image: -moz-linear-gradient(top, rgb(67, 67, 67), rgb(34, 34, 34));
-    background-image: -o-linear-gradient(top, rgb(67, 67, 67), rgb(34, 34, 34));
-    background-image: -ms-linear-gradient(top, rgb(67, 67, 67), rgb(34, 34, 34));
-    background-image: linear-gradient(top, rgb(67, 67, 67), rgb(34, 34, 34));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#222222');
+    background-color: #000;
+    background-image: none;
     z-index: 20;
 }
 .modLayerColor .color .p {
@@ -55,7 +49,7 @@
     text-decoration: none;
 }
 .modLayerColor .color .meta:hover {
-    text-decoration: underline;
+    color: #FFF;
 }
 .modLayerColor .color .meta span.hex {
     color: #DDD;
@@ -74,4 +68,8 @@
     border-width: 5px;
     left: 19px;
     margin-left: -5px;
+}
+
+.modLayerColor .color:hover:after {
+    border-bottom-color: #000;
 }
