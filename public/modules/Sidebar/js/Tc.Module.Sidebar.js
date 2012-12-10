@@ -89,11 +89,11 @@
                     if (!tab) {
                         $('.items-comments').empty();
                     }
-                    $('.items-comments').fadeIn();
+                    $('.items-comments').show();
                     this.open();
                     break;
                 case 'color':
-                    $('.items-colors').fadeIn();
+                    $('.items-colors').show();
                     this.open();
                     break;
             }
