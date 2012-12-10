@@ -208,7 +208,7 @@
                 }
             );
 
-            measure.on('click', function(e) {
+            measure.on('mousedown', function(e) {
                 var data = { 'width': width, 'height': height };
                 var modal = that.sandbox.getModuleById($('.modModal').data('id'));
                 modal.open('edit-dimension', data, function() {
