@@ -190,6 +190,8 @@
                                     }
                                 });
                             }
+                            width = ui.size.width;
+                            height = ui.size.height;
                         }
                     });
                     that.resize = false;
