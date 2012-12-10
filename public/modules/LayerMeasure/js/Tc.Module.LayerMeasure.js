@@ -206,17 +206,40 @@
                     that.hover = false;
                 }
             );
-                
-            // delete on double click
-            measure.bind('dblclick', function(e) {
-                $.ajax({
-                    url: "/api/measure/delete/" + id,
-                    dataType: 'json',
-                    success: function(data){
-                        measure.remove();
-                    }
+
+            measure.on('mousedown', function(e) {
+                var data = { 'width': width, 'height': height };
+                var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+                modal.open('edit-dimension', data, function() {
+                    var new_width = $(this).closest('.modal').find('.fld-width').val();
+                    var new_height = $(this).closest('.modal').find('.fld-height').val();
+                    $.ajax({
+                        url: "/api/measure/resize/" + id + "/" + new_width + "/" + new_height,
+                        dataType: 'json',
+                        type: 'POST',
+                        success: function(data){
+                            measure.css({
+                                width: new_width, 
+                                height: new_height
+                            });
+                            width = new_width;
+                            height = new_height;
+                            $('.meta', measure).text(new_width + ' x ' + new_height);
+                            modal.cancel();
+                        }
+                    });
+                }, function() {
+                    $.ajax({
+                        url: "/api/measure/delete/" + id,
+                        dataType: 'json',
+                        success: function(data){
+                            measure.remove();
+                            modal.cancel();
+                        }
+                    });
                 });
-                that.hover = false;
+                e.stopPropagation();
+                return false;
             });
             
             // set width, height and position of measurement
