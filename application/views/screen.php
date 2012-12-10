@@ -52,6 +52,7 @@ $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $
     <?php require 'partials/head.php'; ?>
 </head>
 <body>
+    <div class="ajax"><div class="message">Loading...</div><div class="overlay"></div></div>
     <div class="mod modScreen" 
          data-screen="<?php print $screen['id'] ?>" 
          data-layer="1" 

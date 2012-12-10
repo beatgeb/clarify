@@ -144,7 +144,7 @@
             
             // enable drag and drop for measures
             measure.draggable({
-                delay: 500,
+                distance: 30,
                 start: function() {
                     that.drag = true;
                 },
@@ -209,6 +209,13 @@
             );
 
             measure.on('mousedown', function(e) {
+                return false;
+            });
+
+            measure.on('click', function(e) {
+                if ($(this).is('.ui-draggable-dragging')) {
+                    return;
+                }
                 var data = { 'width': width, 'height': height };
                 var modal = that.sandbox.getModuleById($('.modModal').data('id'));
                 modal.open('edit-dimension', data, function() {

@@ -25,6 +25,21 @@
                 height: $ctx.data('height')
             });
 
+            var $overlay = $('.ajax .overlay');
+            $('.ajax').ajaxStart(function() {
+                $(this).show();
+            });
+            $('.ajax').ajaxStop(function() {
+                $(this).hide();
+            });
+            $('.ajax').ajaxError(function() {
+                $(this).hide();
+            });
+            $overlay.on('click', function(e) {
+                return false;
+            });
+            
+
             // subscribe to the keyboard-channel
             this.sandbox.subscribe('keyboard', this);
 

@@ -12,3 +12,22 @@
     background-repeat: no-repeat;
     cursor: crosshair;
 }
+
+.ajax .message {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: #ffd200;
+	padding: 10px;
+	font-size: 12px;
+	font-family: "Lexia W01 Regular", sans-serif;
+}
+.ajax .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 999;
+	background: none;
+}
