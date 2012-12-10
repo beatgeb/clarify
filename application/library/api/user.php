@@ -11,9 +11,10 @@ switch ($action) {
         $setting = $route[4];
         switch ($setting) {
             case 'name':
+            case 'email'
                 $value = $route[5];
-                $db->update('user', array('name' => urldecode($value)), array('id' => userid()));
-                $_SESSION['user']['name'] = urldecode($value);
+                $db->update('user', array($setting => urldecode($value)), array('id' => userid()));
+                $_SESSION['user'][$setting] = urldecode($value);
                 break;
         }
         break;

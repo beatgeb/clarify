@@ -15,7 +15,7 @@
 
             $('.btn-account-settings', $ctx).on('click', function(e) {
                 var $btn = $(this);
-                var data = { 'name': $btn.data('name') };
+                var data = { 'name': $btn.data('name'), 'email': $btn.data('email') };
                 var modal = that.sandbox.getModuleById($('.modModal').data('id'));
                 modal.open('account-settings', data, function() {
                     var $input = $(this).closest('.modal').find('.fld-name');
