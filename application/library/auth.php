@@ -61,7 +61,7 @@ function auth_access_token($tmhOAuth) {
         
         // user does not exist, check invitation code and create it
         if (!$db->exists('user', array('twitter_user_id' => $_SESSION['access_token']['user_id']))) {
-            $user = $db->single("SELECT id FROM user WHERE invitation_code = '" . intval($_SESSION['user']['invitation_code']) . "' LIMIT 1");
+            $user = $db->single("SELECT id, email, name FROM user WHERE invitation_code = '" . intval($_SESSION['user']['invitation_code']) . "' LIMIT 1");
             if (!$user) {
                 die('invitation code invalid');
             }
@@ -85,13 +85,14 @@ function auth_access_token($tmhOAuth) {
                 'name' => $userdata->name
             );
             $db->update('user', $user, array('twitter_user_id' => $_SESSION['access_token']['user_id']));
-            $user = $db->single("SELECT id, name FROM user WHERE twitter_user_id = '" . $_SESSION['access_token']['user_id'] . "' LIMIT 1");
+            $user = $db->single("SELECT id, name, email FROM user WHERE twitter_user_id = '" . $_SESSION['access_token']['user_id'] . "' LIMIT 1");
             $id = $user['id'];
         }
 
         $_SESSION['user']['twitter'] = $userdata;
         $_SESSION['user']['id'] = $id;
         $_SESSION['user']['name'] = $user['name'];
+        $_SESSION['user']['email'] = $user['email'];
         $_SESSION['auth'] = md5(config('security.password.hash') . $_SESSION['user']['id']);
         unset($_SESSION['oauth']);
         header('Location: ' . tmhUtilities::php_self());
