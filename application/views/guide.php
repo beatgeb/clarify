@@ -21,7 +21,8 @@ if (!$project) { die(); }
 $screens = $db->data("SELECT id, title, description, code FROM screen WHERE project = '" . $project['id'] . "' ORDER BY title ASC");
 $colors = $db->data("SELECT id, hex, name, name_css, r, g, b, alpha FROM project_color WHERE project = '" . $project['id'] . "' ORDER BY hue ASC", "id");
 $comments = $db->data("SELECT d.id, d.content, d.nr, d.layer, d.screen FROM comment d LEFT JOIN screen s ON s.id = d.screen WHERE s.project = '" . $project['id'] . "'");
-$fonts = $db->data("SELECT * FROM project_font WHERE project = " . $project_id);
+$fonts = array();
+//$fonts = $db->data("SELECT * FROM project_font WHERE project = " . $project_id);
 $modules = $db->data("SELECT * FROM project_module WHERE project = " . $project_id);
 $layers = array();
 foreach ($comments as $comment) {
