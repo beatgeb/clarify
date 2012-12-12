@@ -13,7 +13,7 @@ switch ($action) {
     
     case API_COLOR_UPDATE:
 
-        require LIBRARY . 'color.php';
+        require_once LIBRARY . 'color.php';
 
         $id = intval($route[4]);
         $hex = substr($route[5],0,6);
@@ -85,7 +85,7 @@ switch ($action) {
         break;
     
     case API_COLOR_ADD:
-        require LIBRARY . 'color.php';
+        require_once LIBRARY . 'color.php';
 
         $screen = intval($route[4]);
         $x = intval($route[5]);

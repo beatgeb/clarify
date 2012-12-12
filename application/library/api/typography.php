@@ -255,7 +255,7 @@ function typography_color($project, $color) {
     if ($project_color) {
         return $project_color['id'];
     } else {
-        require LIBRARY . 'color.php';
+        require_once LIBRARY . 'color.php';
         $colorHandler = new ColorHandler();
         $hsl = $colorHandler->HtmltoHsl("#" . $color);
         $match = $colorHandler->getColorMatch("#" . $color);
