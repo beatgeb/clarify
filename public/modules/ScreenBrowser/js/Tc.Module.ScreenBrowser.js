@@ -9,22 +9,59 @@
 (function($) {
     Tc.Module.ScreenBrowser = Tc.Module.extend({
 
+        templates: [],
+
         on: function(callback) {
             var project = this.$ctx.data('project'),
                 $ctx = this.$ctx,
                 that = this;
             var $colors = $('.colors .color', $ctx);
 
+            // compile templates
+            this.templates['screen'] = doT.template($('#tmpl-screenbrowser-screen').text());
+
             $('.fileupload').fileupload({
                 dataType: 'json',
                 url: '/api/screen/upload/' + project,
                 dropZone: $('.create'),
+                add: function (e, data) {
+                    var screen = {
+                        'title': data.files[0].name,
+                        'count_module': 0,
+                        'count_measure': 0,
+                        'count_font': 0,
+                        'count_comment': 0,
+                        'count_color': 0
+                    };
+                    data.context = $(that.templates['screen'](screen)).appendTo($('.screens', $ctx));
+                    data.submit();
+                },
                 progress: function (e, data) {
                     var progress = parseInt(data.loaded / data.total * 100, 10);
-                    $('.create').find('.meta').text(progress + '%');
+                    $('.size', data.context).text(progress + '%');
                 },
                 done: function (e, data) {
-                    window.location.reload();
+                    if (data.result) {
+                        var id = data.result[0].id;
+                        var thumbnail_url = data.result[0].thumbnail_url;
+                        var screen = {
+                            'id': id,
+                            'title': data.files[0].name,
+                            'count_module': 0,
+                            'count_measure': 0,
+                            'count_font': 0,
+                            'count_comment': 0,
+                            'count_color': 0,
+                            'thumbnail_url': thumbnail_url,
+                            'editable': true,
+                            'width': data.result[0].width,
+                            'height': data.result[0].height
+                        };
+                        var $screen = $(that.templates['screen'](screen)).appendTo($('.screens', $ctx));
+                        data.context.replaceWith($screen);
+                    } else {
+
+                    }
                 }
             });
 
@@ -92,7 +129,7 @@
                 return false;
             });
 
-            $('.delete-screen').on('click', function(e) {
+            $ctx.on('click', '.delete-screen', function(e) {
                 var screen = $(this).data('screen');
                 var data = { 'screen': screen };
                 var modal = that.sandbox.getModuleById($('.modModal').data('id'));

@@ -130,7 +130,7 @@ $colors = $db->data("
     <a href="<?php print R ?>api/color/export/<?php print $project_id ?>/aco" class="export btn-export-aco"><i class="icon icon-share-alt"></i> .ACO</a>
 </div>
 <?php } ?>
-<ul>
+<ul class="screens">
     <?php if (has_permission($project_id, 'EDIT')) { ?>
     <li class="create">
         <a class="placeholder" href="javascript:;">
@@ -214,3 +214,48 @@ $colors = $db->data("
 </p>
 <a class="btn-create-project" href="#">Create Project</a>
 <?php } ?>
+
+<!-- template for screen list items -->
+<script id="tmpl-screenbrowser-screen" type="text/x-dot-template">
+<li class="screen screen-{{=it.id}}" data-id="{{=it.id}}">
+    <a class="image" href="<?php print R ?>screen/{{=it.id}}">
+        {{?it.thumbnail_url}}
+        <img src="{{=it.thumbnail_url}}" width="200" alt="{{=it.title}}" />
+        {{?}}
+        <div class="info">
+            <span{{?it.count_comment == 0}} class="zero"{{?}}>
+                <i class="icon-white icon-comment"></i> 
+                <span class="count">{{=it.count_comment}}</span>
+            </span>
+            <span{{?it.count_measure == 0}} class="zero"{{?}}>
+                <i class="icon-white icon-resize-vertical"></i> 
+                <span class="count">{{=it.count_measure}}</span>
+            </span>
+            <span{{?it.count_color == 0}} class="zero"{{?}}>
+                <i class="icon-white icon-tint"></i> 
+                <span class="count">{{=it.count_color}}</span>
+            </span>
+            <span{{?it.count_font == 0}} class="zero"{{?}}>
+                <i class="icon-white icon-font"></i> 
+                <span class="count">{{=it.count_font}}</span>
+            </span>
+            <span{{?it.count_module == 0}} class="zero"{{?}}>
+                <i class="icon-white icon-th-large"></i> 
+                <span class="count">{{=it.count_module}}</span>
+            </span>
+        </div>
+    </a>
+    <p class="title">
+        <a href="javascript:;" data-screen="{{=it.id}}" data-title="{{=it.title}}">
+            <span>{{=it.title}}</span>
+        </a>
+    </p>
+    <p class="meta">
+        <span class="size">{{?it.width}}{{=it.width}} &times; {{=it.height}}{{??}}Uploading...{{?}}</span>
+        {{?it.editable}}
+        <a href="javascript:;" class="btn-replace" data-screen="{{=it.id}}">Replace</a>
+        <a class="delete delete-screen" data-screen="{{=it.id}}" href="javascript:;">×</a>
+        {{?}}
+    </p>
+</li>
+</script>

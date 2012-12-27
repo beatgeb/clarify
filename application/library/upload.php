@@ -33,7 +33,6 @@ class UploadHandler
             'max_number_of_files' => null,
             // Set the following option to false to enable non-multipart uploads:
             'discard_aborted_uploads' => true,
-            // Set to true to rotate images based on EXIF meta data, if available:
             'orient_image' => false,
             'image_versions' => array(
                 'thumbnail' => array(
@@ -258,9 +257,12 @@ class UploadHandler
         }
 
         $file = new stdClass();
+        $file->id = $id;
         $file->name = $this->trim_file_name($name, $type);
         $file->size = intval($size);
         $file->type = $type;
+        $file->width = $width;
+        $file->height = $height;
         $file->newname = md5($id . config('security.general.hash')) . '.' . substr($type,strpos($type,'/')+1);
         $error = $this->has_error($uploaded_file, $file, $error);
         if (!$error && $file->name) {
