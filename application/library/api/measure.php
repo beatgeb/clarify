@@ -2,7 +2,6 @@
 
 lock();
 
-// Measure API
 define('API_MEASURE_ADD', 'measure.add');
 define('API_MEASURE_GET', 'measure.get');
 define('API_MEASURE_MOVE', 'measure.move');
@@ -11,6 +10,21 @@ define('API_MEASURE_DELETE', 'measure.delete');
 
 switch ($action) {
         
+    /** 
+     * @permission VIEW 
+     */
+    case API_MEASURE_GET:
+        $screen = intval($route[4]);
+        if ($screen < 1) { die('Please provide a screen id'); }
+        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
+        permission($screen['project'], 'VIEW');
+        $data = $db->data("SELECT id, x, y, width, height FROM measure WHERE screen = '" . $screen['id'] . "'");
+        json($data);
+        break;
+
+    /** 
+     * @permission EDIT 
+     */
     case API_MEASURE_ADD:
         $screen = intval($route[4]);
         $x = intval($route[5]);
@@ -32,23 +46,26 @@ switch ($action) {
             'width' => $width,
             'height' => $height
         );
-        $id = $db->insert('measure', $measure);
+        $measure['id'] = $db->insert('measure', $measure);
+
+        // increase measure count on screen
         $db->query("UPDATE screen SET count_measure = count_measure + 1 WHERE id = " . $screen['id'] . "");
-        $measure['id'] = $id;
-        header('Content-Type: application/json');
-        echo json_encode($measure);
+        
+        // log activity
+        activity_add(
+            '{actor} measured {object} on screen {target}', 
+            userid(), OBJECT_TYPE_USER, user('name'), 
+            ACTIVITY_VERB_ADD, 
+            $measure['id'], OBJECT_TYPE_MEASURE, $width . 'x' . $height, 
+            $screen['id'], OBJECT_TYPE_SCREEN, null
+        );
+
+        json($measure);
         break;
         
-    case API_MEASURE_GET:
-        $screen = intval($route[4]);
-        if ($screen < 1) { die('Please provide a screen id'); }
-        $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
-        permission($screen['project'], 'VIEW');
-        $data = $db->data("SELECT id, x, y, width, height FROM measure WHERE screen = '" . $screen['id'] . "'");
-        header('Content-Type: application/json');
-        echo json_encode($data);
-        break;
-        
+    /** 
+     * @permission EDIT 
+     */
     case API_MEASURE_MOVE:
         $id = intval($route[4]);
         $x = intval($route[5]);
@@ -66,6 +83,9 @@ switch ($action) {
         $db->update('measure', $data, array('id' => $id));
         break;
     
+    /** 
+     * @permission EDIT 
+     */
     case API_MEASURE_RESIZE:
         $id = intval($route[4]);
         $width = intval($route[5]);
@@ -85,6 +105,9 @@ switch ($action) {
         $db->update('measure', $data, array('id' => $id));
         break;
     
+    /** 
+     * @permission EDIT 
+     */
     case API_MEASURE_DELETE:
         $id = intval($route[4]);
         if ($id < 1) { die('Please provide a measure id'); }
@@ -93,7 +116,8 @@ switch ($action) {
         permission($measure['project'], 'EDIT');
         $db->delete('measure', array('id' => $id));
         $db->query("UPDATE screen SET count_measure = count_measure - 1 WHERE id = " . $measure['screen'] . "");
-        echo json_encode(array('RESULT' => 'OK'));
+        $response = array('RESULT' => 'OK');
+        json($response);
         break;
     
 }

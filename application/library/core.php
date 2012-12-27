@@ -175,4 +175,9 @@ function gravatar($email, $size) {
     return $grav_url;
 }
 
+function json($data) {
+    header('Content-Type: application/json');
+    echo json_encode($data);
+}
+
 ?>
