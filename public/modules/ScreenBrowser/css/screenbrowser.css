@@ -2,6 +2,29 @@
     margin-left: 270px;
 }
 
+.modScreenBrowser .intro {
+    font-family:'Lexia W01 Regular', helvetica, arial, sans-serif;
+    color: #444;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 40px 45px 0 45px;
+    width: 500px;
+}
+
+.modScreenBrowser .intro span,
+.modScreenBrowser .intro a {
+    background: #fffad8;
+    font-weight: normal;
+    padding: 0 4px;
+    color: #000;
+    text-decoration: none;
+}
+
+.modScreenBrowser .intro strong {
+    color: #000;
+    font-weight: normal;
+}
+
 .modScreenBrowser .head {
     overflow: hidden;
     border-bottom: 1px solid #DDD;
@@ -254,6 +277,7 @@
     color: #FFF;
     margin: 40px 45px;
     font-size: 18px;
+    font-weight: bold;
     text-decoration: none;
     -webkit-border-radius: 4px;
     border-radius: 4px;

@@ -185,6 +185,7 @@
 
             $('.btn-create-project', $ctx).on('click', function() {
                 $(this).fadeOut('fast');
+                $('.intro', this.$ctx).fadeOut('fast');
                 $('.add-project').slideToggle('fast', function() {
                     $('.project-name').focus();
                 });

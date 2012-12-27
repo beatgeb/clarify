@@ -97,7 +97,7 @@ $colors = $db->data("
             <h2><?php print $project['name'] ?></h2>
         <?php } ?>
     <?php } else { ?>
-        <h2>Dashboard</h2>
+        <h2>&nbsp;</h2>
     <?php } ?>
     <?php if ($project_id > 0) { ?>
     <div class="actions">
@@ -209,5 +209,8 @@ $colors = $db->data("
 <input class="fileupload" type="file" name="files[]" multiple>
 <input class="fileupload-replace" type="file" name="files_replace[]">
 <?php } else { ?>
+<p class="intro">
+    <strong>Clarify</strong> is a new way to manage &amp; share your design screens, whether they're wireframes or finished designs. Just <span>create a project</span> and <span>upload a screen</span> (png or jpg) to get started. We're still in beta, so please send feedback or report bugs to <a href="mailto:support@clarify.io?subject=Feedback">support@clarify.io</a>.
+</p>
 <a class="btn-create-project" href="#">Create Project</a>
 <?php } ?>
