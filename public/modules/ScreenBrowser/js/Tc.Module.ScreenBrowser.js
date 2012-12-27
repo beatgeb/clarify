@@ -67,6 +67,7 @@
 
             $('.fileupload-replace').fileupload({
                 dataType: 'json',
+                dropZone: null,
                 url: '/api/screen/replace/',
                 progress: function (e, data) {
                     var progress = parseInt(data.loaded / data.total * 100, 10);
