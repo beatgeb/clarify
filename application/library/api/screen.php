@@ -86,6 +86,8 @@ switch ($action) {
         $db->delete('measure', array('screen' => $screen['id']));
         $db->delete('screen', array('id' => $screen['id']));
         $db->query("UPDATE project SET screen_count = screen_count - 1 WHERE id = " . $screen['project']);
+        $response = $screen;
+        json($response);
         break;
 
     case API_SCREEN_REPLACE: 

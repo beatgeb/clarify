@@ -140,7 +140,10 @@
                         dataType: 'json',
                         type: 'POST',
                         success: function(data){
-                            location.reload();
+                            modal.cancel();
+                            $('.screen-' + data.id).fadeOut('fast', function() {
+                                $(this).remove();
+                            });
                         }
                     });
                 });
