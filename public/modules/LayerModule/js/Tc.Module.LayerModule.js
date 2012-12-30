@@ -167,6 +167,7 @@
 
             // enable drag and drop for measures
             measure.draggable({
+                distance: 30,
                 start: function() {
                     that.drag = true;
                 },
@@ -209,27 +210,53 @@
                 function(){
                     $('.picker').hide();
                     that.hover = true;
-                }, 
+                },
                 function(){
                     $('.picker').show();
                     that.hover = false;
                 }
             );
-                
-            // remove on double click
-            measure.bind('dblclick', function(e) {
-                $.ajax({
-                    url: "/api/module/remove/" + id,
-                    dataType: 'json',
-                    success: function(data){
-                        if(data.remove) {
-                            // delete the module from the module library
-                            $('[data-id=' + data.remove + ']',  $('.modModuleLibrary')).remove();
+           
+            measure.on('mousedown', function(e) {
+                return false;
+            });
+
+            measure.on('click', function(e) {
+                if ($(this).is('.ui-draggable-dragging')) {
+                    return;
+                }
+                $module = $('.modModuleLibrary .module[data-id=' + module + ']');
+                var data = { 'name': $module.data('name') };
+                var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+                modal.open('edit-module', data, function() {
+                    var name = $(this).closest('.modal').find('.fld-name').val();
+                    $.ajax({
+                        url: "/api/module/rename/" + module,
+                        dataType: 'json',
+                        data: { 'name': name },
+                        success: function(data){
+                            $('.measure[data-module=' + module + ']', $ctx).find('.meta .desc').text(data.name);
+                            $('.desc', $module).text(data.name).show();
+                            $module.data('name', data.name);
+                            modal.cancel();
                         }
-                        measure.remove();
-                    }
+                    });
+                }, function() {
+                    $.ajax({
+                        url: "/api/module/remove/" + id,
+                        dataType: 'json',
+                        success: function(data){
+                            if(data.remove) {
+                                // delete the module from the module library
+                                $('[data-id=' + data.remove + ']',  $('.modModuleLibrary')).remove();
+                            }
+                            measure.remove();
+                            modal.cancel();
+                        }
+                    });
                 });
-                that.hover = false;
+                e.stopPropagation();
+                return false;
             });
 
             // set width, height and position of measurement

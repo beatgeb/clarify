@@ -222,7 +222,7 @@ switch ($action) {
         $name = $_REQUEST['name'];
         $skin = null;
         if ($id < 1) { die('Please provide a module id'); }
-
+        
         $module = $db->single("
             SELECT project
             FROM project_module

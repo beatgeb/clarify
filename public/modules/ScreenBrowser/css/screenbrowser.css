@@ -175,6 +175,10 @@
 }
 
 .modScreenBrowser ul li.create .placeholder div {
+    /*
+    background: #FFF url(/img/screen-upload@2x.png) no-repeat;
+    background-size: 200px 160px;
+    */
     background: #FFF;
     border: 1px dashed #DDD;
     width: 198px;
