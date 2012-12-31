@@ -6,6 +6,7 @@ lock();
 define('API_SET_ADD', 'set.add');
 define('API_SET_CREATE', 'set.create');
 define('API_SET_DELETE', 'set.delete');
+define('API_SET_SETTING', 'set.setting');
 
 switch ($action) {
     
@@ -15,6 +16,24 @@ switch ($action) {
         permission($set['project'], 'EDIT');
         $db->delete('set', array('id' => $set_id));
         $db->delete('set_screen', array('set' => $set_id));
+        break;
+
+    case API_SET_SETTING:
+        lock();
+        $set = intval($route[4]);
+        $set = $db->single("SELECT id, project FROM `set` WHERE id = " . $set . "");
+        if (!$set) { die(); }
+
+        // check permissions
+        permission($set['project'], 'EDIT');
+
+        $setting = $route[5];
+        switch ($setting) {
+            case 'name':
+                $value = $route[6];
+                $db->update('set', array('name' => urldecode($value)), array('id' => $set['id']));
+                break;
+        }
         break;
 
     case API_SET_CREATE:

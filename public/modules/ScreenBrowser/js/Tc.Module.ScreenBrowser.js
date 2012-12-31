@@ -93,7 +93,7 @@
                 return false;
             });
 
-            $('.title > a').on('click', function(e) {
+            $('.screen .title > a').on('click', function(e) {
                 var screen = $(this).data('screen');
                 var title = $(this).data('title');
                 var data = { 'screen': screen, 'name': title };
@@ -102,6 +102,25 @@
                     var $input = $(this).closest('.modal').find('.fld-name');
                     $.ajax({
                         url: "/api/screen/setting/" + screen + "/title/" + encodeURIComponent($input.val()),
+                        dataType: 'json',
+                        type: 'POST',
+                        success: function(data){
+                            location.reload();
+                        }
+                    });
+                });
+                return false;
+            });
+
+            $('.set .title > a').on('click', function(e) {
+                var set = $(this).data('set');
+                var name = $(this).data('name');
+                var data = { 'set': set, 'name': name };
+                var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+                modal.open('rename-set', data, function() {
+                    var $input = $(this).closest('.modal').find('.fld-name');
+                    $.ajax({
+                        url: "/api/set/setting/" + set + "/name/" + encodeURIComponent($input.val()),
                         dataType: 'json',
                         type: 'POST',
                         success: function(data){
