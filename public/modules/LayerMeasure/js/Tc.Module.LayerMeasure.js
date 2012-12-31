@@ -13,6 +13,7 @@
         resize: false,
         drag: false,
         hover: false,
+        selected: [],
         
         on: function(callback) {
             var that = this;
@@ -27,6 +28,11 @@
                     that.activate();
                 }
             });
+
+            // bind delete with backspace
+            $('html').keydown(function(e){
+                that.keydown(e);
+            });
             
             // subscribe to the keyboard-channel
             this.sandbox.subscribe('keyboard', this);
@@ -36,6 +42,7 @@
 
         after: function() {
             var that = this;
+            // bind layer switcher to m
             this.fire('RegisterShortcut', {
                 'moduleId': that.id,
                 'shortcut': 'm',
@@ -119,6 +126,32 @@
             
             this.load();
         },
+
+        keydown: function(e) {
+            var that = this;
+            switch (e.keyCode) {
+                case 8: // backspace
+                case 46: // delete
+                    that.remove();
+                    return false;
+                case 39: // arrow right
+                    that.move(1, 0);
+                    e.preventDefault();
+                    return false;
+                case 40: // arrow down
+                    that.move(0, 1);
+                    e.preventDefault();
+                    return false;
+                case 38: // arrow up
+                    that.move(0, -1);
+                    e.preventDefault();
+                    return false;
+                case 37: // arrow left
+                    that.move(-1, 0);
+                    e.preventDefault();
+                    return false;
+            }
+        },
         
         load: function() {
             var that = this;
@@ -135,16 +168,70 @@
                 }
             });
         },
+
+        // move selected measures by defined x and y offsets
+        move: function(x, y) {
+            var that = this;
+            $.each(that.selected, function(key, item) {
+                var new_x = $(item).position().left + x;
+                var new_y = $(item).position().top + y;
+                $(item).css({
+                    left: new_x + 'px',
+                    top: new_y + 'px'
+                });
+                $.ajax({
+                    url: "/api/measure/move/" + $(item).data('id') + "/" + new_x + "/" + new_y,
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function(data){ }
+                });
+            });
+        },
+
+        remove: function() {
+            var that = this;
+            $.each(that.selected, function(key, item) {
+                var id = $(item).data('id');
+                $.ajax({
+                    url: "/api/measure/delete/" + id,
+                    dataType: 'json',
+                    success: function(data){
+                        $(item).remove();
+                        that.selected = [];
+                        that.hover = false;
+                    }
+                });
+            });
+        },
         
         addMeasure: function(id, x, y, width, height) {
             var $ctx = this.$ctx;
             var that = this;
             var label = width + ' x ' + height;
-            var measure = $('<div class="measure"><div class="meta">' + label + '</div></div>');
+            var measure = $('<div class="measure"><div class="meta">' + label + '</div><div class="handle handle-ne"></div><div class="handle handle-n"></div><div class="handle handle-nw"></div><div class="handle handle-e"></div><div class="handle handle-w"></div><div class="handle handle-se"></div><div class="handle handle-s"></div><div class="handle handle-sw"></div></div>');
             
+            // set id attribute
+            measure.data('id', id);
+
+            // don't propagate mousedown event to avoid further actions
+            measure.on('mousedown', function(e) {
+                $('.picker').hide();
+                that.hover = true;
+                var selected = !measure.data('selected');
+                $('.measure', $ctx).data('selected', false);
+                $('.measure', $ctx).removeClass('selected');
+                $('.measure', $ctx).resizable('disable');
+                measure.data('selected', selected);
+                measure.addClass('selected');
+                measure.resizable('enable');
+                that.selected = [ measure ];
+                e.stopPropagation();
+            });
+
+
             // enable drag and drop for measures
             measure.draggable({
-                distance: 30,
+                distance: 10,
                 start: function() {
                     that.drag = true;
                 },
@@ -162,7 +249,9 @@
                 }
             });
             
+            // enable resizing of measures
             measure.resizable({
+                disabled: true,
                 handles: 'n, e, s, w, se, ne, nw, sw',
                 minHeight: 1,
                 minWidth: 1,
@@ -179,7 +268,7 @@
                         type: 'POST',
                         success: function(data){
                             // if the position of the element has changed
-                            if (ui.originalPosition.top != ui.position.top || 
+                            if (ui.originalPosition.top != ui.position.top ||
                                 ui.originalPosition.left != ui.position.left) {
                                 $.ajax({
                                     url: "/api/measure/move/" + id + "/" + ui.position.left + "/" + ui.position.top,
@@ -197,24 +286,20 @@
                     that.resize = false;
                 }
             });
-            
+
             // show / hide picker on hover
             measure.hover(
                 function(){
                     $('.picker').hide();
                     that.hover = true;
-                }, 
+                },
                 function(){
                     $('.picker').show();
                     that.hover = false;
                 }
             );
 
-            measure.on('mousedown', function(e) {
-                return false;
-            });
-
-            measure.on('click', function(e) {
+            measure.on('dblclick', function(e) {
                 if ($(this).is('.ui-draggable-dragging')) {
                     return;
                 }
@@ -229,7 +314,7 @@
                         type: 'POST',
                         success: function(data){
                             measure.css({
-                                width: new_width, 
+                                width: new_width,
                                 height: new_height
                             });
                             width = new_width;
@@ -251,14 +336,13 @@
                 e.stopPropagation();
                 return false;
             });
-            
+           
             // set width, height and position of measurement
-            measure.css({ 
-                left: x + 'px', 
-                top: y + 'px', 
-                width: width, 
+            measure.css({
+                left: x + 'px',
+                top: y + 'px',
+                width: width,
                 height: height,
-                cursor: 'move',
                 position: 'absolute'
             });
             
