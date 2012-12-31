@@ -128,6 +128,12 @@
         },
 
         keydown: function(e) {
+            if (!this.active) {
+                return;
+            }
+            if (e.srcElement.localName == 'textarea' || e.srcElement.localName == 'input' || e.srcElement.localName == 'select') { 
+                return;
+            }
             var that = this;
             switch (e.keyCode) {
                 case 8: // backspace
@@ -209,7 +215,7 @@
             var $ctx = this.$ctx;
             var that = this;
             var label = width + ' x ' + height;
-            var measure = $('<div class="measure"><div class="meta">' + label + '</div><div class="handle handle-ne"></div><div class="handle handle-n"></div><div class="handle handle-nw"></div><div class="handle handle-e"></div><div class="handle handle-w"></div><div class="handle handle-se"></div><div class="handle handle-s"></div><div class="handle handle-sw"></div></div>');
+            var measure = $('<div class="measure"><div class="meta">' + label + '</div></div>');
             
             // set id attribute
             measure.data('id', id);

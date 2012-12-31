@@ -14,6 +14,7 @@
         drag: false,
         hover: false,
         next: 1,
+        selected: [],
         
         on: function(callback) {
             var that = this;
@@ -31,6 +32,12 @@
                     that.activate();
                 }
             });
+
+            // bind delete with backspace
+            $('html').keydown(function(e){
+                that.keydown(e);
+            });
+            
             callback();
         },
 
@@ -159,15 +166,105 @@
                 }
             });
         },
+
+        keydown: function(e) {
+            if (!this.active) {
+                return;
+            }
+            if (e.srcElement.localName == 'textarea' || e.srcElement.localName == 'input' || e.srcElement.localName == 'select') { 
+                return;
+            }
+            var that = this;
+            switch (e.keyCode) {
+                case 8: // backspace
+                case 46: // delete
+                    that.remove();
+                    e.preventDefault();
+                    return false;
+                case 39: // arrow right
+                    that.move(1, 0);
+                    e.preventDefault();
+                    return false;
+                case 40: // arrow down
+                    that.move(0, 1);
+                    e.preventDefault();
+                    return false;
+                case 38: // arrow up
+                    that.move(0, -1);
+                    e.preventDefault();
+                    return false;
+                case 37: // arrow left
+                    that.move(-1, 0);
+                    e.preventDefault();
+                    return false;
+            }
+        },
         
+        // move selected measures by defined x and y offsets
+        move: function(x, y) {
+            var that = this;
+            $.each(that.selected, function(key, item) {
+                var new_x = $(item).position().left + x;
+                var new_y = $(item).position().top + y;
+                $(item).css({
+                    left: new_x + 'px',
+                    top: new_y + 'px'
+                });
+                $.ajax({
+                    url: "/api/module/move/" + $(item).data('id') + "/" + new_x + "/" + new_y,
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function(data){ }
+                });
+            });
+        },
+
+        remove: function() {
+            var that = this;
+            $.each(that.selected, function(key, item) {
+                var id = $(item).data('id');
+                $.ajax({
+                    url: "/api/module/remove/" + id,
+                    dataType: 'json',
+                    success: function(data){
+                        $(item).remove();
+                        that.selected = [];
+                        that.hover = false;
+                        if(data.remove) {
+                            // delete the module from the module library
+                            $('[data-id=' + data.remove + ']',  $('.modModuleLibrary')).remove();
+                        }
+                    }
+                });
+            });
+        },
+
         addModule: function(id, module, x, y, width, height, name) {
             var $ctx = this.$ctx;
             var that = this;
             var measure = $('<div class="measure" data-module="' + module + '"><div class="meta"><span class="desc">' + name + '</span> <a href="#" title="recapture" class="screenshot"><i class="icon icon-white icon-camera"></i></a></div></div>');
 
+            // set id attribute
+            measure.data('id', id);
+            
+            // don't propagate mousedown event to avoid further actions
+            measure.on('mousedown', function(e) {
+                $('.picker').hide();
+                that.hover = true;
+                var selected = !measure.data('selected');
+                $('.measure', $ctx).data('selected', false);
+                $('.measure', $ctx).removeClass('selected');
+                $('.measure', $ctx).resizable('disable');
+                measure.data('selected', selected);
+                measure.addClass('selected');
+                measure.resizable('enable');
+                that.selected = [ measure ];
+                e.stopPropagation();
+            });
+
             // enable drag and drop for measures
             measure.draggable({
-                distance: 30,
+                distance: 10,
                 start: function() {
                     that.drag = true;
                 },
@@ -186,6 +283,7 @@
             });
             
             measure.resizable({
+                disabled: true,
                 handles: 'n, e, s, w, se, ne, nw, sw',
                 minHeight: 1,
                 minWidth: 1,
@@ -216,12 +314,8 @@
                     that.hover = false;
                 }
             );
-           
-            measure.on('mousedown', function(e) {
-                return false;
-            });
 
-            measure.on('click', function(e) {
+            measure.on('dblclick', function(e) {
                 if ($(this).is('.ui-draggable-dragging')) {
                     return;
                 }

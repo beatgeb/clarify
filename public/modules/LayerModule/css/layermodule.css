@@ -8,8 +8,9 @@
 
 .modLayerModule .measure {
     background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid #434343;
     position: absolute;
+    -webkit-box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 1);
+    box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 1);
 }
 
 .modLayerModule .measure .meta,
@@ -54,4 +55,77 @@
 .modLayerModule a {
     color: #FFF;
     text-decoration: none;
+}
+/* handles */
+.modLayerModule .ui-resizable-handle {
+    display: none !important;
+    position: absolute;
+    background: rgba(0,0,0,0.5);
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    border: 2px solid rgba(255,255,255,0.8);
+}
+.modLayerModule .ui-resizable-handle:hover {
+    background: rgba(0,0,0,0.8);
+    border: 2px solid rgba(255,255,255,1);
+}
+
+.modLayerModule .selected .ui-resizable-handle {
+    display: block !important;
+}
+
+.modLayerModule .ui-resizable-nw {
+    left: 0;
+    top: 0;
+    margin-top: -6px;
+    margin-left: -6px;
+}
+
+.modLayerModule .ui-resizable-n {
+    left: 50%;
+    top: 0;
+    margin-top: -6px;
+    margin-left: -6px;
+}
+
+.modLayerModule .ui-resizable-ne {
+    right: 0;
+    top: 0;
+    margin-top: -6px;
+    margin-right: -6px;
+}
+
+.modLayerModule .ui-resizable-w {
+    left: 0;
+    top: 50%;
+    margin-top: -6px;
+    margin-left: -6px;
+}
+
+.modLayerModule .ui-resizable-e {
+    right: 0;
+    top: 50%;
+    margin-top: -6px;
+    margin-right: -6px;
+}
+
+.modLayerModule .ui-resizable-s {
+    left: 50%;
+    bottom: 0;
+    margin-bottom: -6px;
+    margin-left: -6px;
+}
+
+.modLayerModule .ui-resizable-sw {
+    left: 0;
+    bottom: 0;
+    margin-bottom: -6px;
+    margin-left: -6px;
+}
+.modLayerModule .ui-resizable-se {
+    right: 0;
+    bottom: 0;
+    margin-bottom: -6px;
+    margin-right: -6px;
 }
