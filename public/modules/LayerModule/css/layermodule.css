@@ -23,22 +23,22 @@
     font-family: helvetica; 
     font-size: 12px;
     position: absolute; 
-    bottom: 0;
+    bottom: -20px;
     left: 0;
+    height: 14px;
     color: #FFF;
-    -webkit-border-radius: 0px 3px 0px 0px;
-    border-radius: 0px 3px 0px 0px;
     text-shadow: 1px 1px 0 #000; 
     background-color: #434343;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(67, 67, 67)), to(rgb(45, 45, 45)));
-    background-image: -webkit-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
-    background-image: -moz-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
-    background-image: -o-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
-    background-image: -ms-linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
-    background-image: linear-gradient(top, rgb(67, 67, 67), rgb(45, 45, 45));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#434343', EndColorStr='#2d2d2d');
     padding: 3px 6px;
     white-space: nowrap;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modLayerModule .measure:hover .meta,
+.modLayerModule .measure-helper:hover .meta {
+    background: #000;
+    z-index: 11;
 }
 
 .modLayerModule .measure-helper .meta {
@@ -66,9 +66,9 @@
     display: none !important;
     position: absolute;
     background: rgba(0,0,0,0.5);
-    width: 8px;
-    height: 8px;
-    border-radius: 8px;
+    width: 7px;
+    height: 7px;
+    border-radius: 7px;
     border: 2px solid rgba(255,255,255,0.8);
 }
 .modLayerModule .ui-resizable-handle:hover {
@@ -83,54 +83,54 @@
 .modLayerModule .ui-resizable-nw {
     left: 0;
     top: 0;
-    margin-top: -6px;
-    margin-left: -6px;
+    margin-top: -5px;
+    margin-left: -5px;
 }
 
 .modLayerModule .ui-resizable-n {
     left: 50%;
     top: 0;
-    margin-top: -6px;
-    margin-left: -6px;
+    margin-top: -5px;
+    margin-left: -5px;
 }
 
 .modLayerModule .ui-resizable-ne {
     right: 0;
     top: 0;
-    margin-top: -6px;
-    margin-right: -6px;
+    margin-top: -5px;
+    margin-right: -5px;
 }
 
 .modLayerModule .ui-resizable-w {
     left: 0;
     top: 50%;
-    margin-top: -6px;
-    margin-left: -6px;
+    margin-top: -5px;
+    margin-left: -5px;
 }
 
 .modLayerModule .ui-resizable-e {
     right: 0;
     top: 50%;
-    margin-top: -6px;
-    margin-right: -6px;
+    margin-top: -5px;
+    margin-right: -5px;
 }
 
 .modLayerModule .ui-resizable-s {
     left: 50%;
     bottom: 0;
-    margin-bottom: -6px;
-    margin-left: -6px;
+    margin-bottom: -5px;
+    margin-left: -5px;
 }
 
 .modLayerModule .ui-resizable-sw {
     left: 0;
     bottom: 0;
-    margin-bottom: -6px;
-    margin-left: -6px;
+    margin-bottom: -5px;
+    margin-left: -5px;
 }
 .modLayerModule .ui-resizable-se {
     right: 0;
     bottom: 0;
-    margin-bottom: -6px;
-    margin-right: -6px;
+    margin-bottom: -5px;
+    margin-right: -5px;
 }

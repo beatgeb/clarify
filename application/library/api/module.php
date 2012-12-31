@@ -47,7 +47,21 @@ switch ($action) {
         if ($screen < 1) { die('Please provide a screen id'); }
         $screen = $db->single("SELECT id, project FROM screen WHERE id = '" . $screen . "'");
         permission($screen['project'], 'VIEW');
-        $data = $db->data("SELECT m.id, m.module, m.x, m.y, m.width, m.height, pm.name, pm.skin FROM module m LEFT JOIN project_module pm ON pm.id = m.module WHERE m.screen = " . $screen['id']);
+        $data = $db->data("
+            SELECT 
+                m.id, 
+                m.module, 
+                m.x, 
+                m.y, 
+                m.width, 
+                m.height, 
+                pm.name, 
+                pm.skin 
+            FROM module m 
+                LEFT JOIN project_module pm ON pm.id = m.module 
+            WHERE 
+                m.screen = " . $screen['id'] . "
+        ");
         header('Content-Type: application/json');
         echo json_encode($data);
         break;

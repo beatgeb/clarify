@@ -64,12 +64,19 @@
             var helper;
             var $library = $('.modModuleLibrary');
             var $modules = $('.module', $library);
+            $('.btn-modules').addClass('active');
+
+            // load modules
+            this.load();
+
+            // fill module library
             $.each($modules, function() {
                 that.addLibraryModule($(this));
             });
-            $('.btn-modules').addClass('active');
 
+            // show module library
             $library.show();
+
             $('.modScreen').eyedrop({
                 mode: 'range',
                 'display': false,
@@ -128,8 +135,6 @@
                     $('.measure', $ctx).show();
                 }
             });
-            
-            this.load();
         },
         
         load: function() {
