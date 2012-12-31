@@ -329,14 +329,7 @@ b);throw t;}};j.compile=function(b,a){return j.template(b,null,a)}})();/*! jQuer
   , template: '<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
   }
 
-}( window.jQuery );/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+}( window.jQuery );
 (function($){
     window.$canvas = null;
     $.fn.eyedrop = function(options) {
@@ -1851,14 +1844,7 @@ b);throw t;}};j.compile=function(b,a){return j.template(b,null,a)}})();/*! jQuer
         }
 
     });
-})(Tc.$);/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+})(Tc.$);
 (function($) { 
     Tc.Module.Auth = Tc.Module.extend({        
         on: function(callback) {
@@ -1954,14 +1940,7 @@ b);throw t;}};j.compile=function(b,a){return j.template(b,null,a)}})();/*! jQuer
             location.href = '/auth/?start=1';
         }
     });
-})(Tc.$);/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+})(Tc.$);
 (function($) { 
     Tc.Module.ColorLibrary = Tc.Module.extend({        
         on: function(callback) {
@@ -2078,14 +2057,7 @@ b);throw t;}};j.compile=function(b,a){return j.template(b,null,a)}})();/*! jQuer
             this.registeredModules.splice( $.inArray(data.moduleID, this.registeredModules), 1 );
         }
     });
-})(Tc.$);/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+})(Tc.$);
 (function($) { 
     Tc.Module.LayerColor = Tc.Module.extend({
         
@@ -2280,14 +2252,7 @@ b);throw t;}};j.compile=function(b,a){return j.template(b,null,a)}})();/*! jQuer
             }
         }
     });
-})(Tc.$);/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+})(Tc.$);
 (function($) { 
     Tc.Module.LayerComment = Tc.Module.extend({
         
@@ -2511,14 +2476,7 @@ b);throw t;}};j.compile=function(b,a){return j.template(b,null,a)}})();/*! jQuer
             });
         }
     });
-})(Tc.$);/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+})(Tc.$);
 (function($) { 
     Tc.Module.LayerMeasure = Tc.Module.extend({
         
@@ -2728,14 +2686,7 @@ b);throw t;}};j.compile=function(b,a){return j.template(b,null,a)}})();/*! jQuer
             $ctx.append(measure);
         }
     });
-})(Tc.$);/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+})(Tc.$);
 (function($) { 
     Tc.Module.LayerModule = Tc.Module.extend({
         
@@ -3012,14 +2963,7 @@ b);throw t;}};j.compile=function(b,a){return j.template(b,null,a)}})();/*! jQuer
             });
         }
     });
-})(Tc.$);/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+})(Tc.$);
 (function($) { 
     Tc.Module.LayerTypography = Tc.Module.extend({
         
@@ -3351,14 +3295,7 @@ b);throw t;}};j.compile=function(b,a){return j.template(b,null,a)}})();/*! jQuer
         }
 
     });
-})(Tc.$);/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+})(Tc.$);
 (function($) { 
     Tc.Module.ModuleLibrary = Tc.Module.extend({
         on: function(callback) {
@@ -3509,14 +3446,7 @@ b);throw t;}};j.compile=function(b,a){return j.template(b,null,a)}})();/*! jQuer
             }
         }
     });
-})(Tc.$);/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+})(Tc.$);
 (function($) {
     Tc.Module.Screen = Tc.Module.extend({
         on: function(callback) {
@@ -3540,14 +3470,7 @@ b);throw t;}};j.compile=function(b,a){return j.template(b,null,a)}})();/*! jQuer
             callback();
         }
     });
-})(Tc.$);/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+})(Tc.$);
 (function($) {
     Tc.Module.ScreenBrowser = Tc.Module.extend({
 
@@ -3705,14 +3628,7 @@ b);throw t;}};j.compile=function(b,a){return j.template(b,null,a)}})();/*! jQuer
             callback();
         }
     });
-})(Tc.$);/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+})(Tc.$);
 (function($) { 
     Tc.Module.Toolbar = Tc.Module.extend({
         on: function(callback) {

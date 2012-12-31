@@ -10,6 +10,7 @@ define('API_MODULE_RESIZE', 'module.resize');
 define('API_MODULE_REMOVE', 'module.remove');
 define('API_MODULE_RENAME', 'module.rename');
 define('API_MODULE_RECAPTURE', 'module.recapture');
+define('API_MODULE_DATA', 'module.data');
 
 switch ($action) {
     case API_MODULE_REMOVE:
@@ -245,4 +246,27 @@ switch ($action) {
         header('Content-Type: application/json');
         echo json_encode($data);
         break;
+
+    case API_MODULE_DATA:
+        $id = intval($route[4]);
+        if ($id < 1) { die('Please provide a module id'); }
+        $module = $db->single("
+            SELECT 
+                m.id,
+                m.module, 
+                m.x, 
+                m.y, 
+                m.width, 
+                m.height, 
+                pm.project,
+                pm.name, 
+                pm.skin
+            FROM module m
+                LEFT JOIN project_module pm ON pm.id = m.module
+            WHERE m.id = '" . $id . "'
+        ");
+        permission($module['project'], 'VIEW');
+        json($module);
+        break;
+
 }

@@ -1,11 +1,4 @@
-/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+
 (function($) { 
     Tc.Module.LayerColor = Tc.Module.extend({
         
@@ -103,26 +96,6 @@
         
         addLibraryColor: function(data) {
             var that = this;
-            /*
-            $(color).css('backgroundColor', data.hex));
-            $(color).draggable({
-                helper: "clone",
-                revert: "true",
-                cursorAt: {top: 0, left: -20},
-                stop: function(e) {
-                    var offset = $('.modScreen').offset();
-                    var x = e.pageX - offset.left;
-                    var y = e.pageY - offset.top;
-                    $.ajax({
-                        url: "/api/color/add/" + $('.modScreen').data('screen') + "/" + x + "/" + y + "/" + $(color).data('id'),
-                        dataType: 'json',
-                        success: function(data){
-                            that.addColor(data, true);
-                        }
-                    });
-                }
-            });
-            */
             this.fire('colorAdded', data);
         },
         
@@ -136,12 +109,15 @@
             }
             var $meta = $('<a href="#" class="meta" data-slug="' + slug + '" data-hex="' + hex + '" data-name="' + color.name + '"><span class="name">' + label + '</span><br /><span class="hex">#' + color.hex + '</span></a>');
             var $element = $('<div class="color" data-project-color="' + color.color + '"><div class="p"></div></div>');
-            
+
             $element.on('click', function() {
+                if ($(this).is('.ui-draggable-dragging')) {
+                    return;
+                }
                 var $meta = $(this).find('.meta');
-                var data = { 
-                    'hex': $meta.data('hex').toUpperCase(), 
-                    'name': $meta.data('name'), 
+                var data = {
+                    'hex': $meta.data('hex').toUpperCase(),
+                    'name': $meta.data('name'),
                     'slug': $meta.data('slug')
                 };
                 var modal = that.sandbox.getModuleById($('.modModal').data('id'));
@@ -193,30 +169,31 @@
                 function(){
                     $('.picker').hide();
                     that.hover = true;
-                }, 
+                },
                 function(){
                     $('.picker').show();
                     that.hover = false;
                 }
             );
-                
-            // delete on double click
+
+            // enable drag and drop for colors
             /*
-            element.bind('dblclick', function(e) {
-                $.ajax({
-                    url: "/api/color/remove/" + color.id,
-                    dataType: 'json',
-                    success: function(data){
-                        element.remove();
-                        if (data.remove > 0) {
-                            $('.color-' + data.remove).remove();
-                            that.fire('colorRemoved', data.remove);
+            $element.draggable({
+                distance: 30,
+                start: function() {
+                    // NOOP
+                },
+                stop: function() {
+                    var nx = $(this).position().left;
+                    var ny = $(this).position().top;
+                    $.ajax({
+                        url: "/api/measure/move/" + id + "/" + nx + "/" + ny,
+                        dataType: 'json',
+                        success: function(data){
+                            // NOOP
                         }
-                    }
-                });
-                that.hover = false;
-                e.stopPropagation();
-                return false;
+                    });
+                }
             });
             */
             

@@ -1,11 +1,4 @@
-/**
- * Clarify.
- * 
- * Copyright (C) 2012 Roger Dudler <roger.dudler@gmail.com>
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
+
 (function($) { 
     Tc.Module.LayerModule = Tc.Module.extend({
         
@@ -319,38 +312,43 @@
                 if ($(this).is('.ui-draggable-dragging')) {
                     return;
                 }
-                $module = $('.modModuleLibrary .module[data-id=' + module + ']');
-                var data = { 'name': $module.data('name') };
-                var modal = that.sandbox.getModuleById($('.modModal').data('id'));
-                modal.open('edit-module', data, function() {
-                    var name = $(this).closest('.modal').find('.fld-name').val();
-                    $.ajax({
-                        url: "/api/module/rename/" + module,
-                        dataType: 'json',
-                        data: { 'name': name },
-                        success: function(data){
-                            $('.measure[data-module=' + module + ']', $ctx).find('.meta .desc').text(data.name);
-                            $('.desc', $module).text(data.name).show();
-                            $module.data('name', data.name);
-                            modal.cancel();
-                        }
-                    });
-                }, function() {
-                    $.ajax({
-                        url: "/api/module/remove/" + id,
-                        dataType: 'json',
-                        success: function(data){
-                            if(data.remove) {
-                                // delete the module from the module library
-                                $('[data-id=' + data.remove + ']',  $('.modModuleLibrary')).remove();
-                            }
-                            measure.remove();
-                            modal.cancel();
-                        }
-                    });
+                $.ajax({
+                    url: "/api/module/data/" + id,
+                    dataType: 'json',
+                    success: function(data){
+                        $module = $('.modModuleLibrary .module[data-id=' + module + ']');
+                        var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+                        modal.open('edit-module', data, function() {
+                            var name = $(this).closest('.modal').find('.fld-name').val();
+                            $.ajax({
+                                url: "/api/module/rename/" + module,
+                                dataType: 'json',
+                                data: { 'name': name },
+                                success: function(data){
+                                    $('.measure[data-module=' + module + ']', $ctx).find('.meta .desc').text(data.name);
+                                    $('.desc', $module).text(data.name).show();
+                                    $module.data('name', data.name);
+                                    modal.cancel();
+                                }
+                            });
+                        }, function() {
+                            $.ajax({
+                                url: "/api/module/remove/" + id,
+                                dataType: 'json',
+                                success: function(data){
+                                    if(data.remove) {
+                                        // delete the module from the module library
+                                        $('[data-id=' + data.remove + ']',  $('.modModuleLibrary')).remove();
+                                    }
+                                    measure.remove();
+                                    modal.cancel();
+                                }
+                            });
+                        });
+                        e.stopPropagation();
+                        return false;
+                    }
                 });
-                e.stopPropagation();
-                return false;
             });
 
             // set width, height and position of measurement
