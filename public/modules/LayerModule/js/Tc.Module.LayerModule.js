@@ -86,8 +86,8 @@
                 },
                 picking: function(x, y, w, h) {
                     if (!that.hover && helper) {
-                        var width = w - 2;
-                        var height = h - 2;
+                        var width = w;
+                        var height = h;
                         helper.css({
                             width: width + 'px',
                             height: height + 'px',
@@ -283,13 +283,26 @@
                 start: function() {
                     that.resize = true;
                 },
-                stop: function() {
+                stop: function(e, ui) {
                     $.ajax({
                         url: "/api/module/resize/" + id + "/" + $(this).width() + "/" + $(this).height(),
                         dataType: 'json',
                         type: 'POST',
                         success: function(data){
-                        // NOOP
+                            // if the position of the element has changed
+                            if (ui.originalPosition.top != ui.position.top ||
+                                ui.originalPosition.left != ui.position.left) {
+                                $.ajax({
+                                    url: "/api/module/move/" + id + "/" + ui.position.left + "/" + ui.position.top,
+                                    dataType: 'json',
+                                    type: 'POST',
+                                    success: function(data){
+                                        // NOOP
+                                    }
+                                });
+                            }
+                            width = ui.size.width;
+                            height = ui.size.height;
                         }
                     });
                     that.resize = false;
