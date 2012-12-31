@@ -246,7 +246,7 @@
 
             // set id attribute
             measure.data('id', id);
-            
+
             // don't propagate mousedown event to avoid further actions
             measure.on('mousedown', function(e) {
                 $('.picker').hide();
@@ -354,12 +354,11 @@
             });
 
             // set width, height and position of measurement
-            measure.css({ 
-                left: x + 'px', 
-                top: y + 'px', 
-                width: width - 2,
-                height: height - 2,
-                cursor: 'move',
+            measure.css({
+                left: x + 'px',
+                top: y + 'px',
+                width: width,
+                height: height,
                 position: 'absolute'
             });
 
