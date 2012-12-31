@@ -133,6 +133,7 @@
                 case 8: // backspace
                 case 46: // delete
                     that.remove();
+                    e.preventDefault();
                     return false;
                 case 39: // arrow right
                     that.move(1, 0);
