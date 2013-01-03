@@ -36,4 +36,5 @@
   }
   _kms('//i.kissmetrics.com/i.js');
   _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+  _kmq.push(['identify', '<?= user('email') ?>']);
 </script>
