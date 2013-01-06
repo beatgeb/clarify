@@ -1,13 +1,11 @@
 .modSidebar {
-	background: #444;
+	background: #E8E8E8;
 	position: fixed;
 	right: -260px;
 	top: 0;
 	bottom: 0;
 	width: 260px;
 	z-index: 2;
-	-webkit-box-shadow: -1px 0px 3px 0px rgba(0, 0, 0, 0.1);
-	box-shadow: -1px 0px 3px 0px rgba(0, 0, 0, 0.1);
 }
 a.btn-sidebar-toggle {
 	position: fixed;
@@ -46,8 +44,8 @@ a.btn-sidebar-toggle:hover .icon-reorder {
 	text-decoration: none;
 }
 .modSidebar .nav li.active a {
-	background: #444;
-	color: #FFF;
+	background: #E8E8E8;
+	color: #555;
 }
 .modSidebar .nav li.btn-close {
 	float: right;
@@ -61,19 +59,19 @@ a.btn-sidebar-toggle:hover .icon-reorder {
 .modSidebar .item {
 	padding: 10px;
 	font-size: 13px;
-	border-bottom: 1px solid #333;
 	line-height: 1.4;
 	cursor: pointer;
 }
 
 .modSidebar .item > p {
-	background: #BBB;
+	background: #FFF;
 	color: #444;
 	padding: 5px 8px;
-	font-size: 14px;
+	font-size: 13px;
 	border-radius: 2px;
 	position: relative;
-	font-family:"Lexia W01 Regular", "helvetica neue", helvetica, arial, sans-serif;
+    -webkit-box-shadow:  1px 1px 1px 0px rgba(0, 0, 0, 0.2);
+    box-shadow:  1px 1px 1px 0px rgba(0, 0, 0, 0.2);
 	
 }
 .modSidebar .item > p:after {
@@ -86,8 +84,8 @@ a.btn-sidebar-toggle:hover .icon-reorder {
 	pointer-events: none;
 }
 .modSidebar .item > p:after {
-	border-color: rgba(238, 238, 238, 0);
-	border-bottom-color: #BBB;
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #FFF;
 	border-width: 4px;
 	left: 30px;
 	margin-left: -4px;
@@ -95,8 +93,9 @@ a.btn-sidebar-toggle:hover .icon-reorder {
 .modSidebar .item .author {
 	line-height: 1.6;
 	font-size: 12px;
-	color: #BBB;
+	color: #666;
 	margin-bottom: 5px;
+	font-weight: bold;
 }
 .modSidebar .item .author .nr {
 	float: left;
@@ -120,7 +119,6 @@ a.btn-sidebar-toggle:hover .icon-reorder {
     margin-right: 5px;
 }
 .modSidebar .item .author p {
-	font-family:"Lexia W01 Regular", "helvetica neue", helvetica, arial, sans-serif;
 	float: left;
 }
 .modSidebar .item:hover {
@@ -147,31 +145,43 @@ a.btn-sidebar-toggle:hover .icon-reorder {
 
 /* color */
 .modSidebar .items-colors .item {
-
+    position: relative;
 }
 .modSidebar .items-colors .item:hover {
-	background: #333;
+	
 }
 .modSidebar .items-colors .item .color {
-	width: 30px;
-	height: 30px;
+	width: 15px;
+	height: 15px;
 	float: left;
-	border-radius: 30px;
+	border-radius: 15px;
 }
 
 .modSidebar .items-colors .item .title {
 	float: left;
-	font-family:"Lexia W01 Regular", "helvetica neue", helvetica, arial, sans-serif;
 	font-size: 12px;
 	margin-left: 10px;
 }
 
 .modSidebar .items-colors .item .title .name {
 	display: block;
-	color: #BBB;
+	color: #666;
+    font-weight: bold;
 }
 
 .modSidebar .items-colors .item .title .hex {
-	color: #DDD;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #CCC;
+	color: #555;
+    font-size: 11px;
+    padding: 2px 4px;
+    border-radius: 3px;
     text-transform: uppercase;
+}
+
+.modSidebar .items-colors .item:hover .name, 
+.modSidebar .items-colors .item:hover .hex {
+    color: #000;
 }

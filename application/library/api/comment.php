@@ -102,7 +102,7 @@ switch ($action) {
         $data = array(
             'modified' => date('Y-m-d H:i:s'),
             'modifier' => userid(),
-            'content' => addslashes(strip_tags(stripslashes($_REQUEST['content'])))
+            'content' => strip_tags(stripslashes($_REQUEST['content']))
         );
         $db->update('comment', $data, array('id' => $id, 'creator' => userid()));
         $data = $db->single("SELECT id, creator, nr, content FROM comment WHERE id = " . $id);
@@ -126,13 +126,18 @@ switch ($action) {
                 c.h, 
                 c.content, 
                 c.creator, 
-                u.name as creator_name
-            FROM comment c LEFT JOIN user u ON u.id = c.creator
+                u.name as creator_name,
+                u.email as creator_email
+            FROM comment c 
+                LEFT JOIN user u ON u.id = c.creator
             WHERE c.screen = " . $screen['id']
         );
-        if($data) $data[0]['content'] = stripslashes($data[0]['content']);
-        header('Content-Type: application/json');
-        echo json_encode($data);
+        foreach($data as $key => $comment) {
+            $data[$key]['content'] = $comment['content'];
+            $data[$key]['creator_image'] = gravatar($comment['creator_email'], null);
+            unset($data[$key]['creator_email']);
+        }
+        json($data);
         break;
     
 }
