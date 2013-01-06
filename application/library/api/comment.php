@@ -35,6 +35,7 @@ switch ($action) {
         $id = $db->insert('comment', $comment);
         $db->query("UPDATE screen SET count_comment = count_comment + 1 WHERE id = " . $screen['id'] . "");
         $comment['creator_name'] = user('name');
+        $comment['creator_image'] = gravatar(user('email'), null);
         $comment['id'] = $id;
 
         // add to activity stream
