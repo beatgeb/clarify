@@ -6,6 +6,7 @@
 	bottom: 0;
 	width: 260px;
 	z-index: 2;
+    overflow: auto;
 }
 a.btn-sidebar-toggle {
 	position: fixed;
@@ -146,6 +147,7 @@ a.btn-sidebar-toggle:hover .icon-reorder {
 /* color */
 .modSidebar .items-colors .item {
     position: relative;
+    border-bottom: 1px solid #DDD;
 }
 .modSidebar .items-colors .item:hover {
 	
@@ -171,8 +173,8 @@ a.btn-sidebar-toggle:hover .icon-reorder {
 
 .modSidebar .items-colors .item .title .hex {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 9px;
+    right: 9px;
     background: #CCC;
 	color: #555;
     font-size: 11px;
@@ -184,4 +186,9 @@ a.btn-sidebar-toggle:hover .icon-reorder {
 .modSidebar .items-colors .item:hover .name, 
 .modSidebar .items-colors .item:hover .hex {
     color: #000;
+}
+
+.modSidebar .items-colors .item:hover .hex {
+    background: #444;
+    color: #FFF
 }
