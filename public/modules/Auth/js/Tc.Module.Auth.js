@@ -3,29 +3,38 @@
     Tc.Module.Auth = Tc.Module.extend({        
         on: function(callback) {
             var that = this;
-            $('.password', this.$ctx).on('keypress', function(e) {
+            var $ctx = this.$ctx;
+            $('.password', $ctx).on('keypress', function(e) {
                 if (e.keyCode == 13) {
                     that.authClarify();
                 }
             });
-            $('.password-confirm', this.$ctx).on('keypress', function(e) {
+            $('.password-confirm', $ctx).on('keypress', function(e) {
                 if (e.keyCode == 13) {
                     that.signup();
                 }
             });
-            $('.btn-signin,.btn-signin-ldap', this.$ctx).on('click', function(e) {
+            $('.btn-signin,.btn-signin-ldap', $ctx).on('click', function(e) {
                 that.authClarify();
             });
-            $('.btn-twitter', this.$ctx).on('click', function(e) {
+            $('.btn-twitter', $ctx).on('click', function(e) {
                 that.authTwitter();
             });
-            $('.btn-signup', this.$ctx).on('click', function(e) {
+            $('.btn-signup', $ctx).on('click', function(e) {
                 that.signup();
             });
-            $('.btn-signup-twitter', this.$ctx).on('click', function(e) {
+            $('.btn-signup-twitter', $ctx).on('click', function(e) {
                 that.authTwitter();
             });
-            $('input:first', this.$ctx).focus();
+            $('.btn-lost-password', $ctx).on('click', function() {
+                $('.btn-signin, .btn-twitter, .password', $ctx).fadeOut('fast', function() {
+                    $('.btn-request-password', $ctx).fadeIn('fast');
+                });
+            });
+            $('.btn-request-password', $ctx).on('click', function() {
+                that.requestPassword();
+            });
+            $('input:first', $ctx).focus();
             callback();
         },
 
@@ -62,6 +71,28 @@
                         location.href = '/';
                     } else {
                         $('.email', that.$ctx).addClass('error');
+                    }
+                }
+            });
+        },
+
+        requestPassword: function() {
+            var that = this;
+            $('input', that.$ctx).removeClass('error');
+            $('.btn-request-password', this.$ctx).addClass('btn-disabled');
+            $.ajax({
+                url: "/api/auth/requestpassword",
+                type: "POST",
+                dataType: 'json',
+                data: { 
+                    'email': $('.email').val()
+                },
+                success: function(data){
+                    if (data.success) {
+                        alert("You've got mail!");
+                        location.href = '/';
+                    } else {
+                        $('input', that.$ctx).addClass('error');
                     }
                 }
             });

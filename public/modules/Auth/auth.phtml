@@ -32,6 +32,9 @@
                     <a href="javascript:;" class="btn btn-signin">
                         <i class="icon icon-arrow-right"></i>&nbsp;&nbsp;Sign In
                     </a>
+                    <a href="javascript:;" class="btn btn-request-password">
+                        <i class="icon icon-arrow-right"></i>&nbsp;&nbsp;Request Password
+                    </a>
                     <a href="javascript:;" class="btn btn-twitter">
                         <i class="icon icon-twitter"></i>&nbsp;&nbsp;Twitter
                     </a>
@@ -42,6 +45,9 @@
     <?php if ($route[2] <= 0 && !config('auth.ldap.enabled')) { ?>
     <a href="http://clarify.io" class="btn-signup-beta">
         <i class="icon icon-arrow-right"></i>&nbsp;&nbsp;Register for a Beta Account
+    </a>
+    <a href="javascript:;" class="btn-lost-password">
+        <i class="icon icon-arrow-right"></i>&nbsp;&nbsp;Lost your password?
     </a>
     <?php } ?>
 </div>

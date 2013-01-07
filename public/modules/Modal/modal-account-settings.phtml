@@ -3,11 +3,33 @@
 	<div class="head">
 		<h2><?php echo lang('btn_profile_settings') ?></h2>
 	</div>
+	<ul class="nav">
+		<li class="active">
+			<a href="javascript:;" data-tab="1">
+				<i class="icon icon-home"></i>
+				<span><?php echo lang('modal_tab_general') ?></span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:;" data-tab="2">
+				<i class="icon icon-lock"></i>
+				<span><?php echo lang('modal_tab_security') ?></span>
+			</a>
+		</li>
+	</ul>
 	<div class="body">
-		<label for="fld-name">Your Name</label>
-		<input class="fld fld-name" id="fld-name" type="text" value="{{=it.name}}" />
-		<label for="fld-email">Your E-Mail</label>
-		<input class="fld fld-email" id="fld-email" type="text" value="{{=it.email}}" disabled="disabled" />
+		<div class="tab tab-1">
+			<label for="fld-name">Your Name</label>
+			<input class="fld fld-name" id="fld-name" type="text" value="{{=it.name}}" />
+			<label for="fld-email">Your E-Mail</label>
+			<input class="fld fld-email" id="fld-email" type="text" value="{{=it.email}}" disabled="disabled" />
+		</div>
+		<div class="tab tab-2">
+			<label for="fld-password">Current Password</label>
+			<input class="fld fld-password" id="fld-password" type="password" value="" />
+			<label for="fld-password-new">New Password</label>
+			<input class="fld fld-password-new" id="fld-password-new" type="password" value="" />
+		</div>
 	</div>
 	<div class="foot">
 		<a class="btn btn-primary" href="javascript:;"><?php echo lang('btn_save') ?></a>

@@ -127,14 +127,23 @@
     border-bottom: 1px solid #444;
     color: #000;
 }
-.modAuth .btn-signup-beta {
+.modAuth .btn-signup-beta,
+.modAuth .btn-lost-password {
+    display: block;
     font-family:'Lexia W01 Regular', helvetica, arial, sans-serif;
     font-size: 14px;
     color: #666;
     text-decoration: none;
+    line-height: 1.5;
 }
-.modAuth .btn-signup-beta:hover {
+.modAuth .btn-signup-beta:hover,
+.modAuth .btn-lost-password:hover {
     text-decoration: underline;
+}
+.modAuth .form .btn-request-password {
+    display: none;
+    white-space: nowrap;
+    width: 262px;
 }
 .modAuth .form .btn-wide {
     float: none;

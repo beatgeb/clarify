@@ -29,4 +29,5 @@ $lang['txt_intro'] = 'Clarify is a new way to manage & share your design screens
 $lang['modal_tab_general'] = 'Allgemein';
 $lang['modal_tab_members'] = 'Team';
 $lang['modal_tab_appearance'] = 'Darstellung';
+$lang['modal_tab_security'] = 'Sicherheit';
 ?>

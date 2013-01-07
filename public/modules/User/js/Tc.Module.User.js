@@ -19,16 +19,33 @@
                 var modal = that.sandbox.getModuleById($('.modModal').data('id'));
                 modal.open('account-settings', data, function() {
                     var $input = $(this).closest('.modal').find('.fld-name');
-                    $.ajax({
-                        url: "/api/user/setting/name/" + encodeURIComponent($input.val()),
-                        dataType: 'json',
-                        type: 'POST',
-                        success: function(data){
-                            $('.username', $ctx).text($input.val());
-                            $btn.data('name', $input.val());
-                            modal.cancel();
-                        }
-                    });
+                    var $password = $(this).closest('.modal').find('.fld-password');
+                    var $password_new = $(this).closest('.modal').find('.fld-password-new');
+                    
+                    if ($password.val() != '' && $password_new.val() != '') {
+                        $.ajax({
+                            url: "/api/auth/password/",
+                            dataType: 'json',
+                            data: 'password=' + $password.val() + '&password_new=' + $password_new.val(),
+                            type: 'POST',
+                            success: function(data){
+                                if (data.success) {
+                                    modal.cancel();
+                                }
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            url: "/api/user/setting/name/" + encodeURIComponent($input.val()),
+                            dataType: 'json',
+                            type: 'POST',
+                            success: function(data){
+                                $('.username', $ctx).text($input.val());
+                                $btn.data('name', $input.val());
+                                modal.cancel();
+                            }
+                        });
+                    }
                 }, function() {
                     alert('Not possible yet.');
                 });

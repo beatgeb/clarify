@@ -3,16 +3,48 @@
 // Auth API
 define('API_AUTH_AUTHENTICATE', 'auth.authenticate');
 define('API_AUTH_PASSWORD', 'auth.password');
+define('API_AUTH_REQUESTPASSWORD', 'auth.requestpassword');
 
 switch ($action) {
 
 	case API_AUTH_PASSWORD:
 		lock();
-		$password = md5($_REQUEST['password'] . config('security.password.hash'));
-		$db->update('user', array('password' => $password), array('id' => userid()));
-		$result = array('success' => true);
-		header('Content-Type: application/json');
-		echo json_encode($result);
+		$result = array('success' => false);
+		if (trim($_REQUEST['password_new']) != '') {
+			$password = md5(trim($_REQUEST['password']) . config('security.password.hash'));
+			$user = $db->single("SELECT id, name, email FROM user WHERE id = '" . userid() . "' AND password = '" . $password . "' LIMIT 1");
+			if ($user) {
+				$new_password = md5(trim($_REQUEST['password_new']) . config('security.password.hash'));
+				$db->update('user', array('password' => $new_password), array('id' => userid()));
+				$result['success'] = true;
+			}
+		}
+		json($result);
+		break;
+
+	case API_AUTH_REQUESTPASSWORD:
+		$result = array('success' => false);
+		$email = $_REQUEST['email'];
+		// validate authentication (only with valid email)
+		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			$user = $db->single("SELECT id, name, email FROM user WHERE email = '" . $email . "' LIMIT 1");
+			if ($user) {
+				$newpassword = gen_uuid(time(), 6);
+				$newpasswordhash = md5($newpassword . config('security.password.hash'));
+				$db->update('user', array('password' => $newpasswordhash), array('id' => $user['id']));
+				
+				$text = "You (or someone pretending to be you) has requested a password reset from: " . $_SERVER['REMOTE_HOST'] . "\n\nYour new password is: " . $newpassword . "\n\nIf you have not requested this change or you have any problems signing in please contact support@clarify.io";
+
+	            $email = new Mail_Postmark();
+	            $email->addTo($_REQUEST['email'])
+	                ->subject('Clarify Password Reset')
+	                ->messagePlain($text)
+	                ->send();
+
+				$result['success'] = true;
+			}
+		}
+		json($result);
 		break;
 
 	case API_AUTH_AUTHENTICATE:
