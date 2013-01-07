@@ -32,9 +32,7 @@ switch ($action) {
         if ($count < 1) {
             $path =  'upload/modules/'.$module['project'].'/'.md5($module['id'].config('security.general.hash')).'.png';
             unlink(TERRIFIC . $path);
-
             $db->delete('project_module', array('id' => $module['id']));
-
             $result['remove'] = $module['id'];
         }
         $db->query("UPDATE screen SET count_module = count_module - 1 WHERE id = " . $module['screen'] . "");

@@ -12,6 +12,7 @@
     background-color: rgba(255, 255, 255, 0.3);
     position: absolute;
     z-index: 2;
+    cursor: auto;
 }
 
 .modLayerTypography .font:hover {
@@ -46,7 +47,6 @@
     z-index: 3;
     line-height: 1.4;
     border-radius: 3px;
-    cursor: pointer;
     -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
 }
@@ -127,4 +127,77 @@
 }
 .modLayerTypography .font .color p .hex {
     color: #DDD;
+}
+/* handles */
+.modLayerTypography .ui-resizable-handle {
+    display: none !important;
+    position: absolute;
+    background: rgba(0,0,0,0.5);
+    width: 7px;
+    height: 7px;
+    border-radius: 7px;
+    border: 2px solid rgba(255,255,255,0.8);
+}
+.modLayerTypography .ui-resizable-handle:hover {
+    background: rgba(0,0,0,0.8);
+    border: 2px solid rgba(255,255,255,1);
+}
+
+.modLayerTypography .selected .ui-resizable-handle {
+    display: block !important;
+}
+
+.modLayerTypography .ui-resizable-nw {
+    left: 0;
+    top: 0;
+    margin-top: -5px;
+    margin-left: -5px;
+}
+
+.modLayerTypography .ui-resizable-n {
+    left: 50%;
+    top: 0;
+    margin-top: -5px;
+    margin-left: -5px;
+}
+
+.modLayerTypography .ui-resizable-ne {
+    right: 0;
+    top: 0;
+    margin-top: -5px;
+    margin-right: -5px;
+}
+
+.modLayerTypography .ui-resizable-w {
+    left: 0;
+    top: 50%;
+    margin-top: -5px;
+    margin-left: -5px;
+}
+
+.modLayerTypography .ui-resizable-e {
+    right: 0;
+    top: 50%;
+    margin-top: -5px;
+    margin-right: -5px;
+}
+
+.modLayerTypography .ui-resizable-s {
+    left: 50%;
+    bottom: 0;
+    margin-bottom: -5px;
+    margin-left: -5px;
+}
+
+.modLayerTypography .ui-resizable-sw {
+    left: 0;
+    bottom: 0;
+    margin-bottom: -5px;
+    margin-left: -5px;
+}
+.modLayerTypography .ui-resizable-se {
+    right: 0;
+    bottom: 0;
+    margin-bottom: -5px;
+    margin-right: -5px;
 }

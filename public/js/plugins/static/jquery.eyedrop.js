@@ -10,6 +10,7 @@
             'height': 5,
             'cursor': 'crosshair',
             'display': false,
+            'show': true,
             'mode': 'point',
             'picker': $('.picker'),
             '_start': function(x, y) {
@@ -52,32 +53,38 @@
                 'cursor': settings.cursor
             });
             
-            $this.hover(
-                function() {
-                    $('.picker').show();
-                }, 
-                function() {
-                    $('.picker').hide();
-                }
-            );
-            var imgctx; 
-            if(!$canvas){
-                $canvas = $('<canvas class="eyedrop" height="'+$this.data('height')+'" width="'+$this.data('width')+'"></canvas>');
+            if (settings.show) {
 
-                // draw image into canvas
-                if ($canvas[0].getContext) {
-                    imgctx = $canvas[0].getContext("2d"); 
-        
-                    var img = new Image();  
-                    img.onload = function(){
-                        imgctx.drawImage(img, 0, 0);
-                    };
-                    img.src = $this.data('image');
+                // show or hide eyedropper
+                $this.hover(
+                    function() {
+                        $('.picker').show();
+                    },
+                    function() {
+                        $('.picker').hide();
+                    }
+                );
+
+                // create canvas
+                var imgctx;
+                if(!$canvas){
+                    $canvas = $('<canvas class="eyedrop" height="'+$this.data('height')+'" width="'+$this.data('width')+'"></canvas>');
+
+                    // draw image into canvas
+                    if ($canvas[0].getContext) {
+                        imgctx = $canvas[0].getContext("2d");
+            
+                        var img = new Image();
+                        img.onload = function(){
+                            imgctx.drawImage(img, 0, 0);
+                        };
+                        img.src = $this.data('image');
+                    } else {
+                        return;
+                    }
                 } else {
-                    return;
+                    imgctx = $canvas[0].getContext("2d");
                 }
-            } else {
-                imgctx = $canvas[0].getContext("2d");
             }
 
             // in case of range we need to handle mousedown+move+mouseup and click+move+click
@@ -131,10 +138,11 @@
             }
 
 
-
-            var ps = [];
-            for (var i = 0; i < settings.width * settings.height; i++) {
-                ps[i] = $('#picker' + (i + 1));
+            if (settings.show) {
+                var ps = [];
+                for (var i = 0; i < settings.width * settings.height; i++) {
+                    ps[i] = $('#picker' + (i + 1));
+                }
             }
             
             // on mouse movement, show picker
@@ -155,46 +163,47 @@
                     top: data.y + offset.top + settings.offset
                 });
 
+                if (settings.show) {
+                    
+                    // get metadata of surrounding pixels
+                    var pixel = imgctx.getImageData(
+                        data.x - ((settings.width-1) / 2),
+                        data.y - ((settings.height-1) / 2),
+                        settings.width,
+                        settings.height
+                    );
 
+                    // draw surrounding pixels into magnifier
+                    for (var i = 0; i < settings.width * settings.height; i++) {
 
-                // get metadata of surrounding pixels
-                var pixel = imgctx.getImageData(
-                    data.x - ((settings.width-1) / 2), 
-                    data.y - ((settings.height-1) / 2), 
-                    settings.width, 
-                    settings.height
-                );
+                        var r = pixel.data[0+i*4];
+                        var g = pixel.data[1+i*4];
+                        var b = pixel.data[2+i*4];
+                        var a = pixel.data[3+i*4];
 
-                // draw surrounding pixels into magnifier 
-                for (var i = 0; i < settings.width * settings.height; i++) {
+                        ps[i].css('backgroundColor', 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')');
 
-                    var r = pixel.data[0+i*4];
-                    var g = pixel.data[1+i*4];
-                    var b = pixel.data[2+i*4];
-                    var a = pixel.data[3+i*4];
+                        if (i == ((settings.width*settings.height-1)/2)) {
 
-                    ps[i].css('backgroundColor', 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')');
+                            // invert shadow to be more visible on dark backgrounds (not really inverted but top bit of each component of the RGB triple is toggled)
+                            var inverted_rgba = 'inset 0px 0px 1px 1px rgba(' + (r ^ 0x80) + ', ' + (g ^ 0x80) + ', ' + (b ^ 0x80) + ', 0.7)';
+                            
+                            ps[i].css({
+                                '-webkit-box-shadow': inverted_rgba,
+                                '-moz-box-shadow': inverted_rgba,
+                                'box-shadow': inverted_rgba
+                            });
 
-                    if (i == ((settings.width*settings.height-1)/2)) {
-
-                        // invert shadow to be more visible on dark backgrounds (not really inverted but top bit of each component of the RGB triple is toggled)
-                        var inverted_rgba = 'inset 0px 0px 1px 1px rgba(' + (r ^ 0x80) + ', ' + (g ^ 0x80) + ', ' + (b ^ 0x80) + ', 0.7)';
-                        
-                        ps[i].css({
-                            '-webkit-box-shadow': inverted_rgba,
-                            '-moz-box-shadow': inverted_rgba,
-                            'box-shadow': inverted_rgba
-                        });
-
-                        var color = Color.rgb(r, g, b, a);
-                        var hex = color.hexTriplet();
-                        data.color = {
-                            r: r, 
-                            g: g, 
-                            b: b, 
-                            a: a, 
-                            hex: hex
-                        };
+                            var color = Color.rgb(r, g, b, a);
+                            var hex = color.hexTriplet();
+                            data.color = {
+                                r: r,
+                                g: g,
+                                b: b,
+                                a: a,
+                                hex: hex
+                            };
+                        }
                     }
                 }
                 

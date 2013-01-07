@@ -122,7 +122,7 @@ switch ($action) {
             ");
 
             // check permission
-            permission($font['project'], 'VIEW');
+            permission($font['project'], 'EDIT');
 
             // build data
             $update = array(
@@ -142,23 +142,7 @@ switch ($action) {
             $response['font'] = $font;
             $response['success'] = true;
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
-    /*
-        $id = intval($route[4]);
-        if ($id < 1) { die('Please provide a font id'); }
-        $font = $db->single("SELECT pf.project FROM font f LEFT JOIN project_font pf ON (pf.id = f.font)
-                LEFT JOIN project_color pc ON (pc.id = pf.color)
-            WHERE f.id = '" . $id . "'"
-        );
-         */
-        //$font_family = $route[7];
-        //$font_size = intval($route[8]);
-        //$font_color = substr($route[9],0,6);
-        
-        // check if font already exists in the library
-        
-
+        json($response);
         break;
 
     case API_TYPOGRAPHY_GET:
@@ -175,6 +159,7 @@ switch ($action) {
                 f.y, 
                 f.width, 
                 f.height,
+                f.font,
                 pf.name, 
                 pf.family, 
                 pf.size, 
@@ -249,7 +234,8 @@ switch ($action) {
             $db->delete('project_font', array('id' => $font['font']));
         }
         $db->query("UPDATE screen SET count_font = count_font - 1 WHERE id = " . $font['screen'] . "");
-        echo json_encode(array('RESULT' => 'OK'));
+        $response = array('remove' => $id);
+        json($response);
         break;
 
 }

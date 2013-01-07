@@ -25,9 +25,9 @@
                     that.activate();
                 }
             });
-            $ctx.on('mousedown', '.font > .meta', function(e) {
-                var $font = $(this).parent();
-                that.drag = true;
+
+            $ctx.on('dblclick', '.font', function(e) {
+                var $font = $(this);
                 e.stopPropagation();
                 $.ajax({
                     url: "/api/typography/data/" + $font.data('id'),
@@ -39,9 +39,12 @@
                 });
                 return false;
             });
-            $ctx.on('mousedown', '.font', function() {
-                return false;
+
+            // bind delete with backspace
+            $('html').keydown(function(e){
+                that.keydown(e);
             });
+
             callback();
         },
 
@@ -162,7 +165,8 @@
 
             $('.modScreen').eyedrop({
                 mode: 'range',
-                'display': false,
+                display: false,
+                show: false,
                 start: function(x, y) {
                     if (!that.hover) {
                         $('.font').hide();
@@ -220,6 +224,78 @@
             this.load();
             
         },
+
+        keydown: function(e) {
+            if (!this.active) {
+                return;
+            }
+            if (e.srcElement.localName == 'textarea' || e.srcElement.localName == 'input' || e.srcElement.localName == 'select') { 
+                return;
+            }
+            var that = this;
+            switch (e.keyCode) {
+                case 8: // backspace
+                case 46: // delete
+                    that.remove();
+                    e.preventDefault();
+                    return false;
+                case 39: // arrow right
+                    that.move(1, 0);
+                    e.preventDefault();
+                    return false;
+                case 40: // arrow down
+                    that.move(0, 1);
+                    e.preventDefault();
+                    return false;
+                case 38: // arrow up
+                    that.move(0, -1);
+                    e.preventDefault();
+                    return false;
+                case 37: // arrow left
+                    that.move(-1, 0);
+                    e.preventDefault();
+                    return false;
+            }
+        },
+
+        // move selected measures by defined x and y offsets
+        move: function(x, y) {
+            var that = this;
+            $.each(that.selected, function(key, item) {
+                var new_x = $(item).position().left + x;
+                var new_y = $(item).position().top + y;
+                $(item).css({
+                    left: new_x + 'px',
+                    top: new_y + 'px'
+                });
+                $.ajax({
+                    url: "/api/typography/move/" + $(item).data('id') + "/" + new_x + "/" + new_y,
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function(data){ }
+                });
+            });
+        },
+
+        remove: function() {
+            var that = this;
+            $.each(that.selected, function(key, item) {
+                var id = $(item).data('id');
+                $.ajax({
+                    url: "/api/typography/delete/" + id,
+                    dataType: 'json',
+                    success: function(data){
+                        $(item).remove();
+                        that.selected = [];
+                        that.hover = false;
+                        if(data.remove) {
+                            // delete the module from the module library
+                            //$('[data-id=' + data.remove + ']',  $('.modModuleLibrary')).remove();
+                        }
+                    }
+                });
+            });
+        },
         
         load: function() {
             var that = this;
@@ -263,8 +339,25 @@
             };
             var $font = $(this.tmpl(data));
 
+            // don't propagate mousedown event to avoid further actions
+            $font.on('mousedown', function(e) {
+                $('.picker').hide();
+                that.hover = true;
+                var selected = !$font.data('selected');
+                var $fonts = $('.font', $ctx);
+                $fonts.data('selected', false);
+                $fonts.removeClass('selected');
+                $fonts.resizable('disable');
+                $font.data('selected', selected);
+                $font.addClass('selected');
+                $font.resizable('enable');
+                that.selected = [ $font ];
+                e.stopPropagation();
+            });
+
             // enable drag and drop for fonts
             $font.draggable({
+                distance: 10,
                 cancel: '.meta',
                 start: function() {
                     that.drag = true;
@@ -284,6 +377,7 @@
             });
             
             $font.resizable({
+                disabled: true,
                 handles: 'n, e, s, w, se, ne, nw, sw',
                 minHeight: 1,
                 minWidth: 1,
@@ -313,19 +407,6 @@
                     that.resize = false;
                 }
             });
-            
-            // show / hide picker on hover
-            $font.hover(
-                function(){
-                    $('.picker').hide();
-                    that.hover = true;
-                },
-                function(){
-                    $('.picker').show();
-                    that.hover = false;
-                }
-            );
-            
 
             // set width, height and position of font
             $font.css({
@@ -333,7 +414,6 @@
                 top: y + 'px',
                 width: width,
                 height: height,
-                cursor: 'move',
                 position: 'absolute'
             });
 
