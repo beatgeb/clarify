@@ -84,7 +84,9 @@ switch ($action) {
         $db->delete('color', array('screen' => $screen['id']));
         $db->delete('comment', array('screen' => $screen['id']));
         $db->delete('measure', array('screen' => $screen['id']));
+        $db->delete('set_screen', array('screen' => $screen['id']));        
         $db->delete('screen', array('id' => $screen['id']));
+
         $db->query("UPDATE project SET screen_count = screen_count - 1 WHERE id = " . $screen['project']);
         $response = $screen;
         json($response);
