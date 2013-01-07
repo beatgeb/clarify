@@ -23,7 +23,85 @@
                     that.activate();
                 }
             });
+
+            // bind delete with backspace
+            $('html').keydown(function(e){
+                that.keydown(e);
+            });
+
             callback();
+        },
+
+        keydown: function(e) {
+            if (!this.active) {
+                return;
+            }
+            if (e.srcElement.localName == 'textarea' || e.srcElement.localName == 'input' || e.srcElement.localName == 'select') { 
+                return;
+            }
+            var that = this;
+            switch (e.keyCode) {
+                case 8: // backspace
+                case 46: // delete
+                    that.remove();
+                    e.preventDefault();
+                    return false;
+                case 39: // arrow right
+                    that.move(1, 0);
+                    e.preventDefault();
+                    return false;
+                case 40: // arrow down
+                    that.move(0, 1);
+                    e.preventDefault();
+                    return false;
+                case 38: // arrow up
+                    that.move(0, -1);
+                    e.preventDefault();
+                    return false;
+                case 37: // arrow left
+                    that.move(-1, 0);
+                    e.preventDefault();
+                    return false;
+            }
+        },
+
+        // move selected measures by defined x and y offsets
+        move: function(x, y) {
+            var that = this;
+            $.each(that.selected, function(key, item) {
+                var new_x = $(item).position().left + x;
+                var new_y = $(item).position().top + y;
+                $(item).css({
+                    left: new_x + 'px',
+                    top: new_y + 'px'
+                });
+                $.ajax({
+                    url: "/api/color/move/" + $(item).data('id') + "/" + new_x + "/" + new_y,
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function(data){ }
+                });
+            });
+        },
+
+        remove: function() {
+            var that = this;
+            $.each(that.selected, function(key, item) {
+                var id = $(item).data('id');
+                $.ajax({
+                    url: "/api/color/remove/" + id,
+                    dataType: 'json',
+                    success: function(data){
+                        $(item).remove();
+                        that.selected = [];
+                        that.hover = false;
+                        if (data.remove > 0) {
+                            $('.color-' + data.remove).remove();
+                            that.fire('colorRemoved', data.remove);
+                        }
+                    }
+                });
+            });
         },
         
         load: function() {
