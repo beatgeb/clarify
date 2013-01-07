@@ -1,7 +1,7 @@
 <!-- Account Settings -->
 <script id="tmpl-modal-account-settings" type="text/x-dot-template">
 	<div class="head">
-		<h2><?= lang('btn_profile_settings') ?></h2>
+		<h2><?php echo lang('btn_profile_settings') ?></h2>
 	</div>
 	<div class="body">
 		<label for="fld-name">Your Name</label>
@@ -10,8 +10,8 @@
 		<input class="fld fld-email" id="fld-email" type="text" value="{{=it.email}}" disabled="disabled" />
 	</div>
 	<div class="foot">
-		<a class="btn btn-primary" href="javascript:;"><?= lang('btn_save') ?></a>
+		<a class="btn btn-primary" href="javascript:;"><?php echo lang('btn_save') ?></a>
 		<!--<a class="btn btn-delete" href="javascript:;">Delete Account</a>-->
-		<a class="btn btn-cancel" href="javascript:;"><?= lang('btn_cancel') ?></a>
+		<a class="btn btn-cancel" href="javascript:;"><?php echo lang('btn_cancel') ?></a>
 	</div>
 </script>

@@ -106,12 +106,12 @@ $colors = $db->data("
             data-project="<?php print $project_id ?>" 
             data-name="<?php print $project['name'] ?>" 
             data-screen-background-color="<?php print $project['screen_background_color'] ?>">
-            <i class="icon icon-cog"></i> <?= lang('btn_settings') ?></a>
+            <i class="icon icon-cog"></i> <?php echo lang('btn_settings') ?></a>
         <?php } ?>
         <?php if (has_permission($project_id, 'EDIT') && !$set) { ?>
         <a href="javascript:;" class="btn-create-set" 
             data-project="<?php print $project_id ?>">
-            <i class="icon icon-th"></i> <?= lang('btn_create_set') ?></a>
+            <i class="icon icon-th"></i> <?php echo lang('btn_create_set') ?></a>
         <?php } ?>
     </div>
     <?php } ?>
@@ -136,8 +136,8 @@ $colors = $db->data("
         <a class="placeholder" href="javascript:;">
             <div><i class="icon icon-upload"></i></div>
         </a>
-        <p class="title-placeholder"><a href="#"><span><?= lang('btn_click_to_upload') ?></span></a></p>
-        <p class="meta"><?= lang('txt_upload_format') ?></p>
+        <p class="title-placeholder"><a href="#"><span><?php echo lang('btn_click_to_upload') ?></span></a></p>
+        <p class="meta"><?php echo lang('txt_upload_format') ?></p>
     </li>
     <?php } ?>
     <?php foreach ($sets as $set) { ?>
@@ -199,7 +199,7 @@ $colors = $db->data("
         <p class="meta">
             <span class="size"><?php print $screen['width'] ?> &times; <?php print $screen['height'] ?></span>
             <?php if (has_permission($screen['project'], 'EDIT')) { ?>
-            <a href="javascript:;" class="btn-replace" data-screen="<?php print $screen['id'] ?>"><?= lang('btn_replace') ?></a>
+            <a href="javascript:;" class="btn-replace" data-screen="<?php print $screen['id'] ?>"><?php echo lang('btn_replace') ?></a>
             <a class="delete delete-screen" data-screen="<?php print $screen['id'] ?>" href="javascript:;">×</a>
             <?php } ?>
         </p>
@@ -212,7 +212,7 @@ $colors = $db->data("
 <p class="intro">
     <strong>Clarify</strong> is a new way to manage &amp; share your design screens, whether they're wireframes or finished designs. Just <span>create a project</span> and <span>upload a screen</span> (png or jpg) to get started. We're still in beta, so please send feedback or report bugs to <a href="mailto:support@clarify.io?subject=Feedback">support@clarify.io</a>.
 </p>
-<a class="btn-create-project" href="#"><?= lang('btn_create_project') ?></a>
+<a class="btn-create-project" href="#"><?php echo lang('btn_create_project') ?></a>
 <?php } ?>
 
 <!-- template for screen list items -->

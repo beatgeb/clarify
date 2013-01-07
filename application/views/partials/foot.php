@@ -36,7 +36,7 @@
   }
   _kms('//i.kissmetrics.com/i.js');
   _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
-  _kmq.push(['identify', '<?= user('email') ?>']);
+  _kmq.push(['identify', '<?php echo user('email') ?>']);
 </script>
 <script type="text/javascript">
   var _gaq = _gaq || [];
