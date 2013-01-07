@@ -105,10 +105,11 @@ switch ($action) {
             'modifier' => userid(),
             'content' => strip_tags(stripslashes($_REQUEST['content']))
         );
-        $db->update('comment', $data, array('id' => $id, 'creator' => userid()));
-        $data = $db->single("SELECT id, creator, nr, content FROM comment WHERE id = " . $id);
-        header('Content-Type: application/json');
-        echo json_encode($data);
+        $comment = $db->single("SELECT c.id, c.creator, c.nr, c.content, s.project FROM comment c LEFT JOIN screen s ON s.id = c.screen WHERE c.id = '" . $id . "'");
+        permission($comment['project'], 'EDIT');
+        $db->update('comment', $data, array('id' => $id));
+        $comment['content'] = $data['content'];
+        json($comment);
         break;
     
     case API_COMMENT_GET:
