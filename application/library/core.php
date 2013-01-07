@@ -173,4 +173,12 @@ function json($data) {
     echo json_encode($data);
 }
 
+function lang($var) {
+    global $lang;
+    if ($lang == null) {
+        require LANG . 'en/general.php';
+    }
+    return isset($lang[$var]) ? $lang[$var] : '%%' . $var . '%%';
+}
+
 ?>

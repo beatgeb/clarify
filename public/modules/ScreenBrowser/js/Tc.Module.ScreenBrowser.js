@@ -93,7 +93,7 @@
                 return false;
             });
 
-            $('.screen .title > a').on('click', function(e) {
+            $ctx.on('click', '.screen .title > a', function(e) {
                 var screen = $(this).data('screen');
                 var title = $(this).data('title');
                 var data = { 'screen': screen, 'name': title };

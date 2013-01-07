@@ -15,6 +15,7 @@ define('LIBRARY', APP . 'library/');
 define('ACTIONS', APP . 'actions/');
 define('VIEWS', APP . 'views/');
 define('CONFIG', APP . 'config/');
+define('LANG', APP . 'lang/');
 define('DATA', APP . 'data/');
 define('CACHE', APP . 'cache/');
 define('TERRIFIC', APP . '../public/');

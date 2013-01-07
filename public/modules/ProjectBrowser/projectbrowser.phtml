@@ -10,19 +10,16 @@ if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['u
     );
 }
 ?>
-<h3>Projects<a class="btn-add-project" href="javascript:;"><i class="icon icon-plus-sign"></i> Create</a></h3>
+<h3><?= lang('title_projects') ?><a class="btn-add-project" href="javascript:;"><i class="icon icon-plus-sign"></i> <?= lang('btn_create') ?></a></h3>
 <div class="add-project">
     <input class="project-name" type="text" placeholder="Project Name" />
-    <input class="add-project-submit" type="button" value="Create Project" />
+    <input class="add-project-submit" type="button" value="<?= lang('btn_create_project') ?>" />
 </div>
 <?php if (sizeof($projects) == 0) { ?>
 <div class="notice">You don't have any projects yet.</div>
 <?php } ?>
 <ul>
     <?php foreach ($projects as $p) { ?>
-    <?php 
-    //$notifications = $p['id'] == 5 ? '<span class="notifications">5</span>' : ''; 
-    ?>
     <li <?php print $p['id'] == $project_id ? 'class="active"': '' ?>>
         <a href="<?php print R ?>project/<?php print $p['creator'] ?>/<?php print $p['slug'] ?>/">
             <?php print $p['name'] ?> 
@@ -47,7 +44,7 @@ if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['u
 $modules = $db->data("SELECT id, name FROM project_module WHERE project = '" . $project_id . "' ORDER BY name ASC");
 ?>
 <?php if (sizeof($modules) > 0) { ?>
-<h3>Module Library<a href="javascript:;" class="btn-export-terrific"><i class="icon icon-share-alt"></i> Terrific</a></h3>
+<h3><?= lang('title_module_library') ?><a href="javascript:;" class="btn-export-terrific"><i class="icon icon-share-alt"></i> Terrific</a></h3>
 <div class="modules">
     <?php foreach ($modules as $module) { ?>
     <a href="javascript:;" data-module="<?php print $module['name'] ?>" data-terrific="terrific:generate:module <?php print $module['name'] ?>"></a>

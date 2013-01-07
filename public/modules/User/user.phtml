@@ -1,8 +1,8 @@
 <div class="info">
     <p class="username"><?php print user('name') ?></p>
     <a href="javascript:;" class="btn-plan" title="You are using the free plan">Free</a>&nbsp;&nbsp;&bull;&nbsp;
-    <a href="javascript:;" data-email="<?php print user('email') ?>" data-name="<?php print user('name') ?>" class="btn-account-settings">Profile &amp; Settings</a>&nbsp;&nbsp;&bull;&nbsp;
-    <a href="<?php print R ?>auth/?wipe=1">Logout</a>
+    <a href="javascript:;" data-email="<?php print user('email') ?>" data-name="<?php print user('name') ?>" class="btn-account-settings"><?= lang('btn_profile_settings') ?></a>&nbsp;&nbsp;&bull;&nbsp;
+    <a href="<?php print R ?>auth/?wipe=1"><?= lang('btn_logout') ?></a>
 </div>
 <div class="avatar">
     <img src="<?php print gravatar(user('email'), 96) ?>" width="48" height="48" />

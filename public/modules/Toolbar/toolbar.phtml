@@ -1,41 +1,41 @@
 <div class="section section-nav">
 <a class="button btn-screen" href="<?php print R ?>project/<?php print $screen['project_creator'] ?>/<?php print $screen['project_slug'] ?>/">
 	<i class="icon icon-arrow-left"></i>
-	<div class="tt">Back</div>
+	<div class="tt"><?= lang('btn_back') ?></div>
 </a>
 </div>
 <div class="section section-tool">
 	<a class="button btn-comments" href="javascript:;">
 		<i class="icon icon-comment"></i>
-		<div class="tt">Comments</div>
+		<div class="tt"><?= lang('layer_annotations') ?></div>
 		<?php if ($screen['count_comment'] > 0) { ?>
 		<div class="count"><?php echo $screen['count_comment'] ?></div>
 		<?php } ?>
 	</a>
 	<a class="button btn-measure" href="javascript:;">
 		<i class="icon icon-resize-vertical"></i>
-		<div class="tt">Measures</div>
+		<div class="tt"><?= lang('layer_measures') ?></div>
 		<?php if ($screen['count_measure'] > 0) { ?>
 		<div class="count"><?php echo $screen['count_measure'] ?></div>
 		<?php } ?>
 	</a>
 	<a class="button btn-color" href="javascript:;">
 		<i class="icon icon-tint"></i>
-		<div class="tt">Colors</div>
+		<div class="tt"><?= lang('layer_colors') ?></div>
 		<?php if ($screen['count_color'] > 0) { ?>
 		<div class="count"><?php echo $screen['count_color'] ?></div>
 		<?php } ?>
 	</a>
 	<a class="button btn-fonts" href="javascript:;">
 		<i class="icon icon-font"></i>
-		<div class="tt">Typography</div>
+		<div class="tt"><?= lang('layer_typography') ?></div>
 		<?php if ($screen['count_font'] > 0) { ?>
 		<div class="count"><?php echo $screen['count_font'] ?></div>
 		<?php } ?>
 	</a>
 	<a class="button btn-modules btn-last" href="javascript:;">
 		<i class="icon icon-th-large"></i>
-		<div class="tt">Modules</div>
+		<div class="tt"><?= lang('layer_modules') ?></div>
 		<?php if ($screen['count_module'] > 0) { ?>
 		<div class="count"><?php echo $screen['count_module'] ?></div>
 		<?php } ?>

@@ -204,6 +204,12 @@
 .modScreenBrowser ul li .title-placeholder a {
     color: #444;
     text-decoration: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 198px;
+    display: block;
+
 }
 
 .modScreenBrowser ul li:hover .title,

@@ -1,26 +1,26 @@
 <!-- Project Settings -->
 <script id="tmpl-modal-project-settings" type="text/x-dot-template">
 	<div class="head">
-		<h2>Project Settings</h2>
+		<h2><?= lang('title_project_settings') ?></h2>
 	</div>
 	<ul class="nav">
 		<li class="active">
 			<a href="javascript:;" data-tab="1">
 				<i class="icon icon-briefcase"></i>
-				<span>General</span>
+				<span><?= lang('modal_tab_general') ?></span>
 			</a>
 		</li>
 		<!--
 		<li>
 			<a href="javascript:;" data-tab="2">
 				<i class="icon icon-group"></i>
-				<span>Members</span>
+				<span><?= lang('modal_tab_members') ?></span>
 			</a>
 		</li>
 		<li>
 			<a href="javascript:;" data-tab="3">
 				<i class="icon icon-picture"></i>
-				<span>Appearance</span>
+				<span><?= lang('modal_tab_appearance') ?></span>
 			</a>
 		</li>
 		-->
@@ -46,12 +46,11 @@
 			</ul>
 			-->
 			<input class="fld fld-inline fld-background-color" id="fld-background-color" type="text" value="{{=it.screen_background_color}}" />
-			<label for="fld-background-color">Screen Background Image</label>
 		</div>
 	</div>
 	<div class="foot">
-		<a class="btn btn-primary" href="javascript:;">Save</a>
+		<a class="btn btn-primary" href="javascript:;"><?= lang('btn_save') ?></a>
 		<a class="btn btn-delete" href="javascript:;">Delete Project</a>
-		<a class="btn btn-cancel" href="javascript:;">Cancel</a>
+		<a class="btn btn-cancel" href="javascript:;"><?= lang('btn_cancel') ?></a>
 	</div>
 </script>
