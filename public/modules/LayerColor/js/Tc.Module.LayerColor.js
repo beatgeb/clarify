@@ -5,6 +5,7 @@
         active: false,
         drag: false,
         hover: false,
+        selected: [],
         
         on: function(callback) {
             var that = this;
@@ -101,16 +102,35 @@
         
         addColor: function(color, fade) {
             var that = this;
+            var $ctx = this.$ctx;
+            var id = color.id;
             var slug = color.name_css;
             var label = color.name;
             var hex = '#' + color.hex;
             if (!label) {
                 label = hex;
             }
-            var $meta = $('<a href="#" class="meta" data-slug="' + slug + '" data-hex="' + hex + '" data-name="' + color.name + '"><span class="name">' + label + '</span><br /><span class="hex">#' + color.hex + '</span></a>');
+            var $meta = $('<div class="meta" data-slug="' + slug + '" data-hex="' + hex + '" data-name="' + color.name + '"><span class="name">' + label + '</span><br /><span class="hex">#' + color.hex + '</span></div>');
             var $element = $('<div class="color" data-project-color="' + color.color + '"><div class="p"></div></div>');
 
-            $element.on('click', function() {
+            // set id attribute
+            $element.data('id', color.id);
+
+            // don't propagate mousedown event to avoid further actions
+            $element.on('mousedown', function(e) {
+                $('.picker').hide();
+                that.hover = true;
+                var selected = !$element.data('selected');
+                var $colors = $('.color', $ctx);
+                $colors.data('selected', false);
+                $colors.removeClass('selected');
+                $element.data('selected', selected);
+                $element.addClass('selected');
+                that.selected = [ $element ];
+                e.stopPropagation();
+            });
+
+            $element.on('dblclick', function() {
                 if ($(this).is('.ui-draggable-dragging')) {
                     return;
                 }
@@ -177,9 +197,8 @@
             );
 
             // enable drag and drop for colors
-            /*
             $element.draggable({
-                distance: 30,
+                distance: 10,
                 start: function() {
                     // NOOP
                 },
@@ -187,7 +206,7 @@
                     var nx = $(this).position().left;
                     var ny = $(this).position().top;
                     $.ajax({
-                        url: "/api/measure/move/" + id + "/" + nx + "/" + ny,
+                        url: "/api/color/move/" + id + "/" + nx + "/" + ny,
                         dataType: 'json',
                         success: function(data){
                             // NOOP
@@ -195,7 +214,6 @@
                     });
                 }
             });
-            */
             
             // draw element
             this.$ctx.append($element);

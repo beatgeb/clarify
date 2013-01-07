@@ -8,6 +8,7 @@ define('API_COLOR_GET', 'color.get');
 define('API_COLOR_REMOVE', 'color.remove');
 define('API_COLOR_EXPORT', 'color.export');
 define('API_COLOR_UPDATE', 'color.update');
+define('API_COLOR_MOVE', 'color.move');
 
 switch ($action) {
     
@@ -46,6 +47,22 @@ switch ($action) {
         $result = array('success' => true);
         header('Content-Type: application/json');
         echo json_encode($result);
+        break;
+
+    case API_COLOR_MOVE:
+        $id = intval($route[4]);
+        $x = intval($route[5]);
+        $y = intval($route[6]);
+        if ($id < 1) { die('Please provide a color id'); }
+        $data = array(
+            'modified' => date('Y-m-d H:i:s'),
+            'modifier' => userid(),
+            'x' => $x,
+            'y' => $y
+        );
+        $screen = $db->single("SELECT s.project FROM color c LEFT JOIN screen s ON s.id = c.screen WHERE c.id = '" . $id . "'");
+        permission($screen['project'], 'VIEW');
+        $db->update('color', $data, array('id' => $id));
         break;
 
     case API_COLOR_REMOVE:

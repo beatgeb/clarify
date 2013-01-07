@@ -22,10 +22,18 @@
     position: absolute;
     display: none;
     white-space: nowrap;
-    cursor: pointer;
     margin-top: 6px;
     margin-left: -19px;
     font-family: "Lexia W01 Regular", sans-serif;
+    cursor: auto;
+}
+.modLayerColor .color.selected,
+.modLayerColor .color.selected:hover {
+    background: #000;   
+    box-shadow: 0 0 10px #000; 
+}
+.modLayerColor .color.selected:hover {
+    cursor: move;
 }
 .modLayerColor .color:hover {
     background-color: #000;
@@ -51,6 +59,9 @@
 .modLayerColor .color .meta:hover {
     color: #FFF;
 }
+.modLayerColor .color.selected .meta {
+    color: #FFF;
+}
 .modLayerColor .color .meta span.hex {
     color: #DDD;
     text-transform: uppercase;
@@ -71,5 +82,9 @@
 }
 
 .modLayerColor .color:hover:after {
+    border-bottom-color: #000;
+}
+
+.modLayerColor .color.selected:after {
     border-bottom-color: #000;
 }
