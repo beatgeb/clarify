@@ -330,43 +330,9 @@
                 if ($(this).is('.ui-draggable-dragging')) {
                     return;
                 }
-                $.ajax({
-                    url: "/api/module/data/" + id,
-                    dataType: 'json',
-                    success: function(data){
-                        $module = $('.modModuleLibrary .module[data-id=' + module + ']');
-                        var modal = that.sandbox.getModuleById($('.modModal').data('id'));
-                        modal.open('edit-module', data, function() {
-                            var name = $(this).closest('.modal').find('.fld-name').val();
-                            $.ajax({
-                                url: "/api/module/rename/" + module,
-                                dataType: 'json',
-                                data: { 'name': name },
-                                success: function(data){
-                                    $('.measure[data-module=' + module + ']', $ctx).find('.meta .desc').text(data.name);
-                                    $('.desc', $module).text(data.name).show();
-                                    $module.data('name', data.name);
-                                    modal.cancel();
-                                }
-                            });
-                        }, function() {
-                            $.ajax({
-                                url: "/api/module/remove/" + id,
-                                dataType: 'json',
-                                success: function(data){
-                                    if(data.remove) {
-                                        // delete the module from the module library
-                                        $('[data-id=' + data.remove + ']',  $('.modModuleLibrary')).remove();
-                                    }
-                                    measure.remove();
-                                    modal.cancel();
-                                }
-                            });
-                        });
-                        e.stopPropagation();
-                        return false;
-                    }
-                });
+                that.onEditModule($(this).data('id'));
+                e.stopPropagation();
+                return false;
             });
 
             // set width, height and position of measurement
@@ -407,6 +373,75 @@
                 // focus the input meta field
                 $('input', measure).click();
             }
+        },
+
+        onEditLibraryModule: function(id) {
+            var that = this;
+            var $ctx = this.$ctx;
+            $.ajax({
+                url: "/api/module/library/" + id,
+                dataType: 'json',
+                success: function(data){
+                    var module = data.id;
+                    $module = $('.modModuleLibrary .module[data-id=' + module + ']');
+                    var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+                    modal.open('edit-library-module', data, function() {
+                        var name = $(this).closest('.modal').find('.fld-name').val();
+                        $.ajax({
+                            url: "/api/module/rename/" + module,
+                            dataType: 'json',
+                            data: { 'name': name },
+                            success: function(data){
+                                $('.measure[data-module=' + module + ']', $ctx).find('.meta .desc').text(data.name);
+                                $('.desc', $module).text(data.name).show();
+                                $module.data('name', data.name);
+                                modal.cancel();
+                            }
+                        });
+                    });
+                }
+            });
+        },
+
+        onEditModule: function(id) {
+            var that = this;
+            var $ctx = this.$ctx;
+            $.ajax({
+                url: "/api/module/data/" + id,
+                dataType: 'json',
+                success: function(data){
+                    var module = data.module;
+                    $module = $('.modModuleLibrary .module[data-id=' + module + ']');
+                    var modal = that.sandbox.getModuleById($('.modModal').data('id'));
+                    modal.open('edit-module', data, function() {
+                        var name = $(this).closest('.modal').find('.fld-name').val();
+                        $.ajax({
+                            url: "/api/module/rename/" + module,
+                            dataType: 'json',
+                            data: { 'name': name },
+                            success: function(data){
+                                $('.measure[data-module=' + module + ']', $ctx).find('.meta .desc').text(data.name);
+                                $('.desc', $module).text(data.name).show();
+                                $module.data('name', data.name);
+                                modal.cancel();
+                            }
+                        });
+                    }, function() {
+                        $.ajax({
+                            url: "/api/module/remove/" + id,
+                            dataType: 'json',
+                            success: function(data){
+                                if(data.remove) {
+                                    // delete the module from the module library
+                                    $('[data-id=' + data.remove + ']',  $('.modModuleLibrary')).remove();
+                                }
+                                measure.remove();
+                                modal.cancel();
+                            }
+                        });
+                    });
+                }
+            });
         },
 
         addLibraryModule: function(module) {

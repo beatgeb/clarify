@@ -11,6 +11,7 @@ define('API_MODULE_REMOVE', 'module.remove');
 define('API_MODULE_RENAME', 'module.rename');
 define('API_MODULE_RECAPTURE', 'module.recapture');
 define('API_MODULE_DATA', 'module.data');
+define('API_MODULE_LIBRARY', 'module.library');
 
 switch ($action) {
     case API_MODULE_REMOVE:
@@ -276,6 +277,22 @@ switch ($action) {
             FROM module m
                 LEFT JOIN project_module pm ON pm.id = m.module
             WHERE m.id = '" . $id . "'
+        ");
+        permission($module['project'], 'VIEW');
+        json($module);
+        break;
+
+    case API_MODULE_LIBRARY:
+        $id = intval($route[4]);
+        if ($id < 1) { die('Please provide a module id'); }
+        $module = $db->single("
+            SELECT 
+                pm.id, 
+                pm.project,
+                pm.name, 
+                pm.skin
+            FROM project_module pm
+            WHERE pm.id = '" . $id . "'
         ");
         permission($module['project'], 'VIEW');
         json($module);

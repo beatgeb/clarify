@@ -3,6 +3,12 @@
     Tc.Module.ModuleLibrary = Tc.Module.extend({
         on: function(callback) {
             var $ctx = this.$ctx;
+            var that = this;
+            this.sandbox.subscribe('keyboard', this);
+            $ctx.on('click', '.module', function() {
+                that.fire('editLibraryModule', $(this).data('id'));
+            });
+            /*
             $ctx.on('click', '.module', function() {
                 var $module = $(this),
                     $rename = $('.rename', $module),
@@ -36,6 +42,9 @@
                     }
                 }).show().focus();
             });
+            */
+           
+
             callback();
         }
     });
