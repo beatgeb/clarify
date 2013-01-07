@@ -54,6 +54,15 @@ switch ($action) {
         // increase count on screen
         $db->query("UPDATE screen SET count_font = count_font + 1 WHERE id = " . $screen['id'] . "");
         
+        // add to activity stream
+        activity_add(
+            '{actor} added a font definition on screen {target}', 
+            userid(), OBJECT_TYPE_USER, user('name'), 
+            ACTIVITY_VERB_ADD, 
+            $id, OBJECT_TYPE_FONT, null, 
+            $screen['id'], OBJECT_TYPE_SCREEN, null
+        );
+
         // return result
         header('Content-Type: application/json');
         echo json_encode($font);
