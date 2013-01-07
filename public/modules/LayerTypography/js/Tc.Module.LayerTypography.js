@@ -96,25 +96,28 @@
                         $font.find('.preview .name').css('fontSize', request.font.size);
                         $font.find('.preview .name').css('color', request.font.color);
 
-                        $font.find('.color-normal .box').css('backgroundColor', request.font.color);
-                        $font.find('.color-normal .hex').text(request.font.color);
                         if (request.font.color && request.font.color != '') {
+                            $font.find('.color-normal .box').css('backgroundColor', request.font.color);
+                            $font.find('.color-normal .name').text(data.font.color_name);
+                            $font.find('.color-normal .hex').text(request.font.color);
                             $font.find('.color-normal').fadeIn();
                         } else {
                             $font.find('.color-normal').fadeOut();
                         }
                         
-                        $font.find('.color-hover .box').css('backgroundColor', request.font.color_hover);
-                        $font.find('.color-hover .hex').text(request.font.color_hover);
                         if (request.font.color_hover && request.font.color_hover != '') {
+                            $font.find('.color-hover .box').css('backgroundColor', request.font.color_hover);
+                            $font.find('.color-hover .name').text(data.font.color_hover_name);
+                            $font.find('.color-hover .hex').text(request.font.color_hover);
                             $font.find('.color-hover').fadeIn();
                         } else {
                             $font.find('.color-hover').fadeOut();
                         }
                         
-                        $font.find('.color-active .box').css('backgroundColor', request.font.color_active);
-                        $font.find('.color-active .hex').text(request.font.color_active);
                         if (request.font.color_active && request.font.color_active != '') {
+                            $font.find('.color-active .box').css('backgroundColor', request.font.color_active);
+                            $font.find('.color-active .name').text(data.font.color_active_name);
+                            $font.find('.color-active .hex').text(request.font.color_active);
                             $font.find('.color-active').fadeIn();
                         } else {
                             $font.find('.color-active').fadeOut();

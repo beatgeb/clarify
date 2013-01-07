@@ -134,10 +134,18 @@ switch ($action) {
             );
 
             // check, if new color already exists in the library
-            $update['color'] = typography_color($font['project'], $request->font->color);
-            $update['color_hover'] = typography_color($font['project'], $request->font->color_hover);
-            $update['color_active'] = typography_color($font['project'], $request->font->color_active);
+            $color = typography_color($font['project'], $request->font->color);
+            $update['color'] = $color['id'];
+            $font['color_name'] = $color['name'];
             
+            $color = typography_color($font['project'], $request->font->color_hover);
+            $update['color_hover'] = $color['id'];
+            $font['color_hover_name'] = $color['name'];
+            
+            $color = typography_color($font['project'], $request->font->color_active);
+            $update['color_active'] = $color['id'];
+            $font['color_active_name'] = $color['name'];
+
             $db->update('project_font', $update, array('id' => $font['font']));
             $response['font'] = $font;
             $response['success'] = true;
@@ -246,9 +254,9 @@ function typography_color($project, $color) {
         return null;
     }
     $color = strlen($color) == 7 ? substr($color,1) : $color;
-    $project_color = $db->single("SELECT id FROM project_color WHERE hex = '" . $color . "' AND project = '" . $project . "' LIMIT 1");
+    $project_color = $db->single("SELECT id, name FROM project_color WHERE hex = '" . $color . "' AND project = '" . $project . "' LIMIT 1");
     if ($project_color) {
-        return $project_color['id'];
+        return $project_color;
     } else {
         require_once LIBRARY . 'color.php';
         $colorHandler = new ColorHandler();
@@ -270,6 +278,6 @@ function typography_color($project, $color) {
             'b' => $rgb['b'] . ""
         );
         $color_id = $db->insert('project_color', $data);
-        return $color_id;
+        return array('id' => $color_id, 'name' => $data['name']);
     }
 }
