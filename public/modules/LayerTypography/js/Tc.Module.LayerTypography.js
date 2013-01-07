@@ -275,7 +275,9 @@
                     url: "/api/typography/move/" + $(item).data('id') + "/" + new_x + "/" + new_y,
                     dataType: 'json',
                     type: 'POST',
-                    success: function(data){ }
+                    success: function(data){ 
+
+                    }
                 });
             });
         },
@@ -410,6 +412,16 @@
                     that.resize = false;
                 }
             });
+
+            // show / hide picker on hover
+            $font.hover(
+                function(){
+                    that.hover = true;
+                },
+                function(){
+                    that.hover = false;
+                }
+            );
 
             // set width, height and position of font
             $font.css({
