@@ -1,6 +1,6 @@
 .modUser {
     float: right;
-    margin: 23px 40px 23px 0;
+    margin: 23px 23px 23px 0;
     display: inline-block;
 }
 
@@ -36,9 +36,9 @@
 }
 
 .modUser .avatar img {
-    border-radius: 24px;
-    -webkit-border-radius: 24px;
+    border-radius: 3px;
     display: block;
+
 }
 
 .modUser .info .btn-plan {
