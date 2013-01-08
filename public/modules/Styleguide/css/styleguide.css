@@ -101,6 +101,7 @@
 .modStyleguide .section-colors .color {
     float: left;
     border-right: 1px solid #DDD;
+    width: 140px;
 }
 .modStyleguide .section-colors .color:nth-child(6n+0) {
     border-right: none;
@@ -130,6 +131,7 @@
     padding: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* typography */
@@ -204,6 +206,7 @@
     float: left;
     background: #FFF;
     border-left: 1px solid #DDD;
+    width: 140px;
 }
 .modStyleguide .section-typography .font .color > div {
     font-size: 13px;
@@ -238,6 +241,7 @@
     padding: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* screens */
