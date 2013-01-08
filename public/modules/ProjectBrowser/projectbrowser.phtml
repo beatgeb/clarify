@@ -36,7 +36,7 @@ if (is_array($_SESSION['user']['permissions']['project']) && sizeof($_SESSION['u
 <?php if ($project_id > 0) { ?>
 <h3><?php print $project['name'] ?></h3>
 <ul>
-    <li><a href="<?php print R ?>guide/<?php print $project_id ?>"><i class="icon icon-book"></i> Styleguide</a></li>
+    <li><a href="<?php print R ?>styleguide/<?php print $project_id ?>"><i class="icon icon-book"></i> Styleguide</a></li>
     <li><a href="<?php print R ?>showcase/<?php print $project['creator'] ?>/<?php print $project['slug'] ?>/"><i class="icon icon-camera"></i> Showcase (Experimental)</a></li>
 </ul>
 
