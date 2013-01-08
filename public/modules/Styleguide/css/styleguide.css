@@ -91,7 +91,7 @@
     font-family:"Lexia W01 Regular", helvetica neue, arial, sans-serif;
     font-size: 24px;
     color: #555;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .modStyleguide .content h3 a {
@@ -105,16 +105,12 @@
 
 /* colors */
 .modStyleguide .section-colors {
-    border: 1px solid #BBB;
     overflow: hidden;
 }
 .modStyleguide .section-colors .color {
     float: left;
-    border-right: 1px solid #DDD;
     width: 140px;
-}
-.modStyleguide .section-colors .color:nth-child(6n+0) {
-    border-right: none;
+    margin-bottom: 20px;
 }
 .modStyleguide .section-colors .color > div {
     font-size: 13px;
@@ -128,6 +124,8 @@
     height: 80px;
     border-radius: 80px;
     margin: 20px 30px 10px 30px;
+    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
 }
 .modStyleguide .section-colors .color .hex {
     color: #444;
@@ -135,13 +133,14 @@
     font-size: 16px;
 }
 .modStyleguide .section-colors .color .css {
-    background: #EEE;
+    border: 1px solid #DDD;
     color: #666;
-    margin-top: 10px;
+    margin: 10px 10px 0 10px;
     padding: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    border-radius: 4px;
 }
 
 /* typography */
@@ -149,13 +148,12 @@
     
 }
 .modStyleguide .section-typography .font {
-    border: 1px solid #BBB;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
     overflow: hidden;
     position: relative;
 }
 .modStyleguide .section-typography .font > .preview {
-    height: 163px;
+    height: 200px;
     border-bottom: 1px solid #DDD;
 }
 .modStyleguide .section-typography .font > .preview .state {
@@ -166,9 +164,8 @@
     padding: 20px 20px 20px 120px;
 }
 .modStyleguide .section-typography .font > .css {
-    background: #EEE;
     color: #666;
-    padding: 5px 10px;
+    padding: 5px 0;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 13px;
@@ -182,7 +179,7 @@
 .modStyleguide .section-typography .font .colors .shadow {
     float: left;
     width: 300px;
-    height: 163px;
+    height: 180px;
     background-image: -webkit-gradient(linear, left center, right center, from(rgba(255, 255, 255, 0.00)), to(rgba(255, 255, 255, 1.00)));
     background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 1.00));
     background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 1.00));
@@ -196,9 +193,7 @@
     top: 0;
     left: 0;
     background: #FFF;
-    border-right: 1px solid #DDD;
     width: 100px;
-    height: 163px;
 }
 .modStyleguide .section-typography .font .meta > div {
     font-size: 13px;
@@ -214,7 +209,6 @@
 .modStyleguide .section-typography .font .color {
     float: left;
     background: #FFF;
-    border-left: 1px solid #DDD;
     width: 100px;
 }
 .modStyleguide .section-typography .font .color > div {
@@ -230,6 +224,8 @@
     border-radius: 100%;
     margin: 20px 30px 10px 30px;
     overflow: hidden;
+    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
 }
 .modStyleguide .section-typography .font .color .hex {
     color: #444;
@@ -244,13 +240,14 @@
     text-overflow: ellipsis;
 }
 .modStyleguide .section-typography .font .color .css {
-    margin-top: 10px;
-    background: #EEE;
+    margin: 10px 10px 0 10px;
     color: #666;
     padding: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    border-radius: 4px;
+    border: 1px solid #DDD;
 }
 
 /* screens */
@@ -313,21 +310,21 @@
     margin-bottom: 50px;
     overflow: hidden;
     position: relative;
-    border: 1px solid #DDD;
 }
 
 .modStyleguide .section-modules .module img {
     display: block;
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
 .modStyleguide .section-modules .module .css {
-    background: #EEE;
+    border-top: 1px solid #DDD;
     color: #666;
-    padding: 5px;
+    padding: 5px 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-size: 13px;
 }
 
 @media print {
