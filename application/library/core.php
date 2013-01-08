@@ -29,6 +29,7 @@ define('VIEW_EMBED', 'embed');
 define('VIEW_PROJECT', 'project');
 define('VIEW_REGISTER', 'register');
 define('VIEW_SHOWCASE', 'showcase');
+define('VIEW_STYLEGUIDE', 'styleguide');
 
 /**
  * Get a configuration variable by path.

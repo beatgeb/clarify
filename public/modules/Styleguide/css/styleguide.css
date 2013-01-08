@@ -1,0 +1,231 @@
+.modStyleguide {
+    font-family: "helvetica neue", arial, sans-serif;
+    font-size: 16px;
+    margin-left: 290px;
+    width: 967px;
+}
+
+.modStyleguide .sidebar {
+    background: #FFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 210px;
+    border-right: 1px solid #DDD;
+    padding: 40px 40px;
+
+}
+
+.modStyleguide .sidebar h1.logo {
+    font-family:"Lexia W01 Regular", helvetica neue, arial, sans-serif;
+    font-size: 28px;
+    color: #444;
+}
+
+.modStyleguide .sidebar ul {
+    margin-top: 120px;
+}
+.modStyleguide .sidebar ul > li > a {
+    display: block;
+    color: #666;
+    text-decoration: none;
+    line-height: 2.2;
+    text-transform: uppercase;
+    position: relative;
+}
+.modStyleguide .sidebar ul > li > a > span {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    font-size: 12px;
+    color: #BBB;
+}
+.modStyleguide .sidebar .btn-clarify {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    text-decoration: none;
+    color: #666;
+    font-size: 12px;
+}
+
+.modStyleguide .sidebar .btn-clarify strong {
+    font-family:"Lexia W01 Regular", helvetica neue, arial, sans-serif;
+    font-weight: normal;
+    font-size: 15px;
+    color: #222;
+}
+
+.modStyleguide .content {
+    padding: 40px 60px;
+}
+.modStyleguide .content h2 {
+    font-family:"Lexia W01 Regular", helvetica neue, arial, sans-serif;
+    font-size: 28px;
+    color: #DDD;
+    margin-bottom: 40px;
+}
+
+.modStyleguide .content h2 a {
+    color: #DDD;
+    text-decoration: none;
+}
+
+.modStyleguide .content h3 {
+    font-family:"Lexia W01 Regular", helvetica neue, arial, sans-serif;
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.modStyleguide .content h3 a {
+    color: #555;
+    text-decoration: none;
+}
+
+.modStyleguide .section {
+    margin-bottom: 60px;
+}
+
+/* colors */
+.modStyleguide .section-colors {
+    border: 1px solid #BBB;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.modStyleguide .section-colors .color {
+    float: left;
+    border-right: 1px solid #DDD;
+}
+.modStyleguide .section-colors .color:nth-child(6n+0) {
+    border-right: none;
+}
+.modStyleguide .section-colors .color > div {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.5;
+    text-align: center;
+}
+.modStyleguide .section-colors .color .preview {
+    background: #EEE;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    margin: 20px 30px 10px 30px;
+}
+.modStyleguide .section-colors .color .hex {
+    color: #444;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+.modStyleguide .section-colors .color .css {
+    background: #EEE;
+    color: #666;
+    margin-top: 10px;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* typography */
+.modStyleguide .section-typography {
+    
+}
+.modStyleguide .section-typography .font {
+    border: 1px solid #BBB;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    overflow: hidden;
+    position: relative;
+}
+.modStyleguide .section-typography .font > .preview {
+    padding: 20px 20px 20px 120px;
+    height: 123px;
+    border-bottom: 1px solid #DDD;
+}
+.modStyleguide .section-typography .font > .css {
+    background: #EEE;
+    color: #666;
+    padding: 5px 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    line-height: 1.5;
+}
+.modStyleguide .section-typography .font .colors {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.modStyleguide .section-typography .font .colors .shadow {
+    float: left;
+    width: 300px;
+    height: 163px;
+    background-image: -webkit-gradient(linear, left center, right center, from(rgba(255, 255, 255, 0.00)), to(rgba(255, 255, 255, 1.00)));
+    background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 1.00));
+    background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 1.00));
+    background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 1.00));
+    background-image: -ms-linear-gradient(left, rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 1.00));
+    background-image: linear-gradient(left, rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 1.00));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#ffffff', EndColorStr='#ffffff');
+}
+.modStyleguide .section-typography .font .meta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #FFF;
+    border-right: 1px solid #DDD;
+    width: 100px;
+    height: 163px;
+}
+.modStyleguide .section-typography .font .meta > div {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.5;
+    text-align: center;
+}
+.modStyleguide .section-typography .font .meta .size {
+    font-size: 28px;
+    color: #444;
+    margin-top: 10px;
+}
+.modStyleguide .section-typography .font .color {
+    float: left;
+    background: #FFF;
+    border-left: 1px solid #DDD;
+}
+.modStyleguide .section-typography .font .color > div {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.5;
+    text-align: center;
+}
+.modStyleguide .section-typography .font .color .preview {
+    background: #EEE;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    margin: 20px 30px 10px 30px;
+    overflow: hidden;
+}
+.modStyleguide .section-typography .font .color .hex {
+    color: #444;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+.modStyleguide .section-typography .font .state {
+    border-bottom: 1px solid #EEE;
+    color: #666;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.modStyleguide .section-typography .font .color .css {
+    margin-top: 10px;
+    background: #EEE;
+    color: #666;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

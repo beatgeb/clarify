@@ -1,0 +1,107 @@
+<div class="mod modStyleguide">
+    <div class="sidebar">
+        <h1 class="logo"><?php print $project['name'] ?></h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#screens">
+                        Screens
+                        <span><?php echo sizeof($screens) ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#colors">
+                        Colors
+                        <span><?php echo sizeof($colors) ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#typography">
+                        Typography
+                        <span><?php echo sizeof($fonts) ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#modules">
+                        Modules
+                        <span><?php echo sizeof($modules) ?></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <a class="btn-clarify" href="http://clarify.io">
+            Built with <strong>Clarify</strong>
+        </a>
+    </div>
+    <div class="content">
+        
+        <?php if (sizeof($colors) > 0) { ?>
+        <h2><a href="#colors" name="colors">Colors</a></h2>
+        <div class="section section-colors">
+        <?php foreach ($colors as $color) { ?>
+            <div class="color">
+                <div class="preview" style="background: #<?php echo $color['hex'] ?>;"></div>
+                <div class="hex">#<?php echo $color['hex'] ?></div>
+                <div class="rgb">
+                    <?php echo $color['r'] ?>,
+                    <?php echo $color['g'] ?>,
+                    <?php echo $color['b'] ?>
+                </div>
+                <div class="css"><?php echo $color['name'] ?></div>
+            </div>
+        <?php } ?>
+        </div>
+        <?php } ?>
+        
+        <?php if (sizeof($fonts) > 0) { ?>
+        <h2><a href="#typography" name="typography">Typography</a></h2>
+        <div class="section section-typography">
+            <?php foreach ($fonts as $font) { ?>
+            <?php $color = $colors[$font['color']]; ?>
+            <h3><?php print $font['name'] ?> - <?php print $font['family'] ?></h3>
+            <div class="fonts">
+                <div class="font">
+                    <div class="preview" style="font-family: <?php print $font['family'] ?>; font-size: <?php print $font['size'] ?>px; font-weight: <?php print $font['weight'] ?>; font-style: <?php print $font['style'] ?>; color: #<?php print $color['hex'] ?>; <?php print $font['decoration'] != null ? 'text-decoration:' . $font['decoration'] .';' : '' ?>">
+                    <?php print nl2br($sample) ?>
+                    </div>
+                    <div class="css">.<?php print $font['name_css'] ?></div>
+                    <div class="colors">
+                        <div class="shadow"></div>
+                        <div class="color">
+                            <div class="state">Normal</div>
+                            <div class="preview" style="background: #<?php echo $color['hex'] ?>;"></div>
+                            <div class="hex">#<?php echo $color['hex'] ?></div>
+                            <div class="css"><?php echo $color['name'] ?></div>
+                        </div>
+                        <?php $color = $colors[$font['color_hover']]; ?>
+                        <?php if ($color) { ?>
+                        <div class="color">
+                            <div class="state">Hover</div>
+                            <div class="preview" style="background: #<?php echo $color['hex'] ?>;"></div>
+                            <div class="hex">#<?php echo $color['hex'] ?></div> 
+                            <div class="css"><?php echo $color['name'] ?></div>
+                        </div>
+                        <?php } ?>
+                        <?php $color = $colors[$font['color_active']]; ?>
+                        <?php if ($color) { ?>
+                        <div class="color">
+                            <div class="state">Active</div>
+                            <div class="preview" style="background: #<?php echo $color['hex'] ?>;"></div>
+                            <div class="hex">#<?php echo $color['hex'] ?></div> 
+                            <div class="css"><?php echo $color['name'] ?></div>
+                        </div>
+                        <?php } ?>
+                    </div>
+                    <div class="meta">
+                        <div class="state">Size</div>
+                        <div class="size"><?php print $font['size'] ?>px</div>
+                        <div class="line-height"><i class="icon icon-resize-vertical"></i> <?php print $font['line_height'] ?></div> 
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+        <?php } ?>
+        
+    </div>
+</div>

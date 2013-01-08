@@ -33,6 +33,7 @@ switch ($view) {
     case VIEW_EMBED:
     case VIEW_PROJECT:
     case VIEW_SHOWCASE:
+    case VIEW_STYLEGUIDE:
         break;
     default:
         lock();
