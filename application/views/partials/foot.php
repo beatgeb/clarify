@@ -14,30 +14,15 @@
 })(Tc.$);
 </script>
 <?php if (config('feedback.uservoice.enabled')) { ?>
-<script type="text/javascript">
-  var uvOptions = {};
-  (function() {
-    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/<?php print config('feedback.uservoice.key') ?>.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-  })();
+<script type='text/javascript'>
+(function (d, t) {
+  var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+  bh.type = 'text/javascript';
+  bh.src = '//www.bugherd.com/sidebarv2.js?apikey=ojjmpwo3itcmemzt668usa';
+  s.parentNode.insertBefore(bh, s);
+  })(document, 'script');
 </script>
 <?php } ?>
-<script type="text/javascript">
-  var _kmq = _kmq || [];
-  var _kmk = _kmk || 'afa554d74fcdf58054259fe70815c4f0b35f44a0';
-  function _kms(u){
-    setTimeout(function(){
-      var d = document, f = d.getElementsByTagName('script')[0],
-      s = d.createElement('script');
-      s.type = 'text/javascript'; s.async = true; s.src = u;
-      f.parentNode.insertBefore(s, f);
-    }, 1);
-  }
-  _kms('//i.kissmetrics.com/i.js');
-  _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
-  _kmq.push(['identify', '<?php echo user('email') ?>']);
-</script>
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-652147-17']);
