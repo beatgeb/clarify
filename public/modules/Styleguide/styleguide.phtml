@@ -136,7 +136,7 @@
                 <?php foreach ($modules as $module) { ?>
                 <h3><?php print $module['name'] ?></h3>
                 <div class="module">
-                    <div class="screenshot"><img src="<?php print R .'upload/modules/' . $project_id .'/'. md5($module['id'] . config('security.general.hash')) ?>.png" /></div>
+                    <div class="screenshot"><img src="<?php print R .'upload/modules/' . $project_id .'/'. md5($module['id'] . config('security.general.hash')) ?>.png" style="width: 400px" /></div>
                 </div>
                 <?php } ?>
             </div>
