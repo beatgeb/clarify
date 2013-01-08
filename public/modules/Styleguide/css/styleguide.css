@@ -106,7 +106,6 @@
 /* colors */
 .modStyleguide .section-colors {
     border: 1px solid #BBB;
-    border-radius: 10px;
     overflow: hidden;
 }
 .modStyleguide .section-colors .color {
@@ -151,7 +150,6 @@
 }
 .modStyleguide .section-typography .font {
     border: 1px solid #BBB;
-    border-radius: 10px;
     margin-bottom: 50px;
     overflow: hidden;
     position: relative;
@@ -315,6 +313,21 @@
     margin-bottom: 50px;
     overflow: hidden;
     position: relative;
+    border: 1px solid #DDD;
+}
+
+.modStyleguide .section-modules .module img {
+    display: block;
+    margin: 10px;
+}
+
+.modStyleguide .section-modules .module .css {
+    background: #EEE;
+    color: #666;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 @media print {
