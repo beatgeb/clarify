@@ -310,6 +310,13 @@
     color: #000;
 }
 
+/* modules */
+.modStyleguide .section-modules .module {
+    margin-bottom: 50px;
+    overflow: hidden;
+    position: relative;
+}
+
 @media print {
     .modStyleguide {
         font-family: "helvetica neue", arial, sans-serif;

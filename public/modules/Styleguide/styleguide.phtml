@@ -129,5 +129,19 @@
         </div>
         <?php } ?>
         
+        <?php if (sizeof($modules) > 0) { ?>
+        <h2><a href="#modules" name="modules">Modules</a></h2>
+        <div class="section section-modules">
+            <div class="modules">
+                <?php foreach ($modules as $index => $module) { ?>
+                <h3><?php print $index + 1 ?>. <?php print $module['name'] ?></h3>
+                <div class="module">
+                    <div class="screenshot"><img src="<?php print R .'upload/modules/' . $project_id .'/'. md5($module['id'] . config('security.general.hash')) ?>.png" /></div>
+                </div>
+                <?php } ?>
+            </div>
+        </div>
+        <?php } ?>
+        
     </div>
 </div>
