@@ -103,5 +103,31 @@
             <?php } ?>
         </div>
         <?php } ?>
+        
+        <?php if (sizeof($screens) > 0) { ?>
+        <h2><a href="#screens" name="screens">Screens</a></h2>
+        <div class="section section-screens">
+            <?php foreach ($screens as $index => $screen) { ?>
+            <h3 class="<?php if ($index > 0) { ?>pagebreak<?php } ?>"><?php print $index + 1 ?>. <?php print $screen['title'] ?></h3>
+            <div class="screen">
+                <div class="image"><script type="text/javascript" src="<?php print R ?>embed/<?php print $screen['code'] ?>/500"></script></div>
+                <?php if (isset($comments[$screen['id']])) { ?>
+                <ul class="definitions">
+                    <?php foreach ($comments[$screen['id']] as $comment) { ?>
+                    <li>
+                        <div class="dot">
+                            <div class="nr"><?php print $comment['nr'] ?></div>
+                        </div>
+                        <p><?php print nl2br(stripslashes($comment['content'])) ?>&nbsp;</p>
+                    </li>
+                    <?php } ?>
+                </ul>
+                <?php } ?>
+                <p><?php print $screen['description'] ?></p>
+            </div>
+            <?php } ?>
+        </div>
+        <?php } ?>
+        
     </div>
 </div>

@@ -5,6 +5,10 @@
     width: 967px;
 }
 
+.modStyleguide .pagebreak {
+    page-break-before: always;
+}
+
 .modStyleguide .sidebar {
     background: #FFF;
     position: fixed;
@@ -234,4 +238,59 @@
     padding: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* screens */
+.modStyleguide .section-screens .screen {
+    overflow: hidden;
+    margin-bottom: 60px;
+}
+.modStyleguide .section-screens .screen .image {
+    float: left;
+}
+.modStyleguide .section-screens .definitions {
+    float: left;
+    width: 220px;
+    margin-bottom: 40px;
+    margin-left: 40px;
+}
+
+.modStyleguide .section-screens .definitions li {
+    clear: both;
+}
+
+.modStyleguide .section-screens .definitions li .dot {
+    display: block;
+    border-radius: 20px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+    position: relative;
+    float: left;
+}
+
+.modStyleguide .section-screens .definitions li .nr {
+    display: block;
+    position: absolute;
+    width: 20px;
+    text-align: center;
+    top: 1px;
+    left: 0px;
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+}
+
+.modStyleguide .section-screens .definitions li p {
+    margin-left: 40px;
+    padding-top: 1px;
+    margin-bottom: 15px;
+}
+
+.modStyleguide .section-screens p {
+    font-size: 14px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+    color: #000;
 }
