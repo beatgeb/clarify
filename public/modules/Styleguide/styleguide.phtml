@@ -109,6 +109,7 @@
         <div class="section section-screens">
             <?php foreach ($screens as $index => $screen) { ?>
             <h3 class="<?php if ($index > 0) { ?>pagebreak<?php } ?>"><?php print $index + 1 ?>. <?php print $screen['title'] ?></h3>
+            <p><?php print $screen['description'] ?></p>
             <div class="screen">
                 <div class="image"><script type="text/javascript" src="<?php print R ?>embed/<?php print $screen['code'] ?>/500"></script></div>
                 <?php if (isset($comments[$screen['id']])) { ?>
@@ -123,7 +124,6 @@
                     <?php } ?>
                 </ul>
                 <?php } ?>
-                <p><?php print $screen['description'] ?></p>
             </div>
             <?php } ?>
         </div>

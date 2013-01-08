@@ -38,12 +38,23 @@
     text-transform: uppercase;
     position: relative;
 }
+.modStyleguide .sidebar ul > li > a:hover {
+    color: #000;
+}
 .modStyleguide .sidebar ul > li > a > span {
     position: absolute;
+    background: #EEE;
+    width: 28px;
+    border-radius: 3px;
+    text-align: center;
     top: 3px;
     right: 0;
     font-size: 12px;
-    color: #BBB;
+    color: #999;
+}
+.modStyleguide .sidebar ul > li > a:hover span {
+    background: #444;
+    color: #FFF;
 }
 .modStyleguide .sidebar .btn-clarify {
     position: absolute;
@@ -297,4 +308,24 @@
     margin-bottom: 40px;
     line-height: 1.5;
     color: #000;
+}
+
+@media print {
+    .modStyleguide {
+        font-family: "helvetica neue", arial, sans-serif;
+        font-size: 16px;
+        margin-left: 0;
+        width: 967px;
+    }
+
+    .modStyleguide .pagebreak {
+        page-break-before: always;
+    }
+
+    .modStyleguide .sidebar {
+        display: none;
+    }
+    .modStyleguide .section-typography .font .colors .shadow {
+        display: none;
+    }
 }
