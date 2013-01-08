@@ -24,7 +24,7 @@ $fonts = $db->data("SELECT pf.* FROM project_font pf LEFT JOIN font f ON f.font 
 $modules = $db->data("SELECT * FROM project_module WHERE project = " . $project_id);
 
 // sample text
-$sample = "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789%&äöü";
+$sample = "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmn@0123456789%&äöü";
 
 ?>
 <!DOCTYPE html>

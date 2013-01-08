@@ -4,12 +4,6 @@
         <nav>
             <ul>
                 <li>
-                    <a href="#screens">
-                        Screens
-                        <span><?php echo sizeof($screens) ?></span>
-                    </a>
-                </li>
-                <li>
                     <a href="#colors">
                         Colors
                         <span><?php echo sizeof($colors) ?></span>
@@ -19,6 +13,12 @@
                     <a href="#typography">
                         Typography
                         <span><?php echo sizeof($fonts) ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#screens">
+                        Screens
+                        <span><?php echo sizeof($screens) ?></span>
                     </a>
                 </li>
                 <li>
@@ -58,11 +58,12 @@
         <div class="section section-typography">
             <?php foreach ($fonts as $font) { ?>
             <?php $color = $colors[$font['color']]; ?>
-            <h3><?php print $font['name'] ?> - <?php print $font['family'] ?></h3>
+            <h3><?php print $font['name'] ?></h3>
             <div class="fonts">
                 <div class="font">
-                    <div class="preview" style="font-family: <?php print $font['family'] ?>; font-size: <?php print $font['size'] ?>px; font-weight: <?php print $font['weight'] ?>; font-style: <?php print $font['style'] ?>; color: #<?php print $color['hex'] ?>; <?php print $font['decoration'] != null ? 'text-decoration:' . $font['decoration'] .';' : '' ?>">
-                    <?php print nl2br($sample) ?>
+                    <div class="preview">
+                        <div class="state"><?php print $font['family'] ?></div>
+                        <div class="sample" style="font-family: <?php print $font['family'] ?>; font-size: <?php print $font['size'] ?>px; font-weight: <?php print $font['weight'] ?>; font-style: <?php print $font['style'] ?>; color: #<?php print $color['hex'] ?>; <?php print $font['decoration'] != null ? 'text-decoration:' . $font['decoration'] .';' : '' ?>"><?php print nl2br($sample) ?></div>
                     </div>
                     <div class="css">.<?php print $font['name_css'] ?></div>
                     <div class="colors">
@@ -102,6 +103,5 @@
             <?php } ?>
         </div>
         <?php } ?>
-        
     </div>
 </div>

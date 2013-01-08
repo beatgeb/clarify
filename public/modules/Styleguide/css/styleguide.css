@@ -140,9 +140,15 @@
     position: relative;
 }
 .modStyleguide .section-typography .font > .preview {
-    padding: 20px 20px 20px 120px;
-    height: 123px;
+    height: 163px;
     border-bottom: 1px solid #DDD;
+}
+.modStyleguide .section-typography .font > .preview .state {
+    font-size: 13px;
+    padding: 7px 0 7px 120px;
+}
+.modStyleguide .section-typography .font > .preview .sample {
+    padding: 20px 20px 20px 120px;
 }
 .modStyleguide .section-typography .font > .css {
     background: #EEE;
