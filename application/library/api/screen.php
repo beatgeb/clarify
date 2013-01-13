@@ -84,9 +84,16 @@ switch ($action) {
         $db->delete('color', array('screen' => $screen['id']));
         $db->delete('comment', array('screen' => $screen['id']));
         $db->delete('measure', array('screen' => $screen['id']));
-        $db->delete('set_screen', array('screen' => $screen['id']));        
-        $db->delete('screen', array('id' => $screen['id']));
 
+        // check if screen is part of a set
+        $relations = $db->data("SELECT `set` FROM set_screen WHERE screen = " . $screen['id']);
+        foreach ($relations as $relation) {
+            $db->query("UPDATE `set` SET screen_count = screen_count - 1 WHERE id = " . $relation['set'] . " LIMIT 1");
+        }
+        $db->delete('set_screen', array('screen' => $screen['id']));
+
+        // delete screen & update screen count on project
+        $db->delete('screen', array('id' => $screen['id']));
         $db->query("UPDATE project SET screen_count = screen_count - 1 WHERE id = " . $screen['project']);
         $response = $screen;
         json($response);
