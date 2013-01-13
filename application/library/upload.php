@@ -254,8 +254,10 @@ class UploadHandler
                         'set' => $this->set,
                         'screen' => $id
                     ));
+
                     // increase screen count on set
                     $db->query("UPDATE `set` SET screen_count = screen_count + 1 WHERE id = " . $this->set . " LIMIT 1");
+
                 }
             }
 
