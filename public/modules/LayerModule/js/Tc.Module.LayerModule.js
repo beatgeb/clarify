@@ -131,6 +131,9 @@
                         }
                     });
                 },
+                cancel: function() {
+                    helper.remove();
+                },
                 stop: function() {
                     $('.measure', $ctx).show();
                 }
@@ -435,7 +438,7 @@
                                     // delete the module from the module library
                                     $('[data-id=' + data.remove + ']',  $('.modModuleLibrary')).remove();
                                 }
-                                measure.remove();
+                                $('.measure[data-module=' + data.remove + ']', $ctx).remove();
                                 modal.cancel();
                             }
                         });

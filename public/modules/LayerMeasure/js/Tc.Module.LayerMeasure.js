@@ -112,6 +112,9 @@
                         }
                     });
                 },
+                cancel: function() {
+                    helper.remove();
+                },
                 stop: function() {
                     $('.measure', $ctx).show();
                 }

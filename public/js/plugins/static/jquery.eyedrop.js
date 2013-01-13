@@ -23,6 +23,7 @@
                 settings._started = false;
                 settings.stop();
             },
+            'cancel': function() {},
             'picking': function(x, y, w, h) {},
             '_pickRange': function(startx, starty, startcolor, endx, endy, endcolor) {
                 if (!settings._started) { return; }
@@ -47,6 +48,16 @@
                 settings.picker.removeClass('display');
                 $display.hide();
             }
+
+            // bind escape
+            console.log('binding');
+            $('html').keydown(function(e){
+                if (e.keyCode == 27) {
+                    mouseClicked = false;
+                    settings._started = false;
+                    settings.cancel();
+                }
+            });
             
             // set width, height and background image on source element
             $this.css({

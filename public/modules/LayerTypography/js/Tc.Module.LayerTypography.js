@@ -218,6 +218,9 @@
                         }
                     });
                 },
+                cancel: function() {
+                    helper.remove();
+                },
                 stop: function() {
                     $('.font', $ctx).show();
                 }
