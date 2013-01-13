@@ -95,6 +95,9 @@
                         $font.find('.preview .name').css('fontFamily', request.font.family);
                         $font.find('.preview .name').css('fontSize', request.font.size);
                         $font.find('.preview .name').css('color', request.font.color);
+                        if (request.font.color == '#FFFFFF') {
+                            $font.find('.preview .name').css('text-shadow', '1px 1px 3px #333'); 
+                        }
 
                         if (request.font.color && request.font.color != '') {
                             $font.find('.color-normal .box').css('backgroundColor', request.font.color);
