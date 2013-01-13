@@ -12,17 +12,27 @@
         templates: [],
 
         on: function(callback) {
-            var project = this.$ctx.data('project'),
-                $ctx = this.$ctx,
-                that = this;
+            var $ctx = this.$ctx;
+            var that = this;
+            var $screens = $('.screens', $ctx);
             var $colors = $('.colors .color', $ctx);
+
+            // initialize project and set id
+            var project = $screens.data('project');
+            var set = $screens.data('set');
 
             // compile templates
             this.templates['screen'] = doT.template($('#tmpl-screenbrowser-screen').text());
 
+            // define upload url
+            var upload_url = '/api/screen/upload/' + project;
+            if (set > 0) {
+                upload_url += '/' + set;
+            }
+
             $('.fileupload').fileupload({
                 dataType: 'json',
-                url: '/api/screen/upload/' + project,
+                url: upload_url,
                 dropZone: $('.create'),
                 add: function (e, data) {
                     var screen = {

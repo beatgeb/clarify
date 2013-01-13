@@ -16,6 +16,7 @@ class UploadHandler
 {
     private $options;
     public $project = 1;
+    public $set = null;
     public $replace = false;
     public $screen = null;
     
@@ -242,6 +243,19 @@ class UploadHandler
                 'code' => gen_uuid(userid() . '-screen-' . time())
             );
             $id = $db->insert('screen', $screen);
+
+            // add screen to set
+            if ($this->set > 0) {
+                // check if set exists
+                if ($db->exists('set', array('id' => $this->set, 'project' => $this->project))) {
+                    $db->insert('set_screen', array(
+                        'created' => date('Y-m-d H:i:s'),
+                        'creator' => userid(),
+                        'set' => $this->set,
+                        'screen' => $id
+                    ));
+                }
+            }
 
             // add to activity stream
             activity_add(

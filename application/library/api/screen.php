@@ -156,6 +156,10 @@ switch ($action) {
         lock();
         // TODO: CLEANUP UPLOAD CODE, make it ourself, no third-party library
         $project = intval($route[4]);
+        $set = null;
+        if (isset($route[5])) {
+            $set = intval($route[5]);
+        }
         
         // check permission
         permission($project, 'EDIT');
@@ -183,6 +187,7 @@ switch ($action) {
         
         $upload_handler = new UploadHandler($options);
         $upload_handler->project = $project;
+        $upload_handler->set = $set;
 
         header('Pragma: no-cache');
         header('Cache-Control: private, no-cache');
