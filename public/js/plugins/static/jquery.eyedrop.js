@@ -53,8 +53,8 @@
             $('html').keydown(function(e){
                 if (e.keyCode == 27) {
                     mouseClicked = false;
-                    settings._started = false;
                     settings.cancel();
+                    settings._stop();
                 }
             });
             
