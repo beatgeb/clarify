@@ -5,6 +5,17 @@
     width: 967px;
 }
 
+.modStyleguide .modToolbar {
+    position: fixed;
+    top: 110px;
+    left: 0;
+    z-index: 50;
+}
+
+.modStyleguide .modToolbar .section {
+    background: rgba(0,0,0,0.1);
+}
+
 .modStyleguide .pagebreak {
     page-break-before: always;
 }
