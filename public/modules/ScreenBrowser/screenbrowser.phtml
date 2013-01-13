@@ -101,8 +101,7 @@ $colors = $db->data("
     <?php } ?>
     <?php if ($project_id > 0) { ?>
     <div class="actions">
-        <a href="<?php print R ?>styleguide/<?php print $project_id ?>" class="btn-styleguide" 
-            data-project="<?php print $project_id ?>">
+        <a href="<?php print R ?>styleguide/<?php print $project_id ?>" class="btn-styleguide" data-project="<?php print $project_id ?>">
             <i class="icon icon-file"></i> Styleguide</a>
         <?php if (has_permission($project_id, 'ADMIN')) { ?>
         <a href="javascript:;" class="btn-project-settings" 
@@ -133,7 +132,7 @@ $colors = $db->data("
     <a href="<?php print R ?>api/color/export/<?php print $project_id ?>/aco" class="export btn-export-aco"><i class="icon icon-share-alt"></i> .ACO</a>
 </div>
 <?php } ?>
-<ul class="screens">
+<ul class="screens" data-project="<?php print $project_id ?>" data-set="<?php print $set['id'] ?>">
     <?php if (has_permission($project_id, 'EDIT')) { ?>
     <li class="create">
         <a class="placeholder" href="javascript:;">
