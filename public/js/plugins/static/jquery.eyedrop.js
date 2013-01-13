@@ -49,8 +49,7 @@
                 $display.hide();
             }
 
-            // bind escape
-            console.log('binding');
+            // bind escape to cancel operation
             $('html').keydown(function(e){
                 if (e.keyCode == 27) {
                     mouseClicked = false;
