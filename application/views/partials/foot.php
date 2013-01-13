@@ -14,13 +14,13 @@
 })(Tc.$);
 </script>
 <?php if (config('feedback.uservoice.enabled')) { ?>
-<script type='text/javascript'>
-(function (d, t) {
-  var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-  bh.type = 'text/javascript';
-  bh.src = '//www.bugherd.com/sidebarv2.js?apikey=ojjmpwo3itcmemzt668usa';
-  s.parentNode.insertBefore(bh, s);
-  })(document, 'script');
+<script type="text/javascript">
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/u5QnuwlRcK4saGqrAKVZEA.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
 </script>
 <?php } ?>
 <script type="text/javascript">
