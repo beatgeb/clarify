@@ -68,7 +68,7 @@
                 <div class="font">
                     <div class="preview">
                         <div class="state"><?php print $font['family'] ?></div>
-                        <div class="sample" style="font-family: <?php print $font['family'] ?>; font-size: <?php print $font['size'] ?>px; font-weight: <?php print $font['weight'] ?>; font-style: <?php print $font['style'] ?>; color: #<?php print $color['hex'] ?>; <?php print $font['decoration'] != null ? 'text-decoration:' . $font['decoration'] .';' : '' ?>"><?php print nl2br($sample) ?></div>
+                        <div class="sample" style="font-family: <?php print $font['family'] ?>; font-size: <?php print $font['size'] ?>px; font-weight: <?php print $font['weight'] ?>; font-style: <?php print $font['style'] ?>; color: #<?php print $color['hex'] ?>; <?php print $font['decoration'] != null ? 'text-decoration:' . $font['decoration'] .';' : '' ?> <?php print strtoupper($color['hex']) == 'FFFFFF' ? 'text-shadow: 1px 1px 3px #333333;' : '' ?>"><?php print nl2br($sample) ?></div>
                     </div>
                     <div class="css">.<?php print $font['name_css'] ?></div>
                     <div class="colors">
